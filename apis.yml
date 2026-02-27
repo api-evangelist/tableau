@@ -1,0 +1,141 @@
+name: Tableau
+description: Tableau is a visual analytics platform transforming the way we use data to solve problems—empowering people and organizations to make the most of their data.
+image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
+tags:
+- Analytics
+- Business Intelligence
+- Data Visualization
+- Dashboards
+created: '2024'
+modified: '2024'
+url: https://www.tableau.com
+specificationVersion: '0.18'
+apis:
+- name: Tableau REST API
+  description: The Tableau REST API allows you to manage and change Tableau Server, Tableau Cloud site, and Tableau Prep Conductor resources programmatically, using HTTP.
+  image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
+  humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
+  baseURL: https://[server]/api/[api-version]
+  tags:
+  - REST
+  - Server Management
+  - Sites
+  - Workbooks
+  - Data Sources
+  properties:
+  - type: Documentation
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
+  - type: OpenAPI
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref.htm
+  - type: Authentication
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_auth.htm
+  - type: Versioning
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm
+- name: Tableau Metadata API
+  description: GraphQL-based API for querying metadata about Tableau content, data sources, and lineage information.
+  image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
+  humanURL: https://help.tableau.com/current/api/metadata_api/en-us/index.html
+  baseURL: https://[server]/api/metadata/graphql
+  tags:
+  - GraphQL
+  - Metadata
+  - Lineage
+  - Data Catalog
+  properties:
+  - type: Documentation
+    url: https://help.tableau.com/current/api/metadata_api/en-us/index.html
+  - type: Reference
+    url: https://help.tableau.com/current/api/metadata_api/en-us/reference/index.html
+  - type: Samples
+    url: https://help.tableau.com/current/api/metadata_api/en-us/docs/use-cases.html
+- name: Tableau Hyper API
+  description: API for creating, reading, and updating Hyper files, which are the data files that power Tableau extracts.
+  image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
+  humanURL: https://help.tableau.com/current/api/hyper_api/en-us/index.html
+  baseURL: https://github.com/tableau/hyper-api-samples
+  tags:
+  - Hyper
+  - Extracts
+  - Data Files
+  - ETL
+  properties:
+  - type: Documentation
+    url: https://help.tableau.com/current/api/hyper_api/en-us/index.html
+  - type: GitHub
+    url: https://github.com/tableau/hyper-api-samples
+  - type: Python Documentation
+    url: https://help.tableau.com/current/api/hyper_api/en-us/reference/py/index.html
+  - type: Java Documentation
+    url: https://help.tableau.com/current/api/hyper_api/en-us/reference/java/index.html
+- name: Tableau Embedding API
+  description: JavaScript API for embedding Tableau visualizations in web applications with advanced interaction capabilities.
+  image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
+  humanURL: https://help.tableau.com/current/api/embedding_api/en-us/index.html
+  baseURL: https://[server]
+  tags:
+  - JavaScript
+  - Embedding
+  - Visualization
+  - Web Components
+  properties:
+  - type: Documentation
+    url: https://help.tableau.com/current/api/embedding_api/en-us/index.html
+  - type: Tutorial
+    url: https://help.tableau.com/current/api/embedding_api/en-us/docs/embedding_api_get_started.html
+  - type: Reference
+    url: https://help.tableau.com/current/api/embedding_api/en-us/reference/index.html
+  - type: Migration Guide
+    url: https://help.tableau.com/current/api/embedding_api/en-us/docs/embedding_api_migrate.html
+- name: Tableau Document API
+  description: Python library for programmatically updating Tableau workbook and data source files.
+  image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
+  humanURL: https://tableau.github.io/document-api-python/
+  baseURL: https://github.com/tableau/document-api-python
+  tags:
+  - Python
+  - Workbooks
+  - Data Sources
+  - Automation
+  properties:
+  - type: Documentation
+    url: https://tableau.github.io/document-api-python/
+  - type: GitHub
+    url: https://github.com/tableau/document-api-python
+  - type: PyPI
+    url: https://pypi.org/project/tableaudocumentapi/
+- name: Tableau Server Client (Python)
+  description: Python library that wraps the Tableau REST API for easier programmatic access.
+  image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
+  humanURL: https://tableau.github.io/server-client-python/
+  baseURL: https://github.com/tableau/server-client-python
+  tags:
+  - Python
+  - REST
+  - SDK
+  - Wrapper
+  properties:
+  - type: Documentation
+    url: https://tableau.github.io/server-client-python/
+  - type: GitHub
+    url: https://github.com/tableau/server-client-python
+  - type: PyPI
+    url: https://pypi.org/project/tableauserverclient/
+  - type: Samples
+    url: https://tableau.github.io/server-client-python/docs/samples
+maintainers:
+- name: Tableau
+  email: developers@tableau.com
+  url: https://www.tableau.com
+common:
+- type: Developer Portal
+  url: https://www.tableau.com/developer
+- type: Community
+  url: https://community.tableau.com/s/developers
+- type: Blog
+  url: https://www.tableau.com/blog/developers
+- type: Support
+  url: https://www.tableau.com/support
+- type: Terms of Service
+  url: https://www.tableau.com/legal
+- type: Privacy Policy
+  url: https://www.tableau.com/privacy
