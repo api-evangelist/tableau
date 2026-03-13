@@ -1,0 +1,323 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "tableau": "https://help.tableau.com/ns/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "Site": {
+      "@id": "tableau:Site",
+      "@context": {
+        "name": "schema:name",
+        "contentUrl": "tableau:contentUrl",
+        "adminMode": "tableau:adminMode",
+        "state": "tableau:state",
+        "storageQuota": "tableau:storageQuota",
+        "userQuota": "tableau:userQuota",
+        "numCreators": "tableau:numCreators",
+        "numExplorers": "tableau:numExplorers",
+        "numViewers": "tableau:numViewers",
+        "disableSubscriptions": "tableau:disableSubscriptions",
+        "revision": "schema:version"
+      }
+    },
+
+    "Project": {
+      "@id": "tableau:Project",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "parentProjectId": {
+          "@id": "tableau:parentProject",
+          "@type": "@id"
+        },
+        "contentPermissions": "tableau:contentPermissions",
+        "topLevelProject": "tableau:isTopLevelProject",
+        "owner": {
+          "@id": "schema:maintainer",
+          "@type": "@id"
+        },
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedAt": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Workbook": {
+      "@id": "tableau:Workbook",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "contentUrl": "tableau:contentUrl",
+        "webpageUrl": {
+          "@id": "schema:url",
+          "@type": "@id"
+        },
+        "showTabs": "tableau:showTabs",
+        "size": "schema:contentSize",
+        "project": {
+          "@id": "tableau:project",
+          "@type": "@id"
+        },
+        "owner": {
+          "@id": "schema:maintainer",
+          "@type": "@id"
+        },
+        "views": {
+          "@id": "tableau:views",
+          "@container": "@set"
+        },
+        "tags": {
+          "@id": "schema:keywords",
+          "@container": "@set"
+        },
+        "connections": {
+          "@id": "tableau:connections",
+          "@container": "@set"
+        },
+        "defaultViewId": "tableau:defaultViewId",
+        "encryptExtracts": "tableau:encryptExtracts",
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedAt": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "View": {
+      "@id": "tableau:View",
+      "@context": {
+        "name": "schema:name",
+        "contentUrl": "tableau:contentUrl",
+        "viewUrlName": "tableau:viewUrlName",
+        "sheetType": "tableau:sheetType",
+        "workbook": {
+          "@id": "tableau:workbook",
+          "@type": "@id"
+        },
+        "project": {
+          "@id": "tableau:project",
+          "@type": "@id"
+        },
+        "owner": {
+          "@id": "schema:maintainer",
+          "@type": "@id"
+        },
+        "tags": {
+          "@id": "schema:keywords",
+          "@container": "@set"
+        },
+        "totalViewCount": "schema:interactionCount",
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedAt": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "DataSource": {
+      "@id": "tableau:DataSource",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "contentUrl": "tableau:contentUrl",
+        "type": "tableau:dataSourceType",
+        "isCertified": "tableau:isCertified",
+        "certificationNote": "tableau:certificationNote",
+        "hasExtracts": "tableau:hasExtracts",
+        "encryptExtracts": "tableau:encryptExtracts",
+        "useRemoteQueryAgent": "tableau:useRemoteQueryAgent",
+        "project": {
+          "@id": "tableau:project",
+          "@type": "@id"
+        },
+        "owner": {
+          "@id": "schema:maintainer",
+          "@type": "@id"
+        },
+        "tags": {
+          "@id": "schema:keywords",
+          "@container": "@set"
+        },
+        "connections": {
+          "@id": "tableau:connections",
+          "@container": "@set"
+        },
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedAt": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "User": {
+      "@id": "tableau:User",
+      "@context": {
+        "name": "schema:alternateName",
+        "fullName": "schema:name",
+        "email": "schema:email",
+        "siteRole": "tableau:siteRole",
+        "authSetting": "tableau:authSetting",
+        "locale": "tableau:locale",
+        "language": "tableau:language",
+        "externalAuthUserId": "tableau:externalAuthUserId",
+        "lastLogin": {
+          "@id": "tableau:lastLogin",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Group": {
+      "@id": "tableau:Group",
+      "@context": {
+        "name": "schema:name",
+        "domainName": "tableau:domainName",
+        "minimumSiteRole": "tableau:minimumSiteRole",
+        "userCount": "tableau:userCount"
+      }
+    },
+
+    "Connection": {
+      "@id": "tableau:Connection",
+      "@context": {
+        "type": "tableau:connectionType",
+        "serverAddress": "tableau:serverAddress",
+        "serverPort": "tableau:serverPort",
+        "userName": "tableau:userName",
+        "datasource": {
+          "@id": "tableau:datasource",
+          "@type": "@id"
+        }
+      }
+    },
+
+    "Tag": {
+      "@id": "tableau:Tag",
+      "@context": {
+        "label": "schema:name"
+      }
+    },
+
+    "Schedule": {
+      "@id": "tableau:Schedule",
+      "@context": {
+        "name": "schema:name",
+        "state": "tableau:state",
+        "priority": "tableau:priority",
+        "type": "tableau:scheduleType",
+        "frequency": "tableau:frequency",
+        "nextRunAt": {
+          "@id": "tableau:nextRunAt",
+          "@type": "xsd:dateTime"
+        },
+        "endScheduleAt": {
+          "@id": "tableau:endScheduleAt",
+          "@type": "xsd:dateTime"
+        },
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedAt": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Subscription": {
+      "@id": "tableau:Subscription",
+      "@context": {
+        "subject": "schema:name",
+        "message": "schema:text",
+        "attachImage": "tableau:attachImage",
+        "attachPdf": "tableau:attachPdf",
+        "suspended": "tableau:isSuspended",
+        "content": {
+          "@id": "tableau:subscribedContent",
+          "@type": "@id"
+        },
+        "schedule": {
+          "@id": "tableau:schedule",
+          "@type": "@id"
+        },
+        "user": {
+          "@id": "tableau:subscriber",
+          "@type": "@id"
+        }
+      }
+    },
+
+    "Job": {
+      "@id": "tableau:Job",
+      "@context": {
+        "type": "tableau:jobType",
+        "mode": "tableau:jobMode",
+        "status": "tableau:jobStatus",
+        "progress": "tableau:progress",
+        "finishCode": "tableau:finishCode",
+        "title": "schema:name",
+        "subtitle": "schema:description",
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "startedAt": {
+          "@id": "tableau:startedAt",
+          "@type": "xsd:dateTime"
+        },
+        "endedAt": {
+          "@id": "tableau:endedAt",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Revision": {
+      "@id": "tableau:Revision",
+      "@context": {
+        "revisionNumber": "schema:version",
+        "deleted": "tableau:isDeleted",
+        "current": "tableau:isCurrent",
+        "sizeInBytes": "schema:contentSize",
+        "publisher": {
+          "@id": "tableau:publisher",
+          "@type": "@id"
+        },
+        "publishedAt": {
+          "@id": "dcterms:issued",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Permission": {
+      "@id": "tableau:Permission",
+      "@context": {
+        "granteeCapabilities": {
+          "@id": "tableau:granteeCapabilities",
+          "@container": "@set"
+        }
+      }
+    }
+  }
+}

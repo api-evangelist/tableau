@@ -1,0 +1,379 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://help.tableau.com/schemas/tableau/workbook.json",
+  "title": "Tableau Workbook",
+  "description": "A Tableau workbook containing one or more views (worksheets, dashboards, or stories) that connect to data sources and provide interactive visual analytics.",
+  "type": "object",
+  "required": ["id", "name"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier (LUID) for the workbook.",
+      "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the workbook as it appears on the server.",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "description": {
+      "type": ["string", "null"],
+      "description": "A user-provided description of the workbook.",
+      "maxLength": 4000
+    },
+    "contentUrl": {
+      "type": "string",
+      "description": "The URL-friendly name of the workbook used in the content URL path. Automatically generated from the workbook name."
+    },
+    "webpageUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "The full URL to view the workbook in a web browser on Tableau Server or Tableau Cloud."
+    },
+    "showTabs": {
+      "type": "boolean",
+      "description": "Whether the workbook displays views as navigable tabs.",
+      "default": false
+    },
+    "size": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "The size of the workbook file in bytes."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The ISO 8601 timestamp when the workbook was first published to the server."
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The ISO 8601 timestamp when the workbook was last modified or republished."
+    },
+    "encryptExtracts": {
+      "type": "string",
+      "description": "Whether extracts embedded in the workbook are encrypted at rest."
+    },
+    "defaultViewId": {
+      "type": ["string", "null"],
+      "description": "The ID of the view that is displayed by default when the workbook is opened.",
+      "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+    },
+    "project": {
+      "$ref": "#/$defs/ProjectReference"
+    },
+    "owner": {
+      "$ref": "#/$defs/OwnerReference"
+    },
+    "tags": {
+      "type": "object",
+      "description": "Tags associated with the workbook for categorization and search.",
+      "properties": {
+        "tag": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Tag"
+          }
+        }
+      }
+    },
+    "views": {
+      "type": "object",
+      "description": "The views (worksheets, dashboards, and stories) contained in the workbook.",
+      "properties": {
+        "view": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/View"
+          }
+        }
+      }
+    },
+    "connections": {
+      "type": "object",
+      "description": "The data connections used by the workbook.",
+      "properties": {
+        "connection": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Connection"
+          }
+        }
+      }
+    },
+    "usage": {
+      "$ref": "#/$defs/Usage"
+    },
+    "dataAccelerationConfig": {
+      "type": "object",
+      "description": "Configuration for Data Acceleration on the workbook.",
+      "properties": {
+        "accelerationEnabled": {
+          "type": "boolean",
+          "description": "Whether Data Acceleration is enabled."
+        },
+        "accelerateNow": {
+          "type": "boolean",
+          "description": "Whether to accelerate immediately."
+        }
+      }
+    }
+  },
+  "$defs": {
+    "ProjectReference": {
+      "type": "object",
+      "description": "A reference to the project that contains the workbook.",
+      "required": ["id"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier for the project.",
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the project."
+        }
+      }
+    },
+    "OwnerReference": {
+      "type": "object",
+      "description": "A reference to the user who owns the workbook.",
+      "required": ["id"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier for the owner.",
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+        },
+        "name": {
+          "type": "string",
+          "description": "The display name of the owner."
+        }
+      }
+    },
+    "View": {
+      "type": "object",
+      "description": "A view (worksheet, dashboard, or story) within a workbook.",
+      "required": ["id", "name"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier for the view.",
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the view."
+        },
+        "contentUrl": {
+          "type": "string",
+          "description": "The URL-friendly name used in the content URL."
+        },
+        "viewUrlName": {
+          "type": "string",
+          "description": "The URL-safe name of the view."
+        },
+        "sheetType": {
+          "type": "string",
+          "enum": ["worksheet", "dashboard", "story"],
+          "description": "The type of sheet: worksheet, dashboard, or story."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the view was created."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the view was last updated."
+        },
+        "tags": {
+          "type": "object",
+          "properties": {
+            "tag": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Tag"
+              }
+            }
+          }
+        },
+        "usage": {
+          "$ref": "#/$defs/Usage"
+        }
+      }
+    },
+    "Connection": {
+      "type": "object",
+      "description": "A data connection within a workbook, representing a link to a data source.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier for the connection.",
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of data connection (e.g., sqlserver, postgres, mysql, oracle, snowflake, bigquery, redshift, excel, hyper, textscan, googlesheets)."
+        },
+        "serverAddress": {
+          "type": ["string", "null"],
+          "description": "The hostname or IP address of the database server."
+        },
+        "serverPort": {
+          "type": ["string", "null"],
+          "description": "The port number used for the connection."
+        },
+        "userName": {
+          "type": ["string", "null"],
+          "description": "The user name used to authenticate with the data source."
+        },
+        "datasource": {
+          "type": "object",
+          "description": "Reference to the published data source, if applicable.",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The ID of the published data source."
+            },
+            "name": {
+              "type": "string",
+              "description": "The name of the published data source."
+            }
+          }
+        }
+      }
+    },
+    "Tag": {
+      "type": "object",
+      "description": "A tag label applied to content for organization and discoverability.",
+      "required": ["label"],
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "The text of the tag.",
+          "minLength": 1,
+          "maxLength": 255
+        }
+      }
+    },
+    "Usage": {
+      "type": "object",
+      "description": "Usage statistics for the content.",
+      "properties": {
+        "totalViewCount": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "The total number of times the content has been viewed."
+        }
+      }
+    },
+    "Revision": {
+      "type": "object",
+      "description": "A published revision of the workbook.",
+      "properties": {
+        "revisionNumber": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "The sequential revision number."
+        },
+        "publishedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When this revision was published."
+        },
+        "deleted": {
+          "type": "boolean",
+          "description": "Whether this revision has been deleted."
+        },
+        "current": {
+          "type": "boolean",
+          "description": "Whether this is the current (latest) revision."
+        },
+        "sizeInBytes": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "The size of this revision in bytes."
+        },
+        "publisher": {
+          "$ref": "#/$defs/OwnerReference"
+        }
+      }
+    },
+    "Permission": {
+      "type": "object",
+      "description": "A permission rule granting or denying capabilities to a user or group.",
+      "properties": {
+        "granteeCapabilities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "user": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "The ID of the user grantee."
+                  }
+                }
+              },
+              "group": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "The ID of the group grantee."
+                  }
+                }
+              },
+              "capabilities": {
+                "type": "object",
+                "properties": {
+                  "capability": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "enum": [
+                            "Read",
+                            "Write",
+                            "Filter",
+                            "AddComment",
+                            "ViewComments",
+                            "ShareView",
+                            "ExportData",
+                            "ExportImage",
+                            "ExportXml",
+                            "Delete",
+                            "ChangePermissions",
+                            "ViewUnderlyingData",
+                            "WebAuthoring",
+                            "RunExplainData",
+                            "CreateRefreshMetrics",
+                            "ChangeHierarchy"
+                          ],
+                          "description": "The name of the capability."
+                        },
+                        "mode": {
+                          "type": "string",
+                          "enum": ["Allow", "Deny"],
+                          "description": "Whether the capability is allowed or denied."
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
