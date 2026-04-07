@@ -47,57 +47,57 @@ tags:
     description: >-
       Sign in and sign out of Tableau Server or Tableau Cloud. You must
       sign in to obtain an authentication token before calling other methods.
-  - name: Sites
-    description: >-
-      Manage sites on Tableau Server. A site is a collection of users,
-      groups, projects, workbooks, data sources, and other resources.
-  - name: Projects
-    description: >-
-      Create, update, delete, and query projects. Projects are containers
-      for organizing workbooks, data sources, and other content on a site.
-  - name: Workbooks
-    description: >-
-      Publish, query, update, delete, and download workbooks. Workbooks
-      contain one or more views (sheets, dashboards, or stories) and can
-      connect to one or more data sources.
-  - name: Views
-    description: >-
-      Query views and download view images or data. Views are the
-      individual sheets, dashboards, or stories within a workbook.
   - name: Data Sources
     description: >-
       Publish, query, update, delete, and download data sources. Data
       sources define the connection to data and can be shared across
       multiple workbooks.
-  - name: Users
-    description: >-
-      Add, update, remove, and query users on a site. Users are
-      individuals who can sign in to Tableau Server or Tableau Cloud.
-  - name: Groups
-    description: >-
-      Create, update, delete, and query groups. Groups are collections
-      of users that simplify permission management.
-  - name: Permissions
-    description: >-
-      Query and set permissions on content items including workbooks,
-      data sources, projects, views, and flows.
-  - name: Schedules
-    description: >-
-      Create, update, delete, and query schedules for extract refreshes
-      and subscriptions on Tableau Server.
-  - name: Subscriptions
-    description: >-
-      Create, update, delete, and query subscriptions. Subscriptions
-      deliver snapshots of views to users on a schedule.
-  - name: Jobs
-    description: >-
-      Query and cancel background jobs on a site, including extract
-      refreshes, subscriptions, and flow runs.
   - name: Favorites
     description: >-
       Add and remove content items from a user's list of favorites,
       including workbooks, views, data sources, projects, and flows.
 
+  - name: Groups
+    description: >-
+      Create, update, delete, and query groups. Groups are collections
+      of users that simplify permission management.
+  - name: Jobs
+    description: >-
+      Query and cancel background jobs on a site, including extract
+      refreshes, subscriptions, and flow runs.
+  - name: Permissions
+    description: >-
+      Query and set permissions on content items including workbooks,
+      data sources, projects, views, and flows.
+  - name: Projects
+    description: >-
+      Create, update, delete, and query projects. Projects are containers
+      for organizing workbooks, data sources, and other content on a site.
+  - name: Schedules
+    description: >-
+      Create, update, delete, and query schedules for extract refreshes
+      and subscriptions on Tableau Server.
+  - name: Sites
+    description: >-
+      Manage sites on Tableau Server. A site is a collection of users,
+      groups, projects, workbooks, data sources, and other resources.
+  - name: Subscriptions
+    description: >-
+      Create, update, delete, and query subscriptions. Subscriptions
+      deliver snapshots of views to users on a schedule.
+  - name: Users
+    description: >-
+      Add, update, remove, and query users on a site. Users are
+      individuals who can sign in to Tableau Server or Tableau Cloud.
+  - name: Views
+    description: >-
+      Query views and download view images or data. Views are the
+      individual sheets, dashboards, or stories within a workbook.
+  - name: Workbooks
+    description: >-
+      Publish, query, update, delete, and download workbooks. Workbooks
+      contain one or more views (sheets, dashboards, or stories) and can
+      connect to one or more data sources.
 security:
   - TableauAuth: []
 
@@ -630,8 +630,8 @@ paths:
         Returns all the views for the specified workbook, optionally
         including usage statistics.
       tags:
-        - Workbooks
         - Views
+        - Workbooks
       parameters:
         - $ref: '#/components/parameters/SiteId'
         - $ref: '#/components/parameters/WorkbookId'
@@ -1392,8 +1392,8 @@ paths:
         Returns the workbooks that the specified user owns or has
         Read (view) permissions for.
       tags:
-        - Workbooks
         - Users
+        - Workbooks
       parameters:
         - $ref: '#/components/parameters/SiteId'
         - $ref: '#/components/parameters/UserId'
@@ -1615,8 +1615,8 @@ paths:
       description: >-
         Returns a list of permissions for the specified data source.
       tags:
-        - Permissions
         - Data Sources
+        - Permissions
       parameters:
         - $ref: '#/components/parameters/SiteId'
         - $ref: '#/components/parameters/DataSourceId'
@@ -1633,8 +1633,8 @@ paths:
       description: >-
         Adds permissions to the specified data source for a user or group.
       tags:
-        - Permissions
         - Data Sources
+        - Permissions
       parameters:
         - $ref: '#/components/parameters/SiteId'
         - $ref: '#/components/parameters/DataSourceId'
