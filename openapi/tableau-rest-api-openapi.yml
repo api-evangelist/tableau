@@ -108,7 +108,7 @@ paths:
   /auth/signin:
     post:
       operationId: signIn
-      summary: Sign In
+      summary: Tableau Sign In
       description: >-
         Signs you in as a user on the specified site on Tableau Server or
         Tableau Cloud. This call returns an authentication token that you
@@ -136,7 +136,7 @@ paths:
   /auth/signout:
     post:
       operationId: signOut
-      summary: Sign Out
+      summary: Tableau Sign Out
       description: >-
         Signs you out of the current session. This invalidates the
         authentication token.
@@ -151,7 +151,7 @@ paths:
   /auth/switchSite:
     post:
       operationId: switchSite
-      summary: Switch Site
+      summary: Tableau Switch Site
       description: >-
         Switches you to the specified site without having to provide a
         user name and password again. The new site must be on the same
@@ -184,7 +184,7 @@ paths:
   /sites:
     get:
       operationId: querySites
-      summary: Query Sites
+      summary: Tableau Query Sites
       description: >-
         Returns a list of the sites on the server that the caller has
         access to. This method is available to Tableau Server administrators.
@@ -206,7 +206,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
     post:
       operationId: createSite
-      summary: Create Site
+      summary: Tableau Create Site
       description: >-
         Creates a site on Tableau Server. To create a site, you must be
         a server administrator. Not available for Tableau Cloud.
@@ -237,7 +237,7 @@ paths:
   /sites/{site-id}:
     get:
       operationId: querySite
-      summary: Query Site
+      summary: Tableau Query Site
       description: >-
         Returns information about the specified site, with the option to
         return information about the storage space and the number of users.
@@ -266,7 +266,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       operationId: updateSite
-      summary: Update Site
+      summary: Tableau Update Site
       description: >-
         Updates the settings for the specified site, including the name,
         URL namespace, storage quota, and other settings.
@@ -297,7 +297,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteSite
-      summary: Delete Site
+      summary: Tableau Delete Site
       description: >-
         Deletes the specified site. Deleting a site also deletes all
         content on the site including workbooks, data sources, users, etc.
@@ -320,7 +320,7 @@ paths:
   /sites/{site-id}/projects:
     get:
       operationId: queryProjects
-      summary: Query Projects
+      summary: Tableau Query Projects
       description: >-
         Returns a list of projects on the specified site, with optional
         pagination. You can filter and sort the list of projects.
@@ -345,7 +345,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
     post:
       operationId: createProject
-      summary: Create Project
+      summary: Tableau Create Project
       description: >-
         Creates a project on the specified site. You can also create
         project hierarchies by setting a parent project.
@@ -378,7 +378,7 @@ paths:
   /sites/{site-id}/projects/{project-id}:
     put:
       operationId: updateProject
-      summary: Update Project
+      summary: Tableau Update Project
       description: >-
         Updates the name, description, or project hierarchy of the specified project.
       tags:
@@ -409,7 +409,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteProject
-      summary: Delete Project
+      summary: Tableau Delete Project
       description: >-
         Deletes the specified project on a site. When you delete a
         project, all Tableau assets inside the project are also deleted.
@@ -433,7 +433,7 @@ paths:
   /sites/{site-id}/workbooks:
     get:
       operationId: queryWorkbooksForSite
-      summary: Query Workbooks for Site
+      summary: Tableau Query Workbooks for Site
       description: >-
         Returns the workbooks on a site. If the user is not an
         administrator, the method returns just the workbooks that the
@@ -462,7 +462,7 @@ paths:
   /sites/{site-id}/workbooks/{workbook-id}:
     get:
       operationId: queryWorkbook
-      summary: Query Workbook
+      summary: Tableau Query Workbook
       description: >-
         Returns information about the specified workbook, including
         information about views and tags.
@@ -486,7 +486,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       operationId: updateWorkbook
-      summary: Update Workbook
+      summary: Tableau Update Workbook
       description: >-
         Modifies an existing workbook, allowing you to change the owner,
         project, or other properties.
@@ -518,7 +518,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteWorkbook
-      summary: Delete Workbook
+      summary: Tableau Delete Workbook
       description: >-
         Deletes a workbook. When a workbook is deleted, all of its assets
         are also deleted, including associated views.
@@ -540,7 +540,7 @@ paths:
   /sites/{site-id}/workbooks/{workbook-id}/connections:
     get:
       operationId: queryWorkbookConnections
-      summary: Query Workbook Connections
+      summary: Tableau Query Workbook Connections
       description: >-
         Returns a list of data connections for the specified workbook.
       tags:
@@ -565,7 +565,7 @@ paths:
   /sites/{site-id}/workbooks/{workbook-id}/content:
     get:
       operationId: downloadWorkbook
-      summary: Download Workbook
+      summary: Tableau Download Workbook
       description: >-
         Downloads a workbook in .twb or .twbx format. If the workbook
         contains extracts, the download is in .twbx format.
@@ -600,7 +600,7 @@ paths:
   /sites/{site-id}/workbooks/{workbook-id}/previewImage:
     get:
       operationId: queryWorkbookPreviewImage
-      summary: Query Workbook Preview Image
+      summary: Tableau Query Workbook Preview Image
       description: >-
         Returns the thumbnail image for the specified workbook as a
         PNG file.
@@ -625,7 +625,7 @@ paths:
   /sites/{site-id}/workbooks/{workbook-id}/views:
     get:
       operationId: queryViewsForWorkbook
-      summary: Query Views for Workbook
+      summary: Tableau Query Views for Workbook
       description: >-
         Returns all the views for the specified workbook, optionally
         including usage statistics.
@@ -658,7 +658,7 @@ paths:
   /sites/{site-id}/workbooks/{workbook-id}/publish:
     post:
       operationId: publishWorkbook
-      summary: Publish Workbook
+      summary: Tableau Publish Workbook
       description: >-
         Publishes a workbook on the specified site. To make changes
         to an existing workbook, call Update Workbook or Publish
@@ -713,7 +713,7 @@ paths:
   /sites/{site-id}/workbooks/{workbook-id}/tags:
     get:
       operationId: queryWorkbookTags
-      summary: Query Workbook Tags
+      summary: Tableau Query Workbook Tags
       description: >-
         Returns a list of tags that have been added to the specified workbook.
       tags:
@@ -730,7 +730,7 @@ paths:
                 $ref: '#/components/schemas/TagListResponse'
     put:
       operationId: addTagsToWorkbook
-      summary: Add Tags to Workbook
+      summary: Tableau Add Tags to Workbook
       description: >-
         Adds one or more tags to the specified workbook.
       tags:
@@ -755,7 +755,7 @@ paths:
   /sites/{site-id}/workbooks/{workbook-id}/tags/{tag-name}:
     delete:
       operationId: deleteTagFromWorkbook
-      summary: Delete Tag from Workbook
+      summary: Tableau Delete Tag from Workbook
       description: >-
         Deletes a tag from the specified workbook.
       tags:
@@ -776,7 +776,7 @@ paths:
   /sites/{site-id}/workbooks/{workbook-id}/revisions:
     get:
       operationId: getWorkbookRevisions
-      summary: Get Workbook Revisions
+      summary: Tableau Get Workbook Revisions
       description: >-
         Returns a list of revision information (revision number, published
         date, and other metadata) for each revision of the specified workbook.
@@ -800,7 +800,7 @@ paths:
   /sites/{site-id}/views:
     get:
       operationId: queryViewsForSite
-      summary: Query Views for Site
+      summary: Tableau Query Views for Site
       description: >-
         Returns all the views for the specified site, optionally including
         usage statistics.
@@ -834,7 +834,7 @@ paths:
   /sites/{site-id}/views/{view-id}:
     get:
       operationId: queryViewById
-      summary: Query View by ID
+      summary: Tableau Query View by ID
       description: >-
         Returns details about the specified view, including the view name,
         owner, project, and usage statistics.
@@ -860,7 +860,7 @@ paths:
   /sites/{site-id}/views/{view-id}/image:
     get:
       operationId: queryViewImage
-      summary: Query View Image
+      summary: Tableau Query View Image
       description: >-
         Returns an image of the specified view rendered as a PNG file.
         You can specify the resolution of the image.
@@ -911,7 +911,7 @@ paths:
   /sites/{site-id}/views/{view-id}/data:
     get:
       operationId: queryViewData
-      summary: Query View Data
+      summary: Tableau Query View Data
       description: >-
         Returns the data used in a view as a comma-separated values
         (CSV) file.
@@ -952,7 +952,7 @@ paths:
   /sites/{site-id}/views/{view-id}/pdf:
     get:
       operationId: queryViewPDF
-      summary: Query View PDF
+      summary: Tableau Query View PDF
       description: >-
         Returns a PDF rendering of the specified view.
       tags:
@@ -1008,7 +1008,7 @@ paths:
   /sites/{site-id}/views/{view-id}/previewImage:
     get:
       operationId: queryViewPreviewImage
-      summary: Query View Preview Image
+      summary: Tableau Query View Preview Image
       description: >-
         Returns the thumbnail image for the specified view as a PNG file.
       tags:
@@ -1032,7 +1032,7 @@ paths:
   /sites/{site-id}/views/{view-id}/recommendations:
     get:
       operationId: getRecommendationsForViews
-      summary: Get Recommendations for Views
+      summary: Tableau Get Recommendations for Views
       description: >-
         Returns a list of views that are recommended for a user, based
         on their viewing history.
@@ -1054,7 +1054,7 @@ paths:
   /sites/{site-id}/datasources:
     get:
       operationId: queryDataSources
-      summary: Query Data Sources
+      summary: Tableau Query Data Sources
       description: >-
         Returns a list of published data sources on the specified site,
         with optional pagination, filtering, and sorting.
@@ -1082,7 +1082,7 @@ paths:
   /sites/{site-id}/datasources/{datasource-id}:
     get:
       operationId: queryDataSource
-      summary: Query Data Source
+      summary: Tableau Query Data Source
       description: >-
         Returns information about the specified data source.
       tags:
@@ -1105,7 +1105,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       operationId: updateDataSource
-      summary: Update Data Source
+      summary: Tableau Update Data Source
       description: >-
         Updates the owner, project, or certification status of the
         specified data source.
@@ -1137,7 +1137,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteDataSource
-      summary: Delete Data Source
+      summary: Tableau Delete Data Source
       description: >-
         Deletes the specified data source from a site.
       tags:
@@ -1158,7 +1158,7 @@ paths:
   /sites/{site-id}/datasources/{datasource-id}/content:
     get:
       operationId: downloadDataSource
-      summary: Download Data Source
+      summary: Tableau Download Data Source
       description: >-
         Downloads the specified data source in .tdsx format.
       tags:
@@ -1192,7 +1192,7 @@ paths:
   /sites/{site-id}/datasources/{datasource-id}/connections:
     get:
       operationId: queryDataSourceConnections
-      summary: Query Data Source Connections
+      summary: Tableau Query Data Source Connections
       description: >-
         Returns a list of data connections for the specified data source.
       tags:
@@ -1217,7 +1217,7 @@ paths:
   /sites/{site-id}/datasources/{datasource-id}/revisions:
     get:
       operationId: getDataSourceRevisions
-      summary: Get Data Source Revisions
+      summary: Tableau Get Data Source Revisions
       description: >-
         Returns a list of revision information for each revision of
         the specified data source.
@@ -1239,7 +1239,7 @@ paths:
   /sites/{site-id}/datasources/{datasource-id}/tags:
     get:
       operationId: queryDataSourceTags
-      summary: Query Data Source Tags
+      summary: Tableau Query Data Source Tags
       description: >-
         Returns a list of tags associated with the specified data source.
       tags:
@@ -1256,7 +1256,7 @@ paths:
                 $ref: '#/components/schemas/TagListResponse'
     put:
       operationId: addTagsToDataSource
-      summary: Add Tags to Data Source
+      summary: Tableau Add Tags to Data Source
       description: >-
         Adds one or more tags to the specified data source.
       tags:
@@ -1283,7 +1283,7 @@ paths:
   /sites/{site-id}/users:
     get:
       operationId: getUsers
-      summary: Get Users on Site
+      summary: Tableau Get Users on Site
       description: >-
         Returns the users associated with the specified site.
       tags:
@@ -1303,7 +1303,7 @@ paths:
                 $ref: '#/components/schemas/UserListResponse'
     post:
       operationId: addUserToSite
-      summary: Add User to Site
+      summary: Tableau Add User to Site
       description: >-
         Adds a user to the specified site. The user must already exist
         on the server or in the identity store.
@@ -1330,7 +1330,7 @@ paths:
   /sites/{site-id}/users/{user-id}:
     get:
       operationId: queryUser
-      summary: Query User on Site
+      summary: Tableau Query User on Site
       description: >-
         Returns information about the specified user on the site.
       tags:
@@ -1349,7 +1349,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       operationId: updateUser
-      summary: Update User
+      summary: Tableau Update User
       description: >-
         Modifies information about the specified user.
       tags:
@@ -1372,7 +1372,7 @@ paths:
                 $ref: '#/components/schemas/UserResponse'
     delete:
       operationId: removeUserFromSite
-      summary: Remove User from Site
+      summary: Tableau Remove User from Site
       description: >-
         Removes the specified user from the site.
       tags:
@@ -1387,7 +1387,7 @@ paths:
   /sites/{site-id}/users/{user-id}/workbooks:
     get:
       operationId: queryWorkbooksForUser
-      summary: Query Workbooks for User
+      summary: Tableau Query Workbooks for User
       description: >-
         Returns the workbooks that the specified user owns or has
         Read (view) permissions for.
@@ -1412,7 +1412,7 @@ paths:
   /sites/{site-id}/groups:
     get:
       operationId: queryGroups
-      summary: Query Groups
+      summary: Tableau Query Groups
       description: >-
         Returns a list of groups on the specified site.
       tags:
@@ -1432,7 +1432,7 @@ paths:
                 $ref: '#/components/schemas/GroupListResponse'
     post:
       operationId: createGroup
-      summary: Create Group
+      summary: Tableau Create Group
       description: >-
         Creates a group on the specified site.
       tags:
@@ -1456,7 +1456,7 @@ paths:
   /sites/{site-id}/groups/{group-id}:
     put:
       operationId: updateGroup
-      summary: Update Group
+      summary: Tableau Update Group
       description: >-
         Updates the name or Active Directory configuration of the
         specified group.
@@ -1480,7 +1480,7 @@ paths:
                 $ref: '#/components/schemas/GroupResponse'
     delete:
       operationId: deleteGroup
-      summary: Delete Group
+      summary: Tableau Delete Group
       description: >-
         Deletes the specified group from the site.
       tags:
@@ -1495,7 +1495,7 @@ paths:
   /sites/{site-id}/groups/{group-id}/users:
     get:
       operationId: getGroupMembers
-      summary: Get Group Members
+      summary: Tableau Get Group Members
       description: >-
         Returns a list of users who are members of the specified group.
       tags:
@@ -1515,7 +1515,7 @@ paths:
                 $ref: '#/components/schemas/UserListResponse'
     post:
       operationId: addUserToGroup
-      summary: Add User to Group
+      summary: Tableau Add User to Group
       description: >-
         Adds a user to the specified group.
       tags:
@@ -1548,7 +1548,7 @@ paths:
   /sites/{site-id}/groups/{group-id}/users/{user-id}:
     delete:
       operationId: removeUserFromGroup
-      summary: Remove User from Group
+      summary: Tableau Remove User from Group
       description: >-
         Removes the specified user from the specified group.
       tags:
@@ -1567,7 +1567,7 @@ paths:
   /sites/{site-id}/workbooks/{workbook-id}/permissions:
     get:
       operationId: queryWorkbookPermissions
-      summary: Query Workbook Permissions
+      summary: Tableau Query Workbook Permissions
       description: >-
         Returns a list of permissions for the specified workbook.
       tags:
@@ -1585,7 +1585,7 @@ paths:
                 $ref: '#/components/schemas/PermissionListResponse'
     put:
       operationId: addWorkbookPermissions
-      summary: Add Workbook Permissions
+      summary: Tableau Add Workbook Permissions
       description: >-
         Adds permissions to the specified workbook for a user or group.
       tags:
@@ -1611,7 +1611,7 @@ paths:
   /sites/{site-id}/datasources/{datasource-id}/permissions:
     get:
       operationId: queryDataSourcePermissions
-      summary: Query Data Source Permissions
+      summary: Tableau Query Data Source Permissions
       description: >-
         Returns a list of permissions for the specified data source.
       tags:
@@ -1629,7 +1629,7 @@ paths:
                 $ref: '#/components/schemas/PermissionListResponse'
     put:
       operationId: addDataSourcePermissions
-      summary: Add Data Source Permissions
+      summary: Tableau Add Data Source Permissions
       description: >-
         Adds permissions to the specified data source for a user or group.
       tags:
@@ -1655,7 +1655,7 @@ paths:
   /sites/{site-id}/projects/{project-id}/default-permissions/workbooks:
     get:
       operationId: queryDefaultWorkbookPermissions
-      summary: Query Default Permissions for Workbooks
+      summary: Tableau Query Default Permissions for Workbooks
       description: >-
         Returns the default permissions for workbooks in the specified project.
       tags:
@@ -1677,7 +1677,7 @@ paths:
   /schedules:
     get:
       operationId: querySchedules
-      summary: Query Schedules
+      summary: Tableau Query Schedules
       description: >-
         Returns a list of extract refresh and subscription schedules.
         This method is available on Tableau Server only.
@@ -1699,7 +1699,7 @@ paths:
   /sites/{site-id}/subscriptions:
     get:
       operationId: querySubscriptions
-      summary: Query Subscriptions
+      summary: Tableau Query Subscriptions
       description: >-
         Returns a list of all subscriptions on the site.
       tags:
@@ -1717,7 +1717,7 @@ paths:
                 $ref: '#/components/schemas/SubscriptionListResponse'
     post:
       operationId: createSubscription
-      summary: Create Subscription
+      summary: Tableau Create Subscription
       description: >-
         Creates a new subscription to a view or workbook for the specified
         user on the specified schedule.
@@ -1742,7 +1742,7 @@ paths:
   /sites/{site-id}/subscriptions/{subscription-id}:
     get:
       operationId: querySubscription
-      summary: Query Subscription
+      summary: Tableau Query Subscription
       description: >-
         Returns information about the specified subscription.
       tags:
@@ -1764,7 +1764,7 @@ paths:
                 $ref: '#/components/schemas/SubscriptionResponse'
     put:
       operationId: updateSubscription
-      summary: Update Subscription
+      summary: Tableau Update Subscription
       description: >-
         Modifies an existing subscription, changing the subject, schedule,
         or whether the full workbook or just a single view is sent.
@@ -1793,7 +1793,7 @@ paths:
                 $ref: '#/components/schemas/SubscriptionResponse'
     delete:
       operationId: deleteSubscription
-      summary: Delete Subscription
+      summary: Tableau Delete Subscription
       description: >-
         Deletes the specified subscription from the site.
       tags:
@@ -1815,7 +1815,7 @@ paths:
   /sites/{site-id}/jobs:
     get:
       operationId: queryJobs
-      summary: Query Jobs
+      summary: Tableau Query Jobs
       description: >-
         Returns a list of active jobs on the specified site.
       tags:
@@ -1836,7 +1836,7 @@ paths:
   /sites/{site-id}/jobs/{job-id}:
     get:
       operationId: queryJob
-      summary: Query Job
+      summary: Tableau Query Job
       description: >-
         Returns status information about the specified job.
       tags:
@@ -1858,7 +1858,7 @@ paths:
                 $ref: '#/components/schemas/JobResponse'
     put:
       operationId: cancelJob
-      summary: Cancel Job
+      summary: Tableau Cancel Job
       description: >-
         Cancels the specified background job on a site.
       tags:
@@ -1880,7 +1880,7 @@ paths:
   /sites/{site-id}/favorites/{user-id}:
     get:
       operationId: getFavorites
-      summary: Get Favorites for User
+      summary: Tableau Get Favorites for User
       description: >-
         Returns a list of favorite items for the specified user.
       tags:
@@ -1897,7 +1897,7 @@ paths:
                 $ref: '#/components/schemas/FavoritesResponse'
     put:
       operationId: addFavorites
-      summary: Add Favorites
+      summary: Tableau Add Favorites
       description: >-
         Adds the specified content to a user's favorites. You can add
         workbooks, views, data sources, projects, and flows.
