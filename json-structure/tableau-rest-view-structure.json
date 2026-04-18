@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "View",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "contentUrl": {
+      "type": "string"
+    },
+    "createdAt": {
+      "type": "string"
+    },
+    "updatedAt": {
+      "type": "string"
+    },
+    "viewUrlName": {
+      "type": "string"
+    },
+    "sheetType": {
+      "type": "string"
+    },
+    "project": {
+      "type": "object"
+    },
+    "owner": {
+      "type": "object"
+    },
+    "workbook": {
+      "type": "object"
+    },
+    "tags": {
+      "type": "object"
+    },
+    "usage": {
+      "type": "object"
+    }
+  }
+}

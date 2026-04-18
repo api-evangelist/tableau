@@ -1,0 +1,15 @@
+{
+  "id": "abc123",
+  "mode": "example_value",
+  "type": "example_value",
+  "status": 10,
+  "progress": 10,
+  "createdAt": "example_value",
+  "startedAt": "example_value",
+  "endedAt": "example_value",
+  "finishCode": 10,
+  "title": "Example Title",
+  "subtitle": "example_value",
+  "statusNotes": "example_value",
+  "extractRefreshJob": "example_value"
+}

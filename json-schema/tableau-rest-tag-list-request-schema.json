@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TagListRequest",
+  "type": "object",
+  "properties": {
+    "tags": {
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "id": "abc123",
+  "name": "Example Title",
+  "domainName": "example_value",
+  "minimumSiteRole": "example_value",
+  "userCount": 10,
+  "import": "example_value"
+}

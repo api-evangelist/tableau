@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Group",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the group."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the group."
+    },
+    "domainName": {
+      "type": "string",
+      "description": "The domain name for Active Directory groups. For local groups, this is \"local\"."
+    },
+    "minimumSiteRole": {
+      "type": "string",
+      "description": "The minimum site role for members of the group when they are imported from Active Directory."
+    },
+    "userCount": {
+      "type": "integer",
+      "description": "The number of users in the group."
+    },
+    "import": {
+      "type": "object"
+    }
+  }
+}

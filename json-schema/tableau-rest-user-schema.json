@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "User",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the user."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name (user name) of the user."
+    },
+    "fullName": {
+      "type": "string",
+      "description": "The display name of the user."
+    },
+    "email": {
+      "type": "string",
+      "description": "The email address of the user."
+    },
+    "siteRole": {
+      "type": "string",
+      "description": "The role of the user on the site."
+    },
+    "authSetting": {
+      "type": "string",
+      "description": "The authentication type for the user."
+    },
+    "lastLogin": {
+      "type": "string",
+      "description": "The date and time of the user's last login."
+    },
+    "externalAuthUserId": {
+      "type": "string",
+      "description": "The external authentication user ID."
+    },
+    "locale": {
+      "type": "string",
+      "description": "The user's locale setting."
+    },
+    "language": {
+      "type": "string",
+      "description": "The user's language setting."
+    }
+  }
+}

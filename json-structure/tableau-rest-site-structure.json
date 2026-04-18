@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Site",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "contentUrl": {
+      "type": "string"
+    },
+    "adminMode": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "storageQuota": {
+      "type": "integer"
+    },
+    "userQuota": {
+      "type": "integer"
+    },
+    "numCreators": {
+      "type": "integer"
+    },
+    "numExplorers": {
+      "type": "integer"
+    },
+    "numViewers": {
+      "type": "integer"
+    },
+    "disableSubscriptions": {
+      "type": "boolean"
+    },
+    "revision": {
+      "type": "string"
+    },
+    "usage": {
+      "type": "object"
+    }
+  }
+}

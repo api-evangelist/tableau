@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Schedule",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the schedule."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the schedule."
+    },
+    "state": {
+      "type": "string",
+      "description": "Whether the schedule is active or suspended."
+    },
+    "priority": {
+      "type": "integer",
+      "description": "The priority of the schedule (1-100). Lower numbers indicate higher priority."
+    },
+    "createdAt": {
+      "type": "string",
+      "description": "The date and time the schedule was created."
+    },
+    "updatedAt": {
+      "type": "string",
+      "description": "The date and time the schedule was last updated."
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of the schedule."
+    },
+    "frequency": {
+      "type": "string",
+      "description": "How frequently the schedule runs."
+    },
+    "nextRunAt": {
+      "type": "string",
+      "description": "The next scheduled run time."
+    },
+    "endScheduleAt": {
+      "type": "string",
+      "description": "The time when the schedule ends."
+    },
+    "frequencyDetails": {
+      "type": "object"
+    }
+  }
+}

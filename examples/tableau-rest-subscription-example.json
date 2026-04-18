@@ -1,0 +1,13 @@
+{
+  "id": "abc123",
+  "subject": "example_value",
+  "attachImage": true,
+  "attachPdf": true,
+  "message": "example_value",
+  "pageOrientation": "example_value",
+  "pageSizeOption": "example_value",
+  "suspended": true,
+  "content": "example_value",
+  "schedule": "example_value",
+  "user": "example_value"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "abc123",
+  "name": "Example Title",
+  "contentUrl": "https://www.example.com",
+  "adminMode": "example_value",
+  "state": "example_value",
+  "storageQuota": 10,
+  "userQuota": 10,
+  "numCreators": 10,
+  "numExplorers": 10,
+  "numViewers": 10,
+  "disableSubscriptions": true,
+  "revision": "example_value",
+  "usage": "example_value"
+}

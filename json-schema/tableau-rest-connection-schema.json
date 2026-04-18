@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Connection",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the connection."
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of connection (e.g., sqlserver, postgres)."
+    },
+    "serverAddress": {
+      "type": "string",
+      "description": "The address of the server for the connection."
+    },
+    "serverPort": {
+      "type": "string",
+      "description": "The port used for the connection."
+    },
+    "userName": {
+      "type": "string",
+      "description": "The user name for the connection."
+    },
+    "datasource": {
+      "type": "object"
+    }
+  }
+}

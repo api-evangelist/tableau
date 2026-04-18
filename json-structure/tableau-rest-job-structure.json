@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Job",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "mode": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "status": {
+      "type": "integer"
+    },
+    "progress": {
+      "type": "integer"
+    },
+    "createdAt": {
+      "type": "string"
+    },
+    "startedAt": {
+      "type": "string"
+    },
+    "endedAt": {
+      "type": "string"
+    },
+    "finishCode": {
+      "type": "integer"
+    },
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "statusNotes": {
+      "type": "object"
+    },
+    "extractRefreshJob": {
+      "type": "object"
+    }
+  }
+}

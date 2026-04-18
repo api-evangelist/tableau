@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "DataSource",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "contentUrl": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "createdAt": {
+      "type": "string"
+    },
+    "updatedAt": {
+      "type": "string"
+    },
+    "isCertified": {
+      "type": "boolean"
+    },
+    "certificationNote": {
+      "type": "string"
+    },
+    "useRemoteQueryAgent": {
+      "type": "boolean"
+    },
+    "hasExtracts": {
+      "type": "boolean"
+    },
+    "encryptExtracts": {
+      "type": "string"
+    },
+    "project": {
+      "type": "object"
+    },
+    "owner": {
+      "type": "object"
+    },
+    "tags": {
+      "type": "object"
+    }
+  }
+}

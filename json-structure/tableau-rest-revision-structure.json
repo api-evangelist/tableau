@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Revision",
+  "type": "object",
+  "properties": {
+    "revisionNumber": {
+      "type": "integer"
+    },
+    "publishedAt": {
+      "type": "string"
+    },
+    "deleted": {
+      "type": "boolean"
+    },
+    "current": {
+      "type": "boolean"
+    },
+    "sizeInBytes": {
+      "type": "integer"
+    },
+    "publisher": {
+      "type": "object"
+    }
+  }
+}

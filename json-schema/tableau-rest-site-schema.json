@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Site",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the site."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the site."
+    },
+    "contentUrl": {
+      "type": "string",
+      "description": "The URL namespace for the site."
+    },
+    "adminMode": {
+      "type": "string",
+      "description": "The administrator mode for the site."
+    },
+    "state": {
+      "type": "string",
+      "description": "The current state of the site."
+    },
+    "storageQuota": {
+      "type": "integer",
+      "description": "The storage quota for the site in megabytes."
+    },
+    "userQuota": {
+      "type": "integer",
+      "description": "The maximum number of users for the site. A value of -1 indicates no limit."
+    },
+    "numCreators": {
+      "type": "integer",
+      "description": "The number of Creator-licensed users on the site."
+    },
+    "numExplorers": {
+      "type": "integer",
+      "description": "The number of Explorer-licensed users on the site."
+    },
+    "numViewers": {
+      "type": "integer",
+      "description": "The number of Viewer-licensed users on the site."
+    },
+    "disableSubscriptions": {
+      "type": "boolean",
+      "description": "Whether subscriptions are disabled on the site."
+    },
+    "revision": {
+      "type": "string",
+      "description": "The revision number of the site."
+    },
+    "usage": {
+      "type": "object"
+    }
+  }
+}

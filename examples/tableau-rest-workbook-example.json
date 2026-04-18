@@ -1,0 +1,18 @@
+{
+  "id": "abc123",
+  "name": "Example Title",
+  "description": "A sample description.",
+  "contentUrl": "https://www.example.com",
+  "webpageUrl": "https://www.example.com",
+  "showTabs": true,
+  "size": 10,
+  "createdAt": "example_value",
+  "updatedAt": "example_value",
+  "encryptExtracts": "example_value",
+  "defaultViewId": "500123",
+  "project": "example_value",
+  "owner": "example_value",
+  "tags": "example_value",
+  "views": "example_value",
+  "usage": "example_value"
+}

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "View",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the view."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the view."
+    },
+    "contentUrl": {
+      "type": "string",
+      "description": "The URL name of the view."
+    },
+    "createdAt": {
+      "type": "string",
+      "description": "The date and time the view was created."
+    },
+    "updatedAt": {
+      "type": "string",
+      "description": "The date and time the view was last updated."
+    },
+    "viewUrlName": {
+      "type": "string",
+      "description": "The URL-friendly name of the view used in the content URL."
+    },
+    "sheetType": {
+      "type": "string",
+      "description": "The type of sheet (worksheet, dashboard, or story)."
+    },
+    "project": {
+      "type": "object"
+    },
+    "owner": {
+      "type": "object"
+    },
+    "workbook": {
+      "type": "object"
+    },
+    "tags": {
+      "type": "object"
+    },
+    "usage": {
+      "type": "object"
+    }
+  }
+}

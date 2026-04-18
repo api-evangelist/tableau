@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Subscription",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the subscription."
+    },
+    "subject": {
+      "type": "string",
+      "description": "The subject line of the subscription email."
+    },
+    "attachImage": {
+      "type": "boolean",
+      "description": "Whether to attach an image of the view."
+    },
+    "attachPdf": {
+      "type": "boolean",
+      "description": "Whether to attach a PDF of the view."
+    },
+    "message": {
+      "type": "string",
+      "description": "Custom message for the subscription."
+    },
+    "pageOrientation": {
+      "type": "string"
+    },
+    "pageSizeOption": {
+      "type": "string"
+    },
+    "suspended": {
+      "type": "boolean",
+      "description": "Whether the subscription is suspended."
+    },
+    "content": {
+      "type": "object"
+    },
+    "schedule": {
+      "type": "object"
+    },
+    "user": {
+      "type": "object"
+    }
+  }
+}

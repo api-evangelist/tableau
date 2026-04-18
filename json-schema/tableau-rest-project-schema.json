@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Project",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the project."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the project."
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the project."
+    },
+    "parentProjectId": {
+      "type": "['string', 'null']",
+      "description": "The ID of the parent project. If null, this is a top-level project."
+    },
+    "contentPermissions": {
+      "type": "string",
+      "description": "The permissions model for the project."
+    },
+    "createdAt": {
+      "type": "string",
+      "description": "The date and time the project was created."
+    },
+    "updatedAt": {
+      "type": "string",
+      "description": "The date and time the project was last updated."
+    },
+    "owner": {
+      "type": "object"
+    },
+    "topLevelProject": {
+      "type": "boolean",
+      "description": "Whether this is a top-level project."
+    }
+  }
+}

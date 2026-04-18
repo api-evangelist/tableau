@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Subscription",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "subject": {
+      "type": "string"
+    },
+    "attachImage": {
+      "type": "boolean"
+    },
+    "attachPdf": {
+      "type": "boolean"
+    },
+    "message": {
+      "type": "string"
+    },
+    "pageOrientation": {
+      "type": "string"
+    },
+    "pageSizeOption": {
+      "type": "string"
+    },
+    "suspended": {
+      "type": "boolean"
+    },
+    "content": {
+      "type": "object"
+    },
+    "schedule": {
+      "type": "object"
+    },
+    "user": {
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "id": "abc123",
+  "name": "Example Title",
+  "fullName": "example_value",
+  "email": "user@example.com",
+  "siteRole": "example_value",
+  "authSetting": "example_value",
+  "lastLogin": "example_value",
+  "externalAuthUserId": "500123",
+  "locale": "example_value",
+  "language": "example_value"
+}

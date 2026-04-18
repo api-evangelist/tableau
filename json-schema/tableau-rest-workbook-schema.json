@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Workbook",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the workbook."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the workbook."
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the workbook."
+    },
+    "contentUrl": {
+      "type": "string",
+      "description": "The URL name of the workbook, used in URLs to access the workbook."
+    },
+    "webpageUrl": {
+      "type": "string",
+      "description": "The full URL to the workbook on the server."
+    },
+    "showTabs": {
+      "type": "boolean",
+      "description": "Whether the workbook shows views as tabs."
+    },
+    "size": {
+      "type": "integer",
+      "description": "The size of the workbook in bytes."
+    },
+    "createdAt": {
+      "type": "string",
+      "description": "The date and time the workbook was created."
+    },
+    "updatedAt": {
+      "type": "string",
+      "description": "The date and time the workbook was last updated."
+    },
+    "encryptExtracts": {
+      "type": "string",
+      "description": "Whether extracts in the workbook are encrypted."
+    },
+    "defaultViewId": {
+      "type": "string",
+      "description": "The ID of the default view in the workbook."
+    },
+    "project": {
+      "type": "object"
+    },
+    "owner": {
+      "type": "object"
+    },
+    "tags": {
+      "type": "object"
+    },
+    "views": {
+      "type": "object"
+    },
+    "usage": {
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "id": "abc123",
+  "name": "Example Title",
+  "contentUrl": "https://www.example.com",
+  "createdAt": "example_value",
+  "updatedAt": "example_value",
+  "viewUrlName": "https://www.example.com",
+  "sheetType": "example_value",
+  "project": "example_value",
+  "owner": "example_value",
+  "workbook": "example_value",
+  "tags": "example_value",
+  "usage": "example_value"
+}

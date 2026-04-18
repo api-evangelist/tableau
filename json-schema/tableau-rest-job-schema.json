@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Job",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the job."
+    },
+    "mode": {
+      "type": "string",
+      "description": "The mode of the job."
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of the job."
+    },
+    "status": {
+      "type": "integer",
+      "description": "The status code of the job. 0 = Active/Queued, 1 = Complete, 2 = Cancelled."
+    },
+    "progress": {
+      "type": "integer",
+      "description": "The progress of the job as a percentage."
+    },
+    "createdAt": {
+      "type": "string",
+      "description": "The date and time the job was created."
+    },
+    "startedAt": {
+      "type": "string",
+      "description": "The date and time the job started running."
+    },
+    "endedAt": {
+      "type": "string",
+      "description": "The date and time the job finished."
+    },
+    "finishCode": {
+      "type": "integer",
+      "description": "The completion code. 0 = success, 1 = error, 2 = cancelled."
+    },
+    "title": {
+      "type": "string",
+      "description": "A description of what the job is doing."
+    },
+    "subtitle": {
+      "type": "string",
+      "description": "Additional detail about the job."
+    },
+    "statusNotes": {
+      "type": "object"
+    },
+    "extractRefreshJob": {
+      "type": "object"
+    }
+  }
+}

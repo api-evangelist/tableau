@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Revision",
+  "type": "object",
+  "properties": {
+    "revisionNumber": {
+      "type": "integer",
+      "description": "The revision number."
+    },
+    "publishedAt": {
+      "type": "string",
+      "description": "The date and time the revision was published."
+    },
+    "deleted": {
+      "type": "boolean",
+      "description": "Whether this revision has been deleted."
+    },
+    "current": {
+      "type": "boolean",
+      "description": "Whether this is the current revision."
+    },
+    "sizeInBytes": {
+      "type": "integer",
+      "description": "The size of the revision in bytes."
+    },
+    "publisher": {
+      "type": "object"
+    }
+  }
+}

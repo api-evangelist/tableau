@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Workbook",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "contentUrl": {
+      "type": "string"
+    },
+    "webpageUrl": {
+      "type": "string"
+    },
+    "showTabs": {
+      "type": "boolean"
+    },
+    "size": {
+      "type": "integer"
+    },
+    "createdAt": {
+      "type": "string"
+    },
+    "updatedAt": {
+      "type": "string"
+    },
+    "encryptExtracts": {
+      "type": "string"
+    },
+    "defaultViewId": {
+      "type": "string"
+    },
+    "project": {
+      "type": "object"
+    },
+    "owner": {
+      "type": "object"
+    },
+    "tags": {
+      "type": "object"
+    },
+    "views": {
+      "type": "object"
+    },
+    "usage": {
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Schedule",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "priority": {
+      "type": "integer"
+    },
+    "createdAt": {
+      "type": "string"
+    },
+    "updatedAt": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "frequency": {
+      "type": "string"
+    },
+    "nextRunAt": {
+      "type": "string"
+    },
+    "endScheduleAt": {
+      "type": "string"
+    },
+    "frequencyDetails": {
+      "type": "object"
+    }
+  }
+}

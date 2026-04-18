@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Connection",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "serverAddress": {
+      "type": "string"
+    },
+    "serverPort": {
+      "type": "string"
+    },
+    "userName": {
+      "type": "string"
+    },
+    "datasource": {
+      "type": "object"
+    }
+  }
+}

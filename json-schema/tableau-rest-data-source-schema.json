@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DataSource",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the data source."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the data source."
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the data source."
+    },
+    "contentUrl": {
+      "type": "string",
+      "description": "The URL name of the data source."
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of data source (e.g., sqlserver, postgres, excel, hyper, etc.)."
+    },
+    "createdAt": {
+      "type": "string",
+      "description": "The date and time the data source was created."
+    },
+    "updatedAt": {
+      "type": "string",
+      "description": "The date and time the data source was last updated."
+    },
+    "isCertified": {
+      "type": "boolean",
+      "description": "Whether the data source is certified."
+    },
+    "certificationNote": {
+      "type": "string",
+      "description": "The certification note for the data source."
+    },
+    "useRemoteQueryAgent": {
+      "type": "boolean",
+      "description": "Whether the data source uses a remote query agent."
+    },
+    "hasExtracts": {
+      "type": "boolean",
+      "description": "Whether the data source has extracts."
+    },
+    "encryptExtracts": {
+      "type": "string",
+      "description": "Whether the data source extracts are encrypted."
+    },
+    "project": {
+      "type": "object"
+    },
+    "owner": {
+      "type": "object"
+    },
+    "tags": {
+      "type": "object"
+    }
+  }
+}

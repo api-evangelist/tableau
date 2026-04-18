@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Pagination",
+  "type": "object",
+  "properties": {
+    "pageNumber": {
+      "type": "integer"
+    },
+    "pageSize": {
+      "type": "integer"
+    },
+    "totalAvailable": {
+      "type": "integer"
+    }
+  }
+}

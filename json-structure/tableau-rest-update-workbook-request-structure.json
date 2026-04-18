@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "UpdateWorkbookRequest",
+  "type": "object",
+  "properties": {
+    "workbook": {
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "id": "abc123",
+  "type": "example_value",
+  "serverAddress": "example_value",
+  "serverPort": "example_value",
+  "userName": "example_value",
+  "datasource": "example_value"
+}

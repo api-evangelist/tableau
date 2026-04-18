@@ -1,0 +1,20 @@
+name: tableau API Vocabulary
+provider: tableau
+created: '2026-04-18'
+modified: '2026-04-18'
+operations: 70
+schemas: 58
+tags:
+- Authentication
+- Data Sources
+- Favorites
+- Groups
+- Jobs
+- Permissions
+- Projects
+- Schedules
+- Sites
+- Subscriptions
+- Users
+- Views
+- Workbooks
