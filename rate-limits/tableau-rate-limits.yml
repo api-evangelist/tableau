@@ -4,149 +4,74 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Tableau
 providerId: tableau
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
 tags:
   - Analytics
   - Business Intelligence
   - Dashboards
   - Data Visualization
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Tableau API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+description: Tableau Cloud applies per-site rate limits to specific REST API job-and-content
+  operations. Limits are documented operationally as "calls per hour" / "calls per 24 hours" /
+  "calls per minute" against a Tableau Cloud site rather than as raw requests-per-second; an
+  additional VizQL Data Service allowance scales with Creator licenses on the site. Tableau
+  Server installations do not enforce these per-site caps directly — they are governed by the
+  underlying server capacity.
+sources:
+  - https://help.tableau.com/current/online/en-us/to_site_capacity.htm
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
+  - name: Extract Refresh Initiation
+    scope: site
+    metric: requests_per_hour
+    limit: 60
+    timeFrame: hour
+    notes: Maximum REST API calls per Tableau Cloud site per one-hour period for initiating
+      extract refreshes via REST API or related tooling.
+  - name: Job Status / Cancel Queries
+    scope: site
+    metric: requests_per_day
+    limit: 20000
+    timeFrame: day
+    notes: Maximum REST API calls per Tableau Cloud site per 24-hour period for querying job
+      status or cancelling jobs.
+  - name: Publish / Update Content
+    scope: site
+    metric: requests_per_hour
+    limit: 600
+    timeFrame: hour
+    notes: 600 calls per hour (14,400 per 24-hour period) per site for publishing or updating
+      workbooks and data sources.
+  - name: Get Users on Site
+    scope: site
     metric: requests_per_minute
-    limit: 10
-    burst: 20
+    limit: 3000
     timeFrame: minute
-    applies:
-      - Tableau REST API
-      - Tableau Metadata API
-      - Tableau Hyper API
-      - Tableau Embedding API
-      - Tableau Document API
-      - Tableau Server Client (Python)
-      - Tableau Extensions API
-      - Tableau Web Data Connector
-      - Tableau Connector SDK
-      - Tableau Analytics Extensions API
-      - Tableau Webhooks
-      - Tableau VizQL Data Service
-      - Tableau Pulse API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Tableau REST API
-      - Tableau Metadata API
-      - Tableau Hyper API
-      - Tableau Embedding API
-      - Tableau Document API
-      - Tableau Server Client (Python)
-      - Tableau Extensions API
-      - Tableau Web Data Connector
-      - Tableau Connector SDK
-      - Tableau Analytics Extensions API
-      - Tableau Webhooks
-      - Tableau VizQL Data Service
-      - Tableau Pulse API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
+  - name: Remove User from Site
+    scope: site
     metric: requests_per_minute
+    limit: 1600
+    timeFrame: minute
+  - name: VizQL Data Service Allowance
+    scope: site
+    metric: requests_per_hour
     limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Tableau REST API
-      - Tableau Metadata API
-      - Tableau Hyper API
-      - Tableau Embedding API
-      - Tableau Document API
-      - Tableau Server Client (Python)
-      - Tableau Extensions API
-      - Tableau Web Data Connector
-      - Tableau Connector SDK
-      - Tableau Analytics Extensions API
-      - Tableau Webhooks
-      - Tableau VizQL Data Service
-      - Tableau Pulse API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Tableau REST API
-      - Tableau Metadata API
-      - Tableau Hyper API
-      - Tableau Embedding API
-      - Tableau Document API
-      - Tableau Server Client (Python)
-      - Tableau Extensions API
-      - Tableau Web Data Connector
-      - Tableau Connector SDK
-      - Tableau Analytics Extensions API
-      - Tableau Webhooks
-      - Tableau VizQL Data Service
-      - Tableau Pulse API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Tableau REST API
-      - Tableau Metadata API
-      - Tableau Hyper API
-      - Tableau Embedding API
-      - Tableau Document API
-      - Tableau Server Client (Python)
-      - Tableau Extensions API
-      - Tableau Web Data Connector
-      - Tableau Connector SDK
-      - Tableau Analytics Extensions API
-      - Tableau Webhooks
-      - Tableau VizQL Data Service
-      - Tableau Pulse API
+    timeFrame: hour
+    notes: An additional 100 calls per hour, per Creator license, on top of the standard caps —
+      VizQL Data Service capacity scales with the number of Creators on the site.
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  - name: 429 with Retry Guidance
+    description: Exceeding a documented site cap returns HTTP 429 with retry guidance from the
+      service. Clients should respect any retry signal and back off rather than retrying immediately.
+  - name: Tableau Server Differentiation
+    description: The published per-site numbers apply to Tableau Cloud. Self-hosted Tableau Server
+      capacity is governed by underlying compute / VizQL session capacity rather than these
+      site-level call ceilings.
+  - name: Per-Site Scope
+    description: Limits are scoped to a Tableau Cloud site, so multiple integrations sharing a
+      site share the same hourly / daily ceiling.
 maintainers:
-  - name: Tableau
-    email: developers@tableau.com
-    url: https://www.tableau.com
-  - name: Kin Lane
+  - FN: Kin Lane
     email: kin@apievangelist.com
-    url: https://apievangelist.com
