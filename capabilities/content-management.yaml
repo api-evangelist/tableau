@@ -1,288 +1,538 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "Tableau Content Management"
-  description: "Workflow for managing Tableau content including workbooks, data sources, views, sites, users, and permissions. Used by Tableau administrators and content managers."
+  label: Tableau Content Management
+  description: Workflow for managing Tableau content including workbooks, data sources, views, sites, users, and permissions.
+    Used by Tableau administrators and content managers.
   tags:
-    - Tableau
-    - Content Management
-    - Analytics
-    - Administration
-  created: "2026-04-18"
-  modified: "2026-04-18"
-
+  - Tableau
+  - Content Management
+  - Analytics
+  - Administration
+  created: '2026-04-18'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      TABLEAU_AUTH_TOKEN: TABLEAU_AUTH_TOKEN
-
+- namespace: env
+  keys:
+    TABLEAU_AUTH_TOKEN: TABLEAU_AUTH_TOKEN
 capability:
   consumes:
-    - import: tableau-rest
-      location: ./shared/tableau-rest.yaml
-
+  - type: http
+    namespace: tableau-rest
+    baseUri: https://10ax.online.tableau.com/api/3.24
+    description: Tableau REST API for managing server and cloud resources.
+    authentication:
+      type: apikey
+      key: X-Tableau-Auth
+      value: '{{TABLEAU_AUTH_TOKEN}}'
+      placement: header
+    resources:
+    - name: authentication
+      path: /auth
+      description: Authentication operations.
+      operations:
+      - name: sign-in
+        method: POST
+        description: Signs in to Tableau Server or Tableau Cloud.
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            credentials: '{{tools.credentials}}'
+      - name: sign-out
+        method: POST
+        description: Signs out from the server or site.
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: sites
+      path: /sites
+      description: Site management operations.
+      operations:
+      - name: query-sites
+        method: GET
+        description: Returns a list of the sites on the server.
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-site
+        method: POST
+        description: Creates a site on Tableau Server.
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            site: '{{tools.site}}'
+      - name: query-site
+        method: GET
+        description: Returns information about the specified site.
+        inputParameters:
+        - name: siteId
+          in: path
+          type: string
+          required: true
+          description: The ID of the site.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: update-site
+        method: PUT
+        description: Updates a site.
+        inputParameters:
+        - name: siteId
+          in: path
+          type: string
+          required: true
+          description: The ID of the site.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            site: '{{tools.site}}'
+      - name: delete-site
+        method: DELETE
+        description: Deletes the specified site.
+        inputParameters:
+        - name: siteId
+          in: path
+          type: string
+          required: true
+          description: The ID of the site.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: workbooks
+      path: /sites/{siteId}/workbooks
+      description: Workbook management operations.
+      operations:
+      - name: query-workbooks
+        method: GET
+        description: Returns the workbooks on a site.
+        inputParameters:
+        - name: siteId
+          in: path
+          type: string
+          required: true
+          description: The ID of the site.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: query-workbook
+        method: GET
+        description: Returns information about the specified workbook.
+        inputParameters:
+        - name: siteId
+          in: path
+          type: string
+          required: true
+          description: The ID of the site.
+        - name: workbookId
+          in: path
+          type: string
+          required: true
+          description: The ID of the workbook.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: delete-workbook
+        method: DELETE
+        description: Deletes a workbook.
+        inputParameters:
+        - name: siteId
+          in: path
+          type: string
+          required: true
+          description: The ID of the site.
+        - name: workbookId
+          in: path
+          type: string
+          required: true
+          description: The ID of the workbook.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: data-sources
+      path: /sites/{siteId}/datasources
+      description: Data source management operations.
+      operations:
+      - name: query-data-sources
+        method: GET
+        description: Returns the data sources on a site.
+        inputParameters:
+        - name: siteId
+          in: path
+          type: string
+          required: true
+          description: The ID of the site.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: query-data-source
+        method: GET
+        description: Returns information about the specified data source.
+        inputParameters:
+        - name: siteId
+          in: path
+          type: string
+          required: true
+          description: The ID of the site.
+        - name: datasourceId
+          in: path
+          type: string
+          required: true
+          description: The ID of the data source.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: delete-data-source
+        method: DELETE
+        description: Deletes a data source.
+        inputParameters:
+        - name: siteId
+          in: path
+          type: string
+          required: true
+          description: The ID of the site.
+        - name: datasourceId
+          in: path
+          type: string
+          required: true
+          description: The ID of the data source.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: users
+      path: /sites/{siteId}/users
+      description: User management operations.
+      operations:
+      - name: get-users
+        method: GET
+        description: Gets the users on a site.
+        inputParameters:
+        - name: siteId
+          in: path
+          type: string
+          required: true
+          description: The ID of the site.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: add-user
+        method: POST
+        description: Adds a user to a site.
+        inputParameters:
+        - name: siteId
+          in: path
+          type: string
+          required: true
+          description: The ID of the site.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            user: '{{tools.user}}'
   exposes:
-    - type: rest
-      port: 8080
-      namespace: tableau-content-api
-      description: "Unified REST API for Tableau content management."
-      resources:
-        - path: /v1/sites
-          name: sites
-          description: "Site management"
-          operations:
-            - method: GET
-              name: list-sites
-              description: "List all sites"
-              call: "tableau-rest.query-sites"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: POST
-              name: create-site
-              description: "Create a new site"
-              call: "tableau-rest.create-site"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/sites/{siteId}
-          name: site
-          description: "Single site operations"
-          operations:
-            - method: GET
-              name: get-site
-              description: "Get site details"
-              call: "tableau-rest.query-site"
-              with:
-                siteId: "rest.siteId"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: PUT
-              name: update-site
-              description: "Update a site"
-              call: "tableau-rest.update-site"
-              with:
-                siteId: "rest.siteId"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: DELETE
-              name: delete-site
-              description: "Delete a site"
-              call: "tableau-rest.delete-site"
-              with:
-                siteId: "rest.siteId"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/workbooks
-          name: workbooks
-          description: "Workbook operations"
-          operations:
-            - method: GET
-              name: list-workbooks
-              description: "List workbooks on a site"
-              call: "tableau-rest.query-workbooks"
-              with:
-                siteId: "rest.siteId"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/data-sources
-          name: data-sources
-          description: "Data source operations"
-          operations:
-            - method: GET
-              name: list-data-sources
-              description: "List data sources on a site"
-              call: "tableau-rest.query-data-sources"
-              with:
-                siteId: "rest.siteId"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/users
-          name: users
-          description: "User operations"
-          operations:
-            - method: GET
-              name: list-users
-              description: "List users on a site"
-              call: "tableau-rest.get-users"
-              with:
-                siteId: "rest.siteId"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9090
-      namespace: tableau-content-mcp
-      transport: http
-      description: "MCP server for AI-assisted Tableau content management."
-      tools:
-        - name: sign-in
-          description: "Sign in to Tableau Server or Cloud"
-          hints:
-            readOnly: false
-            idempotent: false
-          call: "tableau-rest.sign-in"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: sign-out
-          description: "Sign out from Tableau"
-          hints:
-            readOnly: false
-            idempotent: true
-          call: "tableau-rest.sign-out"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-sites
-          description: "List all sites on the server"
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "tableau-rest.query-sites"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: create-site
-          description: "Create a new site"
-          hints:
-            readOnly: false
-            idempotent: false
-          call: "tableau-rest.create-site"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-site
-          description: "Get details of a specific site"
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "tableau-rest.query-site"
-          with:
-            siteId: "tools.siteId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: update-site
-          description: "Update site configuration"
-          hints:
-            readOnly: false
-            idempotent: true
-          call: "tableau-rest.update-site"
-          with:
-            siteId: "tools.siteId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: delete-site
-          description: "Delete a site"
-          hints:
-            readOnly: false
-            destructive: true
-            idempotent: true
-          call: "tableau-rest.delete-site"
-          with:
-            siteId: "tools.siteId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-workbooks
-          description: "List workbooks on a site"
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "tableau-rest.query-workbooks"
-          with:
-            siteId: "tools.siteId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-workbook
-          description: "Get details of a specific workbook"
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "tableau-rest.query-workbook"
-          with:
-            siteId: "tools.siteId"
-            workbookId: "tools.workbookId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: delete-workbook
-          description: "Delete a workbook"
-          hints:
-            readOnly: false
-            destructive: true
-            idempotent: true
-          call: "tableau-rest.delete-workbook"
-          with:
-            siteId: "tools.siteId"
-            workbookId: "tools.workbookId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-data-sources
-          description: "List data sources on a site"
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "tableau-rest.query-data-sources"
-          with:
-            siteId: "tools.siteId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-data-source
-          description: "Get details of a specific data source"
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "tableau-rest.query-data-source"
-          with:
-            siteId: "tools.siteId"
-            datasourceId: "tools.datasourceId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: delete-data-source
-          description: "Delete a data source"
-          hints:
-            readOnly: false
-            destructive: true
-            idempotent: true
-          call: "tableau-rest.delete-data-source"
-          with:
-            siteId: "tools.siteId"
-            datasourceId: "tools.datasourceId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-users
-          description: "List users on a site"
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "tableau-rest.get-users"
-          with:
-            siteId: "tools.siteId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: add-user
-          description: "Add a user to a site"
-          hints:
-            readOnly: false
-            idempotent: false
-          call: "tableau-rest.add-user"
-          with:
-            siteId: "tools.siteId"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8080
+    namespace: tableau-content-api
+    description: Unified REST API for Tableau content management.
+    resources:
+    - path: /v1/sites
+      name: sites
+      description: Site management
+      operations:
+      - method: GET
+        name: list-sites
+        description: List all sites
+        call: tableau-rest.query-sites
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: create-site
+        description: Create a new site
+        call: tableau-rest.create-site
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sites/{siteId}
+      name: site
+      description: Single site operations
+      operations:
+      - method: GET
+        name: get-site
+        description: Get site details
+        call: tableau-rest.query-site
+        with:
+          siteId: rest.siteId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: update-site
+        description: Update a site
+        call: tableau-rest.update-site
+        with:
+          siteId: rest.siteId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: delete-site
+        description: Delete a site
+        call: tableau-rest.delete-site
+        with:
+          siteId: rest.siteId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workbooks
+      name: workbooks
+      description: Workbook operations
+      operations:
+      - method: GET
+        name: list-workbooks
+        description: List workbooks on a site
+        call: tableau-rest.query-workbooks
+        with:
+          siteId: rest.siteId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/data-sources
+      name: data-sources
+      description: Data source operations
+      operations:
+      - method: GET
+        name: list-data-sources
+        description: List data sources on a site
+        call: tableau-rest.query-data-sources
+        with:
+          siteId: rest.siteId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/users
+      name: users
+      description: User operations
+      operations:
+      - method: GET
+        name: list-users
+        description: List users on a site
+        call: tableau-rest.get-users
+        with:
+          siteId: rest.siteId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: tableau-content-mcp
+    transport: http
+    description: MCP server for AI-assisted Tableau content management.
+    tools:
+    - name: sign-in
+      description: Sign in to Tableau Server or Cloud
+      hints:
+        readOnly: false
+        idempotent: false
+      call: tableau-rest.sign-in
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: sign-out
+      description: Sign out from Tableau
+      hints:
+        readOnly: false
+        idempotent: true
+      call: tableau-rest.sign-out
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-sites
+      description: List all sites on the server
+      hints:
+        readOnly: true
+        idempotent: true
+      call: tableau-rest.query-sites
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-site
+      description: Create a new site
+      hints:
+        readOnly: false
+        idempotent: false
+      call: tableau-rest.create-site
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-site
+      description: Get details of a specific site
+      hints:
+        readOnly: true
+        idempotent: true
+      call: tableau-rest.query-site
+      with:
+        siteId: tools.siteId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-site
+      description: Update site configuration
+      hints:
+        readOnly: false
+        idempotent: true
+      call: tableau-rest.update-site
+      with:
+        siteId: tools.siteId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-site
+      description: Delete a site
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: tableau-rest.delete-site
+      with:
+        siteId: tools.siteId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-workbooks
+      description: List workbooks on a site
+      hints:
+        readOnly: true
+        idempotent: true
+      call: tableau-rest.query-workbooks
+      with:
+        siteId: tools.siteId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-workbook
+      description: Get details of a specific workbook
+      hints:
+        readOnly: true
+        idempotent: true
+      call: tableau-rest.query-workbook
+      with:
+        siteId: tools.siteId
+        workbookId: tools.workbookId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-workbook
+      description: Delete a workbook
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: tableau-rest.delete-workbook
+      with:
+        siteId: tools.siteId
+        workbookId: tools.workbookId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-data-sources
+      description: List data sources on a site
+      hints:
+        readOnly: true
+        idempotent: true
+      call: tableau-rest.query-data-sources
+      with:
+        siteId: tools.siteId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-data-source
+      description: Get details of a specific data source
+      hints:
+        readOnly: true
+        idempotent: true
+      call: tableau-rest.query-data-source
+      with:
+        siteId: tools.siteId
+        datasourceId: tools.datasourceId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-data-source
+      description: Delete a data source
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: tableau-rest.delete-data-source
+      with:
+        siteId: tools.siteId
+        datasourceId: tools.datasourceId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-users
+      description: List users on a site
+      hints:
+        readOnly: true
+        idempotent: true
+      call: tableau-rest.get-users
+      with:
+        siteId: tools.siteId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-user
+      description: Add a user to a site
+      hints:
+        readOnly: false
+        idempotent: false
+      call: tableau-rest.add-user
+      with:
+        siteId: tools.siteId
+      outputParameters:
+      - type: object
+        mapping: $.
