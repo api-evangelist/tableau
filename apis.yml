@@ -7,7 +7,7 @@ tags:
   - Dashboards
   - Data Visualization
 created: '2024'
-modified: '2026-04-18'
+modified: '2026-05-19'
 url: https://www.tableau.com
 specificationVersion: '0.18'
 apis:
@@ -394,3 +394,6 @@ common:
         description: Optimized connector for Snowflake data warehouse with live query and extract support.
       - name: Google BigQuery
         description: Connect to Google BigQuery for large-scale data analytics and visualization.
+  - name: MCP Server
+    url: https://github.com/tableau/tableau-mcp
+    type: MCPServer
