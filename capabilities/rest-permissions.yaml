@@ -1,0 +1,206 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Tableau REST API — Permissions
+  description: 'Tableau REST API — Permissions. 5 operations. Lead operation: Tableau Query Data Source Permissions. Self-contained
+    Naftiko capability covering one Tableau business surface.'
+  tags:
+  - Tableau
+  - Permissions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TABLEAU_API_KEY: TABLEAU_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-permissions
+    baseUri: https://{server}/api/{api-version}
+    description: Tableau REST API — Permissions business capability. Self-contained, no shared references.
+    resources:
+    - name: sites-site-id-datasources-datasource-id-permissions
+      path: /sites/{site-id}/datasources/{datasource-id}/permissions
+      operations:
+      - name: querydatasourcepermissions
+        method: GET
+        description: Tableau Query Data Source Permissions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: adddatasourcepermissions
+        method: PUT
+        description: Tableau Add Data Source Permissions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: sites-site-id-projects-project-id-default-permissions-workbooks
+      path: /sites/{site-id}/projects/{project-id}/default-permissions/workbooks
+      operations:
+      - name: querydefaultworkbookpermissions
+        method: GET
+        description: Tableau Query Default Permissions for Workbooks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: sites-site-id-workbooks-workbook-id-permissions
+      path: /sites/{site-id}/workbooks/{workbook-id}/permissions
+      operations:
+      - name: queryworkbookpermissions
+        method: GET
+        description: Tableau Query Workbook Permissions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: addworkbookpermissions
+        method: PUT
+        description: Tableau Add Workbook Permissions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: X-Tableau-Auth
+      value: '{{env.TABLEAU_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: rest-permissions-rest
+    port: 8080
+    description: REST adapter for Tableau REST API — Permissions. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/sites/{site-id}/datasources/{datasource-id}/permissions
+      name: sites-site-id-datasources-datasource-id-permissions
+      description: REST surface for sites-site-id-datasources-datasource-id-permissions.
+      operations:
+      - method: GET
+        name: querydatasourcepermissions
+        description: Tableau Query Data Source Permissions
+        call: rest-permissions.querydatasourcepermissions
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: adddatasourcepermissions
+        description: Tableau Add Data Source Permissions
+        call: rest-permissions.adddatasourcepermissions
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sites/{site-id}/projects/{project-id}/default-permissions/workbooks
+      name: sites-site-id-projects-project-id-default-permissions-workbooks
+      description: REST surface for sites-site-id-projects-project-id-default-permissions-workbooks.
+      operations:
+      - method: GET
+        name: querydefaultworkbookpermissions
+        description: Tableau Query Default Permissions for Workbooks
+        call: rest-permissions.querydefaultworkbookpermissions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sites/{site-id}/workbooks/{workbook-id}/permissions
+      name: sites-site-id-workbooks-workbook-id-permissions
+      description: REST surface for sites-site-id-workbooks-workbook-id-permissions.
+      operations:
+      - method: GET
+        name: queryworkbookpermissions
+        description: Tableau Query Workbook Permissions
+        call: rest-permissions.queryworkbookpermissions
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: addworkbookpermissions
+        description: Tableau Add Workbook Permissions
+        call: rest-permissions.addworkbookpermissions
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-permissions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Tableau REST API — Permissions. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: tableau-query-data-source-permissions
+      description: Tableau Query Data Source Permissions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-permissions.querydatasourcepermissions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tableau-add-data-source-permissions
+      description: Tableau Add Data Source Permissions
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-permissions.adddatasourcepermissions
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tableau-query-default-permissions-workbooks
+      description: Tableau Query Default Permissions for Workbooks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-permissions.querydefaultworkbookpermissions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tableau-query-workbook-permissions
+      description: Tableau Query Workbook Permissions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-permissions.queryworkbookpermissions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tableau-add-workbook-permissions
+      description: Tableau Add Workbook Permissions
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-permissions.addworkbookpermissions
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

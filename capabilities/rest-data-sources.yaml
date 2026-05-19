@@ -1,0 +1,403 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Tableau REST API — Data Sources
+  description: 'Tableau REST API — Data Sources. 11 operations. Lead operation: Tableau Query Data Sources. Self-contained
+    Naftiko capability covering one Tableau business surface.'
+  tags:
+  - Tableau
+  - Data Sources
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TABLEAU_API_KEY: TABLEAU_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-data-sources
+    baseUri: https://{server}/api/{api-version}
+    description: Tableau REST API — Data Sources business capability. Self-contained, no shared references.
+    resources:
+    - name: sites-site-id-datasources
+      path: /sites/{site-id}/datasources
+      operations:
+      - name: querydatasources
+        method: GET
+        description: Tableau Query Data Sources
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: sites-site-id-datasources-datasource-id
+      path: /sites/{site-id}/datasources/{datasource-id}
+      operations:
+      - name: querydatasource
+        method: GET
+        description: Tableau Query Data Source
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatedatasource
+        method: PUT
+        description: Tableau Update Data Source
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletedatasource
+        method: DELETE
+        description: Tableau Delete Data Source
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: sites-site-id-datasources-datasource-id-connections
+      path: /sites/{site-id}/datasources/{datasource-id}/connections
+      operations:
+      - name: querydatasourceconnections
+        method: GET
+        description: Tableau Query Data Source Connections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: sites-site-id-datasources-datasource-id-content
+      path: /sites/{site-id}/datasources/{datasource-id}/content
+      operations:
+      - name: downloaddatasource
+        method: GET
+        description: Tableau Download Data Source
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: includeExtract
+          in: query
+          type: boolean
+          description: If true and the data source contains an extract, the download includes the extract.
+    - name: sites-site-id-datasources-datasource-id-permissions
+      path: /sites/{site-id}/datasources/{datasource-id}/permissions
+      operations:
+      - name: querydatasourcepermissions
+        method: GET
+        description: Tableau Query Data Source Permissions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: adddatasourcepermissions
+        method: PUT
+        description: Tableau Add Data Source Permissions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: sites-site-id-datasources-datasource-id-revisions
+      path: /sites/{site-id}/datasources/{datasource-id}/revisions
+      operations:
+      - name: getdatasourcerevisions
+        method: GET
+        description: Tableau Get Data Source Revisions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: sites-site-id-datasources-datasource-id-tags
+      path: /sites/{site-id}/datasources/{datasource-id}/tags
+      operations:
+      - name: querydatasourcetags
+        method: GET
+        description: Tableau Query Data Source Tags
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: addtagstodatasource
+        method: PUT
+        description: Tableau Add Tags to Data Source
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: X-Tableau-Auth
+      value: '{{env.TABLEAU_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: rest-data-sources-rest
+    port: 8080
+    description: REST adapter for Tableau REST API — Data Sources. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/sites/{site-id}/datasources
+      name: sites-site-id-datasources
+      description: REST surface for sites-site-id-datasources.
+      operations:
+      - method: GET
+        name: querydatasources
+        description: Tableau Query Data Sources
+        call: rest-data-sources.querydatasources
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sites/{site-id}/datasources/{datasource-id}
+      name: sites-site-id-datasources-datasource-id
+      description: REST surface for sites-site-id-datasources-datasource-id.
+      operations:
+      - method: GET
+        name: querydatasource
+        description: Tableau Query Data Source
+        call: rest-data-sources.querydatasource
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatedatasource
+        description: Tableau Update Data Source
+        call: rest-data-sources.updatedatasource
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletedatasource
+        description: Tableau Delete Data Source
+        call: rest-data-sources.deletedatasource
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sites/{site-id}/datasources/{datasource-id}/connections
+      name: sites-site-id-datasources-datasource-id-connections
+      description: REST surface for sites-site-id-datasources-datasource-id-connections.
+      operations:
+      - method: GET
+        name: querydatasourceconnections
+        description: Tableau Query Data Source Connections
+        call: rest-data-sources.querydatasourceconnections
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sites/{site-id}/datasources/{datasource-id}/content
+      name: sites-site-id-datasources-datasource-id-content
+      description: REST surface for sites-site-id-datasources-datasource-id-content.
+      operations:
+      - method: GET
+        name: downloaddatasource
+        description: Tableau Download Data Source
+        call: rest-data-sources.downloaddatasource
+        with:
+          includeExtract: rest.includeExtract
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sites/{site-id}/datasources/{datasource-id}/permissions
+      name: sites-site-id-datasources-datasource-id-permissions
+      description: REST surface for sites-site-id-datasources-datasource-id-permissions.
+      operations:
+      - method: GET
+        name: querydatasourcepermissions
+        description: Tableau Query Data Source Permissions
+        call: rest-data-sources.querydatasourcepermissions
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: adddatasourcepermissions
+        description: Tableau Add Data Source Permissions
+        call: rest-data-sources.adddatasourcepermissions
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sites/{site-id}/datasources/{datasource-id}/revisions
+      name: sites-site-id-datasources-datasource-id-revisions
+      description: REST surface for sites-site-id-datasources-datasource-id-revisions.
+      operations:
+      - method: GET
+        name: getdatasourcerevisions
+        description: Tableau Get Data Source Revisions
+        call: rest-data-sources.getdatasourcerevisions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sites/{site-id}/datasources/{datasource-id}/tags
+      name: sites-site-id-datasources-datasource-id-tags
+      description: REST surface for sites-site-id-datasources-datasource-id-tags.
+      operations:
+      - method: GET
+        name: querydatasourcetags
+        description: Tableau Query Data Source Tags
+        call: rest-data-sources.querydatasourcetags
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: addtagstodatasource
+        description: Tableau Add Tags to Data Source
+        call: rest-data-sources.addtagstodatasource
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-data-sources-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Tableau REST API — Data Sources. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: tableau-query-data-sources
+      description: Tableau Query Data Sources
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-data-sources.querydatasources
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tableau-query-data-source
+      description: Tableau Query Data Source
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-data-sources.querydatasource
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tableau-update-data-source
+      description: Tableau Update Data Source
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-data-sources.updatedatasource
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tableau-delete-data-source
+      description: Tableau Delete Data Source
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rest-data-sources.deletedatasource
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tableau-query-data-source-connections
+      description: Tableau Query Data Source Connections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-data-sources.querydatasourceconnections
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tableau-download-data-source
+      description: Tableau Download Data Source
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-data-sources.downloaddatasource
+      with:
+        includeExtract: tools.includeExtract
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tableau-query-data-source-permissions
+      description: Tableau Query Data Source Permissions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-data-sources.querydatasourcepermissions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tableau-add-data-source-permissions
+      description: Tableau Add Data Source Permissions
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-data-sources.adddatasourcepermissions
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tableau-get-data-source-revisions
+      description: Tableau Get Data Source Revisions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-data-sources.getdatasourcerevisions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tableau-query-data-source-tags
+      description: Tableau Query Data Source Tags
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-data-sources.querydatasourcetags
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tableau-add-tags-data-source
+      description: Tableau Add Tags to Data Source
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-data-sources.addtagstodatasource
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

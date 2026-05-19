@@ -1,0 +1,273 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Tableau REST API — Groups
+  description: 'Tableau REST API — Groups. 7 operations. Lead operation: Tableau Query Groups. Self-contained Naftiko capability
+    covering one Tableau business surface.'
+  tags:
+  - Tableau
+  - Groups
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TABLEAU_API_KEY: TABLEAU_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-groups
+    baseUri: https://{server}/api/{api-version}
+    description: Tableau REST API — Groups business capability. Self-contained, no shared references.
+    resources:
+    - name: sites-site-id-groups
+      path: /sites/{site-id}/groups
+      operations:
+      - name: querygroups
+        method: GET
+        description: Tableau Query Groups
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: creategroup
+        method: POST
+        description: Tableau Create Group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: sites-site-id-groups-group-id
+      path: /sites/{site-id}/groups/{group-id}
+      operations:
+      - name: updategroup
+        method: PUT
+        description: Tableau Update Group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletegroup
+        method: DELETE
+        description: Tableau Delete Group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: sites-site-id-groups-group-id-users
+      path: /sites/{site-id}/groups/{group-id}/users
+      operations:
+      - name: getgroupmembers
+        method: GET
+        description: Tableau Get Group Members
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: addusertogroup
+        method: POST
+        description: Tableau Add User to Group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: sites-site-id-groups-group-id-users-user-id
+      path: /sites/{site-id}/groups/{group-id}/users/{user-id}
+      operations:
+      - name: removeuserfromgroup
+        method: DELETE
+        description: Tableau Remove User From Group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-Tableau-Auth
+      value: '{{env.TABLEAU_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: rest-groups-rest
+    port: 8080
+    description: REST adapter for Tableau REST API — Groups. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/sites/{site-id}/groups
+      name: sites-site-id-groups
+      description: REST surface for sites-site-id-groups.
+      operations:
+      - method: GET
+        name: querygroups
+        description: Tableau Query Groups
+        call: rest-groups.querygroups
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: creategroup
+        description: Tableau Create Group
+        call: rest-groups.creategroup
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sites/{site-id}/groups/{group-id}
+      name: sites-site-id-groups-group-id
+      description: REST surface for sites-site-id-groups-group-id.
+      operations:
+      - method: PUT
+        name: updategroup
+        description: Tableau Update Group
+        call: rest-groups.updategroup
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletegroup
+        description: Tableau Delete Group
+        call: rest-groups.deletegroup
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sites/{site-id}/groups/{group-id}/users
+      name: sites-site-id-groups-group-id-users
+      description: REST surface for sites-site-id-groups-group-id-users.
+      operations:
+      - method: GET
+        name: getgroupmembers
+        description: Tableau Get Group Members
+        call: rest-groups.getgroupmembers
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: addusertogroup
+        description: Tableau Add User to Group
+        call: rest-groups.addusertogroup
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sites/{site-id}/groups/{group-id}/users/{user-id}
+      name: sites-site-id-groups-group-id-users-user-id
+      description: REST surface for sites-site-id-groups-group-id-users-user-id.
+      operations:
+      - method: DELETE
+        name: removeuserfromgroup
+        description: Tableau Remove User From Group
+        call: rest-groups.removeuserfromgroup
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-groups-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Tableau REST API — Groups. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: tableau-query-groups
+      description: Tableau Query Groups
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-groups.querygroups
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tableau-create-group
+      description: Tableau Create Group
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-groups.creategroup
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tableau-update-group
+      description: Tableau Update Group
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-groups.updategroup
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tableau-delete-group
+      description: Tableau Delete Group
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rest-groups.deletegroup
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tableau-get-group-members
+      description: Tableau Get Group Members
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-groups.getgroupmembers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tableau-add-user-group
+      description: Tableau Add User to Group
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-groups.addusertogroup
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tableau-remove-user-group
+      description: Tableau Remove User From Group
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rest-groups.removeuserfromgroup
+      outputParameters:
+      - type: object
+        mapping: $.

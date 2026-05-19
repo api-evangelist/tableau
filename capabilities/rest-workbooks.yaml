@@ -1,0 +1,604 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Tableau REST API — Workbooks
+  description: 'Tableau REST API — Workbooks. 16 operations. Lead operation: Tableau Query Workbooks for User. Self-contained
+    Naftiko capability covering one Tableau business surface.'
+  tags:
+  - Tableau
+  - Workbooks
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TABLEAU_API_KEY: TABLEAU_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-workbooks
+    baseUri: https://{server}/api/{api-version}
+    description: Tableau REST API — Workbooks business capability. Self-contained, no shared references.
+    resources:
+    - name: sites-site-id-users-user-id-workbooks
+      path: /sites/{site-id}/users/{user-id}/workbooks
+      operations:
+      - name: queryworkbooksforuser
+        method: GET
+        description: Tableau Query Workbooks for User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: sites-site-id-workbooks
+      path: /sites/{site-id}/workbooks
+      operations:
+      - name: queryworkbooksforsite
+        method: GET
+        description: Tableau Query Workbooks for Site
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: sites-site-id-workbooks-workbook-id
+      path: /sites/{site-id}/workbooks/{workbook-id}
+      operations:
+      - name: queryworkbook
+        method: GET
+        description: Tableau Query Workbook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateworkbook
+        method: PUT
+        description: Tableau Update Workbook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteworkbook
+        method: DELETE
+        description: Tableau Delete Workbook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: sites-site-id-workbooks-workbook-id-connections
+      path: /sites/{site-id}/workbooks/{workbook-id}/connections
+      operations:
+      - name: queryworkbookconnections
+        method: GET
+        description: Tableau Query Workbook Connections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: sites-site-id-workbooks-workbook-id-content
+      path: /sites/{site-id}/workbooks/{workbook-id}/content
+      operations:
+      - name: downloadworkbook
+        method: GET
+        description: Tableau Download Workbook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: extractValue
+          in: query
+          type: boolean
+          description: If true, and the workbook contains extracts, the download includes the extracts.
+    - name: sites-site-id-workbooks-workbook-id-permissions
+      path: /sites/{site-id}/workbooks/{workbook-id}/permissions
+      operations:
+      - name: queryworkbookpermissions
+        method: GET
+        description: Tableau Query Workbook Permissions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: addworkbookpermissions
+        method: PUT
+        description: Tableau Add Workbook Permissions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: sites-site-id-workbooks-workbook-id-previewImage
+      path: /sites/{site-id}/workbooks/{workbook-id}/previewImage
+      operations:
+      - name: queryworkbookpreviewimage
+        method: GET
+        description: Tableau Query Workbook Preview Image
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: sites-site-id-workbooks-workbook-id-publish
+      path: /sites/{site-id}/workbooks/{workbook-id}/publish
+      operations:
+      - name: publishworkbook
+        method: POST
+        description: Tableau Publish Workbook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: overwrite
+          in: query
+          type: boolean
+          description: If true, overwrites an existing workbook with the same name in the same project.
+        - name: skipConnectionCheck
+          in: query
+          type: boolean
+          description: If true, skips the connection check during publish.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: sites-site-id-workbooks-workbook-id-revisions
+      path: /sites/{site-id}/workbooks/{workbook-id}/revisions
+      operations:
+      - name: getworkbookrevisions
+        method: GET
+        description: Tableau Get Workbook Revisions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: sites-site-id-workbooks-workbook-id-tags
+      path: /sites/{site-id}/workbooks/{workbook-id}/tags
+      operations:
+      - name: queryworkbooktags
+        method: GET
+        description: Tableau Query Workbook Tags
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: addtagstoworkbook
+        method: PUT
+        description: Tableau Add Tags to Workbook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: sites-site-id-workbooks-workbook-id-tags-tag-name
+      path: /sites/{site-id}/workbooks/{workbook-id}/tags/{tag-name}
+      operations:
+      - name: deletetagfromworkbook
+        method: DELETE
+        description: Tableau Delete Tag From Workbook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: tag-name
+          in: path
+          type: string
+          description: The name of the tag to delete.
+          required: true
+    - name: sites-site-id-workbooks-workbook-id-views
+      path: /sites/{site-id}/workbooks/{workbook-id}/views
+      operations:
+      - name: queryviewsforworkbook
+        method: GET
+        description: Tableau Query Views for Workbook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: includeUsageStatistics
+          in: query
+          type: boolean
+          description: If true, returns usage statistics for each view.
+    authentication:
+      type: apikey
+      key: X-Tableau-Auth
+      value: '{{env.TABLEAU_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: rest-workbooks-rest
+    port: 8080
+    description: REST adapter for Tableau REST API — Workbooks. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/sites/{site-id}/users/{user-id}/workbooks
+      name: sites-site-id-users-user-id-workbooks
+      description: REST surface for sites-site-id-users-user-id-workbooks.
+      operations:
+      - method: GET
+        name: queryworkbooksforuser
+        description: Tableau Query Workbooks for User
+        call: rest-workbooks.queryworkbooksforuser
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sites/{site-id}/workbooks
+      name: sites-site-id-workbooks
+      description: REST surface for sites-site-id-workbooks.
+      operations:
+      - method: GET
+        name: queryworkbooksforsite
+        description: Tableau Query Workbooks for Site
+        call: rest-workbooks.queryworkbooksforsite
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sites/{site-id}/workbooks/{workbook-id}
+      name: sites-site-id-workbooks-workbook-id
+      description: REST surface for sites-site-id-workbooks-workbook-id.
+      operations:
+      - method: GET
+        name: queryworkbook
+        description: Tableau Query Workbook
+        call: rest-workbooks.queryworkbook
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateworkbook
+        description: Tableau Update Workbook
+        call: rest-workbooks.updateworkbook
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteworkbook
+        description: Tableau Delete Workbook
+        call: rest-workbooks.deleteworkbook
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sites/{site-id}/workbooks/{workbook-id}/connections
+      name: sites-site-id-workbooks-workbook-id-connections
+      description: REST surface for sites-site-id-workbooks-workbook-id-connections.
+      operations:
+      - method: GET
+        name: queryworkbookconnections
+        description: Tableau Query Workbook Connections
+        call: rest-workbooks.queryworkbookconnections
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sites/{site-id}/workbooks/{workbook-id}/content
+      name: sites-site-id-workbooks-workbook-id-content
+      description: REST surface for sites-site-id-workbooks-workbook-id-content.
+      operations:
+      - method: GET
+        name: downloadworkbook
+        description: Tableau Download Workbook
+        call: rest-workbooks.downloadworkbook
+        with:
+          extractValue: rest.extractValue
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sites/{site-id}/workbooks/{workbook-id}/permissions
+      name: sites-site-id-workbooks-workbook-id-permissions
+      description: REST surface for sites-site-id-workbooks-workbook-id-permissions.
+      operations:
+      - method: GET
+        name: queryworkbookpermissions
+        description: Tableau Query Workbook Permissions
+        call: rest-workbooks.queryworkbookpermissions
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: addworkbookpermissions
+        description: Tableau Add Workbook Permissions
+        call: rest-workbooks.addworkbookpermissions
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sites/{site-id}/workbooks/{workbook-id}/previewimage
+      name: sites-site-id-workbooks-workbook-id-previewimage
+      description: REST surface for sites-site-id-workbooks-workbook-id-previewImage.
+      operations:
+      - method: GET
+        name: queryworkbookpreviewimage
+        description: Tableau Query Workbook Preview Image
+        call: rest-workbooks.queryworkbookpreviewimage
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sites/{site-id}/workbooks/{workbook-id}/publish
+      name: sites-site-id-workbooks-workbook-id-publish
+      description: REST surface for sites-site-id-workbooks-workbook-id-publish.
+      operations:
+      - method: POST
+        name: publishworkbook
+        description: Tableau Publish Workbook
+        call: rest-workbooks.publishworkbook
+        with:
+          overwrite: rest.overwrite
+          skipConnectionCheck: rest.skipConnectionCheck
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sites/{site-id}/workbooks/{workbook-id}/revisions
+      name: sites-site-id-workbooks-workbook-id-revisions
+      description: REST surface for sites-site-id-workbooks-workbook-id-revisions.
+      operations:
+      - method: GET
+        name: getworkbookrevisions
+        description: Tableau Get Workbook Revisions
+        call: rest-workbooks.getworkbookrevisions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sites/{site-id}/workbooks/{workbook-id}/tags
+      name: sites-site-id-workbooks-workbook-id-tags
+      description: REST surface for sites-site-id-workbooks-workbook-id-tags.
+      operations:
+      - method: GET
+        name: queryworkbooktags
+        description: Tableau Query Workbook Tags
+        call: rest-workbooks.queryworkbooktags
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: addtagstoworkbook
+        description: Tableau Add Tags to Workbook
+        call: rest-workbooks.addtagstoworkbook
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sites/{site-id}/workbooks/{workbook-id}/tags/{tag-name}
+      name: sites-site-id-workbooks-workbook-id-tags-tag-name
+      description: REST surface for sites-site-id-workbooks-workbook-id-tags-tag-name.
+      operations:
+      - method: DELETE
+        name: deletetagfromworkbook
+        description: Tableau Delete Tag From Workbook
+        call: rest-workbooks.deletetagfromworkbook
+        with:
+          tag-name: rest.tag-name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sites/{site-id}/workbooks/{workbook-id}/views
+      name: sites-site-id-workbooks-workbook-id-views
+      description: REST surface for sites-site-id-workbooks-workbook-id-views.
+      operations:
+      - method: GET
+        name: queryviewsforworkbook
+        description: Tableau Query Views for Workbook
+        call: rest-workbooks.queryviewsforworkbook
+        with:
+          includeUsageStatistics: rest.includeUsageStatistics
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-workbooks-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Tableau REST API — Workbooks. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: tableau-query-workbooks-user
+      description: Tableau Query Workbooks for User
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-workbooks.queryworkbooksforuser
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tableau-query-workbooks-site
+      description: Tableau Query Workbooks for Site
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-workbooks.queryworkbooksforsite
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tableau-query-workbook
+      description: Tableau Query Workbook
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-workbooks.queryworkbook
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tableau-update-workbook
+      description: Tableau Update Workbook
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-workbooks.updateworkbook
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tableau-delete-workbook
+      description: Tableau Delete Workbook
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rest-workbooks.deleteworkbook
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tableau-query-workbook-connections
+      description: Tableau Query Workbook Connections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-workbooks.queryworkbookconnections
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tableau-download-workbook
+      description: Tableau Download Workbook
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-workbooks.downloadworkbook
+      with:
+        extractValue: tools.extractValue
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tableau-query-workbook-permissions
+      description: Tableau Query Workbook Permissions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-workbooks.queryworkbookpermissions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tableau-add-workbook-permissions
+      description: Tableau Add Workbook Permissions
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-workbooks.addworkbookpermissions
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tableau-query-workbook-preview-image
+      description: Tableau Query Workbook Preview Image
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-workbooks.queryworkbookpreviewimage
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tableau-publish-workbook
+      description: Tableau Publish Workbook
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-workbooks.publishworkbook
+      with:
+        overwrite: tools.overwrite
+        skipConnectionCheck: tools.skipConnectionCheck
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tableau-get-workbook-revisions
+      description: Tableau Get Workbook Revisions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-workbooks.getworkbookrevisions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tableau-query-workbook-tags
+      description: Tableau Query Workbook Tags
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-workbooks.queryworkbooktags
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tableau-add-tags-workbook
+      description: Tableau Add Tags to Workbook
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-workbooks.addtagstoworkbook
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tableau-delete-tag-workbook
+      description: Tableau Delete Tag From Workbook
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rest-workbooks.deletetagfromworkbook
+      with:
+        tag-name: tools.tag-name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tableau-query-views-workbook
+      description: Tableau Query Views for Workbook
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-workbooks.queryviewsforworkbook
+      with:
+        includeUsageStatistics: tools.includeUsageStatistics
+      outputParameters:
+      - type: object
+        mapping: $.
