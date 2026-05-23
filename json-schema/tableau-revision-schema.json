@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Revision",
+  "title": "Revision",
+  "type": "object",
+  "properties": {
+    "revisionNumber": {
+      "type": "integer",
+      "description": "The revision number.",
+      "example": 10
+    },
+    "publishedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the revision was published.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "deleted": {
+      "type": "boolean",
+      "description": "Whether this revision has been deleted.",
+      "example": true
+    },
+    "current": {
+      "type": "boolean",
+      "description": "Whether this is the current revision.",
+      "example": true
+    },
+    "sizeInBytes": {
+      "type": "integer",
+      "description": "The size of the revision in bytes.",
+      "example": 10
+    },
+    "publisher": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The ID of the user who published this revision."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the user who published this revision."
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

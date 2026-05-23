@@ -1,0 +1,15 @@
+{
+  "operationId": "downloadWorkbook",
+  "method": "GET",
+  "path": "/sites/{site-id}/workbooks/{workbook-id}/content",
+  "summary": "Tableau Download Workbook",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/octet-stream",
+      "name": "Downloadworkbook200Example",
+      "example": "example_value"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "operationId": "queryViewData",
+  "method": "GET",
+  "path": "/sites/{site-id}/views/{view-id}/data",
+  "summary": "Tableau Query View Data",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "text/csv",
+      "name": "Queryviewdata200Example",
+      "example": "example_value"
+    }
+  ]
+}

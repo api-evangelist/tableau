@@ -1,0 +1,45 @@
+{
+  "operationId": "addFavorites",
+  "method": "PUT",
+  "path": "/sites/{site-id}/favorites/{user-id}",
+  "summary": "Tableau Add Favorites",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "AddfavoritesRequestExample",
+      "example": {
+        "favorite": {
+          "label": "Example Title",
+          "workbook": {
+            "id": "abc123"
+          },
+          "view": {
+            "id": "abc123"
+          },
+          "datasource": {
+            "id": "abc123"
+          },
+          "project": {
+            "id": "abc123"
+          }
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Addfavorites200Example",
+      "example": {
+        "favorites": {
+          "favorite": [
+            {
+              "label": "Example Title"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

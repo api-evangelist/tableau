@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SignInRequest",
+  "title": "SignInRequest",
+  "type": "object",
+  "properties": {
+    "credentials": {
+      "type": "object",
+      "required": [
+        "site"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name (user name) of the user signing in. Not required if using a personal access token."
+        },
+        "password": {
+          "type": "string",
+          "format": "password",
+          "description": "The password for the user."
+        },
+        "personalAccessTokenName": {
+          "type": "string",
+          "description": "The name of the personal access token. Use this instead of name and password for token-based authentication."
+        },
+        "personalAccessTokenSecret": {
+          "type": "string",
+          "format": "password",
+          "description": "The secret value of the personal access token."
+        },
+        "site": {
+          "type": "object",
+          "properties": {
+            "contentUrl": {
+              "type": "string",
+              "description": "The URL namespace of the site. For the default site on Tableau Server, use an empty string. For Tableau Cloud, this is the site name in the URL."
+            }
+          }
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

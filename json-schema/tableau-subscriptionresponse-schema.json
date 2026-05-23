@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SubscriptionResponse",
+  "title": "SubscriptionResponse",
+  "type": "object",
+  "properties": {
+    "subscription": {
+      "$ref": "#/components/schemas/Subscription"
+    }
+  }
+}

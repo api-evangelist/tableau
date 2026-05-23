@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FavoritesResponse",
+  "title": "FavoritesResponse",
+  "type": "object",
+  "properties": {
+    "favorites": {
+      "type": "object",
+      "properties": {
+        "favorite": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string",
+                "description": "The label for the favorite."
+              },
+              "workbook": {
+                "$ref": "#/components/schemas/Workbook"
+              },
+              "view": {
+                "$ref": "#/components/schemas/View"
+              },
+              "datasource": {
+                "$ref": "#/components/schemas/DataSource"
+              },
+              "project": {
+                "$ref": "#/components/schemas/Project"
+              }
+            }
+          }
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

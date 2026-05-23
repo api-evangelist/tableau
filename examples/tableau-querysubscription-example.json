@@ -1,0 +1,38 @@
+{
+  "operationId": "querySubscription",
+  "method": "GET",
+  "path": "/sites/{site-id}/subscriptions/{subscription-id}",
+  "summary": "Tableau Query Subscription",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Querysubscription200Example",
+      "example": {
+        "subscription": {
+          "id": "abc123",
+          "subject": "example_value",
+          "attachImage": true,
+          "attachPdf": true,
+          "message": "example_value",
+          "pageOrientation": "portrait",
+          "pageSizeOption": "A3",
+          "suspended": true,
+          "content": {
+            "id": "abc123",
+            "type": "Workbook"
+          },
+          "schedule": {
+            "id": "abc123",
+            "name": "Example Title"
+          },
+          "user": {
+            "id": "abc123",
+            "name": "Example Title"
+          }
+        }
+      }
+    }
+  ]
+}

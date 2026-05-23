@@ -1,0 +1,26 @@
+{
+  "operationId": "getDataSourceRevisions",
+  "method": "GET",
+  "path": "/sites/{site-id}/datasources/{datasource-id}/revisions",
+  "summary": "Tableau Get Data Source Revisions",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getdatasourcerevisions200Example",
+      "example": {
+        "pagination": {
+          "pageNumber": 10,
+          "pageSize": 10,
+          "totalAvailable": 10
+        },
+        "revisions": {
+          "revision": [
+            {}
+          ]
+        }
+      }
+    }
+  ]
+}

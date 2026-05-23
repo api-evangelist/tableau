@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Schedule",
+  "title": "Schedule",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the schedule.",
+      "example": "abc123"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the schedule.",
+      "example": "Example Title"
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "Active",
+        "Suspended"
+      ],
+      "description": "Whether the schedule is active or suspended.",
+      "example": "Active"
+    },
+    "priority": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100,
+      "description": "The priority of the schedule (1-100). Lower numbers indicate higher priority.",
+      "example": 10
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the schedule was created.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the schedule was last updated.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "Extract",
+        "Subscription",
+        "Flow"
+      ],
+      "description": "The type of the schedule.",
+      "example": "Extract"
+    },
+    "frequency": {
+      "type": "string",
+      "enum": [
+        "Hourly",
+        "Daily",
+        "Weekly",
+        "Monthly"
+      ],
+      "description": "How frequently the schedule runs.",
+      "example": "Hourly"
+    },
+    "nextRunAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The next scheduled run time.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "endScheduleAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The time when the schedule ends.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "frequencyDetails": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "type": "string",
+          "description": "The start time (HH:MM:SS)."
+        },
+        "end": {
+          "type": "string",
+          "description": "The end time (HH:MM:SS)."
+        },
+        "intervals": {
+          "type": "object",
+          "properties": {
+            "interval": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "hours": {
+                    "type": "string"
+                  },
+                  "minutes": {
+                    "type": "string"
+                  },
+                  "weekDay": {
+                    "type": "string"
+                  },
+                  "monthDay": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

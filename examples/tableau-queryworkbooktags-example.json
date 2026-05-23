@@ -1,0 +1,21 @@
+{
+  "operationId": "queryWorkbookTags",
+  "method": "GET",
+  "path": "/sites/{site-id}/workbooks/{workbook-id}/tags",
+  "summary": "Tableau Query Workbook Tags",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Queryworkbooktags200Example",
+      "example": {
+        "tags": {
+          "tag": [
+            {}
+          ]
+        }
+      }
+    }
+  ]
+}

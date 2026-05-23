@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RevisionListResponse",
+  "title": "RevisionListResponse",
+  "type": "object",
+  "properties": {
+    "pagination": {
+      "$ref": "#/components/schemas/Pagination"
+    },
+    "revisions": {
+      "type": "object",
+      "properties": {
+        "revision": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/Revision"
+          }
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

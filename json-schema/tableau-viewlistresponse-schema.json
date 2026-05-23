@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ViewListResponse",
+  "title": "ViewListResponse",
+  "type": "object",
+  "properties": {
+    "pagination": {
+      "$ref": "#/components/schemas/Pagination"
+    },
+    "views": {
+      "type": "object",
+      "properties": {
+        "view": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/View"
+          }
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

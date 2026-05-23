@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateSiteRequest",
+  "title": "CreateSiteRequest",
+  "type": "object",
+  "properties": {
+    "site": {
+      "type": "object",
+      "required": [
+        "name",
+        "contentUrl"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the site."
+        },
+        "contentUrl": {
+          "type": "string",
+          "description": "The URL namespace for the site."
+        },
+        "adminMode": {
+          "type": "string",
+          "enum": [
+            "ContentAndUsers",
+            "ContentOnly"
+          ]
+        },
+        "userQuota": {
+          "type": "integer",
+          "description": "The maximum number of users for the site."
+        },
+        "storageQuota": {
+          "type": "integer",
+          "description": "The storage quota in megabytes."
+        },
+        "disableSubscriptions": {
+          "type": "boolean"
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

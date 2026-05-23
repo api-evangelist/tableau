@@ -1,0 +1,21 @@
+{
+  "operationId": "queryDataSourceConnections",
+  "method": "GET",
+  "path": "/sites/{site-id}/datasources/{datasource-id}/connections",
+  "summary": "Tableau Query Data Source Connections",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Querydatasourceconnections200Example",
+      "example": {
+        "connections": {
+          "connection": [
+            {}
+          ]
+        }
+      }
+    }
+  ]
+}

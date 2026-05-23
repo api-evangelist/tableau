@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JobListResponse",
+  "title": "JobListResponse",
+  "type": "object",
+  "properties": {
+    "pagination": {
+      "$ref": "#/components/schemas/Pagination"
+    },
+    "backgroundJobs": {
+      "type": "object",
+      "properties": {
+        "backgroundJob": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/Job"
+          }
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

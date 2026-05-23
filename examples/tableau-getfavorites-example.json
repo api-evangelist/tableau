@@ -1,0 +1,23 @@
+{
+  "operationId": "getFavorites",
+  "method": "GET",
+  "path": "/sites/{site-id}/favorites/{user-id}",
+  "summary": "Tableau Get Favorites for User",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getfavorites200Example",
+      "example": {
+        "favorites": {
+          "favorite": [
+            {
+              "label": "Example Title"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

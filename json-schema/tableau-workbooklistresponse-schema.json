@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WorkbookListResponse",
+  "title": "WorkbookListResponse",
+  "type": "object",
+  "properties": {
+    "pagination": {
+      "$ref": "#/components/schemas/Pagination"
+    },
+    "workbooks": {
+      "type": "object",
+      "properties": {
+        "workbook": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/Workbook"
+          }
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

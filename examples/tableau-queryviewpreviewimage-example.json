@@ -1,0 +1,15 @@
+{
+  "operationId": "queryViewPreviewImage",
+  "method": "GET",
+  "path": "/sites/{site-id}/views/{view-id}/previewImage",
+  "summary": "Tableau Query View Preview Image",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "image/png",
+      "name": "Queryviewpreviewimage200Example",
+      "example": "example_value"
+    }
+  ]
+}

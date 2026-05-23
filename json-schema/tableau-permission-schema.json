@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Permission",
+  "title": "Permission",
+  "type": "object",
+  "properties": {
+    "granteeCapabilities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              }
+            }
+          },
+          "group": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              }
+            }
+          },
+          "capabilities": {
+            "type": "object",
+            "properties": {
+              "capability": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "The name of the capability (e.g., Read, Write, ChangePermissions, Delete, Filter, ViewComments, AddComment, ExportData, ExportImage, ShareView, ViewUnderlyingData, WebAuthoring, RunExplainData)."
+                    },
+                    "mode": {
+                      "type": "string",
+                      "enum": [
+                        "Allow",
+                        "Deny"
+                      ],
+                      "description": "Whether the capability is allowed or denied."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "example": []
+    }
+  }
+}

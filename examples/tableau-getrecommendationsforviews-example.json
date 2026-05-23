@@ -1,0 +1,26 @@
+{
+  "operationId": "getRecommendationsForViews",
+  "method": "GET",
+  "path": "/sites/{site-id}/views/{view-id}/recommendations",
+  "summary": "Tableau Get Recommendations for Views",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getrecommendationsforviews200Example",
+      "example": {
+        "pagination": {
+          "pageNumber": 10,
+          "pageSize": 10,
+          "totalAvailable": 10
+        },
+        "views": {
+          "view": [
+            {}
+          ]
+        }
+      }
+    }
+  ]
+}

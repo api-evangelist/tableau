@@ -1,0 +1,15 @@
+{
+  "operationId": "downloadDataSource",
+  "method": "GET",
+  "path": "/sites/{site-id}/datasources/{datasource-id}/content",
+  "summary": "Tableau Download Data Source",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/octet-stream",
+      "name": "Downloaddatasource200Example",
+      "example": "example_value"
+    }
+  ]
+}

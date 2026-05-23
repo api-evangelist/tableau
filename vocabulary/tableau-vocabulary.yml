@@ -1,0 +1,39 @@
+name: Tableau Domain Vocabulary
+provider: Tableau
+providerId: tableau
+description: Tag-derived vocabulary for the Tableau API surface; sourced from openapi/ tags.
+terms:
+- term: Authentication
+  description: Sign in and sign out of Tableau Server or Tableau Cloud. You must sign in to obtain an authentication token
+    before calling other methods.
+- term: Data Sources
+  description: Publish, query, update, delete, and download data sources. Data sources define the connection to data and can
+    be shared across multiple workbooks.
+- term: Favorites
+  description: Add and remove content items from a user's list of favorites, including workbooks, views, data sources, projects,
+    and flows.
+- term: Groups
+  description: Create, update, delete, and query groups. Groups are collections of users that simplify permission management.
+- term: Jobs
+  description: Query and cancel background jobs on a site, including extract refreshes, subscriptions, and flow runs.
+- term: Permissions
+  description: Query and set permissions on content items including workbooks, data sources, projects, views, and flows.
+- term: Projects
+  description: Create, update, delete, and query projects. Projects are containers for organizing workbooks, data sources,
+    and other content on a site.
+- term: Schedules
+  description: Create, update, delete, and query schedules for extract refreshes and subscriptions on Tableau Server.
+- term: Sites
+  description: Manage sites on Tableau Server. A site is a collection of users, groups, projects, workbooks, data sources,
+    and other resources.
+- term: Subscriptions
+  description: Create, update, delete, and query subscriptions. Subscriptions deliver snapshots of views to users on a schedule.
+- term: Users
+  description: Add, update, remove, and query users on a site. Users are individuals who can sign in to Tableau Server or
+    Tableau Cloud.
+- term: Views
+  description: Query views and download view images or data. Views are the individual sheets, dashboards, or stories within
+    a workbook.
+- term: Workbooks
+  description: Publish, query, update, delete, and download workbooks. Workbooks contain one or more views (sheets, dashboards,
+    or stories) and can connect to one or more data sources.

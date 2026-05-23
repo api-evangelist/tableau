@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateSubscriptionRequest",
+  "title": "CreateSubscriptionRequest",
+  "type": "object",
+  "properties": {
+    "subscription": {
+      "type": "object",
+      "required": [
+        "subject",
+        "content",
+        "schedule",
+        "user"
+      ],
+      "properties": {
+        "subject": {
+          "type": "string"
+        },
+        "content": {
+          "type": "object",
+          "required": [
+            "id",
+            "type"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "Workbook",
+                "View"
+              ]
+            }
+          }
+        },
+        "schedule": {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            }
+          }
+        },
+        "user": {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            }
+          }
+        },
+        "attachImage": {
+          "type": "boolean"
+        },
+        "attachPdf": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

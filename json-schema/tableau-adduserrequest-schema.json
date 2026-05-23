@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AddUserRequest",
+  "title": "AddUserRequest",
+  "type": "object",
+  "properties": {
+    "user": {
+      "type": "object",
+      "required": [
+        "name",
+        "siteRole"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the user to add."
+        },
+        "siteRole": {
+          "type": "string",
+          "enum": [
+            "Creator",
+            "Explorer",
+            "ExplorerCanPublish",
+            "SiteAdministratorCreator",
+            "SiteAdministratorExplorer",
+            "Unlicensed",
+            "Viewer"
+          ]
+        },
+        "authSetting": {
+          "type": "string",
+          "description": "The authentication type for the user."
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

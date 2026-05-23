@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SignInResponse",
+  "title": "SignInResponse",
+  "type": "object",
+  "properties": {
+    "credentials": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string",
+          "description": "The authentication token to use in subsequent API calls."
+        },
+        "site": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The ID of the site."
+            },
+            "contentUrl": {
+              "type": "string",
+              "description": "The URL namespace of the site."
+            }
+          }
+        },
+        "user": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The ID of the authenticated user."
+            }
+          }
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

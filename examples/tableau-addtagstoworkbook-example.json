@@ -1,0 +1,33 @@
+{
+  "operationId": "addTagsToWorkbook",
+  "method": "PUT",
+  "path": "/sites/{site-id}/workbooks/{workbook-id}/tags",
+  "summary": "Tableau Add Tags to Workbook",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "AddtagstoworkbookRequestExample",
+      "example": {
+        "tags": {
+          "tag": [
+            {}
+          ]
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Addtagstoworkbook200Example",
+      "example": {
+        "tags": {
+          "tag": [
+            {}
+          ]
+        }
+      }
+    }
+  ]
+}

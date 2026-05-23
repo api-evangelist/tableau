@@ -1,0 +1,26 @@
+{
+  "operationId": "queryProjects",
+  "method": "GET",
+  "path": "/sites/{site-id}/projects",
+  "summary": "Tableau Query Projects",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Queryprojects200Example",
+      "example": {
+        "pagination": {
+          "pageNumber": 10,
+          "pageSize": 10,
+          "totalAvailable": 10
+        },
+        "projects": {
+          "project": [
+            {}
+          ]
+        }
+      }
+    }
+  ]
+}

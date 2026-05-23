@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DataSourceListResponse",
+  "title": "DataSourceListResponse",
+  "type": "object",
+  "properties": {
+    "pagination": {
+      "$ref": "#/components/schemas/Pagination"
+    },
+    "datasources": {
+      "type": "object",
+      "properties": {
+        "datasource": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/DataSource"
+          }
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

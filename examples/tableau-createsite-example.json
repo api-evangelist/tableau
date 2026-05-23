@@ -1,0 +1,49 @@
+{
+  "operationId": "createSite",
+  "method": "POST",
+  "path": "/sites",
+  "summary": "Tableau Create Site",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "CreatesiteRequestExample",
+      "example": {
+        "site": {
+          "name": "Example Title",
+          "contentUrl": "https://www.example.com",
+          "adminMode": "ContentAndUsers",
+          "userQuota": 10,
+          "storageQuota": 10,
+          "disableSubscriptions": true
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "201",
+      "contentType": "application/json",
+      "name": "Createsite201Example",
+      "example": {
+        "site": {
+          "id": "abc123",
+          "name": "Example Title",
+          "contentUrl": "https://www.example.com",
+          "adminMode": "ContentAndUsers",
+          "state": "Active",
+          "storageQuota": 10,
+          "userQuota": 10,
+          "numCreators": 10,
+          "numExplorers": 10,
+          "numViewers": 10,
+          "disableSubscriptions": true,
+          "revision": "example_value",
+          "usage": {
+            "numUsers": 10,
+            "storage": 10
+          }
+        }
+      }
+    }
+  ]
+}

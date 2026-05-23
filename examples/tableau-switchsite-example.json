@@ -1,0 +1,36 @@
+{
+  "operationId": "switchSite",
+  "method": "POST",
+  "path": "/auth/switchSite",
+  "summary": "Tableau Switch Site",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "SwitchsiteRequestExample",
+      "example": {
+        "site": {
+          "contentUrl": "https://www.example.com"
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Switchsite200Example",
+      "example": {
+        "credentials": {
+          "token": "example_value",
+          "site": {
+            "id": "abc123",
+            "contentUrl": "https://www.example.com"
+          },
+          "user": {
+            "id": "abc123"
+          }
+        }
+      }
+    }
+  ]
+}

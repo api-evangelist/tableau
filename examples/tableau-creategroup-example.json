@@ -1,0 +1,39 @@
+{
+  "operationId": "createGroup",
+  "method": "POST",
+  "path": "/sites/{site-id}/groups",
+  "summary": "Tableau Create Group",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "CreategroupRequestExample",
+      "example": {
+        "group": {
+          "name": "Example Title",
+          "minimumSiteRole": "Creator"
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "201",
+      "contentType": "application/json",
+      "name": "Creategroup201Example",
+      "example": {
+        "group": {
+          "id": "abc123",
+          "name": "Example Title",
+          "domainName": "example_value",
+          "minimumSiteRole": "Creator",
+          "userCount": 10,
+          "import": {
+            "domainName": "example_value",
+            "siteRole": "example_value",
+            "grantLicenseMode": "example_value"
+          }
+        }
+      }
+    }
+  ]
+}

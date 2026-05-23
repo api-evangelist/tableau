@@ -1,0 +1,1000 @@
+{
+  "provider": "Tableau",
+  "providerId": "tableau",
+  "kind": "json-structure",
+  "description": "Structural overview of the Tableau API surface; extracted from openapi/.",
+  "schemaCount": 58,
+  "operationCount": 70,
+  "schemas": [
+    {
+      "name": "ErrorResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "Pagination",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "SignInRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "SignInResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "Site",
+      "type": "object",
+      "propertyCount": 13,
+      "required": []
+    },
+    {
+      "name": "SiteListResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "SiteResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "CreateSiteRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "UpdateSiteRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "Project",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "ProjectListResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "ProjectResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "CreateProjectRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "UpdateProjectRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "Workbook",
+      "type": "object",
+      "propertyCount": 16,
+      "required": []
+    },
+    {
+      "name": "WorkbookListResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "WorkbookResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "UpdateWorkbookRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "PublishWorkbookRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "View",
+      "type": "object",
+      "propertyCount": 12,
+      "required": []
+    },
+    {
+      "name": "ViewListResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "ViewResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "DataSource",
+      "type": "object",
+      "propertyCount": 15,
+      "required": []
+    },
+    {
+      "name": "DataSourceListResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "DataSourceResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "UpdateDataSourceRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "Connection",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "ConnectionListResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "User",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "UserListResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "UserResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "AddUserRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "UpdateUserRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "Group",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "GroupListResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "GroupResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "CreateGroupRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "UpdateGroupRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "Tag",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "TagListResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "TagListRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "Revision",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "RevisionListResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "Permission",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "PermissionListResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "AddPermissionsRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "Schedule",
+      "type": "object",
+      "propertyCount": 11,
+      "required": []
+    },
+    {
+      "name": "ScheduleListResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "Subscription",
+      "type": "object",
+      "propertyCount": 11,
+      "required": []
+    },
+    {
+      "name": "SubscriptionListResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "SubscriptionResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "CreateSubscriptionRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "UpdateSubscriptionRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "Job",
+      "type": "object",
+      "propertyCount": 13,
+      "required": []
+    },
+    {
+      "name": "JobListResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "JobResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "FavoritesResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "AddFavoriteRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "POST",
+      "path": "/auth/signin",
+      "operationId": "signIn",
+      "summary": "Tableau Sign in",
+      "tags": [
+        "Authentication"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/auth/signout",
+      "operationId": "signOut",
+      "summary": "Tableau Sign Out",
+      "tags": [
+        "Authentication"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/auth/switchSite",
+      "operationId": "switchSite",
+      "summary": "Tableau Switch Site",
+      "tags": [
+        "Authentication"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites",
+      "operationId": "querySites",
+      "summary": "Tableau Query Sites",
+      "tags": [
+        "Sites"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/sites",
+      "operationId": "createSite",
+      "summary": "Tableau Create Site",
+      "tags": [
+        "Sites"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites/{site-id}",
+      "operationId": "querySite",
+      "summary": "Tableau Query Site",
+      "tags": [
+        "Sites"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/sites/{site-id}",
+      "operationId": "updateSite",
+      "summary": "Tableau Update Site",
+      "tags": [
+        "Sites"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/sites/{site-id}",
+      "operationId": "deleteSite",
+      "summary": "Tableau Delete Site",
+      "tags": [
+        "Sites"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites/{site-id}/projects",
+      "operationId": "queryProjects",
+      "summary": "Tableau Query Projects",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/sites/{site-id}/projects",
+      "operationId": "createProject",
+      "summary": "Tableau Create Project",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/sites/{site-id}/projects/{project-id}",
+      "operationId": "updateProject",
+      "summary": "Tableau Update Project",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/sites/{site-id}/projects/{project-id}",
+      "operationId": "deleteProject",
+      "summary": "Tableau Delete Project",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites/{site-id}/workbooks",
+      "operationId": "queryWorkbooksForSite",
+      "summary": "Tableau Query Workbooks for Site",
+      "tags": [
+        "Workbooks"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites/{site-id}/workbooks/{workbook-id}",
+      "operationId": "queryWorkbook",
+      "summary": "Tableau Query Workbook",
+      "tags": [
+        "Workbooks"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/sites/{site-id}/workbooks/{workbook-id}",
+      "operationId": "updateWorkbook",
+      "summary": "Tableau Update Workbook",
+      "tags": [
+        "Workbooks"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/sites/{site-id}/workbooks/{workbook-id}",
+      "operationId": "deleteWorkbook",
+      "summary": "Tableau Delete Workbook",
+      "tags": [
+        "Workbooks"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites/{site-id}/workbooks/{workbook-id}/connections",
+      "operationId": "queryWorkbookConnections",
+      "summary": "Tableau Query Workbook Connections",
+      "tags": [
+        "Workbooks"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites/{site-id}/workbooks/{workbook-id}/content",
+      "operationId": "downloadWorkbook",
+      "summary": "Tableau Download Workbook",
+      "tags": [
+        "Workbooks"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites/{site-id}/workbooks/{workbook-id}/previewImage",
+      "operationId": "queryWorkbookPreviewImage",
+      "summary": "Tableau Query Workbook Preview Image",
+      "tags": [
+        "Workbooks"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites/{site-id}/workbooks/{workbook-id}/views",
+      "operationId": "queryViewsForWorkbook",
+      "summary": "Tableau Query Views for Workbook",
+      "tags": [
+        "Views",
+        "Workbooks"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/sites/{site-id}/workbooks/{workbook-id}/publish",
+      "operationId": "publishWorkbook",
+      "summary": "Tableau Publish Workbook",
+      "tags": [
+        "Workbooks"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites/{site-id}/workbooks/{workbook-id}/tags",
+      "operationId": "queryWorkbookTags",
+      "summary": "Tableau Query Workbook Tags",
+      "tags": [
+        "Workbooks"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/sites/{site-id}/workbooks/{workbook-id}/tags",
+      "operationId": "addTagsToWorkbook",
+      "summary": "Tableau Add Tags to Workbook",
+      "tags": [
+        "Workbooks"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/sites/{site-id}/workbooks/{workbook-id}/tags/{tag-name}",
+      "operationId": "deleteTagFromWorkbook",
+      "summary": "Tableau Delete Tag From Workbook",
+      "tags": [
+        "Workbooks"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites/{site-id}/workbooks/{workbook-id}/revisions",
+      "operationId": "getWorkbookRevisions",
+      "summary": "Tableau Get Workbook Revisions",
+      "tags": [
+        "Workbooks"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites/{site-id}/views",
+      "operationId": "queryViewsForSite",
+      "summary": "Tableau Query Views for Site",
+      "tags": [
+        "Views"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites/{site-id}/views/{view-id}",
+      "operationId": "queryViewById",
+      "summary": "Tableau Query View by Id",
+      "tags": [
+        "Views"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites/{site-id}/views/{view-id}/image",
+      "operationId": "queryViewImage",
+      "summary": "Tableau Query View Image",
+      "tags": [
+        "Views"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites/{site-id}/views/{view-id}/data",
+      "operationId": "queryViewData",
+      "summary": "Tableau Query View Data",
+      "tags": [
+        "Views"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites/{site-id}/views/{view-id}/pdf",
+      "operationId": "queryViewPDF",
+      "summary": "Tableau Query View Pdf",
+      "tags": [
+        "Views"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites/{site-id}/views/{view-id}/previewImage",
+      "operationId": "queryViewPreviewImage",
+      "summary": "Tableau Query View Preview Image",
+      "tags": [
+        "Views"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites/{site-id}/views/{view-id}/recommendations",
+      "operationId": "getRecommendationsForViews",
+      "summary": "Tableau Get Recommendations for Views",
+      "tags": [
+        "Views"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites/{site-id}/datasources",
+      "operationId": "queryDataSources",
+      "summary": "Tableau Query Data Sources",
+      "tags": [
+        "Data Sources"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites/{site-id}/datasources/{datasource-id}",
+      "operationId": "queryDataSource",
+      "summary": "Tableau Query Data Source",
+      "tags": [
+        "Data Sources"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/sites/{site-id}/datasources/{datasource-id}",
+      "operationId": "updateDataSource",
+      "summary": "Tableau Update Data Source",
+      "tags": [
+        "Data Sources"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/sites/{site-id}/datasources/{datasource-id}",
+      "operationId": "deleteDataSource",
+      "summary": "Tableau Delete Data Source",
+      "tags": [
+        "Data Sources"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites/{site-id}/datasources/{datasource-id}/content",
+      "operationId": "downloadDataSource",
+      "summary": "Tableau Download Data Source",
+      "tags": [
+        "Data Sources"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites/{site-id}/datasources/{datasource-id}/connections",
+      "operationId": "queryDataSourceConnections",
+      "summary": "Tableau Query Data Source Connections",
+      "tags": [
+        "Data Sources"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites/{site-id}/datasources/{datasource-id}/revisions",
+      "operationId": "getDataSourceRevisions",
+      "summary": "Tableau Get Data Source Revisions",
+      "tags": [
+        "Data Sources"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites/{site-id}/datasources/{datasource-id}/tags",
+      "operationId": "queryDataSourceTags",
+      "summary": "Tableau Query Data Source Tags",
+      "tags": [
+        "Data Sources"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/sites/{site-id}/datasources/{datasource-id}/tags",
+      "operationId": "addTagsToDataSource",
+      "summary": "Tableau Add Tags to Data Source",
+      "tags": [
+        "Data Sources"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites/{site-id}/users",
+      "operationId": "getUsers",
+      "summary": "Tableau Get Users on Site",
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/sites/{site-id}/users",
+      "operationId": "addUserToSite",
+      "summary": "Tableau Add User to Site",
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites/{site-id}/users/{user-id}",
+      "operationId": "queryUser",
+      "summary": "Tableau Query User on Site",
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/sites/{site-id}/users/{user-id}",
+      "operationId": "updateUser",
+      "summary": "Tableau Update User",
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/sites/{site-id}/users/{user-id}",
+      "operationId": "removeUserFromSite",
+      "summary": "Tableau Remove User From Site",
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites/{site-id}/users/{user-id}/workbooks",
+      "operationId": "queryWorkbooksForUser",
+      "summary": "Tableau Query Workbooks for User",
+      "tags": [
+        "Users",
+        "Workbooks"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites/{site-id}/groups",
+      "operationId": "queryGroups",
+      "summary": "Tableau Query Groups",
+      "tags": [
+        "Groups"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/sites/{site-id}/groups",
+      "operationId": "createGroup",
+      "summary": "Tableau Create Group",
+      "tags": [
+        "Groups"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/sites/{site-id}/groups/{group-id}",
+      "operationId": "updateGroup",
+      "summary": "Tableau Update Group",
+      "tags": [
+        "Groups"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/sites/{site-id}/groups/{group-id}",
+      "operationId": "deleteGroup",
+      "summary": "Tableau Delete Group",
+      "tags": [
+        "Groups"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites/{site-id}/groups/{group-id}/users",
+      "operationId": "getGroupMembers",
+      "summary": "Tableau Get Group Members",
+      "tags": [
+        "Groups",
+        "Users"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/sites/{site-id}/groups/{group-id}/users",
+      "operationId": "addUserToGroup",
+      "summary": "Tableau Add User to Group",
+      "tags": [
+        "Groups",
+        "Users"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/sites/{site-id}/groups/{group-id}/users/{user-id}",
+      "operationId": "removeUserFromGroup",
+      "summary": "Tableau Remove User From Group",
+      "tags": [
+        "Groups",
+        "Users"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites/{site-id}/workbooks/{workbook-id}/permissions",
+      "operationId": "queryWorkbookPermissions",
+      "summary": "Tableau Query Workbook Permissions",
+      "tags": [
+        "Permissions",
+        "Workbooks"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/sites/{site-id}/workbooks/{workbook-id}/permissions",
+      "operationId": "addWorkbookPermissions",
+      "summary": "Tableau Add Workbook Permissions",
+      "tags": [
+        "Permissions",
+        "Workbooks"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites/{site-id}/datasources/{datasource-id}/permissions",
+      "operationId": "queryDataSourcePermissions",
+      "summary": "Tableau Query Data Source Permissions",
+      "tags": [
+        "Data Sources",
+        "Permissions"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/sites/{site-id}/datasources/{datasource-id}/permissions",
+      "operationId": "addDataSourcePermissions",
+      "summary": "Tableau Add Data Source Permissions",
+      "tags": [
+        "Data Sources",
+        "Permissions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites/{site-id}/projects/{project-id}/default-permissions/workbooks",
+      "operationId": "queryDefaultWorkbookPermissions",
+      "summary": "Tableau Query Default Permissions for Workbooks",
+      "tags": [
+        "Permissions",
+        "Projects"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/schedules",
+      "operationId": "querySchedules",
+      "summary": "Tableau Query Schedules",
+      "tags": [
+        "Schedules"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites/{site-id}/subscriptions",
+      "operationId": "querySubscriptions",
+      "summary": "Tableau Query Subscriptions",
+      "tags": [
+        "Subscriptions"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/sites/{site-id}/subscriptions",
+      "operationId": "createSubscription",
+      "summary": "Tableau Create Subscription",
+      "tags": [
+        "Subscriptions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites/{site-id}/subscriptions/{subscription-id}",
+      "operationId": "querySubscription",
+      "summary": "Tableau Query Subscription",
+      "tags": [
+        "Subscriptions"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/sites/{site-id}/subscriptions/{subscription-id}",
+      "operationId": "updateSubscription",
+      "summary": "Tableau Update Subscription",
+      "tags": [
+        "Subscriptions"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/sites/{site-id}/subscriptions/{subscription-id}",
+      "operationId": "deleteSubscription",
+      "summary": "Tableau Delete Subscription",
+      "tags": [
+        "Subscriptions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites/{site-id}/jobs",
+      "operationId": "queryJobs",
+      "summary": "Tableau Query Jobs",
+      "tags": [
+        "Jobs"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites/{site-id}/jobs/{job-id}",
+      "operationId": "queryJob",
+      "summary": "Tableau Query Job",
+      "tags": [
+        "Jobs"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/sites/{site-id}/jobs/{job-id}",
+      "operationId": "cancelJob",
+      "summary": "Tableau Cancel Job",
+      "tags": [
+        "Jobs"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sites/{site-id}/favorites/{user-id}",
+      "operationId": "getFavorites",
+      "summary": "Tableau Get Favorites for User",
+      "tags": [
+        "Favorites"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/sites/{site-id}/favorites/{user-id}",
+      "operationId": "addFavorites",
+      "summary": "Tableau Add Favorites",
+      "tags": [
+        "Favorites"
+      ]
+    }
+  ]
+}

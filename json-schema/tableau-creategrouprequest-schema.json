@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateGroupRequest",
+  "title": "CreateGroupRequest",
+  "type": "object",
+  "properties": {
+    "group": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the group."
+        },
+        "minimumSiteRole": {
+          "type": "string",
+          "enum": [
+            "Creator",
+            "Explorer",
+            "ExplorerCanPublish",
+            "SiteAdministratorCreator",
+            "SiteAdministratorExplorer",
+            "Unlicensed",
+            "Viewer"
+          ]
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

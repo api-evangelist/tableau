@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Pagination",
+  "title": "Pagination",
+  "type": "object",
+  "properties": {
+    "pageNumber": {
+      "type": "integer",
+      "description": "The current page number.",
+      "example": 10
+    },
+    "pageSize": {
+      "type": "integer",
+      "description": "The number of items per page.",
+      "example": 10
+    },
+    "totalAvailable": {
+      "type": "integer",
+      "description": "The total number of items available.",
+      "example": 10
+    }
+  }
+}

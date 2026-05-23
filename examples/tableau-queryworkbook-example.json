@@ -1,0 +1,46 @@
+{
+  "operationId": "queryWorkbook",
+  "method": "GET",
+  "path": "/sites/{site-id}/workbooks/{workbook-id}",
+  "summary": "Tableau Query Workbook",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Queryworkbook200Example",
+      "example": {
+        "workbook": {
+          "id": "abc123",
+          "name": "Example Title",
+          "description": "A sample description.",
+          "contentUrl": "https://www.example.com",
+          "webpageUrl": "https://www.example.com",
+          "showTabs": true,
+          "size": 10,
+          "createdAt": "2026-01-15T10:30:00Z",
+          "updatedAt": "2026-01-15T10:30:00Z",
+          "encryptExtracts": "example_value",
+          "defaultViewId": "500123",
+          "project": {
+            "id": "abc123",
+            "name": "Example Title"
+          },
+          "owner": {
+            "id": "abc123",
+            "name": "Example Title"
+          },
+          "tags": {
+            "tag": {}
+          },
+          "views": {
+            "view": {}
+          },
+          "usage": {
+            "totalViewCount": 10
+          }
+        }
+      }
+    }
+  ]
+}

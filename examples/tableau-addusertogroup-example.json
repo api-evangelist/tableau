@@ -1,0 +1,38 @@
+{
+  "operationId": "addUserToGroup",
+  "method": "POST",
+  "path": "/sites/{site-id}/groups/{group-id}/users",
+  "summary": "Tableau Add User to Group",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "AddusertogroupRequestExample",
+      "example": {
+        "user": {
+          "id": "abc123"
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Addusertogroup200Example",
+      "example": {
+        "user": {
+          "id": "abc123",
+          "name": "Example Title",
+          "fullName": "example_value",
+          "email": "user@example.com",
+          "siteRole": "Creator",
+          "authSetting": "example_value",
+          "lastLogin": "2026-01-15T10:30:00Z",
+          "externalAuthUserId": "500123",
+          "locale": "example_value",
+          "language": "example_value"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PermissionListResponse",
+  "title": "PermissionListResponse",
+  "type": "object",
+  "properties": {
+    "permissions": {
+      "$ref": "#/components/schemas/Permission"
+    },
+    "parent": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

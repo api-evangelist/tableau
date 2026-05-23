@@ -1,0 +1,36 @@
+{
+  "operationId": "queryJob",
+  "method": "GET",
+  "path": "/sites/{site-id}/jobs/{job-id}",
+  "summary": "Tableau Query Job",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Queryjob200Example",
+      "example": {
+        "job": {
+          "id": "abc123",
+          "mode": "example_value",
+          "type": "example_value",
+          "status": 10,
+          "progress": 10,
+          "createdAt": "2026-01-15T10:30:00Z",
+          "startedAt": "2026-01-15T10:30:00Z",
+          "endedAt": "2026-01-15T10:30:00Z",
+          "finishCode": 10,
+          "title": "Example Title",
+          "subtitle": "example_value",
+          "statusNotes": {
+            "statusNote": {}
+          },
+          "extractRefreshJob": {
+            "datasource": {},
+            "workbook": {}
+          }
+        }
+      }
+    }
+  ]
+}

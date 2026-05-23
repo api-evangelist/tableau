@@ -1,0 +1,39 @@
+{
+  "operationId": "addWorkbookPermissions",
+  "method": "PUT",
+  "path": "/sites/{site-id}/workbooks/{workbook-id}/permissions",
+  "summary": "Tableau Add Workbook Permissions",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "AddworkbookpermissionsRequestExample",
+      "example": {
+        "permissions": {
+          "granteeCapabilities": [
+            {}
+          ]
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Addworkbookpermissions200Example",
+      "example": {
+        "permissions": {
+          "granteeCapabilities": [
+            {}
+          ]
+        },
+        "parent": {
+          "project": {
+            "id": "abc123",
+            "name": "Example Title"
+          }
+        }
+      }
+    }
+  ]
+}

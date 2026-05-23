@@ -1,0 +1,26 @@
+{
+  "operationId": "queryViewsForWorkbook",
+  "method": "GET",
+  "path": "/sites/{site-id}/workbooks/{workbook-id}/views",
+  "summary": "Tableau Query Views for Workbook",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Queryviewsforworkbook200Example",
+      "example": {
+        "pagination": {
+          "pageNumber": 10,
+          "pageSize": 10,
+          "totalAvailable": 10
+        },
+        "views": {
+          "view": [
+            {}
+          ]
+        }
+      }
+    }
+  ]
+}

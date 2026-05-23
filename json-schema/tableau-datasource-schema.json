@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DataSource",
+  "title": "DataSource",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the data source.",
+      "example": "abc123"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the data source.",
+      "example": "Example Title"
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the data source.",
+      "example": "A sample description."
+    },
+    "contentUrl": {
+      "type": "string",
+      "description": "The URL name of the data source.",
+      "example": "https://www.example.com"
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of data source (e.g., sqlserver, postgres, excel, hyper, etc.).",
+      "example": "example_value"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the data source was created.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the data source was last updated.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "isCertified": {
+      "type": "boolean",
+      "description": "Whether the data source is certified.",
+      "example": true
+    },
+    "certificationNote": {
+      "type": "string",
+      "description": "The certification note for the data source.",
+      "example": "example_value"
+    },
+    "useRemoteQueryAgent": {
+      "type": "boolean",
+      "description": "Whether the data source uses a remote query agent.",
+      "example": true
+    },
+    "hasExtracts": {
+      "type": "boolean",
+      "description": "Whether the data source has extracts.",
+      "example": true
+    },
+    "encryptExtracts": {
+      "type": "string",
+      "description": "Whether the data source extracts are encrypted.",
+      "example": "example_value"
+    },
+    "project": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The ID of the containing project."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the containing project."
+        }
+      },
+      "example": "example_value"
+    },
+    "owner": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The ID of the data source owner."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the data source owner."
+        }
+      },
+      "example": "example_value"
+    },
+    "tags": {
+      "type": "object",
+      "properties": {
+        "tag": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/Tag"
+          }
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

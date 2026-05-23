@@ -1,0 +1,21 @@
+{
+  "operationId": "queryDataSourceTags",
+  "method": "GET",
+  "path": "/sites/{site-id}/datasources/{datasource-id}/tags",
+  "summary": "Tableau Query Data Source Tags",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Querydatasourcetags200Example",
+      "example": {
+        "tags": {
+          "tag": [
+            {}
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "operationId": "queryUser",
+  "method": "GET",
+  "path": "/sites/{site-id}/users/{user-id}",
+  "summary": "Tableau Query User on Site",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Queryuser200Example",
+      "example": {
+        "user": {
+          "id": "abc123",
+          "name": "Example Title",
+          "fullName": "example_value",
+          "email": "user@example.com",
+          "siteRole": "Creator",
+          "authSetting": "example_value",
+          "lastLogin": "2026-01-15T10:30:00Z",
+          "externalAuthUserId": "500123",
+          "locale": "example_value",
+          "language": "example_value"
+        }
+      }
+    }
+  ]
+}

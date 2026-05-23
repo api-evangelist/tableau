@@ -1,0 +1,33 @@
+{
+  "operationId": "addTagsToDataSource",
+  "method": "PUT",
+  "path": "/sites/{site-id}/datasources/{datasource-id}/tags",
+  "summary": "Tableau Add Tags to Data Source",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "AddtagstodatasourceRequestExample",
+      "example": {
+        "tags": {
+          "tag": [
+            {}
+          ]
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Addtagstodatasource200Example",
+      "example": {
+        "tags": {
+          "tag": [
+            {}
+          ]
+        }
+      }
+    }
+  ]
+}

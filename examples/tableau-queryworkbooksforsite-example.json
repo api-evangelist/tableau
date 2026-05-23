@@ -1,0 +1,26 @@
+{
+  "operationId": "queryWorkbooksForSite",
+  "method": "GET",
+  "path": "/sites/{site-id}/workbooks",
+  "summary": "Tableau Query Workbooks for Site",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Queryworkbooksforsite200Example",
+      "example": {
+        "pagination": {
+          "pageNumber": 10,
+          "pageSize": 10,
+          "totalAvailable": 10
+        },
+        "workbooks": {
+          "workbook": [
+            {}
+          ]
+        }
+      }
+    }
+  ]
+}

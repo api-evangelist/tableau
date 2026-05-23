@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateUserRequest",
+  "title": "UpdateUserRequest",
+  "type": "object",
+  "properties": {
+    "user": {
+      "type": "object",
+      "properties": {
+        "fullName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "siteRole": {
+          "type": "string",
+          "enum": [
+            "Creator",
+            "Explorer",
+            "ExplorerCanPublish",
+            "SiteAdministratorCreator",
+            "SiteAdministratorExplorer",
+            "Unlicensed",
+            "Viewer"
+          ]
+        },
+        "authSetting": {
+          "type": "string"
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

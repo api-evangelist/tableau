@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Connection",
+  "title": "Connection",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the connection.",
+      "example": "abc123"
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of connection (e.g., sqlserver, postgres).",
+      "example": "example_value"
+    },
+    "serverAddress": {
+      "type": "string",
+      "description": "The address of the server for the connection.",
+      "example": "example_value"
+    },
+    "serverPort": {
+      "type": "string",
+      "description": "The port used for the connection.",
+      "example": "example_value"
+    },
+    "userName": {
+      "type": "string",
+      "description": "The user name for the connection.",
+      "example": "example_value"
+    },
+    "datasource": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The ID of the associated data source."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the associated data source."
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "operationId": "queryViewById",
+  "method": "GET",
+  "path": "/sites/{site-id}/views/{view-id}",
+  "summary": "Tableau Query View by Id",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Queryviewbyid200Example",
+      "example": {
+        "view": {
+          "id": "abc123",
+          "name": "Example Title",
+          "contentUrl": "https://www.example.com",
+          "createdAt": "2026-01-15T10:30:00Z",
+          "updatedAt": "2026-01-15T10:30:00Z",
+          "viewUrlName": "https://www.example.com",
+          "sheetType": "worksheet",
+          "project": {
+            "id": "abc123",
+            "name": "Example Title"
+          },
+          "owner": {
+            "id": "abc123",
+            "name": "Example Title"
+          },
+          "workbook": {
+            "id": "abc123",
+            "name": "Example Title"
+          },
+          "tags": {
+            "tag": {}
+          },
+          "usage": {
+            "totalViewCount": 10
+          }
+        }
+      }
+    }
+  ]
+}

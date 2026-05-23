@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SubscriptionListResponse",
+  "title": "SubscriptionListResponse",
+  "type": "object",
+  "properties": {
+    "pagination": {
+      "$ref": "#/components/schemas/Pagination"
+    },
+    "subscriptions": {
+      "type": "object",
+      "properties": {
+        "subscription": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/Subscription"
+          }
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

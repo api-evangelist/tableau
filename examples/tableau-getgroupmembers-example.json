@@ -1,0 +1,26 @@
+{
+  "operationId": "getGroupMembers",
+  "method": "GET",
+  "path": "/sites/{site-id}/groups/{group-id}/users",
+  "summary": "Tableau Get Group Members",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getgroupmembers200Example",
+      "example": {
+        "pagination": {
+          "pageNumber": 10,
+          "pageSize": 10,
+          "totalAvailable": 10
+        },
+        "users": {
+          "user": [
+            {}
+          ]
+        }
+      }
+    }
+  ]
+}

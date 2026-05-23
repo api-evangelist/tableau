@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Group",
+  "title": "Group",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the group.",
+      "example": "abc123"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the group.",
+      "example": "Example Title"
+    },
+    "domainName": {
+      "type": "string",
+      "description": "The domain name for Active Directory groups. For local groups, this is \"local\".",
+      "example": "example_value"
+    },
+    "minimumSiteRole": {
+      "type": "string",
+      "enum": [
+        "Creator",
+        "Explorer",
+        "ExplorerCanPublish",
+        "SiteAdministratorCreator",
+        "SiteAdministratorExplorer",
+        "Unlicensed",
+        "Viewer"
+      ],
+      "description": "The minimum site role for members of the group when they are imported from Active Directory.",
+      "example": "Creator"
+    },
+    "userCount": {
+      "type": "integer",
+      "description": "The number of users in the group.",
+      "example": 10
+    },
+    "import": {
+      "type": "object",
+      "properties": {
+        "domainName": {
+          "type": "string"
+        },
+        "siteRole": {
+          "type": "string"
+        },
+        "grantLicenseMode": {
+          "type": "string"
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

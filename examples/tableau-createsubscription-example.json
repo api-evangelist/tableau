@@ -1,0 +1,61 @@
+{
+  "operationId": "createSubscription",
+  "method": "POST",
+  "path": "/sites/{site-id}/subscriptions",
+  "summary": "Tableau Create Subscription",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "CreatesubscriptionRequestExample",
+      "example": {
+        "subscription": {
+          "subject": "example_value",
+          "content": {
+            "id": "abc123",
+            "type": "Workbook"
+          },
+          "schedule": {
+            "id": "abc123"
+          },
+          "user": {
+            "id": "abc123"
+          },
+          "attachImage": true,
+          "attachPdf": true,
+          "message": "example_value"
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "201",
+      "contentType": "application/json",
+      "name": "Createsubscription201Example",
+      "example": {
+        "subscription": {
+          "id": "abc123",
+          "subject": "example_value",
+          "attachImage": true,
+          "attachPdf": true,
+          "message": "example_value",
+          "pageOrientation": "portrait",
+          "pageSizeOption": "A3",
+          "suspended": true,
+          "content": {
+            "id": "abc123",
+            "type": "Workbook"
+          },
+          "schedule": {
+            "id": "abc123",
+            "name": "Example Title"
+          },
+          "user": {
+            "id": "abc123",
+            "name": "Example Title"
+          }
+        }
+      }
+    }
+  ]
+}

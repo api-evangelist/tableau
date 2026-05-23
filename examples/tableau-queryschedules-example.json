@@ -1,0 +1,26 @@
+{
+  "operationId": "querySchedules",
+  "method": "GET",
+  "path": "/schedules",
+  "summary": "Tableau Query Schedules",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Queryschedules200Example",
+      "example": {
+        "pagination": {
+          "pageNumber": 10,
+          "pageSize": 10,
+          "totalAvailable": 10
+        },
+        "schedules": {
+          "schedule": [
+            {}
+          ]
+        }
+      }
+    }
+  ]
+}

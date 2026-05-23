@@ -1,0 +1,26 @@
+{
+  "operationId": "getUsers",
+  "method": "GET",
+  "path": "/sites/{site-id}/users",
+  "summary": "Tableau Get Users on Site",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getusers200Example",
+      "example": {
+        "pagination": {
+          "pageNumber": 10,
+          "pageSize": 10,
+          "totalAvailable": 10
+        },
+        "users": {
+          "user": [
+            {}
+          ]
+        }
+      }
+    }
+  ]
+}

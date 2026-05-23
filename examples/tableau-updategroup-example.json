@@ -1,0 +1,39 @@
+{
+  "operationId": "updateGroup",
+  "method": "PUT",
+  "path": "/sites/{site-id}/groups/{group-id}",
+  "summary": "Tableau Update Group",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "UpdategroupRequestExample",
+      "example": {
+        "group": {
+          "name": "Example Title",
+          "minimumSiteRole": "Creator"
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Updategroup200Example",
+      "example": {
+        "group": {
+          "id": "abc123",
+          "name": "Example Title",
+          "domainName": "example_value",
+          "minimumSiteRole": "Creator",
+          "userCount": 10,
+          "import": {
+            "domainName": "example_value",
+            "siteRole": "example_value",
+            "grantLicenseMode": "example_value"
+          }
+        }
+      }
+    }
+  ]
+}

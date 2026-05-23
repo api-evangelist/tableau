@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PublishWorkbookRequest",
+  "title": "PublishWorkbookRequest",
+  "type": "object",
+  "properties": {
+    "workbook": {
+      "type": "object",
+      "required": [
+        "name",
+        "project"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the workbook."
+        },
+        "description": {
+          "type": "string",
+          "description": "A description of the workbook."
+        },
+        "showTabs": {
+          "type": "boolean",
+          "description": "Whether to show views as tabs."
+        },
+        "project": {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The ID of the project to publish to."
+            }
+          }
+        },
+        "connections": {
+          "type": "object",
+          "properties": {
+            "connection": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "serverAddress": {
+                    "type": "string"
+                  },
+                  "serverPort": {
+                    "type": "string"
+                  },
+                  "credentials": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "password": {
+                        "type": "string",
+                        "format": "password"
+                      },
+                      "embed": {
+                        "type": "boolean"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

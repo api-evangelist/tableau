@@ -1,0 +1,26 @@
+{
+  "operationId": "queryJobs",
+  "method": "GET",
+  "path": "/sites/{site-id}/jobs",
+  "summary": "Tableau Query Jobs",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Queryjobs200Example",
+      "example": {
+        "pagination": {
+          "pageNumber": 10,
+          "pageSize": 10,
+          "totalAvailable": 10
+        },
+        "backgroundJobs": {
+          "backgroundJob": [
+            {}
+          ]
+        }
+      }
+    }
+  ]
+}

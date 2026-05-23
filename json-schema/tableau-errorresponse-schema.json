@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ErrorResponse",
+  "title": "ErrorResponse",
+  "type": "object",
+  "properties": {
+    "error": {
+      "type": "object",
+      "properties": {
+        "summary": {
+          "type": "string",
+          "description": "A short summary of the error."
+        },
+        "detail": {
+          "type": "string",
+          "description": "A detailed description of the error."
+        },
+        "code": {
+          "type": "string",
+          "description": "A numeric error code."
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

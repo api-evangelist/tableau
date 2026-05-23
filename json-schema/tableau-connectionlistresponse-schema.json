@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConnectionListResponse",
+  "title": "ConnectionListResponse",
+  "type": "object",
+  "properties": {
+    "connections": {
+      "type": "object",
+      "properties": {
+        "connection": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/Connection"
+          }
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "operationId": "updateSubscription",
+  "method": "PUT",
+  "path": "/sites/{site-id}/subscriptions/{subscription-id}",
+  "summary": "Tableau Update Subscription",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "UpdatesubscriptionRequestExample",
+      "example": {
+        "subscription": {
+          "subject": "example_value",
+          "schedule": {
+            "id": "abc123"
+          },
+          "suspended": true
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Updatesubscription200Example",
+      "example": {
+        "subscription": {
+          "id": "abc123",
+          "subject": "example_value",
+          "attachImage": true,
+          "attachPdf": true,
+          "message": "example_value",
+          "pageOrientation": "portrait",
+          "pageSizeOption": "A3",
+          "suspended": true,
+          "content": {
+            "id": "abc123",
+            "type": "Workbook"
+          },
+          "schedule": {
+            "id": "abc123",
+            "name": "Example Title"
+          },
+          "user": {
+            "id": "abc123",
+            "name": "Example Title"
+          }
+        }
+      }
+    }
+  ]
+}

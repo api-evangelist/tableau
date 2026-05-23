@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateGroupRequest",
+  "title": "UpdateGroupRequest",
+  "type": "object",
+  "properties": {
+    "group": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "minimumSiteRole": {
+          "type": "string",
+          "enum": [
+            "Creator",
+            "Explorer",
+            "ExplorerCanPublish",
+            "SiteAdministratorCreator",
+            "SiteAdministratorExplorer",
+            "Unlicensed",
+            "Viewer"
+          ]
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

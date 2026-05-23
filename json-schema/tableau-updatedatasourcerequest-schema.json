@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateDataSourceRequest",
+  "title": "UpdateDataSourceRequest",
+  "type": "object",
+  "properties": {
+    "datasource": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "project": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            }
+          }
+        },
+        "owner": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            }
+          }
+        },
+        "isCertified": {
+          "type": "boolean"
+        },
+        "certificationNote": {
+          "type": "string"
+        },
+        "encryptExtracts": {
+          "type": "string"
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

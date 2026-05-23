@@ -1,0 +1,26 @@
+{
+  "operationId": "queryDataSources",
+  "method": "GET",
+  "path": "/sites/{site-id}/datasources",
+  "summary": "Tableau Query Data Sources",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Querydatasources200Example",
+      "example": {
+        "pagination": {
+          "pageNumber": 10,
+          "pageSize": 10,
+          "totalAvailable": 10
+        },
+        "datasources": {
+          "datasource": [
+            {}
+          ]
+        }
+      }
+    }
+  ]
+}

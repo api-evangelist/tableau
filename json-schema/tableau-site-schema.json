@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Site",
+  "title": "Site",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the site.",
+      "example": "abc123"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the site.",
+      "example": "Example Title"
+    },
+    "contentUrl": {
+      "type": "string",
+      "description": "The URL namespace for the site.",
+      "example": "https://www.example.com"
+    },
+    "adminMode": {
+      "type": "string",
+      "enum": [
+        "ContentAndUsers",
+        "ContentOnly"
+      ],
+      "description": "The administrator mode for the site.",
+      "example": "ContentAndUsers"
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "Active",
+        "Suspended"
+      ],
+      "description": "The current state of the site.",
+      "example": "Active"
+    },
+    "storageQuota": {
+      "type": "integer",
+      "description": "The storage quota for the site in megabytes.",
+      "example": 10
+    },
+    "userQuota": {
+      "type": "integer",
+      "description": "The maximum number of users for the site. A value of -1 indicates no limit.",
+      "example": 10
+    },
+    "numCreators": {
+      "type": "integer",
+      "description": "The number of Creator-licensed users on the site.",
+      "example": 10
+    },
+    "numExplorers": {
+      "type": "integer",
+      "description": "The number of Explorer-licensed users on the site.",
+      "example": 10
+    },
+    "numViewers": {
+      "type": "integer",
+      "description": "The number of Viewer-licensed users on the site.",
+      "example": 10
+    },
+    "disableSubscriptions": {
+      "type": "boolean",
+      "description": "Whether subscriptions are disabled on the site.",
+      "example": true
+    },
+    "revision": {
+      "type": "string",
+      "description": "The revision number of the site.",
+      "example": "example_value"
+    },
+    "usage": {
+      "type": "object",
+      "properties": {
+        "numUsers": {
+          "type": "integer",
+          "description": "The number of users on the site."
+        },
+        "storage": {
+          "type": "integer",
+          "description": "The storage used in megabytes."
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

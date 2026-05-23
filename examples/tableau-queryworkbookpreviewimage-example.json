@@ -1,0 +1,15 @@
+{
+  "operationId": "queryWorkbookPreviewImage",
+  "method": "GET",
+  "path": "/sites/{site-id}/workbooks/{workbook-id}/previewImage",
+  "summary": "Tableau Query Workbook Preview Image",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "image/png",
+      "name": "Queryworkbookpreviewimage200Example",
+      "example": "example_value"
+    }
+  ]
+}

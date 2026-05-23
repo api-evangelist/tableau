@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/User",
+  "title": "User",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the user.",
+      "example": "abc123"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name (user name) of the user.",
+      "example": "Example Title"
+    },
+    "fullName": {
+      "type": "string",
+      "description": "The display name of the user.",
+      "example": "example_value"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "The email address of the user.",
+      "example": "user@example.com"
+    },
+    "siteRole": {
+      "type": "string",
+      "enum": [
+        "Creator",
+        "Explorer",
+        "ExplorerCanPublish",
+        "SiteAdministratorCreator",
+        "SiteAdministratorExplorer",
+        "Unlicensed",
+        "Viewer"
+      ],
+      "description": "The role of the user on the site.",
+      "example": "Creator"
+    },
+    "authSetting": {
+      "type": "string",
+      "description": "The authentication type for the user.",
+      "example": "example_value"
+    },
+    "lastLogin": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time of the user's last login.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "externalAuthUserId": {
+      "type": "string",
+      "description": "The external authentication user ID.",
+      "example": "500123"
+    },
+    "locale": {
+      "type": "string",
+      "description": "The user's locale setting.",
+      "example": "example_value"
+    },
+    "language": {
+      "type": "string",
+      "description": "The user's language setting.",
+      "example": "example_value"
+    }
+  }
+}

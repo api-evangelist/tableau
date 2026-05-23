@@ -1,0 +1,26 @@
+{
+  "operationId": "getWorkbookRevisions",
+  "method": "GET",
+  "path": "/sites/{site-id}/workbooks/{workbook-id}/revisions",
+  "summary": "Tableau Get Workbook Revisions",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getworkbookrevisions200Example",
+      "example": {
+        "pagination": {
+          "pageNumber": 10,
+          "pageSize": 10,
+          "totalAvailable": 10
+        },
+        "revisions": {
+          "revision": [
+            {}
+          ]
+        }
+      }
+    }
+  ]
+}

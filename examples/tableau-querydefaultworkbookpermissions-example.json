@@ -1,0 +1,27 @@
+{
+  "operationId": "queryDefaultWorkbookPermissions",
+  "method": "GET",
+  "path": "/sites/{site-id}/projects/{project-id}/default-permissions/workbooks",
+  "summary": "Tableau Query Default Permissions for Workbooks",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Querydefaultworkbookpermissions200Example",
+      "example": {
+        "permissions": {
+          "granteeCapabilities": [
+            {}
+          ]
+        },
+        "parent": {
+          "project": {
+            "id": "abc123",
+            "name": "Example Title"
+          }
+        }
+      }
+    }
+  ]
+}

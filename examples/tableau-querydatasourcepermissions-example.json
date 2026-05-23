@@ -1,0 +1,27 @@
+{
+  "operationId": "queryDataSourcePermissions",
+  "method": "GET",
+  "path": "/sites/{site-id}/datasources/{datasource-id}/permissions",
+  "summary": "Tableau Query Data Source Permissions",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Querydatasourcepermissions200Example",
+      "example": {
+        "permissions": {
+          "granteeCapabilities": [
+            {}
+          ]
+        },
+        "parent": {
+          "project": {
+            "id": "abc123",
+            "name": "Example Title"
+          }
+        }
+      }
+    }
+  ]
+}

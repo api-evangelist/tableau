@@ -1,0 +1,15 @@
+{
+  "operationId": "queryViewPDF",
+  "method": "GET",
+  "path": "/sites/{site-id}/views/{view-id}/pdf",
+  "summary": "Tableau Query View Pdf",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/pdf",
+      "name": "Queryviewpdf200Example",
+      "example": "example_value"
+    }
+  ]
+}

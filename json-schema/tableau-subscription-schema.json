@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Subscription",
+  "title": "Subscription",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the subscription.",
+      "example": "abc123"
+    },
+    "subject": {
+      "type": "string",
+      "description": "The subject line of the subscription email.",
+      "example": "example_value"
+    },
+    "attachImage": {
+      "type": "boolean",
+      "description": "Whether to attach an image of the view.",
+      "example": true
+    },
+    "attachPdf": {
+      "type": "boolean",
+      "description": "Whether to attach a PDF of the view.",
+      "example": true
+    },
+    "message": {
+      "type": "string",
+      "description": "Custom message for the subscription.",
+      "example": "example_value"
+    },
+    "pageOrientation": {
+      "type": "string",
+      "enum": [
+        "portrait",
+        "landscape"
+      ],
+      "example": "portrait"
+    },
+    "pageSizeOption": {
+      "type": "string",
+      "enum": [
+        "A3",
+        "A4",
+        "A5",
+        "B4",
+        "B5",
+        "Executive",
+        "Folio",
+        "Ledger",
+        "Legal",
+        "Letter",
+        "Note",
+        "Quarto",
+        "Tabloid",
+        "Unspecified"
+      ],
+      "example": "A3"
+    },
+    "suspended": {
+      "type": "boolean",
+      "description": "Whether the subscription is suspended.",
+      "example": true
+    },
+    "content": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The ID of the subscribed content."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Workbook",
+            "View"
+          ],
+          "description": "The type of the subscribed content."
+        }
+      },
+      "example": "example_value"
+    },
+    "schedule": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The ID of the schedule."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the schedule."
+        }
+      },
+      "example": "example_value"
+    },
+    "user": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The ID of the subscriber."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the subscriber."
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

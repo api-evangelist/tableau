@@ -1,0 +1,21 @@
+{
+  "operationId": "queryWorkbookConnections",
+  "method": "GET",
+  "path": "/sites/{site-id}/workbooks/{workbook-id}/connections",
+  "summary": "Tableau Query Workbook Connections",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Queryworkbookconnections200Example",
+      "example": {
+        "connections": {
+          "connection": [
+            {}
+          ]
+        }
+      }
+    }
+  ]
+}

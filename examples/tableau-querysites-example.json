@@ -1,0 +1,26 @@
+{
+  "operationId": "querySites",
+  "method": "GET",
+  "path": "/sites",
+  "summary": "Tableau Query Sites",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Querysites200Example",
+      "example": {
+        "pagination": {
+          "pageNumber": 10,
+          "pageSize": 10,
+          "totalAvailable": 10
+        },
+        "sites": {
+          "site": [
+            {}
+          ]
+        }
+      }
+    }
+  ]
+}

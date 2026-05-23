@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Project",
+  "title": "Project",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the project.",
+      "example": "abc123"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the project.",
+      "example": "Example Title"
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the project.",
+      "example": "A sample description."
+    },
+    "parentProjectId": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The ID of the parent project. If null, this is a top-level project.",
+      "example": "500123"
+    },
+    "contentPermissions": {
+      "type": "string",
+      "enum": [
+        "LockedToProject",
+        "ManagedByOwner",
+        "LockedToProjectWithoutNested"
+      ],
+      "description": "The permissions model for the project.",
+      "example": "LockedToProject"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the project was created.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the project was last updated.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "owner": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The ID of the project owner."
+        }
+      },
+      "example": "example_value"
+    },
+    "topLevelProject": {
+      "type": "boolean",
+      "description": "Whether this is a top-level project.",
+      "example": true
+    }
+  }
+}

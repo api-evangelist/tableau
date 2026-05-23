@@ -1,0 +1,26 @@
+{
+  "operationId": "queryWorkbooksForUser",
+  "method": "GET",
+  "path": "/sites/{site-id}/users/{user-id}/workbooks",
+  "summary": "Tableau Query Workbooks for User",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Queryworkbooksforuser200Example",
+      "example": {
+        "pagination": {
+          "pageNumber": 10,
+          "pageSize": 10,
+          "totalAvailable": 10
+        },
+        "workbooks": {
+          "workbook": [
+            {}
+          ]
+        }
+      }
+    }
+  ]
+}

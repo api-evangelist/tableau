@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/View",
+  "title": "View",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier for the view.",
+      "example": "abc123"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the view.",
+      "example": "Example Title"
+    },
+    "contentUrl": {
+      "type": "string",
+      "description": "The URL name of the view.",
+      "example": "https://www.example.com"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the view was created.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the view was last updated.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "viewUrlName": {
+      "type": "string",
+      "description": "The URL-friendly name of the view used in the content URL.",
+      "example": "https://www.example.com"
+    },
+    "sheetType": {
+      "type": "string",
+      "enum": [
+        "worksheet",
+        "dashboard",
+        "story"
+      ],
+      "description": "The type of sheet (worksheet, dashboard, or story).",
+      "example": "worksheet"
+    },
+    "project": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The ID of the containing project."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the containing project."
+        }
+      },
+      "example": "example_value"
+    },
+    "owner": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The ID of the view owner."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the view owner."
+        }
+      },
+      "example": "example_value"
+    },
+    "workbook": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The ID of the containing workbook."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the containing workbook."
+        }
+      },
+      "example": "example_value"
+    },
+    "tags": {
+      "type": "object",
+      "properties": {
+        "tag": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/Tag"
+          }
+        }
+      },
+      "example": "example_value"
+    },
+    "usage": {
+      "type": "object",
+      "properties": {
+        "totalViewCount": {
+          "type": "integer",
+          "description": "The total number of times the view has been accessed."
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "operationId": "signIn",
+  "method": "POST",
+  "path": "/auth/signin",
+  "summary": "Tableau Sign in",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "SigninRequestExample",
+      "example": {
+        "credentials": {
+          "name": "Example Title",
+          "password": "example_value",
+          "personalAccessTokenName": "example_value",
+          "personalAccessTokenSecret": "example_value",
+          "site": {
+            "contentUrl": "https://www.example.com"
+          }
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Signin200Example",
+      "example": {
+        "credentials": {
+          "token": "example_value",
+          "site": {
+            "id": "abc123",
+            "contentUrl": "https://www.example.com"
+          },
+          "user": {
+            "id": "abc123"
+          }
+        }
+      }
+    }
+  ]
+}
