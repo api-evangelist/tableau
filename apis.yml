@@ -1,5 +1,6 @@
 name: Tableau
-description: Tableau is a visual analytics platform transforming the way we use data to solve problems—empowering people and
+description: >-
+  Tableau is a visual analytics platform transforming the way we use data to solve problems—empowering people and
   organizations to make the most of their data.
 image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
 tags:
@@ -13,8 +14,9 @@ url: https://www.tableau.com
 specificationVersion: '0.18'
 apis:
 - name: Tableau REST API
-  description: The Tableau REST API allows you to manage and change Tableau Server, Tableau Cloud site, and Tableau Prep Conductor
-    resources programmatically, using HTTP.
+  description: >-
+    The Tableau REST API allows you to manage and change Tableau Server, Tableau Cloud site, and Tableau Prep
+    Conductor resources programmatically, using HTTP.
   image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
   humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
   baseURL: https://[server]/api/[api-version]
@@ -49,32 +51,6 @@ apis:
     url: https://tableau.github.io/server-client-python/
   - type: GitHubRepository
     url: https://github.com/tableau/rest-api-samples
-  - type: NaftikoCapability
-    url: capabilities/rest-authentication.yaml
-  - type: NaftikoCapability
-    url: capabilities/rest-data-sources.yaml
-  - type: NaftikoCapability
-    url: capabilities/rest-favorites.yaml
-  - type: NaftikoCapability
-    url: capabilities/rest-groups.yaml
-  - type: NaftikoCapability
-    url: capabilities/rest-jobs.yaml
-  - type: NaftikoCapability
-    url: capabilities/rest-permissions.yaml
-  - type: NaftikoCapability
-    url: capabilities/rest-projects.yaml
-  - type: NaftikoCapability
-    url: capabilities/rest-schedules.yaml
-  - type: NaftikoCapability
-    url: capabilities/rest-sites.yaml
-  - type: NaftikoCapability
-    url: capabilities/rest-subscriptions.yaml
-  - type: NaftikoCapability
-    url: capabilities/rest-users.yaml
-  - type: NaftikoCapability
-    url: capabilities/rest-views.yaml
-  - type: NaftikoCapability
-    url: capabilities/rest-workbooks.yaml
 - name: Tableau Metadata API
   description: GraphQL-based API for querying metadata about Tableau content, data sources, and lineage information.
   image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
@@ -100,6 +76,8 @@ apis:
     url: https://help.tableau.com/current/api/metadata_api/en-us/docs/meta_api_release_notes.html
   - type: GitHubRepository
     url: https://github.com/tableau/metadata-api-samples
+  - url: graphql/tableau-graphql.md
+    type: GraphQL
 - name: Tableau Hyper API
   description: API for creating, reading, and updating Hyper files, which are the data files that power Tableau extracts.
   image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
@@ -185,7 +163,8 @@ apis:
   - type: ChangeLog
     url: https://github.com/tableau/server-client-python/blob/master/CHANGELOG.md
 - name: Tableau Extensions API
-  description: The Tableau Extensions API allows developers to create dashboard extensions and viz extensions that users can
+  description: >-
+    The Tableau Extensions API allows developers to create dashboard extensions and viz extensions that users can
     interact with directly in Tableau, enabling integration with other applications and custom visualization types.
   image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
   humanURL: https://tableau.github.io/extensions-api/docs/
@@ -210,7 +189,8 @@ apis:
   - type: CodeExamples
     url: https://tableau.github.io/extensions-api/docs/dashext/trex_examples/
 - name: Tableau Web Data Connector
-  description: The Tableau Web Data Connector (WDC) provides an SDK for building connectors to any data accessible over HTTP,
+  description: >-
+    The Tableau Web Data Connector (WDC) provides an SDK for building connectors to any data accessible over HTTP,
     allowing users to bring external data into Tableau for analysis and visualization.
   image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
   humanURL: https://help.tableau.com/current/api/webdataconnector/en-us/index.html
@@ -234,8 +214,9 @@ apis:
   - type: CodeExamples
     url: https://tableau.github.io/webdataconnector/docs/wdc_samples.html
 - name: Tableau Connector SDK
-  description: SDK for developing custom Tableau connectors using ODBC or JDBC drivers, including documentation, example files,
-    a test harness, and a packaging tool for distribution.
+  description: >-
+    SDK for developing custom Tableau connectors using ODBC or JDBC drivers, including documentation, example files, a
+    test harness, and a packaging tool for distribution.
   image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
   humanURL: https://tableau.github.io/connector-plugin-sdk/
   baseURL: https://github.com/tableau/connector-plugin-sdk
@@ -257,8 +238,9 @@ apis:
   - type: GettingStarted
     url: https://tableau.github.io/connector-plugin-sdk/docs/
 - name: Tableau Analytics Extensions API
-  description: The Analytics Extensions API allows integration of external analytics engines such as Python, R, MATLAB, and
-    data science platforms with Tableau calculations for advanced analytics.
+  description: >-
+    The Analytics Extensions API allows integration of external analytics engines such as Python, R, MATLAB, and data
+    science platforms with Tableau calculations for advanced analytics.
   image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
   humanURL: https://tableau.github.io/analytics-extensions-api/docs/ae_intro.html
   baseURL: https://[server]
@@ -280,7 +262,8 @@ apis:
   - type: GitHubRepository
     url: https://github.com/tableau/TabPy
 - name: Tableau Webhooks
-  description: Tableau Webhooks enable event-driven automation by sending HTTP POST notifications to specified URLs when events
+  description: >-
+    Tableau Webhooks enable event-driven automation by sending HTTP POST notifications to specified URLs when events
     occur on Tableau Server or Tableau Cloud.
   image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
   humanURL: https://help.tableau.com/current/developer/webhooks/en-us/
@@ -300,7 +283,8 @@ apis:
   - type: APIReference
     url: https://help.tableau.com/current/developer/webhooks/en-us/docs/webhooks-events-payload.html
 - name: Tableau VizQL Data Service
-  description: The VizQL Data Service provides a programmatic HTTP interface to query published data sources outside of Tableau
+  description: >-
+    The VizQL Data Service provides a programmatic HTTP interface to query published data sources outside of Tableau
     visualizations, enabling headless data access from any application.
   image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
   humanURL: https://help.tableau.com/current/api/vizql-data-service/en-us/index.html
@@ -322,7 +306,8 @@ apis:
   - type: GettingStarted
     url: https://help.tableau.com/current/api/vizql-data-service/en-us/docs/vds_create_queries.html
 - name: Tableau Pulse API
-  description: The Tableau Pulse API enables programmatic creation, management, and querying of Tableau Pulse metrics and
+  description: >-
+    The Tableau Pulse API enables programmatic creation, management, and querying of Tableau Pulse metrics and
     subscriptions, as well as embedding Pulse insights into web applications.
   image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
   humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_pulse.htm
@@ -382,7 +367,9 @@ common:
 - type: Features
   data:
   - name: Data Source Management
-    description: Publish, query, update, delete, and download data sources that define connections to data shared across workbooks.
+    description: >-
+      Publish, query, update, delete, and download data sources that define connections to data shared across
+      workbooks.
   - name: Workbook Management
     description: Publish, query, update, delete, and download workbooks containing views, dashboards, and stories.
   - name: Site Administration

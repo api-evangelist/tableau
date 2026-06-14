@@ -1,0 +1,1143 @@
+"""
+Tableau Metadata API GraphQL Schema
+Endpoint: https://{YOUR_TABLEAU_SERVER}/api/metadata/graphql
+Documentation: https://help.tableau.com/current/api/metadata_api/en-us/index.html
+Available since Tableau 2019.3
+"""
+
+scalar DateTime
+scalar Long
+
+# ─────────────────────────────────────────────────────────────
+# Enums
+# ─────────────────────────────────────────────────────────────
+
+enum OrderDirection {
+  ASC
+  DESC
+}
+
+enum ContentType {
+  WORKBOOK
+  DATASOURCE
+  FLOW
+  METRIC
+  VIEW
+  LENS
+}
+
+enum PermissionMode {
+  Allow
+  Deny
+}
+
+enum DataQualityWarningType {
+  WARNING
+  DEPRECATED
+  STALE
+  SENSITIVE_DATA
+  UNDER_MAINTENANCE
+  EXTRACTION_ERROR
+}
+
+enum CertificationStatus {
+  CERTIFIED
+  NOT_CERTIFIED
+}
+
+enum ExtractRefreshType {
+  FULL_REFRESH
+  INCREMENTAL_REFRESH
+}
+
+enum FlowRunStatus {
+  PENDING
+  RUNNING
+  SUCCEEDED
+  FAILED
+  CANCELLED
+}
+
+enum SiteRole {
+  Creator
+  Explorer
+  ExplorerCanPublish
+  SiteAdministratorCreator
+  SiteAdministratorExplorer
+  Unlicensed
+  Viewer
+}
+
+enum AuthSetting {
+  ServerDefault
+  SAML
+  OpenID
+}
+
+enum FieldRole {
+  DIMENSION
+  MEASURE
+}
+
+enum FieldDataType {
+  STRING
+  INTEGER
+  REAL
+  BOOLEAN
+  DATE
+  DATETIME
+  SPATIAL
+  TABLE
+}
+
+# ─────────────────────────────────────────────────────────────
+# Interfaces
+# ─────────────────────────────────────────────────────────────
+
+"""Base interface shared by all Tableau content nodes."""
+interface Node {
+  id: ID!
+  name: String!
+  luid: String!
+}
+
+"""Interface for content that carries tags."""
+interface Taggable {
+  tags: [Tag!]!
+}
+
+"""Interface for content that can have data quality warnings."""
+interface Warnable {
+  dataQualityWarnings: [DataQualityWarning!]!
+}
+
+"""Interface for content that can be certified."""
+interface Certifiable {
+  certificationNote: CertificationNote
+  isCertified: Boolean!
+}
+
+"""Interface for content owned by a user."""
+interface Ownable {
+  owner: TableauUser
+}
+
+"""Interface for content published to a project."""
+interface ProjectBound {
+  project: Project
+}
+
+# ─────────────────────────────────────────────────────────────
+# Core site / project / user types
+# ─────────────────────────────────────────────────────────────
+
+"""Represents a Tableau Server or Tableau Cloud site."""
+type TableauSite implements Node {
+  id: ID!
+  name: String!
+  luid: String!
+  contentUrl: String!
+  adminMode: String
+  state: String
+  storageQuota: Long
+  userQuota: Int
+  tierCreatorCapacity: Int
+  tierExplorerCapacity: Int
+  tierViewerCapacity: Int
+  extractEncryptionMode: String
+  revisionHistoryEnabled: Boolean
+  revisionLimit: Int
+  subscribeOthersEnabled: Boolean
+  guestAccessEnabled: Boolean
+  cacheWarmupEnabled: Boolean
+  commentingEnabled: Boolean
+  flowsEnabled: Boolean
+  catalogObfuscationEnabled: Boolean
+  requestAccessEnabled: Boolean
+  runNowEnabled: Boolean
+  allowSubscriptionAttachments: Boolean
+  projects: [Project!]!
+  users: [TableauUser!]!
+  groups: [Group!]!
+  workbooks: [Workbook!]!
+  publishedDatasources: [PublishedDatasource!]!
+  flows: [Flow!]!
+  metrics: [Metric!]!
+}
+
+"""A Tableau project that organizes content."""
+type Project implements Node & Ownable {
+  id: ID!
+  name: String!
+  luid: String!
+  description: String
+  controllingPermissionsProjectLuid: String
+  topLevelProject: Boolean!
+  owner: TableauUser
+  parentProject: Project
+  childProjects: [Project!]!
+  workbooks: [Workbook!]!
+  publishedDatasources: [PublishedDatasource!]!
+  flows: [Flow!]!
+  permissions: [Permission!]!
+}
+
+"""A Tableau user account."""
+type TableauUser implements Node {
+  id: ID!
+  name: String!
+  luid: String!
+  username: String!
+  fullName: String
+  email: String
+  siteRole: SiteRole!
+  authSetting: AuthSetting
+  lastLogin: DateTime
+  groups: [Group!]!
+  ownedWorkbooks: [Workbook!]!
+  ownedDatasources: [PublishedDatasource!]!
+  ownedFlows: [Flow!]!
+}
+
+"""A Tableau group of users."""
+type Group implements Node {
+  id: ID!
+  name: String!
+  luid: String!
+  domain: String
+  users: [TableauUser!]!
+}
+
+# ─────────────────────────────────────────────────────────────
+# Workbook / view / dashboard / story types
+# ─────────────────────────────────────────────────────────────
+
+"""A Tableau workbook published to a site."""
+type Workbook implements Node & Taggable & Warnable & Certifiable & Ownable & ProjectBound {
+  id: ID!
+  name: String!
+  luid: String!
+  description: String
+  uri: String
+  projectName: String
+  showTabs: Boolean
+  size: Long
+  contentUrl: String
+  thumbnailUser: TableauUser
+  createdAt: DateTime
+  updatedAt: DateTime
+  extractLastUpdateTime: DateTime
+  extractLastRefreshTime: DateTime
+  extractLastIncrementalUpdateTime: DateTime
+  owner: TableauUser
+  project: Project
+  tags: [Tag!]!
+  dataQualityWarnings: [DataQualityWarning!]!
+  certificationNote: CertificationNote
+  isCertified: Boolean!
+  embeddedDatasources: [EmbeddedDatasource!]!
+  upstreamDatasources: [PublishedDatasource!]!
+  upstreamDatabases: [DatabaseServer!]!
+  upstreamTables: [DatabaseTable!]!
+  upstreamColumns: [Column!]!
+  sheets: [Sheet!]!
+  dashboards: [Dashboard!]!
+  stories: [Story!]!
+  views: [View!]!
+  revisions: [Revision!]!
+  permissions: [Permission!]!
+}
+
+"""A sheet (worksheet) inside a workbook."""
+type Sheet implements Node {
+  id: ID!
+  name: String!
+  luid: String!
+  path: String
+  index: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+  workbook: Workbook
+  upstreamFields: [Field!]!
+  upstreamDatasources: [PublishedDatasource!]!
+  upstreamTables: [DatabaseTable!]!
+  upstreamDatabases: [DatabaseServer!]!
+  referencedByDashboards: [Dashboard!]!
+}
+
+"""A dashboard inside a workbook."""
+type Dashboard implements Node & Taggable {
+  id: ID!
+  name: String!
+  luid: String!
+  path: String
+  index: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+  workbook: Workbook
+  tags: [Tag!]!
+  dashboardItems: [DashboardItem!]!
+  upstreamSheets: [Sheet!]!
+  upstreamFields: [Field!]!
+  upstreamDatasources: [PublishedDatasource!]!
+  upstreamTables: [DatabaseTable!]!
+}
+
+"""An item (sheet, image, text, web page) placed on a dashboard."""
+type DashboardItem implements Node {
+  id: ID!
+  name: String!
+  luid: String!
+  type: String
+  dashboard: Dashboard
+  sheet: Sheet
+}
+
+"""A story inside a workbook."""
+type Story implements Node {
+  id: ID!
+  name: String!
+  luid: String!
+  path: String
+  index: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+  workbook: Workbook
+  storyPoints: [StoryPoint!]!
+}
+
+"""A single point (slide) inside a story."""
+type StoryPoint implements Node {
+  id: ID!
+  name: String!
+  luid: String!
+  index: Int
+  description: String
+  story: Story
+  containedSheets: [Sheet!]!
+  containedDashboards: [Dashboard!]!
+}
+
+"""A view (sheet or dashboard) published to a site."""
+type View implements Node & Taggable & Ownable {
+  id: ID!
+  name: String!
+  luid: String!
+  contentUrl: String
+  path: String
+  index: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+  owner: TableauUser
+  workbook: Workbook
+  tags: [Tag!]!
+  upstreamDatasources: [PublishedDatasource!]!
+  upstreamFields: [Field!]!
+  upstreamTables: [DatabaseTable!]!
+  permissions: [Permission!]!
+}
+
+# ─────────────────────────────────────────────────────────────
+# Data source types
+# ─────────────────────────────────────────────────────────────
+
+"""Base interface for data sources (published or embedded)."""
+interface DataSource {
+  id: ID!
+  name: String!
+  luid: String!
+  fields: [Field!]!
+  upstreamTables: [DatabaseTable!]!
+  upstreamDatabases: [DatabaseServer!]!
+  upstreamColumns: [Column!]!
+}
+
+"""A data source published independently to a Tableau site."""
+type PublishedDatasource implements Node & DataSource & Taggable & Warnable & Certifiable & Ownable & ProjectBound {
+  id: ID!
+  name: String!
+  luid: String!
+  description: String
+  contentUrl: String
+  hasExtracts: Boolean
+  extractLastUpdateTime: DateTime
+  extractLastRefreshTime: DateTime
+  extractLastIncrementalUpdateTime: DateTime
+  isPublished: Boolean
+  isCertified: Boolean!
+  certificationNote: CertificationNote
+  createdAt: DateTime
+  updatedAt: DateTime
+  owner: TableauUser
+  project: Project
+  tags: [Tag!]!
+  dataQualityWarnings: [DataQualityWarning!]!
+  fields: [Field!]!
+  upstreamTables: [DatabaseTable!]!
+  upstreamDatabases: [DatabaseServer!]!
+  upstreamColumns: [Column!]!
+  upstreamFlows: [Flow!]!
+  downstreamWorkbooks: [Workbook!]!
+  downstreamSheets: [Sheet!]!
+  downstreamDashboards: [Dashboard!]!
+  downstreamViews: [View!]!
+  extract: Extract
+  connections: [Connection!]!
+  revisions: [Revision!]!
+  permissions: [Permission!]!
+}
+
+"""A data source embedded inside a workbook (not published separately)."""
+type EmbeddedDatasource implements Node & DataSource {
+  id: ID!
+  name: String!
+  luid: String!
+  hasExtracts: Boolean
+  isPublished: Boolean
+  workbook: Workbook
+  fields: [Field!]!
+  upstreamTables: [DatabaseTable!]!
+  upstreamDatabases: [DatabaseServer!]!
+  upstreamColumns: [Column!]!
+  upstreamPublishedDatasources: [PublishedDatasource!]!
+}
+
+# ─────────────────────────────────────────────────────────────
+# Database / table / column types
+# ─────────────────────────────────────────────────────────────
+
+"""A database server that Tableau connects to."""
+type DatabaseServer implements Node & Warnable {
+  id: ID!
+  name: String!
+  luid: String!
+  connectionType: String
+  hostName: String
+  port: Int
+  service: String
+  isEmbedded: Boolean
+  dataQualityWarnings: [DataQualityWarning!]!
+  tables: [DatabaseTable!]!
+  downstreamDatasources: [PublishedDatasource!]!
+  downstreamWorkbooks: [Workbook!]!
+}
+
+"""A table or view inside a database."""
+type DatabaseTable implements Node & Warnable & Certifiable {
+  id: ID!
+  name: String!
+  luid: String!
+  schema: String
+  description: String
+  isEmbedded: Boolean
+  isCertified: Boolean!
+  certificationNote: CertificationNote
+  fullName: String
+  connectionType: String
+  contact: TableauUser
+  dataQualityWarnings: [DataQualityWarning!]!
+  database: DatabaseServer
+  columns: [Column!]!
+  downstreamDatasources: [PublishedDatasource!]!
+  downstreamWorkbooks: [Workbook!]!
+  downstreamSheets: [Sheet!]!
+  downstreamDashboards: [Dashboard!]!
+  downstreamFlows: [Flow!]!
+}
+
+"""A column inside a database table."""
+type Column implements Node & Warnable {
+  id: ID!
+  name: String!
+  luid: String!
+  description: String
+  remoteType: String
+  nullable: Boolean
+  isKey: Boolean
+  isHidden: Boolean
+  dataQualityWarnings: [DataQualityWarning!]!
+  table: DatabaseTable
+  referencedByFields: [Field!]!
+}
+
+"""A custom SQL table defined in a data source."""
+type CustomSQLTable implements Node {
+  id: ID!
+  name: String!
+  luid: String!
+  query: String
+  connectionType: String
+  isEmbedded: Boolean
+  columns: [Column!]!
+  downstreamDatasources: [PublishedDatasource!]!
+  downstreamWorkbooks: [Workbook!]!
+}
+
+"""Represents a connection from a data source to a database."""
+type Connection implements Node {
+  id: ID!
+  name: String!
+  luid: String!
+  type: String
+  server: String
+  port: String
+  username: String
+  isEmbedded: Boolean
+  isCertified: Boolean
+  datasource: PublishedDatasource
+  tables: [DatabaseTable!]!
+}
+
+# ─────────────────────────────────────────────────────────────
+# Field types
+# ─────────────────────────────────────────────────────────────
+
+"""Base interface for all data source fields."""
+interface FieldBase {
+  id: ID!
+  name: String!
+  luid: String!
+  description: String
+  isHidden: Boolean
+  role: FieldRole
+  dataType: FieldDataType
+  datasource: DataSource
+}
+
+"""A field in a data source (dimension or measure)."""
+type Field implements Node & FieldBase & Warnable {
+  id: ID!
+  name: String!
+  luid: String!
+  description: String
+  isHidden: Boolean
+  role: FieldRole
+  dataType: FieldDataType
+  aggregation: String
+  defaultFormat: String
+  semanticRole: String
+  upstreamColumns: [Column!]!
+  upstreamFields: [Field!]!
+  upstreamDatasources: [DataSource!]!
+  datasource: DataSource
+  dataQualityWarnings: [DataQualityWarning!]!
+  referencedByCalculations: [CalculatedField!]!
+}
+
+"""A calculated field defined by a Tableau formula."""
+type CalculatedField implements Node & FieldBase & Warnable {
+  id: ID!
+  name: String!
+  luid: String!
+  description: String
+  isHidden: Boolean
+  role: FieldRole
+  dataType: FieldDataType
+  formula: String!
+  datasource: DataSource
+  dataQualityWarnings: [DataQualityWarning!]!
+  upstreamFields: [Field!]!
+  referencedByCalculations: [CalculatedField!]!
+}
+
+"""A group field that bins or clusters other fields."""
+type GroupField implements Node & FieldBase {
+  id: ID!
+  name: String!
+  luid: String!
+  description: String
+  isHidden: Boolean
+  role: FieldRole
+  dataType: FieldDataType
+  datasource: DataSource
+  groupedFields: [Field!]!
+}
+
+"""A set field (Tableau Set) derived from other fields."""
+type SetField implements Node & FieldBase {
+  id: ID!
+  name: String!
+  luid: String!
+  description: String
+  isHidden: Boolean
+  role: FieldRole
+  dataType: FieldDataType
+  datasource: DataSource
+  upstreamFields: [Field!]!
+}
+
+"""A bin field for histograms."""
+type BinField implements Node & FieldBase {
+  id: ID!
+  name: String!
+  luid: String!
+  description: String
+  isHidden: Boolean
+  role: FieldRole
+  dataType: FieldDataType
+  binSize: Float
+  datasource: DataSource
+  binnedField: Field
+}
+
+# ─────────────────────────────────────────────────────────────
+# Flow types (Tableau Prep)
+# ─────────────────────────────────────────────────────────────
+
+"""A Tableau Prep flow published to a site."""
+type Flow implements Node & Taggable & Warnable & Ownable & ProjectBound {
+  id: ID!
+  name: String!
+  luid: String!
+  description: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  owner: TableauUser
+  project: Project
+  tags: [Tag!]!
+  dataQualityWarnings: [DataQualityWarning!]!
+  steps: [FlowStep!]!
+  inputSteps: [FlowStep!]!
+  outputSteps: [FlowStep!]!
+  upstreamDatabases: [DatabaseServer!]!
+  upstreamTables: [DatabaseTable!]!
+  upstreamDatasources: [PublishedDatasource!]!
+  downstreamDatasources: [PublishedDatasource!]!
+  downstreamWorkbooks: [Workbook!]!
+  runSchedules: [Schedule!]!
+  runHistory: [FlowRun!]!
+  permissions: [Permission!]!
+}
+
+"""A step inside a Tableau Prep flow."""
+type FlowStep implements Node {
+  id: ID!
+  name: String!
+  luid: String!
+  type: String
+  flow: Flow
+  inputFields: [FlowFieldInput!]!
+  outputFields: [FlowFieldOutput!]!
+  upstreamSteps: [FlowStep!]!
+  downstreamSteps: [FlowStep!]!
+}
+
+"""An input field mapping in a flow step."""
+type FlowFieldInput implements Node {
+  id: ID!
+  name: String!
+  luid: String!
+  dataType: FieldDataType
+  step: FlowStep
+  upstreamColumn: Column
+}
+
+"""An output field mapping from a flow step."""
+type FlowFieldOutput implements Node {
+  id: ID!
+  name: String!
+  luid: String!
+  dataType: FieldDataType
+  step: FlowStep
+  downstreamColumn: Column
+}
+
+"""A record of a flow run execution."""
+type FlowRun implements Node {
+  id: ID!
+  name: String!
+  luid: String!
+  startedAt: DateTime
+  completedAt: DateTime
+  status: FlowRunStatus
+  backgroundJobId: String
+  flow: Flow
+}
+
+# ─────────────────────────────────────────────────────────────
+# Metric types (Tableau Pulse)
+# ─────────────────────────────────────────────────────────────
+
+"""A Tableau Pulse metric definition."""
+type Metric implements Node & Taggable & Ownable & ProjectBound {
+  id: ID!
+  name: String!
+  luid: String!
+  description: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  suspended: Boolean
+  owner: TableauUser
+  project: Project
+  tags: [Tag!]!
+  underlyingView: View
+  upstreamDatasources: [PublishedDatasource!]!
+  metricDefinition: MetricDefinition
+  permissions: [Permission!]!
+}
+
+"""The definition (aggregation + time grain) of a Pulse metric."""
+type MetricDefinition implements Node {
+  id: ID!
+  name: String!
+  luid: String!
+  metricField: Field
+  filterFields: [Field!]!
+  filterValues: [String!]!
+  metric: Metric
+}
+
+# ─────────────────────────────────────────────────────────────
+# Governance and quality types
+# ─────────────────────────────────────────────────────────────
+
+"""A data quality warning attached to a content item."""
+type DataQualityWarning implements Node {
+  id: ID!
+  name: String!
+  luid: String!
+  warningType: DataQualityWarningType!
+  message: String
+  isSevere: Boolean!
+  isActive: Boolean!
+  createdAt: DateTime
+  updatedAt: DateTime
+  author: TableauUser
+  contentId: String
+  contentType: ContentType
+}
+
+"""A certification note attached to certified content."""
+type CertificationNote implements Node {
+  id: ID!
+  name: String!
+  luid: String!
+  certificationStatus: CertificationStatus!
+  message: String
+  author: TableauUser
+  createdAt: DateTime
+}
+
+"""A tag applied to Tableau content."""
+type Tag implements Node {
+  id: ID!
+  name: String!
+  luid: String!
+}
+
+"""A permission rule on a content item."""
+type Permission implements Node {
+  id: ID!
+  name: String!
+  luid: String!
+  granteeType: String
+  granteeId: String
+  granteeName: String
+  capabilityName: String
+  capabilityMode: PermissionMode
+  contentId: String
+  contentType: ContentType
+}
+
+"""A content revision entry."""
+type Revision implements Node {
+  id: ID!
+  name: String!
+  luid: String!
+  revisionNumber: Int
+  publishedAt: DateTime
+  isDeleted: Boolean
+  isCurrent: Boolean
+  publisher: TableauUser
+}
+
+# ─────────────────────────────────────────────────────────────
+# Extract / schedule types
+# ─────────────────────────────────────────────────────────────
+
+"""An extract (snapshot) for a data source or workbook."""
+type Extract implements Node {
+  id: ID!
+  name: String!
+  luid: String!
+  encryptionState: String
+  lastUpdateTime: DateTime
+  lastRefreshTime: DateTime
+  lastIncrementalUpdateTime: DateTime
+  progress: Float
+  datasource: PublishedDatasource
+  jobs: [ExtractionJob!]!
+}
+
+"""A job that refreshes an extract."""
+type ExtractionJob implements Node {
+  id: ID!
+  name: String!
+  luid: String!
+  type: ExtractRefreshType
+  status: String
+  priority: Int
+  createdAt: DateTime
+  startedAt: DateTime
+  completedAt: DateTime
+  extract: Extract
+}
+
+"""A recurring schedule for extract refreshes or flow runs."""
+type Schedule implements Node {
+  id: ID!
+  name: String!
+  luid: String!
+  state: String
+  type: String
+  frequency: String
+  nextRunAt: DateTime
+  createdAt: DateTime
+  updatedAt: DateTime
+  datasources: [PublishedDatasource!]!
+  workbooks: [Workbook!]!
+  flows: [Flow!]!
+}
+
+# ─────────────────────────────────────────────────────────────
+# Lineage helper types
+# ─────────────────────────────────────────────────────────────
+
+"""Column-level lineage mapping between upstream and downstream columns."""
+type ColumnLineage {
+  upstreamColumn: Column!
+  downstreamField: Field!
+  transformations: [String!]!
+}
+
+"""Table-level lineage mapping."""
+type TableLineage {
+  upstreamTable: DatabaseTable!
+  downstreamDatasource: PublishedDatasource!
+}
+
+# ─────────────────────────────────────────────────────────────
+# Connection info / VizQL lens types
+# ─────────────────────────────────────────────────────────────
+
+"""A Tableau Ask Data lens (natural-language query endpoint)."""
+type Lens implements Node & Ownable & ProjectBound {
+  id: ID!
+  name: String!
+  luid: String!
+  description: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  owner: TableauUser
+  project: Project
+  datasource: PublishedDatasource
+  includedFields: [Field!]!
+}
+
+"""A virtual connection (Tableau's shared connection layer)."""
+type VirtualConnection implements Node & Ownable & ProjectBound {
+  id: ID!
+  name: String!
+  luid: String!
+  description: String
+  isPublished: Boolean
+  createdAt: DateTime
+  updatedAt: DateTime
+  owner: TableauUser
+  project: Project
+  tables: [VirtualConnectionTable!]!
+  downstreamDatasources: [PublishedDatasource!]!
+  downstreamWorkbooks: [Workbook!]!
+}
+
+"""A table exposed by a virtual connection."""
+type VirtualConnectionTable implements Node {
+  id: ID!
+  name: String!
+  luid: String!
+  virtualConnection: VirtualConnection
+  columns: [Column!]!
+  downstreamDatasources: [PublishedDatasource!]!
+}
+
+# ─────────────────────────────────────────────────────────────
+# Pagination helpers
+# ─────────────────────────────────────────────────────────────
+
+"""Pagination info for connection-style results."""
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+"""A paginated edge for a Workbook node."""
+type WorkbookEdge {
+  node: Workbook!
+  cursor: String!
+}
+
+"""A paginated connection for Workbook results."""
+type WorkbookConnection {
+  edges: [WorkbookEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+"""A paginated edge for a PublishedDatasource node."""
+type DatasourceEdge {
+  node: PublishedDatasource!
+  cursor: String!
+}
+
+"""A paginated connection for PublishedDatasource results."""
+type DatasourceConnection {
+  edges: [DatasourceEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+# ─────────────────────────────────────────────────────────────
+# Root query type
+# ─────────────────────────────────────────────────────────────
+
+type Query {
+  """Retrieve a Tableau site by LUID."""
+  tableauSite(luid: String!): TableauSite
+
+  """List all projects on the site."""
+  projectsConnection(
+    filter: ProjectFilter
+    orderBy: ProjectOrder
+    first: Int
+    after: String
+  ): ProjectConnection
+
+  """List all workbooks."""
+  workbooksConnection(
+    filter: WorkbookFilter
+    orderBy: WorkbookOrder
+    first: Int
+    after: String
+  ): WorkbookConnection
+
+  """List all published data sources."""
+  publishedDatasourcesConnection(
+    filter: DatasourceFilter
+    orderBy: DatasourceOrder
+    first: Int
+    after: String
+  ): DatasourceConnection
+
+  """List all flows."""
+  flowsConnection(
+    filter: FlowFilter
+    first: Int
+    after: String
+  ): FlowConnection
+
+  """List all metrics."""
+  metricsConnection(
+    first: Int
+    after: String
+  ): MetricConnection
+
+  """List all database servers."""
+  databaseServersConnection(
+    filter: DatabaseServerFilter
+    first: Int
+    after: String
+  ): DatabaseServerConnection
+
+  """List all database tables."""
+  databaseTablesConnection(
+    filter: DatabaseTableFilter
+    first: Int
+    after: String
+  ): DatabaseTableConnection
+
+  """List all users."""
+  usersConnection(
+    filter: UserFilter
+    first: Int
+    after: String
+  ): UserConnection
+
+  """Retrieve any node by its global ID."""
+  node(id: ID!): Node
+
+  """Query column-level lineage for a given field."""
+  columnLineage(fieldId: ID!): [ColumnLineage!]!
+
+  """Query table-level lineage for a given datasource."""
+  tableLineage(datasourceLuid: String!): [TableLineage!]!
+}
+
+# ─────────────────────────────────────────────────────────────
+# Filter / order inputs
+# ─────────────────────────────────────────────────────────────
+
+input WorkbookFilter {
+  name: StringFilter
+  projectName: StringFilter
+  updatedAt: DateFilter
+  ownerLuid: String
+  tagName: String
+}
+
+input DatasourceFilter {
+  name: StringFilter
+  projectName: StringFilter
+  connectionType: StringFilter
+  isCertified: Boolean
+  hasExtracts: Boolean
+  tagName: String
+}
+
+input ProjectFilter {
+  name: StringFilter
+  topLevelProject: Boolean
+}
+
+input FlowFilter {
+  name: StringFilter
+  projectName: StringFilter
+}
+
+input DatabaseServerFilter {
+  name: StringFilter
+  connectionType: StringFilter
+  hostName: StringFilter
+}
+
+input DatabaseTableFilter {
+  name: StringFilter
+  schema: StringFilter
+  connectionType: StringFilter
+  isCertified: Boolean
+}
+
+input UserFilter {
+  name: StringFilter
+  siteRole: SiteRole
+}
+
+input StringFilter {
+  eq: String
+  contains: String
+  startsWith: String
+  endsWith: String
+}
+
+input DateFilter {
+  gt: DateTime
+  lt: DateTime
+  gte: DateTime
+  lte: DateTime
+}
+
+input WorkbookOrder {
+  field: WorkbookOrderField!
+  direction: OrderDirection!
+}
+
+enum WorkbookOrderField {
+  name
+  updatedAt
+  createdAt
+  projectName
+  ownerName
+}
+
+input DatasourceOrder {
+  field: DatasourceOrderField!
+  direction: OrderDirection!
+}
+
+enum DatasourceOrderField {
+  name
+  updatedAt
+  createdAt
+  projectName
+}
+
+input ProjectOrder {
+  field: ProjectOrderField!
+  direction: OrderDirection!
+}
+
+enum ProjectOrderField {
+  name
+  updatedAt
+}
+
+# ─────────────────────────────────────────────────────────────
+# Additional paginated connection types
+# ─────────────────────────────────────────────────────────────
+
+type ProjectConnection {
+  edges: [ProjectEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type ProjectEdge {
+  node: Project!
+  cursor: String!
+}
+
+type FlowConnection {
+  edges: [FlowEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type FlowEdge {
+  node: Flow!
+  cursor: String!
+}
+
+type MetricConnection {
+  edges: [MetricEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type MetricEdge {
+  node: Metric!
+  cursor: String!
+}
+
+type DatabaseServerConnection {
+  edges: [DatabaseServerEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type DatabaseServerEdge {
+  node: DatabaseServer!
+  cursor: String!
+}
+
+type DatabaseTableConnection {
+  edges: [DatabaseTableEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type DatabaseTableEdge {
+  node: DatabaseTable!
+  cursor: String!
+}
+
+type UserConnection {
+  edges: [UserEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type UserEdge {
+  node: TableauUser!
+  cursor: String!
+}
