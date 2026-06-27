@@ -47,7 +47,7 @@ apis:
     url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref.htm
   - type: CodeExamples
     url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_samples.htm
-  - type: SDK
+  - type: SDKs
     url: https://tableau.github.io/server-client-python/
   - type: GitHubRepository
     url: https://github.com/tableau/rest-api-samples
@@ -350,7 +350,7 @@ common:
   url: https://www.tableau.com/legal
 - type: PrivacyPolicy
   url: https://www.tableau.com/privacy
-- type: SignUp
+- type: Signup
   url: https://www.tableau.com/products/trial
 - type: Login
   url: https://www.tableau.com/tableau-login-hub
