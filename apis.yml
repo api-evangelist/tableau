@@ -332,6 +332,10 @@ maintainers:
   email: kin@apievangelist.com
   url: https://apievangelist.com
 common:
+- type: DomainSecurity
+  url: security/tableau-domain-security.yml
+- type: Authentication
+  url: authentication/tableau-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/tableau-software
 - type: DeveloperPortal

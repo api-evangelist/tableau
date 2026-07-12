@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/tableau-rest-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: TableauAuth
+  type: apiKey
+  in: header
+  parameter: X-Tableau-Auth
+  description: The authentication token obtained from the Sign In method. Include this token
+    in the X-Tableau-Auth header of all subsequent requests.
+  sources:
+  - openapi/tableau-rest-api-openapi.yml
