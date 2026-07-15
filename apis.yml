@@ -332,6 +332,8 @@ maintainers:
   email: kin@apievangelist.com
   url: https://apievangelist.com
 common:
+- type: AgenticAccess
+  url: agentic-access/tableau-agentic-access.yml
 - type: DomainSecurity
   url: security/tableau-domain-security.yml
 - type: Authentication
