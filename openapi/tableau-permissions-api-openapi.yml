@@ -1,0 +1,318 @@
+openapi: 3.1.0
+info:
+  version: 3.24.0
+  title: Tableau REST Authentication Permissions API
+  description: The Tableau REST API allows you to manage and change Tableau Server and Tableau Cloud resources programmatically using HTTP. You can use the REST API to manage sites, projects, workbooks, views, data sources, users, groups, permissions, schedules, subscriptions, and more.
+  license:
+    name: Proprietary
+    url: https://www.tableau.com/legal
+  termsOfService: https://www.tableau.com/legal
+  contact:
+    name: Tableau Developer Support
+    url: https://www.tableau.com/support
+servers:
+- url: https://{server}/api/{api-version}
+  description: Tableau Server or Tableau Cloud
+  variables:
+    server:
+      default: 10ax.online.tableau.com
+      description: The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.
+    api-version:
+      default: '3.24'
+      description: The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud.
+      enum:
+      - '3.24'
+      - '3.23'
+      - '3.22'
+      - '3.21'
+      - '3.20'
+      - '3.19'
+security:
+- TableauAuth: []
+tags:
+- name: Permissions
+  description: Query and set permissions on content items including workbooks, data sources, projects, views, and flows.
+paths:
+  /sites/{site-id}/workbooks/{workbook-id}/permissions:
+    get:
+      operationId: queryWorkbookPermissions
+      summary: Tableau Query Workbook Permissions
+      description: Returns a list of permissions for the specified workbook.
+      tags:
+      - Permissions
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/WorkbookId'
+      responses:
+        '200':
+          description: A list of permissions on the workbook.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PermissionListResponse'
+              examples:
+                Queryworkbookpermissions200Example:
+                  summary: Default queryWorkbookPermissions 200 response
+                  x-microcks-default: true
+                  value:
+                    permissions:
+                      granteeCapabilities:
+                      - {}
+                    parent:
+                      project:
+                        id: abc123
+                        name: Example Title
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: addWorkbookPermissions
+      summary: Tableau Add Workbook Permissions
+      description: Adds permissions to the specified workbook for a user or group.
+      tags:
+      - Permissions
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/WorkbookId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddPermissionsRequest'
+            examples:
+              AddworkbookpermissionsRequestExample:
+                summary: Default addWorkbookPermissions request
+                x-microcks-default: true
+                value:
+                  permissions:
+                    granteeCapabilities:
+                    - {}
+      responses:
+        '200':
+          description: Permissions were added successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PermissionListResponse'
+              examples:
+                Addworkbookpermissions200Example:
+                  summary: Default addWorkbookPermissions 200 response
+                  x-microcks-default: true
+                  value:
+                    permissions:
+                      granteeCapabilities:
+                      - {}
+                    parent:
+                      project:
+                        id: abc123
+                        name: Example Title
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sites/{site-id}/datasources/{datasource-id}/permissions:
+    get:
+      operationId: queryDataSourcePermissions
+      summary: Tableau Query Data Source Permissions
+      description: Returns a list of permissions for the specified data source.
+      tags:
+      - Permissions
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/DataSourceId'
+      responses:
+        '200':
+          description: A list of permissions on the data source.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PermissionListResponse'
+              examples:
+                Querydatasourcepermissions200Example:
+                  summary: Default queryDataSourcePermissions 200 response
+                  x-microcks-default: true
+                  value:
+                    permissions:
+                      granteeCapabilities:
+                      - {}
+                    parent:
+                      project:
+                        id: abc123
+                        name: Example Title
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: addDataSourcePermissions
+      summary: Tableau Add Data Source Permissions
+      description: Adds permissions to the specified data source for a user or group.
+      tags:
+      - Permissions
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/DataSourceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddPermissionsRequest'
+            examples:
+              AdddatasourcepermissionsRequestExample:
+                summary: Default addDataSourcePermissions request
+                x-microcks-default: true
+                value:
+                  permissions:
+                    granteeCapabilities:
+                    - {}
+      responses:
+        '200':
+          description: Permissions were added successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PermissionListResponse'
+              examples:
+                Adddatasourcepermissions200Example:
+                  summary: Default addDataSourcePermissions 200 response
+                  x-microcks-default: true
+                  value:
+                    permissions:
+                      granteeCapabilities:
+                      - {}
+                    parent:
+                      project:
+                        id: abc123
+                        name: Example Title
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sites/{site-id}/projects/{project-id}/default-permissions/workbooks:
+    get:
+      operationId: queryDefaultWorkbookPermissions
+      summary: Tableau Query Default Permissions for Workbooks
+      description: Returns the default permissions for workbooks in the specified project.
+      tags:
+      - Permissions
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/ProjectId'
+      responses:
+        '200':
+          description: Default workbook permissions for the project.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PermissionListResponse'
+              examples:
+                Querydefaultworkbookpermissions200Example:
+                  summary: Default queryDefaultWorkbookPermissions 200 response
+                  x-microcks-default: true
+                  value:
+                    permissions:
+                      granteeCapabilities:
+                      - {}
+                    parent:
+                      project:
+                        id: abc123
+                        name: Example Title
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    PermissionListResponse:
+      type: object
+      properties:
+        permissions:
+          $ref: '#/components/schemas/Permission'
+        parent:
+          type: object
+          properties:
+            project:
+              type: object
+              properties:
+                id:
+                  type: string
+                name:
+                  type: string
+          example: example_value
+    AddPermissionsRequest:
+      type: object
+      properties:
+        permissions:
+          $ref: '#/components/schemas/Permission'
+    Permission:
+      type: object
+      properties:
+        granteeCapabilities:
+          type: array
+          items:
+            type: object
+            properties:
+              user:
+                type: object
+                properties:
+                  id:
+                    type: string
+              group:
+                type: object
+                properties:
+                  id:
+                    type: string
+              capabilities:
+                type: object
+                properties:
+                  capability:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          description: The name of the capability (e.g., Read, Write, ChangePermissions, Delete, Filter, ViewComments, AddComment, ExportData, ExportImage, ShareView, ViewUnderlyingData, WebAuthoring, RunExplainData).
+                        mode:
+                          type: string
+                          enum:
+                          - Allow
+                          - Deny
+                          description: Whether the capability is allowed or denied.
+          example: []
+  parameters:
+    ProjectId:
+      name: project-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the project.
+    WorkbookId:
+      name: workbook-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the workbook.
+    SiteId:
+      name: site-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the site. You can get the site ID from the response to the Sign In method.
+    DataSourceId:
+      name: datasource-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the data source.
+  securitySchemes:
+    TableauAuth:
+      type: apiKey
+      in: header
+      name: X-Tableau-Auth
+      description: The authentication token obtained from the Sign In method. Include this token in the X-Tableau-Auth header of all subsequent requests.
+externalDocs:
+  description: Tableau REST API Reference
+  url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref.htm

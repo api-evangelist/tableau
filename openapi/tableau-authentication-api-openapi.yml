@@ -1,0 +1,237 @@
+openapi: 3.1.0
+info:
+  version: 3.24.0
+  title: Tableau REST Authentication API
+  description: The Tableau REST API allows you to manage and change Tableau Server and Tableau Cloud resources programmatically using HTTP. You can use the REST API to manage sites, projects, workbooks, views, data sources, users, groups, permissions, schedules, subscriptions, and more.
+  license:
+    name: Proprietary
+    url: https://www.tableau.com/legal
+  termsOfService: https://www.tableau.com/legal
+  contact:
+    name: Tableau Developer Support
+    url: https://www.tableau.com/support
+servers:
+- url: https://{server}/api/{api-version}
+  description: Tableau Server or Tableau Cloud
+  variables:
+    server:
+      default: 10ax.online.tableau.com
+      description: The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.
+    api-version:
+      default: '3.24'
+      description: The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud.
+      enum:
+      - '3.24'
+      - '3.23'
+      - '3.22'
+      - '3.21'
+      - '3.20'
+      - '3.19'
+security:
+- TableauAuth: []
+tags:
+- name: Authentication
+  description: Sign in and sign out of Tableau Server or Tableau Cloud. You must sign in to obtain an authentication token before calling other methods.
+paths:
+  /auth/signin:
+    post:
+      operationId: signIn
+      summary: Tableau Sign in
+      description: Signs you in as a user on the specified site on Tableau Server or Tableau Cloud. This call returns an authentication token that you use in subsequent calls to the server. Typically, a credentials token is valid for 240 minutes.
+      tags:
+      - Authentication
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignInRequest'
+            examples:
+              SigninRequestExample:
+                summary: Default signIn request
+                x-microcks-default: true
+                value:
+                  credentials:
+                    name: Example Title
+                    password: example_value
+                    personalAccessTokenName: example_value
+                    personalAccessTokenSecret: example_value
+                    site:
+                      contentUrl: https://www.example.com
+      responses:
+        '200':
+          description: Successfully signed in.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignInResponse'
+              examples:
+                Signin200Example:
+                  summary: Default signIn 200 response
+                  x-microcks-default: true
+                  value:
+                    credentials:
+                      token: example_value
+                      site:
+                        id: abc123
+                        contentUrl: https://www.example.com
+                      user:
+                        id: abc123
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /auth/signout:
+    post:
+      operationId: signOut
+      summary: Tableau Sign Out
+      description: Signs you out of the current session. This invalidates the authentication token.
+      tags:
+      - Authentication
+      responses:
+        '204':
+          description: Successfully signed out.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /auth/switchSite:
+    post:
+      operationId: switchSite
+      summary: Tableau Switch Site
+      description: Switches you to the specified site without having to provide a user name and password again. The new site must be on the same server.
+      tags:
+      - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                site:
+                  type: object
+                  properties:
+                    contentUrl:
+                      type: string
+                      description: The URL namespace of the site to switch to.
+            examples:
+              SwitchsiteRequestExample:
+                summary: Default switchSite request
+                x-microcks-default: true
+                value:
+                  site:
+                    contentUrl: https://www.example.com
+      responses:
+        '200':
+          description: Successfully switched to the specified site.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignInResponse'
+              examples:
+                Switchsite200Example:
+                  summary: Default switchSite 200 response
+                  x-microcks-default: true
+                  value:
+                    credentials:
+                      token: example_value
+                      site:
+                        id: abc123
+                        contentUrl: https://www.example.com
+                      user:
+                        id: abc123
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    SignInRequest:
+      type: object
+      properties:
+        credentials:
+          type: object
+          required:
+          - site
+          properties:
+            name:
+              type: string
+              description: The name (user name) of the user signing in. Not required if using a personal access token.
+            password:
+              type: string
+              format: password
+              description: The password for the user.
+            personalAccessTokenName:
+              type: string
+              description: The name of the personal access token. Use this instead of name and password for token-based authentication.
+            personalAccessTokenSecret:
+              type: string
+              format: password
+              description: The secret value of the personal access token.
+            site:
+              type: object
+              properties:
+                contentUrl:
+                  type: string
+                  description: The URL namespace of the site. For the default site on Tableau Server, use an empty string. For Tableau Cloud, this is the site name in the URL.
+          example: example_value
+    SignInResponse:
+      type: object
+      properties:
+        credentials:
+          type: object
+          properties:
+            token:
+              type: string
+              description: The authentication token to use in subsequent API calls.
+            site:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: The ID of the site.
+                contentUrl:
+                  type: string
+                  description: The URL namespace of the site.
+            user:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: The ID of the authenticated user.
+          example: example_value
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            summary:
+              type: string
+              description: A short summary of the error.
+            detail:
+              type: string
+              description: A detailed description of the error.
+            code:
+              type: string
+              description: A numeric error code.
+          example: example_value
+  responses:
+    Unauthorized:
+      description: The authentication credentials were missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    TableauAuth:
+      type: apiKey
+      in: header
+      name: X-Tableau-Auth
+      description: The authentication token obtained from the Sign In method. Include this token in the X-Tableau-Auth header of all subsequent requests.
+externalDocs:
+  description: Tableau REST API Reference
+  url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref.htm

@@ -1,0 +1,535 @@
+openapi: 3.1.0
+info:
+  version: 3.24.0
+  title: Tableau REST Authentication Groups API
+  description: The Tableau REST API allows you to manage and change Tableau Server and Tableau Cloud resources programmatically using HTTP. You can use the REST API to manage sites, projects, workbooks, views, data sources, users, groups, permissions, schedules, subscriptions, and more.
+  license:
+    name: Proprietary
+    url: https://www.tableau.com/legal
+  termsOfService: https://www.tableau.com/legal
+  contact:
+    name: Tableau Developer Support
+    url: https://www.tableau.com/support
+servers:
+- url: https://{server}/api/{api-version}
+  description: Tableau Server or Tableau Cloud
+  variables:
+    server:
+      default: 10ax.online.tableau.com
+      description: The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.
+    api-version:
+      default: '3.24'
+      description: The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud.
+      enum:
+      - '3.24'
+      - '3.23'
+      - '3.22'
+      - '3.21'
+      - '3.20'
+      - '3.19'
+security:
+- TableauAuth: []
+tags:
+- name: Groups
+  description: Create, update, delete, and query groups. Groups are collections of users that simplify permission management.
+paths:
+  /sites/{site-id}/groups:
+    get:
+      operationId: queryGroups
+      summary: Tableau Query Groups
+      description: Returns a list of groups on the specified site.
+      tags:
+      - Groups
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageNumber'
+      - $ref: '#/components/parameters/Filter'
+      - $ref: '#/components/parameters/Sort'
+      responses:
+        '200':
+          description: A paginated list of groups.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupListResponse'
+              examples:
+                Querygroups200Example:
+                  summary: Default queryGroups 200 response
+                  x-microcks-default: true
+                  value:
+                    pagination:
+                      pageNumber: 10
+                      pageSize: 10
+                      totalAvailable: 10
+                    groups:
+                      group:
+                      - {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createGroup
+      summary: Tableau Create Group
+      description: Creates a group on the specified site.
+      tags:
+      - Groups
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateGroupRequest'
+            examples:
+              CreategroupRequestExample:
+                summary: Default createGroup request
+                x-microcks-default: true
+                value:
+                  group:
+                    name: Example Title
+                    minimumSiteRole: Creator
+      responses:
+        '201':
+          description: Group was created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupResponse'
+              examples:
+                Creategroup201Example:
+                  summary: Default createGroup 201 response
+                  x-microcks-default: true
+                  value:
+                    group:
+                      id: abc123
+                      name: Example Title
+                      domainName: example_value
+                      minimumSiteRole: Creator
+                      userCount: 10
+                      import:
+                        domainName: example_value
+                        siteRole: example_value
+                        grantLicenseMode: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sites/{site-id}/groups/{group-id}:
+    put:
+      operationId: updateGroup
+      summary: Tableau Update Group
+      description: Updates the name or Active Directory configuration of the specified group.
+      tags:
+      - Groups
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/GroupId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateGroupRequest'
+            examples:
+              UpdategroupRequestExample:
+                summary: Default updateGroup request
+                x-microcks-default: true
+                value:
+                  group:
+                    name: Example Title
+                    minimumSiteRole: Creator
+      responses:
+        '200':
+          description: Group was updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupResponse'
+              examples:
+                Updategroup200Example:
+                  summary: Default updateGroup 200 response
+                  x-microcks-default: true
+                  value:
+                    group:
+                      id: abc123
+                      name: Example Title
+                      domainName: example_value
+                      minimumSiteRole: Creator
+                      userCount: 10
+                      import:
+                        domainName: example_value
+                        siteRole: example_value
+                        grantLicenseMode: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteGroup
+      summary: Tableau Delete Group
+      description: Deletes the specified group from the site.
+      tags:
+      - Groups
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/GroupId'
+      responses:
+        '204':
+          description: Group was deleted successfully.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sites/{site-id}/groups/{group-id}/users:
+    get:
+      operationId: getGroupMembers
+      summary: Tableau Get Group Members
+      description: Returns a list of users who are members of the specified group.
+      tags:
+      - Groups
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/GroupId'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageNumber'
+      responses:
+        '200':
+          description: A list of users in the group.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserListResponse'
+              examples:
+                Getgroupmembers200Example:
+                  summary: Default getGroupMembers 200 response
+                  x-microcks-default: true
+                  value:
+                    pagination:
+                      pageNumber: 10
+                      pageSize: 10
+                      totalAvailable: 10
+                    users:
+                      user:
+                      - {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: addUserToGroup
+      summary: Tableau Add User to Group
+      description: Adds a user to the specified group.
+      tags:
+      - Groups
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/GroupId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: The ID of the user to add to the group.
+            examples:
+              AddusertogroupRequestExample:
+                summary: Default addUserToGroup request
+                x-microcks-default: true
+                value:
+                  user:
+                    id: abc123
+      responses:
+        '200':
+          description: User was added to the group successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+              examples:
+                Addusertogroup200Example:
+                  summary: Default addUserToGroup 200 response
+                  x-microcks-default: true
+                  value:
+                    user:
+                      id: abc123
+                      name: Example Title
+                      fullName: example_value
+                      email: user@example.com
+                      siteRole: Creator
+                      authSetting: example_value
+                      lastLogin: '2026-01-15T10:30:00Z'
+                      externalAuthUserId: '500123'
+                      locale: example_value
+                      language: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sites/{site-id}/groups/{group-id}/users/{user-id}:
+    delete:
+      operationId: removeUserFromGroup
+      summary: Tableau Remove User From Group
+      description: Removes the specified user from the specified group.
+      tags:
+      - Groups
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/GroupId'
+      - $ref: '#/components/parameters/UserId'
+      responses:
+        '204':
+          description: User was removed from the group successfully.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the user.
+          example: abc123
+        name:
+          type: string
+          description: The name (user name) of the user.
+          example: Example Title
+        fullName:
+          type: string
+          description: The display name of the user.
+          example: example_value
+        email:
+          type: string
+          format: email
+          description: The email address of the user.
+          example: user@example.com
+        siteRole:
+          type: string
+          enum:
+          - Creator
+          - Explorer
+          - ExplorerCanPublish
+          - SiteAdministratorCreator
+          - SiteAdministratorExplorer
+          - Unlicensed
+          - Viewer
+          description: The role of the user on the site.
+          example: Creator
+        authSetting:
+          type: string
+          description: The authentication type for the user.
+          example: example_value
+        lastLogin:
+          type: string
+          format: date-time
+          description: The date and time of the user's last login.
+          example: '2026-01-15T10:30:00Z'
+        externalAuthUserId:
+          type: string
+          description: The external authentication user ID.
+          example: '500123'
+        locale:
+          type: string
+          description: The user's locale setting.
+          example: example_value
+        language:
+          type: string
+          description: The user's language setting.
+          example: example_value
+    CreateGroupRequest:
+      type: object
+      properties:
+        group:
+          type: object
+          required:
+          - name
+          properties:
+            name:
+              type: string
+              description: The name of the group.
+            minimumSiteRole:
+              type: string
+              enum:
+              - Creator
+              - Explorer
+              - ExplorerCanPublish
+              - SiteAdministratorCreator
+              - SiteAdministratorExplorer
+              - Unlicensed
+              - Viewer
+          example: example_value
+    Pagination:
+      type: object
+      properties:
+        pageNumber:
+          type: integer
+          description: The current page number.
+          example: 10
+        pageSize:
+          type: integer
+          description: The number of items per page.
+          example: 10
+        totalAvailable:
+          type: integer
+          description: The total number of items available.
+          example: 10
+    GroupListResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        groups:
+          type: object
+          properties:
+            group:
+              type: array
+              items:
+                $ref: '#/components/schemas/Group'
+          example: example_value
+    UpdateGroupRequest:
+      type: object
+      properties:
+        group:
+          type: object
+          properties:
+            name:
+              type: string
+            minimumSiteRole:
+              type: string
+              enum:
+              - Creator
+              - Explorer
+              - ExplorerCanPublish
+              - SiteAdministratorCreator
+              - SiteAdministratorExplorer
+              - Unlicensed
+              - Viewer
+          example: example_value
+    Group:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the group.
+          example: abc123
+        name:
+          type: string
+          description: The name of the group.
+          example: Example Title
+        domainName:
+          type: string
+          description: The domain name for Active Directory groups. For local groups, this is "local".
+          example: example_value
+        minimumSiteRole:
+          type: string
+          enum:
+          - Creator
+          - Explorer
+          - ExplorerCanPublish
+          - SiteAdministratorCreator
+          - SiteAdministratorExplorer
+          - Unlicensed
+          - Viewer
+          description: The minimum site role for members of the group when they are imported from Active Directory.
+          example: Creator
+        userCount:
+          type: integer
+          description: The number of users in the group.
+          example: 10
+        import:
+          type: object
+          properties:
+            domainName:
+              type: string
+            siteRole:
+              type: string
+            grantLicenseMode:
+              type: string
+          example: example_value
+    UserResponse:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+    GroupResponse:
+      type: object
+      properties:
+        group:
+          $ref: '#/components/schemas/Group'
+    UserListResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        users:
+          type: object
+          properties:
+            user:
+              type: array
+              items:
+                $ref: '#/components/schemas/User'
+          example: example_value
+  parameters:
+    PageSize:
+      name: pageSize
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 100
+      description: The number of items to return in one response. The minimum is 1 and the maximum is 1000.
+    Filter:
+      name: filter
+      in: query
+      schema:
+        type: string
+      description: An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in.
+    PageNumber:
+      name: pageNumber
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+      description: The page number of the set of items to return. The default is 1.
+    UserId:
+      name: user-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the user.
+    GroupId:
+      name: group-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the group.
+    Sort:
+      name: sort
+      in: query
+      schema:
+        type: string
+      description: An expression that lets you specify the order in which items are returned. Use the format sort=field:direction where direction is asc or desc.
+    SiteId:
+      name: site-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the site. You can get the site ID from the response to the Sign In method.
+  securitySchemes:
+    TableauAuth:
+      type: apiKey
+      in: header
+      name: X-Tableau-Auth
+      description: The authentication token obtained from the Sign In method. Include this token in the X-Tableau-Auth header of all subsequent requests.
+externalDocs:
+  description: Tableau REST API Reference
+  url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref.htm

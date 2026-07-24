@@ -1,0 +1,892 @@
+openapi: 3.1.0
+info:
+  version: 3.24.0
+  title: Tableau REST Authentication Data Sources API
+  description: The Tableau REST API allows you to manage and change Tableau Server and Tableau Cloud resources programmatically using HTTP. You can use the REST API to manage sites, projects, workbooks, views, data sources, users, groups, permissions, schedules, subscriptions, and more.
+  license:
+    name: Proprietary
+    url: https://www.tableau.com/legal
+  termsOfService: https://www.tableau.com/legal
+  contact:
+    name: Tableau Developer Support
+    url: https://www.tableau.com/support
+servers:
+- url: https://{server}/api/{api-version}
+  description: Tableau Server or Tableau Cloud
+  variables:
+    server:
+      default: 10ax.online.tableau.com
+      description: The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.
+    api-version:
+      default: '3.24'
+      description: The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud.
+      enum:
+      - '3.24'
+      - '3.23'
+      - '3.22'
+      - '3.21'
+      - '3.20'
+      - '3.19'
+security:
+- TableauAuth: []
+tags:
+- name: Data Sources
+  description: Publish, query, update, delete, and download data sources. Data sources define the connection to data and can be shared across multiple workbooks.
+paths:
+  /sites/{site-id}/datasources:
+    get:
+      operationId: queryDataSources
+      summary: Tableau Query Data Sources
+      description: Returns a list of published data sources on the specified site, with optional pagination, filtering, and sorting.
+      tags:
+      - Data Sources
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageNumber'
+      - $ref: '#/components/parameters/Filter'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: A paginated list of data sources.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSourceListResponse'
+              examples:
+                Querydatasources200Example:
+                  summary: Default queryDataSources 200 response
+                  x-microcks-default: true
+                  value:
+                    pagination:
+                      pageNumber: 10
+                      pageSize: 10
+                      totalAvailable: 10
+                    datasources:
+                      datasource:
+                      - {}
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sites/{site-id}/datasources/{datasource-id}:
+    get:
+      operationId: queryDataSource
+      summary: Tableau Query Data Source
+      description: Returns information about the specified data source.
+      tags:
+      - Data Sources
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/DataSourceId'
+      responses:
+        '200':
+          description: Data source details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSourceResponse'
+              examples:
+                Querydatasource200Example:
+                  summary: Default queryDataSource 200 response
+                  x-microcks-default: true
+                  value:
+                    datasource:
+                      id: abc123
+                      name: Example Title
+                      description: A sample description.
+                      contentUrl: https://www.example.com
+                      type: example_value
+                      createdAt: '2026-01-15T10:30:00Z'
+                      updatedAt: '2026-01-15T10:30:00Z'
+                      isCertified: true
+                      certificationNote: example_value
+                      useRemoteQueryAgent: true
+                      hasExtracts: true
+                      encryptExtracts: example_value
+                      project:
+                        id: abc123
+                        name: Example Title
+                      owner:
+                        id: abc123
+                        name: Example Title
+                      tags:
+                        tag: {}
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: updateDataSource
+      summary: Tableau Update Data Source
+      description: Updates the owner, project, or certification status of the specified data source.
+      tags:
+      - Data Sources
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/DataSourceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDataSourceRequest'
+            examples:
+              UpdatedatasourceRequestExample:
+                summary: Default updateDataSource request
+                x-microcks-default: true
+                value:
+                  datasource:
+                    name: Example Title
+                    project:
+                      id: abc123
+                    owner:
+                      id: abc123
+                    isCertified: true
+                    certificationNote: example_value
+                    encryptExtracts: example_value
+      responses:
+        '200':
+          description: Data source was updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSourceResponse'
+              examples:
+                Updatedatasource200Example:
+                  summary: Default updateDataSource 200 response
+                  x-microcks-default: true
+                  value:
+                    datasource:
+                      id: abc123
+                      name: Example Title
+                      description: A sample description.
+                      contentUrl: https://www.example.com
+                      type: example_value
+                      createdAt: '2026-01-15T10:30:00Z'
+                      updatedAt: '2026-01-15T10:30:00Z'
+                      isCertified: true
+                      certificationNote: example_value
+                      useRemoteQueryAgent: true
+                      hasExtracts: true
+                      encryptExtracts: example_value
+                      project:
+                        id: abc123
+                        name: Example Title
+                      owner:
+                        id: abc123
+                        name: Example Title
+                      tags:
+                        tag: {}
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteDataSource
+      summary: Tableau Delete Data Source
+      description: Deletes the specified data source from a site.
+      tags:
+      - Data Sources
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/DataSourceId'
+      responses:
+        '204':
+          description: Data source was deleted successfully.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sites/{site-id}/datasources/{datasource-id}/content:
+    get:
+      operationId: downloadDataSource
+      summary: Tableau Download Data Source
+      description: Downloads the specified data source in .tdsx format.
+      tags:
+      - Data Sources
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/DataSourceId'
+      - name: includeExtract
+        in: query
+        schema:
+          type: boolean
+          default: true
+        description: If true and the data source contains an extract, the download includes the extract.
+        example: true
+      responses:
+        '200':
+          description: The data source file.
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                Downloaddatasource200Example:
+                  summary: Default downloadDataSource 200 response
+                  x-microcks-default: true
+                  value: example_value
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sites/{site-id}/datasources/{datasource-id}/connections:
+    get:
+      operationId: queryDataSourceConnections
+      summary: Tableau Query Data Source Connections
+      description: Returns a list of data connections for the specified data source.
+      tags:
+      - Data Sources
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/DataSourceId'
+      responses:
+        '200':
+          description: A list of data connections for the data source.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionListResponse'
+              examples:
+                Querydatasourceconnections200Example:
+                  summary: Default queryDataSourceConnections 200 response
+                  x-microcks-default: true
+                  value:
+                    connections:
+                      connection:
+                      - {}
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sites/{site-id}/datasources/{datasource-id}/revisions:
+    get:
+      operationId: getDataSourceRevisions
+      summary: Tableau Get Data Source Revisions
+      description: Returns a list of revision information for each revision of the specified data source.
+      tags:
+      - Data Sources
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/DataSourceId'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageNumber'
+      responses:
+        '200':
+          description: A list of data source revisions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RevisionListResponse'
+              examples:
+                Getdatasourcerevisions200Example:
+                  summary: Default getDataSourceRevisions 200 response
+                  x-microcks-default: true
+                  value:
+                    pagination:
+                      pageNumber: 10
+                      pageSize: 10
+                      totalAvailable: 10
+                    revisions:
+                      revision:
+                      - {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sites/{site-id}/datasources/{datasource-id}/tags:
+    get:
+      operationId: queryDataSourceTags
+      summary: Tableau Query Data Source Tags
+      description: Returns a list of tags associated with the specified data source.
+      tags:
+      - Data Sources
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/DataSourceId'
+      responses:
+        '200':
+          description: A list of tags on the data source.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagListResponse'
+              examples:
+                Querydatasourcetags200Example:
+                  summary: Default queryDataSourceTags 200 response
+                  x-microcks-default: true
+                  value:
+                    tags:
+                      tag:
+                      - {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: addTagsToDataSource
+      summary: Tableau Add Tags to Data Source
+      description: Adds one or more tags to the specified data source.
+      tags:
+      - Data Sources
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/DataSourceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TagListRequest'
+            examples:
+              AddtagstodatasourceRequestExample:
+                summary: Default addTagsToDataSource request
+                x-microcks-default: true
+                value:
+                  tags:
+                    tag:
+                    - {}
+      responses:
+        '200':
+          description: Tags were added successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagListResponse'
+              examples:
+                Addtagstodatasource200Example:
+                  summary: Default addTagsToDataSource 200 response
+                  x-microcks-default: true
+                  value:
+                    tags:
+                      tag:
+                      - {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sites/{site-id}/datasources/{datasource-id}/permissions:
+    get:
+      operationId: queryDataSourcePermissions
+      summary: Tableau Query Data Source Permissions
+      description: Returns a list of permissions for the specified data source.
+      tags:
+      - Data Sources
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/DataSourceId'
+      responses:
+        '200':
+          description: A list of permissions on the data source.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PermissionListResponse'
+              examples:
+                Querydatasourcepermissions200Example:
+                  summary: Default queryDataSourcePermissions 200 response
+                  x-microcks-default: true
+                  value:
+                    permissions:
+                      granteeCapabilities:
+                      - {}
+                    parent:
+                      project:
+                        id: abc123
+                        name: Example Title
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: addDataSourcePermissions
+      summary: Tableau Add Data Source Permissions
+      description: Adds permissions to the specified data source for a user or group.
+      tags:
+      - Data Sources
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/DataSourceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddPermissionsRequest'
+            examples:
+              AdddatasourcepermissionsRequestExample:
+                summary: Default addDataSourcePermissions request
+                x-microcks-default: true
+                value:
+                  permissions:
+                    granteeCapabilities:
+                    - {}
+      responses:
+        '200':
+          description: Permissions were added successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PermissionListResponse'
+              examples:
+                Adddatasourcepermissions200Example:
+                  summary: Default addDataSourcePermissions 200 response
+                  x-microcks-default: true
+                  value:
+                    permissions:
+                      granteeCapabilities:
+                      - {}
+                    parent:
+                      project:
+                        id: abc123
+                        name: Example Title
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    DataSourceListResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        datasources:
+          type: object
+          properties:
+            datasource:
+              type: array
+              items:
+                $ref: '#/components/schemas/DataSource'
+          example: example_value
+    AddPermissionsRequest:
+      type: object
+      properties:
+        permissions:
+          $ref: '#/components/schemas/Permission'
+    PermissionListResponse:
+      type: object
+      properties:
+        permissions:
+          $ref: '#/components/schemas/Permission'
+        parent:
+          type: object
+          properties:
+            project:
+              type: object
+              properties:
+                id:
+                  type: string
+                name:
+                  type: string
+          example: example_value
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            summary:
+              type: string
+              description: A short summary of the error.
+            detail:
+              type: string
+              description: A detailed description of the error.
+            code:
+              type: string
+              description: A numeric error code.
+          example: example_value
+    Tag:
+      type: object
+      properties:
+        label:
+          type: string
+          description: The text of the tag.
+          example: Example Title
+    Pagination:
+      type: object
+      properties:
+        pageNumber:
+          type: integer
+          description: The current page number.
+          example: 10
+        pageSize:
+          type: integer
+          description: The number of items per page.
+          example: 10
+        totalAvailable:
+          type: integer
+          description: The total number of items available.
+          example: 10
+    ConnectionListResponse:
+      type: object
+      properties:
+        connections:
+          type: object
+          properties:
+            connection:
+              type: array
+              items:
+                $ref: '#/components/schemas/Connection'
+          example: example_value
+    RevisionListResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        revisions:
+          type: object
+          properties:
+            revision:
+              type: array
+              items:
+                $ref: '#/components/schemas/Revision'
+          example: example_value
+    Revision:
+      type: object
+      properties:
+        revisionNumber:
+          type: integer
+          description: The revision number.
+          example: 10
+        publishedAt:
+          type: string
+          format: date-time
+          description: The date and time the revision was published.
+          example: '2026-01-15T10:30:00Z'
+        deleted:
+          type: boolean
+          description: Whether this revision has been deleted.
+          example: true
+        current:
+          type: boolean
+          description: Whether this is the current revision.
+          example: true
+        sizeInBytes:
+          type: integer
+          description: The size of the revision in bytes.
+          example: 10
+        publisher:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The ID of the user who published this revision.
+            name:
+              type: string
+              description: The name of the user who published this revision.
+          example: example_value
+    Permission:
+      type: object
+      properties:
+        granteeCapabilities:
+          type: array
+          items:
+            type: object
+            properties:
+              user:
+                type: object
+                properties:
+                  id:
+                    type: string
+              group:
+                type: object
+                properties:
+                  id:
+                    type: string
+              capabilities:
+                type: object
+                properties:
+                  capability:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          description: The name of the capability (e.g., Read, Write, ChangePermissions, Delete, Filter, ViewComments, AddComment, ExportData, ExportImage, ShareView, ViewUnderlyingData, WebAuthoring, RunExplainData).
+                        mode:
+                          type: string
+                          enum:
+                          - Allow
+                          - Deny
+                          description: Whether the capability is allowed or denied.
+          example: []
+    DataSource:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the data source.
+          example: abc123
+        name:
+          type: string
+          description: The name of the data source.
+          example: Example Title
+        description:
+          type: string
+          description: A description of the data source.
+          example: A sample description.
+        contentUrl:
+          type: string
+          description: The URL name of the data source.
+          example: https://www.example.com
+        type:
+          type: string
+          description: The type of data source (e.g., sqlserver, postgres, excel, hyper, etc.).
+          example: example_value
+        createdAt:
+          type: string
+          format: date-time
+          description: The date and time the data source was created.
+          example: '2026-01-15T10:30:00Z'
+        updatedAt:
+          type: string
+          format: date-time
+          description: The date and time the data source was last updated.
+          example: '2026-01-15T10:30:00Z'
+        isCertified:
+          type: boolean
+          description: Whether the data source is certified.
+          example: true
+        certificationNote:
+          type: string
+          description: The certification note for the data source.
+          example: example_value
+        useRemoteQueryAgent:
+          type: boolean
+          description: Whether the data source uses a remote query agent.
+          example: true
+        hasExtracts:
+          type: boolean
+          description: Whether the data source has extracts.
+          example: true
+        encryptExtracts:
+          type: string
+          description: Whether the data source extracts are encrypted.
+          example: example_value
+        project:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The ID of the containing project.
+            name:
+              type: string
+              description: The name of the containing project.
+          example: example_value
+        owner:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The ID of the data source owner.
+            name:
+              type: string
+              description: The name of the data source owner.
+          example: example_value
+        tags:
+          type: object
+          properties:
+            tag:
+              type: array
+              items:
+                $ref: '#/components/schemas/Tag'
+          example: example_value
+    TagListResponse:
+      type: object
+      properties:
+        tags:
+          type: object
+          properties:
+            tag:
+              type: array
+              items:
+                $ref: '#/components/schemas/Tag'
+          example: example_value
+    TagListRequest:
+      type: object
+      properties:
+        tags:
+          type: object
+          properties:
+            tag:
+              type: array
+              items:
+                $ref: '#/components/schemas/Tag'
+          example: example_value
+    UpdateDataSourceRequest:
+      type: object
+      properties:
+        datasource:
+          type: object
+          properties:
+            name:
+              type: string
+            project:
+              type: object
+              properties:
+                id:
+                  type: string
+            owner:
+              type: object
+              properties:
+                id:
+                  type: string
+            isCertified:
+              type: boolean
+            certificationNote:
+              type: string
+            encryptExtracts:
+              type: string
+          example: example_value
+    DataSourceResponse:
+      type: object
+      properties:
+        datasource:
+          $ref: '#/components/schemas/DataSource'
+    Connection:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the connection.
+          example: abc123
+        type:
+          type: string
+          description: The type of connection (e.g., sqlserver, postgres).
+          example: example_value
+        serverAddress:
+          type: string
+          description: The address of the server for the connection.
+          example: example_value
+        serverPort:
+          type: string
+          description: The port used for the connection.
+          example: example_value
+        userName:
+          type: string
+          description: The user name for the connection.
+          example: example_value
+        datasource:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The ID of the associated data source.
+            name:
+              type: string
+              description: The name of the associated data source.
+          example: example_value
+  parameters:
+    PageSize:
+      name: pageSize
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 100
+      description: The number of items to return in one response. The minimum is 1 and the maximum is 1000.
+    Filter:
+      name: filter
+      in: query
+      schema:
+        type: string
+      description: An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in.
+    Fields:
+      name: fields
+      in: query
+      schema:
+        type: string
+      description: An expression that lets you specify which fields are included in the response. Use the format fields=field1,field2. Use _default_ to return the default set of fields, or _all_ to return all fields.
+    PageNumber:
+      name: pageNumber
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+      description: The page number of the set of items to return. The default is 1.
+    DataSourceId:
+      name: datasource-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the data source.
+    Sort:
+      name: sort
+      in: query
+      schema:
+        type: string
+      description: An expression that lets you specify the order in which items are returned. Use the format sort=field:direction where direction is asc or desc.
+    SiteId:
+      name: site-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the site. You can get the site ID from the response to the Sign In method.
+  responses:
+    NotFound:
+      description: The specified resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: The caller does not have permission to perform the requested action.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: The authentication credentials were missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    TableauAuth:
+      type: apiKey
+      in: header
+      name: X-Tableau-Auth
+      description: The authentication token obtained from the Sign In method. Include this token in the X-Tableau-Auth header of all subsequent requests.
+externalDocs:
+  description: Tableau REST API Reference
+  url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref.htm

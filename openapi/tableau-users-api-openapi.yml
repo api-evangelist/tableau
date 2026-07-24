@@ -1,0 +1,787 @@
+openapi: 3.1.0
+info:
+  version: 3.24.0
+  title: Tableau REST Authentication Users API
+  description: The Tableau REST API allows you to manage and change Tableau Server and Tableau Cloud resources programmatically using HTTP. You can use the REST API to manage sites, projects, workbooks, views, data sources, users, groups, permissions, schedules, subscriptions, and more.
+  license:
+    name: Proprietary
+    url: https://www.tableau.com/legal
+  termsOfService: https://www.tableau.com/legal
+  contact:
+    name: Tableau Developer Support
+    url: https://www.tableau.com/support
+servers:
+- url: https://{server}/api/{api-version}
+  description: Tableau Server or Tableau Cloud
+  variables:
+    server:
+      default: 10ax.online.tableau.com
+      description: The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.
+    api-version:
+      default: '3.24'
+      description: The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud.
+      enum:
+      - '3.24'
+      - '3.23'
+      - '3.22'
+      - '3.21'
+      - '3.20'
+      - '3.19'
+security:
+- TableauAuth: []
+tags:
+- name: Users
+  description: Add, update, remove, and query users on a site. Users are individuals who can sign in to Tableau Server or Tableau Cloud.
+paths:
+  /sites/{site-id}/users:
+    get:
+      operationId: getUsers
+      summary: Tableau Get Users on Site
+      description: Returns the users associated with the specified site.
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageNumber'
+      - $ref: '#/components/parameters/Filter'
+      - $ref: '#/components/parameters/Sort'
+      responses:
+        '200':
+          description: A paginated list of users.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserListResponse'
+              examples:
+                Getusers200Example:
+                  summary: Default getUsers 200 response
+                  x-microcks-default: true
+                  value:
+                    pagination:
+                      pageNumber: 10
+                      pageSize: 10
+                      totalAvailable: 10
+                    users:
+                      user:
+                      - {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: addUserToSite
+      summary: Tableau Add User to Site
+      description: Adds a user to the specified site. The user must already exist on the server or in the identity store.
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddUserRequest'
+            examples:
+              AddusertositeRequestExample:
+                summary: Default addUserToSite request
+                x-microcks-default: true
+                value:
+                  user:
+                    name: Example Title
+                    siteRole: Creator
+                    authSetting: example_value
+      responses:
+        '201':
+          description: User was added successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+              examples:
+                Addusertosite201Example:
+                  summary: Default addUserToSite 201 response
+                  x-microcks-default: true
+                  value:
+                    user:
+                      id: abc123
+                      name: Example Title
+                      fullName: example_value
+                      email: user@example.com
+                      siteRole: Creator
+                      authSetting: example_value
+                      lastLogin: '2026-01-15T10:30:00Z'
+                      externalAuthUserId: '500123'
+                      locale: example_value
+                      language: example_value
+        '409':
+          $ref: '#/components/responses/Conflict'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sites/{site-id}/users/{user-id}:
+    get:
+      operationId: queryUser
+      summary: Tableau Query User on Site
+      description: Returns information about the specified user on the site.
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: User details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+              examples:
+                Queryuser200Example:
+                  summary: Default queryUser 200 response
+                  x-microcks-default: true
+                  value:
+                    user:
+                      id: abc123
+                      name: Example Title
+                      fullName: example_value
+                      email: user@example.com
+                      siteRole: Creator
+                      authSetting: example_value
+                      lastLogin: '2026-01-15T10:30:00Z'
+                      externalAuthUserId: '500123'
+                      locale: example_value
+                      language: example_value
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: updateUser
+      summary: Tableau Update User
+      description: Modifies information about the specified user.
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/UserId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRequest'
+            examples:
+              UpdateuserRequestExample:
+                summary: Default updateUser request
+                x-microcks-default: true
+                value:
+                  user:
+                    fullName: example_value
+                    email: user@example.com
+                    siteRole: Creator
+                    authSetting: example_value
+      responses:
+        '200':
+          description: User was updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+              examples:
+                Updateuser200Example:
+                  summary: Default updateUser 200 response
+                  x-microcks-default: true
+                  value:
+                    user:
+                      id: abc123
+                      name: Example Title
+                      fullName: example_value
+                      email: user@example.com
+                      siteRole: Creator
+                      authSetting: example_value
+                      lastLogin: '2026-01-15T10:30:00Z'
+                      externalAuthUserId: '500123'
+                      locale: example_value
+                      language: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: removeUserFromSite
+      summary: Tableau Remove User From Site
+      description: Removes the specified user from the site.
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/UserId'
+      responses:
+        '204':
+          description: User was removed successfully.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sites/{site-id}/users/{user-id}/workbooks:
+    get:
+      operationId: queryWorkbooksForUser
+      summary: Tableau Query Workbooks for User
+      description: Returns the workbooks that the specified user owns or has Read (view) permissions for.
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/UserId'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageNumber'
+      responses:
+        '200':
+          description: A paginated list of workbooks for the user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkbookListResponse'
+              examples:
+                Queryworkbooksforuser200Example:
+                  summary: Default queryWorkbooksForUser 200 response
+                  x-microcks-default: true
+                  value:
+                    pagination:
+                      pageNumber: 10
+                      pageSize: 10
+                      totalAvailable: 10
+                    workbooks:
+                      workbook:
+                      - {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sites/{site-id}/groups/{group-id}/users:
+    get:
+      operationId: getGroupMembers
+      summary: Tableau Get Group Members
+      description: Returns a list of users who are members of the specified group.
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/GroupId'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageNumber'
+      responses:
+        '200':
+          description: A list of users in the group.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserListResponse'
+              examples:
+                Getgroupmembers200Example:
+                  summary: Default getGroupMembers 200 response
+                  x-microcks-default: true
+                  value:
+                    pagination:
+                      pageNumber: 10
+                      pageSize: 10
+                      totalAvailable: 10
+                    users:
+                      user:
+                      - {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: addUserToGroup
+      summary: Tableau Add User to Group
+      description: Adds a user to the specified group.
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/GroupId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: The ID of the user to add to the group.
+            examples:
+              AddusertogroupRequestExample:
+                summary: Default addUserToGroup request
+                x-microcks-default: true
+                value:
+                  user:
+                    id: abc123
+      responses:
+        '200':
+          description: User was added to the group successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+              examples:
+                Addusertogroup200Example:
+                  summary: Default addUserToGroup 200 response
+                  x-microcks-default: true
+                  value:
+                    user:
+                      id: abc123
+                      name: Example Title
+                      fullName: example_value
+                      email: user@example.com
+                      siteRole: Creator
+                      authSetting: example_value
+                      lastLogin: '2026-01-15T10:30:00Z'
+                      externalAuthUserId: '500123'
+                      locale: example_value
+                      language: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sites/{site-id}/groups/{group-id}/users/{user-id}:
+    delete:
+      operationId: removeUserFromGroup
+      summary: Tableau Remove User From Group
+      description: Removes the specified user from the specified group.
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/GroupId'
+      - $ref: '#/components/parameters/UserId'
+      responses:
+        '204':
+          description: User was removed from the group successfully.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    PageSize:
+      name: pageSize
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 100
+      description: The number of items to return in one response. The minimum is 1 and the maximum is 1000.
+    Filter:
+      name: filter
+      in: query
+      schema:
+        type: string
+      description: An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in.
+    UserId:
+      name: user-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the user.
+    GroupId:
+      name: group-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the group.
+    PageNumber:
+      name: pageNumber
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+      description: The page number of the set of items to return. The default is 1.
+    Sort:
+      name: sort
+      in: query
+      schema:
+        type: string
+      description: An expression that lets you specify the order in which items are returned. Use the format sort=field:direction where direction is asc or desc.
+    SiteId:
+      name: site-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the site. You can get the site ID from the response to the Sign In method.
+  schemas:
+    UpdateUserRequest:
+      type: object
+      properties:
+        user:
+          type: object
+          properties:
+            fullName:
+              type: string
+            email:
+              type: string
+              format: email
+            siteRole:
+              type: string
+              enum:
+              - Creator
+              - Explorer
+              - ExplorerCanPublish
+              - SiteAdministratorCreator
+              - SiteAdministratorExplorer
+              - Unlicensed
+              - Viewer
+            authSetting:
+              type: string
+          example: example_value
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            summary:
+              type: string
+              description: A short summary of the error.
+            detail:
+              type: string
+              description: A detailed description of the error.
+            code:
+              type: string
+              description: A numeric error code.
+          example: example_value
+    UserResponse:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+    Pagination:
+      type: object
+      properties:
+        pageNumber:
+          type: integer
+          description: The current page number.
+          example: 10
+        pageSize:
+          type: integer
+          description: The number of items per page.
+          example: 10
+        totalAvailable:
+          type: integer
+          description: The total number of items available.
+          example: 10
+    Tag:
+      type: object
+      properties:
+        label:
+          type: string
+          description: The text of the tag.
+          example: Example Title
+    Workbook:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the workbook.
+          example: abc123
+        name:
+          type: string
+          description: The name of the workbook.
+          example: Example Title
+        description:
+          type: string
+          description: A description of the workbook.
+          example: A sample description.
+        contentUrl:
+          type: string
+          description: The URL name of the workbook, used in URLs to access the workbook.
+          example: https://www.example.com
+        webpageUrl:
+          type: string
+          format: uri
+          description: The full URL to the workbook on the server.
+          example: https://www.example.com
+        showTabs:
+          type: boolean
+          description: Whether the workbook shows views as tabs.
+          example: true
+        size:
+          type: integer
+          description: The size of the workbook in bytes.
+          example: 10
+        createdAt:
+          type: string
+          format: date-time
+          description: The date and time the workbook was created.
+          example: '2026-01-15T10:30:00Z'
+        updatedAt:
+          type: string
+          format: date-time
+          description: The date and time the workbook was last updated.
+          example: '2026-01-15T10:30:00Z'
+        encryptExtracts:
+          type: string
+          description: Whether extracts in the workbook are encrypted.
+          example: example_value
+        defaultViewId:
+          type: string
+          description: The ID of the default view in the workbook.
+          example: '500123'
+        project:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The ID of the containing project.
+            name:
+              type: string
+              description: The name of the containing project.
+          example: example_value
+        owner:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The ID of the workbook owner.
+            name:
+              type: string
+              description: The name of the workbook owner.
+          example: example_value
+        tags:
+          type: object
+          properties:
+            tag:
+              type: array
+              items:
+                $ref: '#/components/schemas/Tag'
+          example: example_value
+        views:
+          type: object
+          properties:
+            view:
+              type: array
+              items:
+                $ref: '#/components/schemas/View'
+          example: example_value
+        usage:
+          type: object
+          properties:
+            totalViewCount:
+              type: integer
+              description: The total number of times the workbook has been viewed.
+          example: example_value
+    WorkbookListResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        workbooks:
+          type: object
+          properties:
+            workbook:
+              type: array
+              items:
+                $ref: '#/components/schemas/Workbook'
+          example: example_value
+    View:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the view.
+          example: abc123
+        name:
+          type: string
+          description: The name of the view.
+          example: Example Title
+        contentUrl:
+          type: string
+          description: The URL name of the view.
+          example: https://www.example.com
+        createdAt:
+          type: string
+          format: date-time
+          description: The date and time the view was created.
+          example: '2026-01-15T10:30:00Z'
+        updatedAt:
+          type: string
+          format: date-time
+          description: The date and time the view was last updated.
+          example: '2026-01-15T10:30:00Z'
+        viewUrlName:
+          type: string
+          description: The URL-friendly name of the view used in the content URL.
+          example: https://www.example.com
+        sheetType:
+          type: string
+          enum:
+          - worksheet
+          - dashboard
+          - story
+          description: The type of sheet (worksheet, dashboard, or story).
+          example: worksheet
+        project:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The ID of the containing project.
+            name:
+              type: string
+              description: The name of the containing project.
+          example: example_value
+        owner:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The ID of the view owner.
+            name:
+              type: string
+              description: The name of the view owner.
+          example: example_value
+        workbook:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The ID of the containing workbook.
+            name:
+              type: string
+              description: The name of the containing workbook.
+          example: example_value
+        tags:
+          type: object
+          properties:
+            tag:
+              type: array
+              items:
+                $ref: '#/components/schemas/Tag'
+          example: example_value
+        usage:
+          type: object
+          properties:
+            totalViewCount:
+              type: integer
+              description: The total number of times the view has been accessed.
+          example: example_value
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the user.
+          example: abc123
+        name:
+          type: string
+          description: The name (user name) of the user.
+          example: Example Title
+        fullName:
+          type: string
+          description: The display name of the user.
+          example: example_value
+        email:
+          type: string
+          format: email
+          description: The email address of the user.
+          example: user@example.com
+        siteRole:
+          type: string
+          enum:
+          - Creator
+          - Explorer
+          - ExplorerCanPublish
+          - SiteAdministratorCreator
+          - SiteAdministratorExplorer
+          - Unlicensed
+          - Viewer
+          description: The role of the user on the site.
+          example: Creator
+        authSetting:
+          type: string
+          description: The authentication type for the user.
+          example: example_value
+        lastLogin:
+          type: string
+          format: date-time
+          description: The date and time of the user's last login.
+          example: '2026-01-15T10:30:00Z'
+        externalAuthUserId:
+          type: string
+          description: The external authentication user ID.
+          example: '500123'
+        locale:
+          type: string
+          description: The user's locale setting.
+          example: example_value
+        language:
+          type: string
+          description: The user's language setting.
+          example: example_value
+    AddUserRequest:
+      type: object
+      properties:
+        user:
+          type: object
+          required:
+          - name
+          - siteRole
+          properties:
+            name:
+              type: string
+              description: The name of the user to add.
+            siteRole:
+              type: string
+              enum:
+              - Creator
+              - Explorer
+              - ExplorerCanPublish
+              - SiteAdministratorCreator
+              - SiteAdministratorExplorer
+              - Unlicensed
+              - Viewer
+            authSetting:
+              type: string
+              description: The authentication type for the user.
+          example: example_value
+    UserListResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        users:
+          type: object
+          properties:
+            user:
+              type: array
+              items:
+                $ref: '#/components/schemas/User'
+          example: example_value
+  responses:
+    NotFound:
+      description: The specified resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Conflict:
+      description: A resource with the same name or identifier already exists.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    TableauAuth:
+      type: apiKey
+      in: header
+      name: X-Tableau-Auth
+      description: The authentication token obtained from the Sign In method. Include this token in the X-Tableau-Auth header of all subsequent requests.
+externalDocs:
+  description: Tableau REST API Reference
+  url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref.htm

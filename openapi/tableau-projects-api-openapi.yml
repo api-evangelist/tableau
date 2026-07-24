@@ -1,0 +1,525 @@
+openapi: 3.1.0
+info:
+  version: 3.24.0
+  title: Tableau REST Authentication Projects API
+  description: The Tableau REST API allows you to manage and change Tableau Server and Tableau Cloud resources programmatically using HTTP. You can use the REST API to manage sites, projects, workbooks, views, data sources, users, groups, permissions, schedules, subscriptions, and more.
+  license:
+    name: Proprietary
+    url: https://www.tableau.com/legal
+  termsOfService: https://www.tableau.com/legal
+  contact:
+    name: Tableau Developer Support
+    url: https://www.tableau.com/support
+servers:
+- url: https://{server}/api/{api-version}
+  description: Tableau Server or Tableau Cloud
+  variables:
+    server:
+      default: 10ax.online.tableau.com
+      description: The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.
+    api-version:
+      default: '3.24'
+      description: The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud.
+      enum:
+      - '3.24'
+      - '3.23'
+      - '3.22'
+      - '3.21'
+      - '3.20'
+      - '3.19'
+security:
+- TableauAuth: []
+tags:
+- name: Projects
+  description: Create, update, delete, and query projects. Projects are containers for organizing workbooks, data sources, and other content on a site.
+paths:
+  /sites/{site-id}/projects:
+    get:
+      operationId: queryProjects
+      summary: Tableau Query Projects
+      description: Returns a list of projects on the specified site, with optional pagination. You can filter and sort the list of projects.
+      tags:
+      - Projects
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageNumber'
+      - $ref: '#/components/parameters/Filter'
+      - $ref: '#/components/parameters/Sort'
+      responses:
+        '200':
+          description: A paginated list of projects.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectListResponse'
+              examples:
+                Queryprojects200Example:
+                  summary: Default queryProjects 200 response
+                  x-microcks-default: true
+                  value:
+                    pagination:
+                      pageNumber: 10
+                      pageSize: 10
+                      totalAvailable: 10
+                    projects:
+                      project:
+                      - {}
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createProject
+      summary: Tableau Create Project
+      description: Creates a project on the specified site. You can also create project hierarchies by setting a parent project.
+      tags:
+      - Projects
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProjectRequest'
+            examples:
+              CreateprojectRequestExample:
+                summary: Default createProject request
+                x-microcks-default: true
+                value:
+                  project:
+                    name: Example Title
+                    description: A sample description.
+                    parentProjectId: '500123'
+                    contentPermissions: LockedToProject
+      responses:
+        '201':
+          description: Project was created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectResponse'
+              examples:
+                Createproject201Example:
+                  summary: Default createProject 201 response
+                  x-microcks-default: true
+                  value:
+                    project:
+                      id: abc123
+                      name: Example Title
+                      description: A sample description.
+                      parentProjectId: '500123'
+                      contentPermissions: LockedToProject
+                      createdAt: '2026-01-15T10:30:00Z'
+                      updatedAt: '2026-01-15T10:30:00Z'
+                      owner:
+                        id: abc123
+                      topLevelProject: true
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '409':
+          $ref: '#/components/responses/Conflict'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sites/{site-id}/projects/{project-id}:
+    put:
+      operationId: updateProject
+      summary: Tableau Update Project
+      description: Updates the name, description, or project hierarchy of the specified project.
+      tags:
+      - Projects
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/ProjectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProjectRequest'
+            examples:
+              UpdateprojectRequestExample:
+                summary: Default updateProject request
+                x-microcks-default: true
+                value:
+                  project:
+                    name: Example Title
+                    description: A sample description.
+                    parentProjectId: '500123'
+                    contentPermissions: LockedToProject
+      responses:
+        '200':
+          description: Project was updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectResponse'
+              examples:
+                Updateproject200Example:
+                  summary: Default updateProject 200 response
+                  x-microcks-default: true
+                  value:
+                    project:
+                      id: abc123
+                      name: Example Title
+                      description: A sample description.
+                      parentProjectId: '500123'
+                      contentPermissions: LockedToProject
+                      createdAt: '2026-01-15T10:30:00Z'
+                      updatedAt: '2026-01-15T10:30:00Z'
+                      owner:
+                        id: abc123
+                      topLevelProject: true
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteProject
+      summary: Tableau Delete Project
+      description: Deletes the specified project on a site. When you delete a project, all Tableau assets inside the project are also deleted.
+      tags:
+      - Projects
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/ProjectId'
+      responses:
+        '204':
+          description: Project was deleted successfully.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sites/{site-id}/projects/{project-id}/default-permissions/workbooks:
+    get:
+      operationId: queryDefaultWorkbookPermissions
+      summary: Tableau Query Default Permissions for Workbooks
+      description: Returns the default permissions for workbooks in the specified project.
+      tags:
+      - Projects
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/ProjectId'
+      responses:
+        '200':
+          description: Default workbook permissions for the project.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PermissionListResponse'
+              examples:
+                Querydefaultworkbookpermissions200Example:
+                  summary: Default queryDefaultWorkbookPermissions 200 response
+                  x-microcks-default: true
+                  value:
+                    permissions:
+                      granteeCapabilities:
+                      - {}
+                    parent:
+                      project:
+                        id: abc123
+                        name: Example Title
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    PageSize:
+      name: pageSize
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 100
+      description: The number of items to return in one response. The minimum is 1 and the maximum is 1000.
+    Filter:
+      name: filter
+      in: query
+      schema:
+        type: string
+      description: An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in.
+    PageNumber:
+      name: pageNumber
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+      description: The page number of the set of items to return. The default is 1.
+    ProjectId:
+      name: project-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the project.
+    Sort:
+      name: sort
+      in: query
+      schema:
+        type: string
+      description: An expression that lets you specify the order in which items are returned. Use the format sort=field:direction where direction is asc or desc.
+    SiteId:
+      name: site-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the site. You can get the site ID from the response to the Sign In method.
+  schemas:
+    Project:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the project.
+          example: abc123
+        name:
+          type: string
+          description: The name of the project.
+          example: Example Title
+        description:
+          type: string
+          description: A description of the project.
+          example: A sample description.
+        parentProjectId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the parent project. If null, this is a top-level project.
+          example: '500123'
+        contentPermissions:
+          type: string
+          enum:
+          - LockedToProject
+          - ManagedByOwner
+          - LockedToProjectWithoutNested
+          description: The permissions model for the project.
+          example: LockedToProject
+        createdAt:
+          type: string
+          format: date-time
+          description: The date and time the project was created.
+          example: '2026-01-15T10:30:00Z'
+        updatedAt:
+          type: string
+          format: date-time
+          description: The date and time the project was last updated.
+          example: '2026-01-15T10:30:00Z'
+        owner:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The ID of the project owner.
+          example: example_value
+        topLevelProject:
+          type: boolean
+          description: Whether this is a top-level project.
+          example: true
+    PermissionListResponse:
+      type: object
+      properties:
+        permissions:
+          $ref: '#/components/schemas/Permission'
+        parent:
+          type: object
+          properties:
+            project:
+              type: object
+              properties:
+                id:
+                  type: string
+                name:
+                  type: string
+          example: example_value
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            summary:
+              type: string
+              description: A short summary of the error.
+            detail:
+              type: string
+              description: A detailed description of the error.
+            code:
+              type: string
+              description: A numeric error code.
+          example: example_value
+    Pagination:
+      type: object
+      properties:
+        pageNumber:
+          type: integer
+          description: The current page number.
+          example: 10
+        pageSize:
+          type: integer
+          description: The number of items per page.
+          example: 10
+        totalAvailable:
+          type: integer
+          description: The total number of items available.
+          example: 10
+    ProjectResponse:
+      type: object
+      properties:
+        project:
+          $ref: '#/components/schemas/Project'
+    UpdateProjectRequest:
+      type: object
+      properties:
+        project:
+          type: object
+          properties:
+            name:
+              type: string
+            description:
+              type: string
+            parentProjectId:
+              type: string
+            contentPermissions:
+              type: string
+              enum:
+              - LockedToProject
+              - ManagedByOwner
+              - LockedToProjectWithoutNested
+          example: example_value
+    CreateProjectRequest:
+      type: object
+      properties:
+        project:
+          type: object
+          required:
+          - name
+          properties:
+            name:
+              type: string
+              description: The name for the project.
+            description:
+              type: string
+              description: A description for the project.
+            parentProjectId:
+              type: string
+              description: The ID of the parent project. Omit for a top-level project.
+            contentPermissions:
+              type: string
+              enum:
+              - LockedToProject
+              - ManagedByOwner
+              - LockedToProjectWithoutNested
+          example: example_value
+    Permission:
+      type: object
+      properties:
+        granteeCapabilities:
+          type: array
+          items:
+            type: object
+            properties:
+              user:
+                type: object
+                properties:
+                  id:
+                    type: string
+              group:
+                type: object
+                properties:
+                  id:
+                    type: string
+              capabilities:
+                type: object
+                properties:
+                  capability:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          description: The name of the capability (e.g., Read, Write, ChangePermissions, Delete, Filter, ViewComments, AddComment, ExportData, ExportImage, ShareView, ViewUnderlyingData, WebAuthoring, RunExplainData).
+                        mode:
+                          type: string
+                          enum:
+                          - Allow
+                          - Deny
+                          description: Whether the capability is allowed or denied.
+          example: []
+    ProjectListResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        projects:
+          type: object
+          properties:
+            project:
+              type: array
+              items:
+                $ref: '#/components/schemas/Project'
+          example: example_value
+  responses:
+    NotFound:
+      description: The specified resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: The caller does not have permission to perform the requested action.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: The authentication credentials were missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Conflict:
+      description: A resource with the same name or identifier already exists.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    TableauAuth:
+      type: apiKey
+      in: header
+      name: X-Tableau-Auth
+      description: The authentication token obtained from the Sign In method. Include this token in the X-Tableau-Auth header of all subsequent requests.
+externalDocs:
+  description: Tableau REST API Reference
+  url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref.htm

@@ -1,0 +1,515 @@
+openapi: 3.1.0
+info:
+  version: 3.24.0
+  title: Tableau REST Authentication Sites API
+  description: The Tableau REST API allows you to manage and change Tableau Server and Tableau Cloud resources programmatically using HTTP. You can use the REST API to manage sites, projects, workbooks, views, data sources, users, groups, permissions, schedules, subscriptions, and more.
+  license:
+    name: Proprietary
+    url: https://www.tableau.com/legal
+  termsOfService: https://www.tableau.com/legal
+  contact:
+    name: Tableau Developer Support
+    url: https://www.tableau.com/support
+servers:
+- url: https://{server}/api/{api-version}
+  description: Tableau Server or Tableau Cloud
+  variables:
+    server:
+      default: 10ax.online.tableau.com
+      description: The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.
+    api-version:
+      default: '3.24'
+      description: The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud.
+      enum:
+      - '3.24'
+      - '3.23'
+      - '3.22'
+      - '3.21'
+      - '3.20'
+      - '3.19'
+security:
+- TableauAuth: []
+tags:
+- name: Sites
+  description: Manage sites on Tableau Server. A site is a collection of users, groups, projects, workbooks, data sources, and other resources.
+paths:
+  /sites:
+    get:
+      operationId: querySites
+      summary: Tableau Query Sites
+      description: Returns a list of the sites on the server that the caller has access to. This method is available to Tableau Server administrators.
+      tags:
+      - Sites
+      parameters:
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageNumber'
+      responses:
+        '200':
+          description: A paginated list of sites.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SiteListResponse'
+              examples:
+                Querysites200Example:
+                  summary: Default querySites 200 response
+                  x-microcks-default: true
+                  value:
+                    pagination:
+                      pageNumber: 10
+                      pageSize: 10
+                      totalAvailable: 10
+                    sites:
+                      site:
+                      - {}
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createSite
+      summary: Tableau Create Site
+      description: Creates a site on Tableau Server. To create a site, you must be a server administrator. Not available for Tableau Cloud.
+      tags:
+      - Sites
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSiteRequest'
+            examples:
+              CreatesiteRequestExample:
+                summary: Default createSite request
+                x-microcks-default: true
+                value:
+                  site:
+                    name: Example Title
+                    contentUrl: https://www.example.com
+                    adminMode: ContentAndUsers
+                    userQuota: 10
+                    storageQuota: 10
+                    disableSubscriptions: true
+      responses:
+        '201':
+          description: Site was created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SiteResponse'
+              examples:
+                Createsite201Example:
+                  summary: Default createSite 201 response
+                  x-microcks-default: true
+                  value:
+                    site:
+                      id: abc123
+                      name: Example Title
+                      contentUrl: https://www.example.com
+                      adminMode: ContentAndUsers
+                      state: Active
+                      storageQuota: 10
+                      userQuota: 10
+                      numCreators: 10
+                      numExplorers: 10
+                      numViewers: 10
+                      disableSubscriptions: true
+                      revision: example_value
+                      usage:
+                        numUsers: 10
+                        storage: 10
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '409':
+          $ref: '#/components/responses/Conflict'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sites/{site-id}:
+    get:
+      operationId: querySite
+      summary: Tableau Query Site
+      description: Returns information about the specified site, with the option to return information about the storage space and the number of users.
+      tags:
+      - Sites
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - name: includeUsageStatistics
+        in: query
+        schema:
+          type: boolean
+          default: false
+        description: If true, returns usage statistics for the site.
+        example: true
+      responses:
+        '200':
+          description: Site details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SiteResponse'
+              examples:
+                Querysite200Example:
+                  summary: Default querySite 200 response
+                  x-microcks-default: true
+                  value:
+                    site:
+                      id: abc123
+                      name: Example Title
+                      contentUrl: https://www.example.com
+                      adminMode: ContentAndUsers
+                      state: Active
+                      storageQuota: 10
+                      userQuota: 10
+                      numCreators: 10
+                      numExplorers: 10
+                      numViewers: 10
+                      disableSubscriptions: true
+                      revision: example_value
+                      usage:
+                        numUsers: 10
+                        storage: 10
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: updateSite
+      summary: Tableau Update Site
+      description: Updates the settings for the specified site, including the name, URL namespace, storage quota, and other settings.
+      tags:
+      - Sites
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSiteRequest'
+            examples:
+              UpdatesiteRequestExample:
+                summary: Default updateSite request
+                x-microcks-default: true
+                value:
+                  site:
+                    name: Example Title
+                    contentUrl: https://www.example.com
+                    adminMode: ContentAndUsers
+                    state: Active
+                    storageQuota: 10
+                    userQuota: 10
+                    disableSubscriptions: true
+                    revision: example_value
+      responses:
+        '200':
+          description: Site was updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SiteResponse'
+              examples:
+                Updatesite200Example:
+                  summary: Default updateSite 200 response
+                  x-microcks-default: true
+                  value:
+                    site:
+                      id: abc123
+                      name: Example Title
+                      contentUrl: https://www.example.com
+                      adminMode: ContentAndUsers
+                      state: Active
+                      storageQuota: 10
+                      userQuota: 10
+                      numCreators: 10
+                      numExplorers: 10
+                      numViewers: 10
+                      disableSubscriptions: true
+                      revision: example_value
+                      usage:
+                        numUsers: 10
+                        storage: 10
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteSite
+      summary: Tableau Delete Site
+      description: Deletes the specified site. Deleting a site also deletes all content on the site including workbooks, data sources, users, etc.
+      tags:
+      - Sites
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      responses:
+        '204':
+          description: Site was deleted successfully.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    PageSize:
+      name: pageSize
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 100
+      description: The number of items to return in one response. The minimum is 1 and the maximum is 1000.
+    PageNumber:
+      name: pageNumber
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+      description: The page number of the set of items to return. The default is 1.
+    SiteId:
+      name: site-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the site. You can get the site ID from the response to the Sign In method.
+  responses:
+    Forbidden:
+      description: The caller does not have permission to perform the requested action.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The specified resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Conflict:
+      description: A resource with the same name or identifier already exists.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: The authentication credentials were missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    UpdateSiteRequest:
+      type: object
+      properties:
+        site:
+          type: object
+          properties:
+            name:
+              type: string
+            contentUrl:
+              type: string
+            adminMode:
+              type: string
+              enum:
+              - ContentAndUsers
+              - ContentOnly
+            state:
+              type: string
+              enum:
+              - Active
+              - Suspended
+            storageQuota:
+              type: integer
+            userQuota:
+              type: integer
+            disableSubscriptions:
+              type: boolean
+            revision:
+              type: string
+          example: example_value
+    Pagination:
+      type: object
+      properties:
+        pageNumber:
+          type: integer
+          description: The current page number.
+          example: 10
+        pageSize:
+          type: integer
+          description: The number of items per page.
+          example: 10
+        totalAvailable:
+          type: integer
+          description: The total number of items available.
+          example: 10
+    Site:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the site.
+          example: abc123
+        name:
+          type: string
+          description: The name of the site.
+          example: Example Title
+        contentUrl:
+          type: string
+          description: The URL namespace for the site.
+          example: https://www.example.com
+        adminMode:
+          type: string
+          enum:
+          - ContentAndUsers
+          - ContentOnly
+          description: The administrator mode for the site.
+          example: ContentAndUsers
+        state:
+          type: string
+          enum:
+          - Active
+          - Suspended
+          description: The current state of the site.
+          example: Active
+        storageQuota:
+          type: integer
+          description: The storage quota for the site in megabytes.
+          example: 10
+        userQuota:
+          type: integer
+          description: The maximum number of users for the site. A value of -1 indicates no limit.
+          example: 10
+        numCreators:
+          type: integer
+          description: The number of Creator-licensed users on the site.
+          example: 10
+        numExplorers:
+          type: integer
+          description: The number of Explorer-licensed users on the site.
+          example: 10
+        numViewers:
+          type: integer
+          description: The number of Viewer-licensed users on the site.
+          example: 10
+        disableSubscriptions:
+          type: boolean
+          description: Whether subscriptions are disabled on the site.
+          example: true
+        revision:
+          type: string
+          description: The revision number of the site.
+          example: example_value
+        usage:
+          type: object
+          properties:
+            numUsers:
+              type: integer
+              description: The number of users on the site.
+            storage:
+              type: integer
+              description: The storage used in megabytes.
+          example: example_value
+    SiteResponse:
+      type: object
+      properties:
+        site:
+          $ref: '#/components/schemas/Site'
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            summary:
+              type: string
+              description: A short summary of the error.
+            detail:
+              type: string
+              description: A detailed description of the error.
+            code:
+              type: string
+              description: A numeric error code.
+          example: example_value
+    SiteListResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        sites:
+          type: object
+          properties:
+            site:
+              type: array
+              items:
+                $ref: '#/components/schemas/Site'
+          example: example_value
+    CreateSiteRequest:
+      type: object
+      properties:
+        site:
+          type: object
+          required:
+          - name
+          - contentUrl
+          properties:
+            name:
+              type: string
+              description: The name of the site.
+            contentUrl:
+              type: string
+              description: The URL namespace for the site.
+            adminMode:
+              type: string
+              enum:
+              - ContentAndUsers
+              - ContentOnly
+            userQuota:
+              type: integer
+              description: The maximum number of users for the site.
+            storageQuota:
+              type: integer
+              description: The storage quota in megabytes.
+            disableSubscriptions:
+              type: boolean
+          example: example_value
+  securitySchemes:
+    TableauAuth:
+      type: apiKey
+      in: header
+      name: X-Tableau-Auth
+      description: The authentication token obtained from the Sign In method. Include this token in the X-Tableau-Auth header of all subsequent requests.
+externalDocs:
+  description: Tableau REST API Reference
+  url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref.htm

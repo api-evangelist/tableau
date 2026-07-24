@@ -1,0 +1,629 @@
+openapi: 3.1.0
+info:
+  version: 3.24.0
+  title: Tableau REST Authentication Views API
+  description: The Tableau REST API allows you to manage and change Tableau Server and Tableau Cloud resources programmatically using HTTP. You can use the REST API to manage sites, projects, workbooks, views, data sources, users, groups, permissions, schedules, subscriptions, and more.
+  license:
+    name: Proprietary
+    url: https://www.tableau.com/legal
+  termsOfService: https://www.tableau.com/legal
+  contact:
+    name: Tableau Developer Support
+    url: https://www.tableau.com/support
+servers:
+- url: https://{server}/api/{api-version}
+  description: Tableau Server or Tableau Cloud
+  variables:
+    server:
+      default: 10ax.online.tableau.com
+      description: The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.
+    api-version:
+      default: '3.24'
+      description: The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud.
+      enum:
+      - '3.24'
+      - '3.23'
+      - '3.22'
+      - '3.21'
+      - '3.20'
+      - '3.19'
+security:
+- TableauAuth: []
+tags:
+- name: Views
+  description: Query views and download view images or data. Views are the individual sheets, dashboards, or stories within a workbook.
+paths:
+  /sites/{site-id}/workbooks/{workbook-id}/views:
+    get:
+      operationId: queryViewsForWorkbook
+      summary: Tableau Query Views for Workbook
+      description: Returns all the views for the specified workbook, optionally including usage statistics.
+      tags:
+      - Views
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/WorkbookId'
+      - name: includeUsageStatistics
+        in: query
+        schema:
+          type: boolean
+          default: false
+        description: If true, returns usage statistics for each view.
+        example: true
+      responses:
+        '200':
+          description: A list of views for the workbook.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ViewListResponse'
+              examples:
+                Queryviewsforworkbook200Example:
+                  summary: Default queryViewsForWorkbook 200 response
+                  x-microcks-default: true
+                  value:
+                    pagination:
+                      pageNumber: 10
+                      pageSize: 10
+                      totalAvailable: 10
+                    views:
+                      view:
+                      - {}
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sites/{site-id}/views:
+    get:
+      operationId: queryViewsForSite
+      summary: Tableau Query Views for Site
+      description: Returns all the views for the specified site, optionally including usage statistics.
+      tags:
+      - Views
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageNumber'
+      - $ref: '#/components/parameters/Filter'
+      - $ref: '#/components/parameters/Sort'
+      - $ref: '#/components/parameters/Fields'
+      - name: includeUsageStatistics
+        in: query
+        schema:
+          type: boolean
+          default: false
+        description: If true, returns usage statistics for each view.
+        example: true
+      responses:
+        '200':
+          description: A paginated list of views.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ViewListResponse'
+              examples:
+                Queryviewsforsite200Example:
+                  summary: Default queryViewsForSite 200 response
+                  x-microcks-default: true
+                  value:
+                    pagination:
+                      pageNumber: 10
+                      pageSize: 10
+                      totalAvailable: 10
+                    views:
+                      view:
+                      - {}
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sites/{site-id}/views/{view-id}:
+    get:
+      operationId: queryViewById
+      summary: Tableau Query View by Id
+      description: Returns details about the specified view, including the view name, owner, project, and usage statistics.
+      tags:
+      - Views
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/ViewId'
+      responses:
+        '200':
+          description: View details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ViewResponse'
+              examples:
+                Queryviewbyid200Example:
+                  summary: Default queryViewById 200 response
+                  x-microcks-default: true
+                  value:
+                    view:
+                      id: abc123
+                      name: Example Title
+                      contentUrl: https://www.example.com
+                      createdAt: '2026-01-15T10:30:00Z'
+                      updatedAt: '2026-01-15T10:30:00Z'
+                      viewUrlName: https://www.example.com
+                      sheetType: worksheet
+                      project:
+                        id: abc123
+                        name: Example Title
+                      owner:
+                        id: abc123
+                        name: Example Title
+                      workbook:
+                        id: abc123
+                        name: Example Title
+                      tags:
+                        tag: {}
+                      usage:
+                        totalViewCount: 10
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sites/{site-id}/views/{view-id}/image:
+    get:
+      operationId: queryViewImage
+      summary: Tableau Query View Image
+      description: Returns an image of the specified view rendered as a PNG file. You can specify the resolution of the image.
+      tags:
+      - Views
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/ViewId'
+      - name: resolution
+        in: query
+        schema:
+          type: string
+          enum:
+          - standard
+          - high
+          default: standard
+        description: The resolution of the image (standard or high).
+        example: standard
+      - name: maxAge
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+        description: The maximum number of minutes a view image can be cached before being refreshed.
+        example: 10
+      - name: vf_<filter_name>
+        in: query
+        schema:
+          type: string
+        description: Apply a filter to the view. Replace <filter_name> with the name of the filter field.
+        example: example_value
+      responses:
+        '200':
+          description: A PNG image of the view.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+              examples:
+                Queryviewimage200Example:
+                  summary: Default queryViewImage 200 response
+                  x-microcks-default: true
+                  value: example_value
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sites/{site-id}/views/{view-id}/data:
+    get:
+      operationId: queryViewData
+      summary: Tableau Query View Data
+      description: Returns the data used in a view as a comma-separated values (CSV) file.
+      tags:
+      - Views
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/ViewId'
+      - name: maxAge
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+        description: The maximum number of minutes a view can be cached before being refreshed.
+        example: 10
+      - name: vf_<filter_name>
+        in: query
+        schema:
+          type: string
+        description: Apply a filter to the view. Replace <filter_name> with the name of the filter field.
+        example: example_value
+      responses:
+        '200':
+          description: CSV data for the view.
+          content:
+            text/csv:
+              schema:
+                type: string
+              examples:
+                Queryviewdata200Example:
+                  summary: Default queryViewData 200 response
+                  x-microcks-default: true
+                  value: example_value
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sites/{site-id}/views/{view-id}/pdf:
+    get:
+      operationId: queryViewPDF
+      summary: Tableau Query View Pdf
+      description: Returns a PDF rendering of the specified view.
+      tags:
+      - Views
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/ViewId'
+      - name: type
+        in: query
+        schema:
+          type: string
+          enum:
+          - A3
+          - A4
+          - A5
+          - B4
+          - B5
+          - Executive
+          - Folio
+          - Ledger
+          - Legal
+          - Letter
+          - Note
+          - Quarto
+          - Tabloid
+          - Unspecified
+          default: Letter
+        description: The paper size for the PDF.
+        example: A3
+      - name: orientation
+        in: query
+        schema:
+          type: string
+          enum:
+          - portrait
+          - landscape
+          default: portrait
+        description: The orientation of the PDF.
+        example: portrait
+      responses:
+        '200':
+          description: A PDF rendering of the view.
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+              examples:
+                Queryviewpdf200Example:
+                  summary: Default queryViewPDF 200 response
+                  x-microcks-default: true
+                  value: example_value
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sites/{site-id}/views/{view-id}/previewImage:
+    get:
+      operationId: queryViewPreviewImage
+      summary: Tableau Query View Preview Image
+      description: Returns the thumbnail image for the specified view as a PNG file.
+      tags:
+      - Views
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/ViewId'
+      responses:
+        '200':
+          description: A PNG preview image of the view.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+              examples:
+                Queryviewpreviewimage200Example:
+                  summary: Default queryViewPreviewImage 200 response
+                  x-microcks-default: true
+                  value: example_value
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sites/{site-id}/views/{view-id}/recommendations:
+    get:
+      operationId: getRecommendationsForViews
+      summary: Tableau Get Recommendations for Views
+      description: Returns a list of views that are recommended for a user, based on their viewing history.
+      tags:
+      - Views
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/ViewId'
+      responses:
+        '200':
+          description: A list of recommended views.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ViewListResponse'
+              examples:
+                Getrecommendationsforviews200Example:
+                  summary: Default getRecommendationsForViews 200 response
+                  x-microcks-default: true
+                  value:
+                    pagination:
+                      pageNumber: 10
+                      pageSize: 10
+                      totalAvailable: 10
+                    views:
+                      view:
+                      - {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    PageSize:
+      name: pageSize
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 100
+      description: The number of items to return in one response. The minimum is 1 and the maximum is 1000.
+    Fields:
+      name: fields
+      in: query
+      schema:
+        type: string
+      description: An expression that lets you specify which fields are included in the response. Use the format fields=field1,field2. Use _default_ to return the default set of fields, or _all_ to return all fields.
+    Filter:
+      name: filter
+      in: query
+      schema:
+        type: string
+      description: An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in.
+    PageNumber:
+      name: pageNumber
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+      description: The page number of the set of items to return. The default is 1.
+    ViewId:
+      name: view-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the view.
+    WorkbookId:
+      name: workbook-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the workbook.
+    Sort:
+      name: sort
+      in: query
+      schema:
+        type: string
+      description: An expression that lets you specify the order in which items are returned. Use the format sort=field:direction where direction is asc or desc.
+    SiteId:
+      name: site-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the site. You can get the site ID from the response to the Sign In method.
+  schemas:
+    ViewListResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        views:
+          type: object
+          properties:
+            view:
+              type: array
+              items:
+                $ref: '#/components/schemas/View'
+          example: example_value
+    ViewResponse:
+      type: object
+      properties:
+        view:
+          $ref: '#/components/schemas/View'
+    Tag:
+      type: object
+      properties:
+        label:
+          type: string
+          description: The text of the tag.
+          example: Example Title
+    Pagination:
+      type: object
+      properties:
+        pageNumber:
+          type: integer
+          description: The current page number.
+          example: 10
+        pageSize:
+          type: integer
+          description: The number of items per page.
+          example: 10
+        totalAvailable:
+          type: integer
+          description: The total number of items available.
+          example: 10
+    View:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the view.
+          example: abc123
+        name:
+          type: string
+          description: The name of the view.
+          example: Example Title
+        contentUrl:
+          type: string
+          description: The URL name of the view.
+          example: https://www.example.com
+        createdAt:
+          type: string
+          format: date-time
+          description: The date and time the view was created.
+          example: '2026-01-15T10:30:00Z'
+        updatedAt:
+          type: string
+          format: date-time
+          description: The date and time the view was last updated.
+          example: '2026-01-15T10:30:00Z'
+        viewUrlName:
+          type: string
+          description: The URL-friendly name of the view used in the content URL.
+          example: https://www.example.com
+        sheetType:
+          type: string
+          enum:
+          - worksheet
+          - dashboard
+          - story
+          description: The type of sheet (worksheet, dashboard, or story).
+          example: worksheet
+        project:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The ID of the containing project.
+            name:
+              type: string
+              description: The name of the containing project.
+          example: example_value
+        owner:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The ID of the view owner.
+            name:
+              type: string
+              description: The name of the view owner.
+          example: example_value
+        workbook:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The ID of the containing workbook.
+            name:
+              type: string
+              description: The name of the containing workbook.
+          example: example_value
+        tags:
+          type: object
+          properties:
+            tag:
+              type: array
+              items:
+                $ref: '#/components/schemas/Tag'
+          example: example_value
+        usage:
+          type: object
+          properties:
+            totalViewCount:
+              type: integer
+              description: The total number of times the view has been accessed.
+          example: example_value
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            summary:
+              type: string
+              description: A short summary of the error.
+            detail:
+              type: string
+              description: A detailed description of the error.
+            code:
+              type: string
+              description: A numeric error code.
+          example: example_value
+  responses:
+    Forbidden:
+      description: The caller does not have permission to perform the requested action.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The specified resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: The authentication credentials were missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    TableauAuth:
+      type: apiKey
+      in: header
+      name: X-Tableau-Auth
+      description: The authentication token obtained from the Sign In method. Include this token in the X-Tableau-Auth header of all subsequent requests.
+externalDocs:
+  description: Tableau REST API Reference
+  url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref.htm

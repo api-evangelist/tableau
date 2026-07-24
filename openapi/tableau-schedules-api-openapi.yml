@@ -1,0 +1,211 @@
+openapi: 3.1.0
+info:
+  version: 3.24.0
+  title: Tableau REST Authentication Schedules API
+  description: The Tableau REST API allows you to manage and change Tableau Server and Tableau Cloud resources programmatically using HTTP. You can use the REST API to manage sites, projects, workbooks, views, data sources, users, groups, permissions, schedules, subscriptions, and more.
+  license:
+    name: Proprietary
+    url: https://www.tableau.com/legal
+  termsOfService: https://www.tableau.com/legal
+  contact:
+    name: Tableau Developer Support
+    url: https://www.tableau.com/support
+servers:
+- url: https://{server}/api/{api-version}
+  description: Tableau Server or Tableau Cloud
+  variables:
+    server:
+      default: 10ax.online.tableau.com
+      description: The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.
+    api-version:
+      default: '3.24'
+      description: The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud.
+      enum:
+      - '3.24'
+      - '3.23'
+      - '3.22'
+      - '3.21'
+      - '3.20'
+      - '3.19'
+security:
+- TableauAuth: []
+tags:
+- name: Schedules
+  description: Create, update, delete, and query schedules for extract refreshes and subscriptions on Tableau Server.
+paths:
+  /schedules:
+    get:
+      operationId: querySchedules
+      summary: Tableau Query Schedules
+      description: Returns a list of extract refresh and subscription schedules. This method is available on Tableau Server only.
+      tags:
+      - Schedules
+      parameters:
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageNumber'
+      responses:
+        '200':
+          description: A paginated list of schedules.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleListResponse'
+              examples:
+                Queryschedules200Example:
+                  summary: Default querySchedules 200 response
+                  x-microcks-default: true
+                  value:
+                    pagination:
+                      pageNumber: 10
+                      pageSize: 10
+                      totalAvailable: 10
+                    schedules:
+                      schedule:
+                      - {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    PageSize:
+      name: pageSize
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 100
+      description: The number of items to return in one response. The minimum is 1 and the maximum is 1000.
+    PageNumber:
+      name: pageNumber
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+      description: The page number of the set of items to return. The default is 1.
+  schemas:
+    Schedule:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the schedule.
+          example: abc123
+        name:
+          type: string
+          description: The name of the schedule.
+          example: Example Title
+        state:
+          type: string
+          enum:
+          - Active
+          - Suspended
+          description: Whether the schedule is active or suspended.
+          example: Active
+        priority:
+          type: integer
+          minimum: 1
+          maximum: 100
+          description: The priority of the schedule (1-100). Lower numbers indicate higher priority.
+          example: 10
+        createdAt:
+          type: string
+          format: date-time
+          description: The date and time the schedule was created.
+          example: '2026-01-15T10:30:00Z'
+        updatedAt:
+          type: string
+          format: date-time
+          description: The date and time the schedule was last updated.
+          example: '2026-01-15T10:30:00Z'
+        type:
+          type: string
+          enum:
+          - Extract
+          - Subscription
+          - Flow
+          description: The type of the schedule.
+          example: Extract
+        frequency:
+          type: string
+          enum:
+          - Hourly
+          - Daily
+          - Weekly
+          - Monthly
+          description: How frequently the schedule runs.
+          example: Hourly
+        nextRunAt:
+          type: string
+          format: date-time
+          description: The next scheduled run time.
+          example: '2026-01-15T10:30:00Z'
+        endScheduleAt:
+          type: string
+          format: date-time
+          description: The time when the schedule ends.
+          example: '2026-01-15T10:30:00Z'
+        frequencyDetails:
+          type: object
+          properties:
+            start:
+              type: string
+              description: The start time (HH:MM:SS).
+            end:
+              type: string
+              description: The end time (HH:MM:SS).
+            intervals:
+              type: object
+              properties:
+                interval:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      hours:
+                        type: string
+                      minutes:
+                        type: string
+                      weekDay:
+                        type: string
+                      monthDay:
+                        type: string
+          example: example_value
+    Pagination:
+      type: object
+      properties:
+        pageNumber:
+          type: integer
+          description: The current page number.
+          example: 10
+        pageSize:
+          type: integer
+          description: The number of items per page.
+          example: 10
+        totalAvailable:
+          type: integer
+          description: The total number of items available.
+          example: 10
+    ScheduleListResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        schedules:
+          type: object
+          properties:
+            schedule:
+              type: array
+              items:
+                $ref: '#/components/schemas/Schedule'
+          example: example_value
+  securitySchemes:
+    TableauAuth:
+      type: apiKey
+      in: header
+      name: X-Tableau-Auth
+      description: The authentication token obtained from the Sign In method. Include this token in the X-Tableau-Auth header of all subsequent requests.
+externalDocs:
+  description: Tableau REST API Reference
+  url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref.htm

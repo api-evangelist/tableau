@@ -1,0 +1,296 @@
+openapi: 3.1.0
+info:
+  version: 3.24.0
+  title: Tableau REST Authentication Jobs API
+  description: The Tableau REST API allows you to manage and change Tableau Server and Tableau Cloud resources programmatically using HTTP. You can use the REST API to manage sites, projects, workbooks, views, data sources, users, groups, permissions, schedules, subscriptions, and more.
+  license:
+    name: Proprietary
+    url: https://www.tableau.com/legal
+  termsOfService: https://www.tableau.com/legal
+  contact:
+    name: Tableau Developer Support
+    url: https://www.tableau.com/support
+servers:
+- url: https://{server}/api/{api-version}
+  description: Tableau Server or Tableau Cloud
+  variables:
+    server:
+      default: 10ax.online.tableau.com
+      description: The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.
+    api-version:
+      default: '3.24'
+      description: The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud.
+      enum:
+      - '3.24'
+      - '3.23'
+      - '3.22'
+      - '3.21'
+      - '3.20'
+      - '3.19'
+security:
+- TableauAuth: []
+tags:
+- name: Jobs
+  description: Query and cancel background jobs on a site, including extract refreshes, subscriptions, and flow runs.
+paths:
+  /sites/{site-id}/jobs:
+    get:
+      operationId: queryJobs
+      summary: Tableau Query Jobs
+      description: Returns a list of active jobs on the specified site.
+      tags:
+      - Jobs
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageNumber'
+      - $ref: '#/components/parameters/Filter'
+      responses:
+        '200':
+          description: A paginated list of background jobs.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobListResponse'
+              examples:
+                Queryjobs200Example:
+                  summary: Default queryJobs 200 response
+                  x-microcks-default: true
+                  value:
+                    pagination:
+                      pageNumber: 10
+                      pageSize: 10
+                      totalAvailable: 10
+                    backgroundJobs:
+                      backgroundJob:
+                      - {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sites/{site-id}/jobs/{job-id}:
+    get:
+      operationId: queryJob
+      summary: Tableau Query Job
+      description: Returns status information about the specified job.
+      tags:
+      - Jobs
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - name: job-id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The ID of the job.
+        example: '500123'
+      responses:
+        '200':
+          description: Job status information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobResponse'
+              examples:
+                Queryjob200Example:
+                  summary: Default queryJob 200 response
+                  x-microcks-default: true
+                  value:
+                    job:
+                      id: abc123
+                      mode: example_value
+                      type: example_value
+                      status: 10
+                      progress: 10
+                      createdAt: '2026-01-15T10:30:00Z'
+                      startedAt: '2026-01-15T10:30:00Z'
+                      endedAt: '2026-01-15T10:30:00Z'
+                      finishCode: 10
+                      title: Example Title
+                      subtitle: example_value
+                      statusNotes:
+                        statusNote: {}
+                      extractRefreshJob:
+                        datasource: {}
+                        workbook: {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: cancelJob
+      summary: Tableau Cancel Job
+      description: Cancels the specified background job on a site.
+      tags:
+      - Jobs
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - name: job-id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The ID of the job to cancel.
+        example: '500123'
+      responses:
+        '200':
+          description: Job was cancelled successfully.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    PageSize:
+      name: pageSize
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 100
+      description: The number of items to return in one response. The minimum is 1 and the maximum is 1000.
+    Filter:
+      name: filter
+      in: query
+      schema:
+        type: string
+      description: An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in.
+    PageNumber:
+      name: pageNumber
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+      description: The page number of the set of items to return. The default is 1.
+    SiteId:
+      name: site-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the site. You can get the site ID from the response to the Sign In method.
+  schemas:
+    Job:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the job.
+          example: abc123
+        mode:
+          type: string
+          description: The mode of the job.
+          example: example_value
+        type:
+          type: string
+          description: The type of the job.
+          example: example_value
+        status:
+          type: integer
+          description: The status code of the job. 0 = Active/Queued, 1 = Complete, 2 = Cancelled.
+          example: 10
+        progress:
+          type: integer
+          description: The progress of the job as a percentage.
+          example: 10
+        createdAt:
+          type: string
+          format: date-time
+          description: The date and time the job was created.
+          example: '2026-01-15T10:30:00Z'
+        startedAt:
+          type: string
+          format: date-time
+          description: The date and time the job started running.
+          example: '2026-01-15T10:30:00Z'
+        endedAt:
+          type: string
+          format: date-time
+          description: The date and time the job finished.
+          example: '2026-01-15T10:30:00Z'
+        finishCode:
+          type: integer
+          description: The completion code. 0 = success, 1 = error, 2 = cancelled.
+          example: 10
+        title:
+          type: string
+          description: A description of what the job is doing.
+          example: Example Title
+        subtitle:
+          type: string
+          description: Additional detail about the job.
+          example: example_value
+        statusNotes:
+          type: object
+          properties:
+            statusNote:
+              type: array
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                  value:
+                    type: string
+                  text:
+                    type: string
+          example: example_value
+        extractRefreshJob:
+          type: object
+          properties:
+            datasource:
+              type: object
+              properties:
+                id:
+                  type: string
+                name:
+                  type: string
+            workbook:
+              type: object
+              properties:
+                id:
+                  type: string
+                name:
+                  type: string
+          example: example_value
+    JobResponse:
+      type: object
+      properties:
+        job:
+          $ref: '#/components/schemas/Job'
+    Pagination:
+      type: object
+      properties:
+        pageNumber:
+          type: integer
+          description: The current page number.
+          example: 10
+        pageSize:
+          type: integer
+          description: The number of items per page.
+          example: 10
+        totalAvailable:
+          type: integer
+          description: The total number of items available.
+          example: 10
+    JobListResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        backgroundJobs:
+          type: object
+          properties:
+            backgroundJob:
+              type: array
+              items:
+                $ref: '#/components/schemas/Job'
+          example: example_value
+  securitySchemes:
+    TableauAuth:
+      type: apiKey
+      in: header
+      name: X-Tableau-Auth
+      description: The authentication token obtained from the Sign In method. Include this token in the X-Tableau-Auth header of all subsequent requests.
+externalDocs:
+  description: Tableau REST API Reference
+  url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref.htm

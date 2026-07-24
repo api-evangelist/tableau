@@ -1,0 +1,482 @@
+openapi: 3.1.0
+info:
+  version: 3.24.0
+  title: Tableau REST Authentication Subscriptions API
+  description: The Tableau REST API allows you to manage and change Tableau Server and Tableau Cloud resources programmatically using HTTP. You can use the REST API to manage sites, projects, workbooks, views, data sources, users, groups, permissions, schedules, subscriptions, and more.
+  license:
+    name: Proprietary
+    url: https://www.tableau.com/legal
+  termsOfService: https://www.tableau.com/legal
+  contact:
+    name: Tableau Developer Support
+    url: https://www.tableau.com/support
+servers:
+- url: https://{server}/api/{api-version}
+  description: Tableau Server or Tableau Cloud
+  variables:
+    server:
+      default: 10ax.online.tableau.com
+      description: The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.
+    api-version:
+      default: '3.24'
+      description: The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud.
+      enum:
+      - '3.24'
+      - '3.23'
+      - '3.22'
+      - '3.21'
+      - '3.20'
+      - '3.19'
+security:
+- TableauAuth: []
+tags:
+- name: Subscriptions
+  description: Create, update, delete, and query subscriptions. Subscriptions deliver snapshots of views to users on a schedule.
+paths:
+  /sites/{site-id}/subscriptions:
+    get:
+      operationId: querySubscriptions
+      summary: Tableau Query Subscriptions
+      description: Returns a list of all subscriptions on the site.
+      tags:
+      - Subscriptions
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageNumber'
+      responses:
+        '200':
+          description: A paginated list of subscriptions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionListResponse'
+              examples:
+                Querysubscriptions200Example:
+                  summary: Default querySubscriptions 200 response
+                  x-microcks-default: true
+                  value:
+                    pagination:
+                      pageNumber: 10
+                      pageSize: 10
+                      totalAvailable: 10
+                    subscriptions:
+                      subscription:
+                      - {}
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createSubscription
+      summary: Tableau Create Subscription
+      description: Creates a new subscription to a view or workbook for the specified user on the specified schedule.
+      tags:
+      - Subscriptions
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSubscriptionRequest'
+            examples:
+              CreatesubscriptionRequestExample:
+                summary: Default createSubscription request
+                x-microcks-default: true
+                value:
+                  subscription:
+                    subject: example_value
+                    content:
+                      id: abc123
+                      type: Workbook
+                    schedule:
+                      id: abc123
+                    user:
+                      id: abc123
+                    attachImage: true
+                    attachPdf: true
+                    message: example_value
+      responses:
+        '201':
+          description: Subscription was created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionResponse'
+              examples:
+                Createsubscription201Example:
+                  summary: Default createSubscription 201 response
+                  x-microcks-default: true
+                  value:
+                    subscription:
+                      id: abc123
+                      subject: example_value
+                      attachImage: true
+                      attachPdf: true
+                      message: example_value
+                      pageOrientation: portrait
+                      pageSizeOption: A3
+                      suspended: true
+                      content:
+                        id: abc123
+                        type: Workbook
+                      schedule:
+                        id: abc123
+                        name: Example Title
+                      user:
+                        id: abc123
+                        name: Example Title
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /sites/{site-id}/subscriptions/{subscription-id}:
+    get:
+      operationId: querySubscription
+      summary: Tableau Query Subscription
+      description: Returns information about the specified subscription.
+      tags:
+      - Subscriptions
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - name: subscription-id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The ID of the subscription.
+        example: '500123'
+      responses:
+        '200':
+          description: Subscription details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionResponse'
+              examples:
+                Querysubscription200Example:
+                  summary: Default querySubscription 200 response
+                  x-microcks-default: true
+                  value:
+                    subscription:
+                      id: abc123
+                      subject: example_value
+                      attachImage: true
+                      attachPdf: true
+                      message: example_value
+                      pageOrientation: portrait
+                      pageSizeOption: A3
+                      suspended: true
+                      content:
+                        id: abc123
+                        type: Workbook
+                      schedule:
+                        id: abc123
+                        name: Example Title
+                      user:
+                        id: abc123
+                        name: Example Title
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: updateSubscription
+      summary: Tableau Update Subscription
+      description: Modifies an existing subscription, changing the subject, schedule, or whether the full workbook or just a single view is sent.
+      tags:
+      - Subscriptions
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - name: subscription-id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The ID of the subscription to update.
+        example: '500123'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSubscriptionRequest'
+            examples:
+              UpdatesubscriptionRequestExample:
+                summary: Default updateSubscription request
+                x-microcks-default: true
+                value:
+                  subscription:
+                    subject: example_value
+                    schedule:
+                      id: abc123
+                    suspended: true
+      responses:
+        '200':
+          description: Subscription was updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionResponse'
+              examples:
+                Updatesubscription200Example:
+                  summary: Default updateSubscription 200 response
+                  x-microcks-default: true
+                  value:
+                    subscription:
+                      id: abc123
+                      subject: example_value
+                      attachImage: true
+                      attachPdf: true
+                      message: example_value
+                      pageOrientation: portrait
+                      pageSizeOption: A3
+                      suspended: true
+                      content:
+                        id: abc123
+                        type: Workbook
+                      schedule:
+                        id: abc123
+                        name: Example Title
+                      user:
+                        id: abc123
+                        name: Example Title
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteSubscription
+      summary: Tableau Delete Subscription
+      description: Deletes the specified subscription from the site.
+      tags:
+      - Subscriptions
+      parameters:
+      - $ref: '#/components/parameters/SiteId'
+      - name: subscription-id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The ID of the subscription to delete.
+        example: '500123'
+      responses:
+        '204':
+          description: Subscription was deleted successfully.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Subscription:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the subscription.
+          example: abc123
+        subject:
+          type: string
+          description: The subject line of the subscription email.
+          example: example_value
+        attachImage:
+          type: boolean
+          description: Whether to attach an image of the view.
+          example: true
+        attachPdf:
+          type: boolean
+          description: Whether to attach a PDF of the view.
+          example: true
+        message:
+          type: string
+          description: Custom message for the subscription.
+          example: example_value
+        pageOrientation:
+          type: string
+          enum:
+          - portrait
+          - landscape
+          example: portrait
+        pageSizeOption:
+          type: string
+          enum:
+          - A3
+          - A4
+          - A5
+          - B4
+          - B5
+          - Executive
+          - Folio
+          - Ledger
+          - Legal
+          - Letter
+          - Note
+          - Quarto
+          - Tabloid
+          - Unspecified
+          example: A3
+        suspended:
+          type: boolean
+          description: Whether the subscription is suspended.
+          example: true
+        content:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The ID of the subscribed content.
+            type:
+              type: string
+              enum:
+              - Workbook
+              - View
+              description: The type of the subscribed content.
+          example: example_value
+        schedule:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The ID of the schedule.
+            name:
+              type: string
+              description: The name of the schedule.
+          example: example_value
+        user:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The ID of the subscriber.
+            name:
+              type: string
+              description: The name of the subscriber.
+          example: example_value
+    CreateSubscriptionRequest:
+      type: object
+      properties:
+        subscription:
+          type: object
+          required:
+          - subject
+          - content
+          - schedule
+          - user
+          properties:
+            subject:
+              type: string
+            content:
+              type: object
+              required:
+              - id
+              - type
+              properties:
+                id:
+                  type: string
+                type:
+                  type: string
+                  enum:
+                  - Workbook
+                  - View
+            schedule:
+              type: object
+              required:
+              - id
+              properties:
+                id:
+                  type: string
+            user:
+              type: object
+              required:
+              - id
+              properties:
+                id:
+                  type: string
+            attachImage:
+              type: boolean
+            attachPdf:
+              type: boolean
+            message:
+              type: string
+          example: example_value
+    Pagination:
+      type: object
+      properties:
+        pageNumber:
+          type: integer
+          description: The current page number.
+          example: 10
+        pageSize:
+          type: integer
+          description: The number of items per page.
+          example: 10
+        totalAvailable:
+          type: integer
+          description: The total number of items available.
+          example: 10
+    SubscriptionResponse:
+      type: object
+      properties:
+        subscription:
+          $ref: '#/components/schemas/Subscription'
+    UpdateSubscriptionRequest:
+      type: object
+      properties:
+        subscription:
+          type: object
+          properties:
+            subject:
+              type: string
+            schedule:
+              type: object
+              properties:
+                id:
+                  type: string
+            suspended:
+              type: boolean
+          example: example_value
+    SubscriptionListResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        subscriptions:
+          type: object
+          properties:
+            subscription:
+              type: array
+              items:
+                $ref: '#/components/schemas/Subscription'
+          example: example_value
+  parameters:
+    PageSize:
+      name: pageSize
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 100
+      description: The number of items to return in one response. The minimum is 1 and the maximum is 1000.
+    PageNumber:
+      name: pageNumber
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+      description: The page number of the set of items to return. The default is 1.
+    SiteId:
+      name: site-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the site. You can get the site ID from the response to the Sign In method.
+  securitySchemes:
+    TableauAuth:
+      type: apiKey
+      in: header
+      name: X-Tableau-Auth
+      description: The authentication token obtained from the Sign In method. Include this token in the X-Tableau-Auth header of all subsequent requests.
+externalDocs:
+  description: Tableau REST API Reference
+  url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref.htm
