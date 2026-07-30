@@ -2,6 +2,19 @@ name: Tableau
 description: >-
   Tableau is a visual analytics platform transforming the way we use data to solve problems—empowering people and
   organizations to make the most of their data.
+accessModel:
+  pricing: enterprise
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
 tags:
 - Analytics
@@ -13,46 +26,9 @@ modified: '2026-05-19'
 url: https://www.tableau.com
 specificationVersion: '0.18'
 apis:
-- name: Tableau REST API
-  description: >-
-    The Tableau REST API allows you to manage and change Tableau Server, Tableau Cloud site, and Tableau Prep
-    Conductor resources programmatically, using HTTP.
-  image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
-  humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
-  baseURL: https://[server]/api/[api-version]
-  tags:
-  - Data Sources
-  - REST
-  - Server Management
-  - Sites
-  - Workbooks
-  properties:
-  - type: Documentation
-    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
-  - type: OpenAPI
-    url: openapi/tableau-rest-api-openapi.yml
-  - type: JSONSchema
-    url: json-schema/tableau-workbook-schema.json
-  - type: JSONLD
-    url: json-ld/tableau-context.jsonld
-  - type: Authentication
-    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_auth.htm
-  - type: Versioning
-    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm
-  - type: ChangeLog
-    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_whats_new.htm
-  - type: GettingStarted
-    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_get_started_tutorial_part_1.htm
-  - type: APIReference
-    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref.htm
-  - type: CodeExamples
-    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_samples.htm
-  - type: SDKs
-    url: https://tableau.github.io/server-client-python/
-  - type: GitHubRepository
-    url: https://github.com/tableau/rest-api-samples
 - name: Tableau Metadata API
-  description: GraphQL-based API for querying metadata about Tableau content, data sources, and lineage information.
+  description: >-
+    GraphQL-based API for querying metadata about Tableau content, data sources, and lineage information.
   image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
   humanURL: https://help.tableau.com/current/api/metadata_api/en-us/index.html
   baseURL: https://[server]/api/metadata/graphql
@@ -79,7 +55,8 @@ apis:
   - url: graphql/tableau-graphql.md
     type: GraphQL
 - name: Tableau Hyper API
-  description: API for creating, reading, and updating Hyper files, which are the data files that power Tableau extracts.
+  description: >-
+    API for creating, reading, and updating Hyper files, which are the data files that power Tableau extracts.
   image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
   humanURL: https://help.tableau.com/current/api/hyper_api/en-us/index.html
   baseURL: https://github.com/tableau/hyper-api-samples
@@ -98,7 +75,9 @@ apis:
   - type: ChangeLog
     url: https://tableau.github.io/hyper-db/docs/releases/
 - name: Tableau Embedding API
-  description: JavaScript API for embedding Tableau visualizations in web applications with advanced interaction capabilities.
+  description: >-
+    JavaScript API for embedding Tableau visualizations in web applications with advanced interaction
+    capabilities.
   image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
   humanURL: https://help.tableau.com/current/api/embedding_api/en-us/index.html
   baseURL: https://[server]
@@ -111,13 +90,15 @@ apis:
   - type: Documentation
     url: https://help.tableau.com/current/api/embedding_api/en-us/index.html
   - type: Tutorials
-    url: https://help.tableau.com/current/api/embedding_api/en-us/docs/embedding_api_get_started.html
+    url: >-
+      https://help.tableau.com/current/api/embedding_api/en-us/docs/embedding_api_get_started.html
   - type: APIReference
     url: https://help.tableau.com/current/api/embedding_api/en-us/reference/index.html
   - type: Authentication
     url: https://help.tableau.com/current/api/embedding_api/en-us/docs/embedding_api_auth.html
   - type: ChangeLog
-    url: https://help.tableau.com/current/api/embedding_api/en-us/docs/embedding_api_release_notes.html
+    url: >-
+      https://help.tableau.com/current/api/embedding_api/en-us/docs/embedding_api_release_notes.html
   - type: GitHubRepository
     url: https://github.com/tableau/embedding-api-v3-samples
 - name: Tableau Document API
@@ -164,8 +145,9 @@ apis:
     url: https://github.com/tableau/server-client-python/blob/master/CHANGELOG.md
 - name: Tableau Extensions API
   description: >-
-    The Tableau Extensions API allows developers to create dashboard extensions and viz extensions that users can
-    interact with directly in Tableau, enabling integration with other applications and custom visualization types.
+    The Tableau Extensions API allows developers to create dashboard extensions and viz extensions that
+    users can interact with directly in Tableau, enabling integration with other applications and custom
+    visualization types.
   image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
   humanURL: https://tableau.github.io/extensions-api/docs/
   baseURL: https://[server]
@@ -190,8 +172,8 @@ apis:
     url: https://tableau.github.io/extensions-api/docs/dashext/trex_examples/
 - name: Tableau Web Data Connector
   description: >-
-    The Tableau Web Data Connector (WDC) provides an SDK for building connectors to any data accessible over HTTP,
-    allowing users to bring external data into Tableau for analysis and visualization.
+    The Tableau Web Data Connector (WDC) provides an SDK for building connectors to any data accessible
+    over HTTP, allowing users to bring external data into Tableau for analysis and visualization.
   image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
   humanURL: https://help.tableau.com/current/api/webdataconnector/en-us/index.html
   baseURL: https://[server]
@@ -215,8 +197,8 @@ apis:
     url: https://tableau.github.io/webdataconnector/docs/wdc_samples.html
 - name: Tableau Connector SDK
   description: >-
-    SDK for developing custom Tableau connectors using ODBC or JDBC drivers, including documentation, example files, a
-    test harness, and a packaging tool for distribution.
+    SDK for developing custom Tableau connectors using ODBC or JDBC drivers, including documentation,
+    example files, a test harness, and a packaging tool for distribution.
   image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
   humanURL: https://tableau.github.io/connector-plugin-sdk/
   baseURL: https://github.com/tableau/connector-plugin-sdk
@@ -239,8 +221,8 @@ apis:
     url: https://tableau.github.io/connector-plugin-sdk/docs/
 - name: Tableau Analytics Extensions API
   description: >-
-    The Analytics Extensions API allows integration of external analytics engines such as Python, R, MATLAB, and data
-    science platforms with Tableau calculations for advanced analytics.
+    The Analytics Extensions API allows integration of external analytics engines such as Python, R, MATLAB,
+    and data science platforms with Tableau calculations for advanced analytics.
   image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
   humanURL: https://tableau.github.io/analytics-extensions-api/docs/ae_intro.html
   baseURL: https://[server]
@@ -263,8 +245,8 @@ apis:
     url: https://github.com/tableau/TabPy
 - name: Tableau Webhooks
   description: >-
-    Tableau Webhooks enable event-driven automation by sending HTTP POST notifications to specified URLs when events
-    occur on Tableau Server or Tableau Cloud.
+    Tableau Webhooks enable event-driven automation by sending HTTP POST notifications to specified URLs
+    when events occur on Tableau Server or Tableau Cloud.
   image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
   humanURL: https://help.tableau.com/current/developer/webhooks/en-us/
   baseURL: https://[server]/api/[api-version]
@@ -281,11 +263,12 @@ apis:
   - type: GettingStarted
     url: https://help.tableau.com/current/developer/webhooks/en-us/docs/webhooks-get-started.html
   - type: APIReference
-    url: https://help.tableau.com/current/developer/webhooks/en-us/docs/webhooks-events-payload.html
+    url: >-
+      https://help.tableau.com/current/developer/webhooks/en-us/docs/webhooks-events-payload.html
 - name: Tableau VizQL Data Service
   description: >-
-    The VizQL Data Service provides a programmatic HTTP interface to query published data sources outside of Tableau
-    visualizations, enabling headless data access from any application.
+    The VizQL Data Service provides a programmatic HTTP interface to query published data sources outside
+    of Tableau visualizations, enabling headless data access from any application.
   image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
   humanURL: https://help.tableau.com/current/api/vizql-data-service/en-us/index.html
   baseURL: https://[server]/api/v1
@@ -304,11 +287,12 @@ apis:
   - type: GitHubRepository
     url: https://github.com/tableau/VizQL-Data-Service
   - type: GettingStarted
-    url: https://help.tableau.com/current/api/vizql-data-service/en-us/docs/vds_create_queries.html
+    url: >-
+      https://help.tableau.com/current/api/vizql-data-service/en-us/docs/vds_create_queries.html
 - name: Tableau Pulse API
   description: >-
-    The Tableau Pulse API enables programmatic creation, management, and querying of Tableau Pulse metrics and
-    subscriptions, as well as embedding Pulse insights into web applications.
+    The Tableau Pulse API enables programmatic creation, management, and querying of Tableau Pulse metrics
+    and subscriptions, as well as embedding Pulse insights into web applications.
   image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
   humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_pulse.htm
   baseURL: https://[server]/api/[api-version]
@@ -324,6 +308,459 @@ apis:
     url: https://help.tableau.com/current/api/embedding_api/en-us/reference/interfaces/pulse.html
   - type: GitHubRepository
     url: https://github.com/tableau/pulse-api-utilities
+- aid: tableau:tableau-authentication-api
+  name: Tableau Authentication API
+  description: >-
+    Sign in and sign out of Tableau Server or Tableau Cloud. You must sign in to obtain an authentication
+    token before calling other methods.
+  humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
+  baseURL: https://[server]/api/[api-version]
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/tableau-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
+  - type: JSONSchema
+    url: json-schema/tableau-workbook-schema.json
+  - type: JSONLD
+    url: json-ld/tableau-context.jsonld
+  - type: Authentication
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_auth.htm
+  - type: Versioning
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm
+  - type: ChangeLog
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_whats_new.htm
+  - type: GettingStarted
+    url: >-
+      https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_get_started_tutorial_part_1.htm
+  - type: APIReference
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref.htm
+  - type: CodeExamples
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_samples.htm
+  - type: SDKs
+    url: https://tableau.github.io/server-client-python/
+  - type: GitHubRepository
+    url: https://github.com/tableau/rest-api-samples
+- aid: tableau:tableau-data-sources-api
+  name: Tableau Data Sources API
+  description: >-
+    Publish, query, update, delete, and download data sources. Data sources define the connection to data
+    and can be shared across multiple workbooks.
+  humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
+  baseURL: https://[server]/api/[api-version]
+  tags:
+  - Data Sources
+  properties:
+  - type: OpenAPI
+    url: openapi/tableau-data-sources-api-openapi.yml
+  - type: Documentation
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
+  - type: JSONSchema
+    url: json-schema/tableau-workbook-schema.json
+  - type: JSONLD
+    url: json-ld/tableau-context.jsonld
+  - type: Authentication
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_auth.htm
+  - type: Versioning
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm
+  - type: ChangeLog
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_whats_new.htm
+  - type: GettingStarted
+    url: >-
+      https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_get_started_tutorial_part_1.htm
+  - type: APIReference
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref.htm
+  - type: CodeExamples
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_samples.htm
+  - type: SDKs
+    url: https://tableau.github.io/server-client-python/
+  - type: GitHubRepository
+    url: https://github.com/tableau/rest-api-samples
+- aid: tableau:tableau-favorites-api
+  name: Tableau Favorites API
+  description: >-
+    Add and remove content items from a user's list of favorites, including workbooks, views, data sources,
+    projects, and flows.
+  humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
+  baseURL: https://[server]/api/[api-version]
+  tags:
+  - Favorites
+  properties:
+  - type: OpenAPI
+    url: openapi/tableau-favorites-api-openapi.yml
+  - type: Documentation
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
+  - type: JSONSchema
+    url: json-schema/tableau-workbook-schema.json
+  - type: JSONLD
+    url: json-ld/tableau-context.jsonld
+  - type: Authentication
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_auth.htm
+  - type: Versioning
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm
+  - type: ChangeLog
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_whats_new.htm
+  - type: GettingStarted
+    url: >-
+      https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_get_started_tutorial_part_1.htm
+  - type: APIReference
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref.htm
+  - type: CodeExamples
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_samples.htm
+  - type: SDKs
+    url: https://tableau.github.io/server-client-python/
+  - type: GitHubRepository
+    url: https://github.com/tableau/rest-api-samples
+- aid: tableau:tableau-groups-api
+  name: Tableau Groups API
+  description: >-
+    Create, update, delete, and query groups. Groups are collections of users that simplify permission
+    management.
+  humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
+  baseURL: https://[server]/api/[api-version]
+  tags:
+  - Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/tableau-groups-api-openapi.yml
+  - type: Documentation
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
+  - type: JSONSchema
+    url: json-schema/tableau-workbook-schema.json
+  - type: JSONLD
+    url: json-ld/tableau-context.jsonld
+  - type: Authentication
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_auth.htm
+  - type: Versioning
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm
+  - type: ChangeLog
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_whats_new.htm
+  - type: GettingStarted
+    url: >-
+      https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_get_started_tutorial_part_1.htm
+  - type: APIReference
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref.htm
+  - type: CodeExamples
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_samples.htm
+  - type: SDKs
+    url: https://tableau.github.io/server-client-python/
+  - type: GitHubRepository
+    url: https://github.com/tableau/rest-api-samples
+- aid: tableau:tableau-jobs-api
+  name: Tableau Jobs API
+  description: >-
+    Query and cancel background jobs on a site, including extract refreshes, subscriptions, and flow runs.
+  humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
+  baseURL: https://[server]/api/[api-version]
+  tags:
+  - Jobs
+  properties:
+  - type: OpenAPI
+    url: openapi/tableau-jobs-api-openapi.yml
+  - type: Documentation
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
+  - type: JSONSchema
+    url: json-schema/tableau-workbook-schema.json
+  - type: JSONLD
+    url: json-ld/tableau-context.jsonld
+  - type: Authentication
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_auth.htm
+  - type: Versioning
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm
+  - type: ChangeLog
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_whats_new.htm
+  - type: GettingStarted
+    url: >-
+      https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_get_started_tutorial_part_1.htm
+  - type: APIReference
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref.htm
+  - type: CodeExamples
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_samples.htm
+  - type: SDKs
+    url: https://tableau.github.io/server-client-python/
+  - type: GitHubRepository
+    url: https://github.com/tableau/rest-api-samples
+- aid: tableau:tableau-permissions-api
+  name: Tableau Permissions API
+  description: >-
+    Query and set permissions on content items including workbooks, data sources, projects, views, and
+    flows.
+  humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
+  baseURL: https://[server]/api/[api-version]
+  tags:
+  - Permissions
+  properties:
+  - type: OpenAPI
+    url: openapi/tableau-permissions-api-openapi.yml
+  - type: Documentation
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
+  - type: JSONSchema
+    url: json-schema/tableau-workbook-schema.json
+  - type: JSONLD
+    url: json-ld/tableau-context.jsonld
+  - type: Authentication
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_auth.htm
+  - type: Versioning
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm
+  - type: ChangeLog
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_whats_new.htm
+  - type: GettingStarted
+    url: >-
+      https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_get_started_tutorial_part_1.htm
+  - type: APIReference
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref.htm
+  - type: CodeExamples
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_samples.htm
+  - type: SDKs
+    url: https://tableau.github.io/server-client-python/
+  - type: GitHubRepository
+    url: https://github.com/tableau/rest-api-samples
+- aid: tableau:tableau-projects-api
+  name: Tableau Projects API
+  description: >-
+    Create, update, delete, and query projects. Projects are containers for organizing workbooks, data
+    sources, and other content on a site.
+  humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
+  baseURL: https://[server]/api/[api-version]
+  tags:
+  - Projects
+  properties:
+  - type: OpenAPI
+    url: openapi/tableau-projects-api-openapi.yml
+  - type: Documentation
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
+  - type: JSONSchema
+    url: json-schema/tableau-workbook-schema.json
+  - type: JSONLD
+    url: json-ld/tableau-context.jsonld
+  - type: Authentication
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_auth.htm
+  - type: Versioning
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm
+  - type: ChangeLog
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_whats_new.htm
+  - type: GettingStarted
+    url: >-
+      https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_get_started_tutorial_part_1.htm
+  - type: APIReference
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref.htm
+  - type: CodeExamples
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_samples.htm
+  - type: SDKs
+    url: https://tableau.github.io/server-client-python/
+  - type: GitHubRepository
+    url: https://github.com/tableau/rest-api-samples
+- aid: tableau:tableau-schedules-api
+  name: Tableau Schedules API
+  description: >-
+    Create, update, delete, and query schedules for extract refreshes and subscriptions on Tableau Server.
+  humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
+  baseURL: https://[server]/api/[api-version]
+  tags:
+  - Schedules
+  properties:
+  - type: OpenAPI
+    url: openapi/tableau-schedules-api-openapi.yml
+  - type: Documentation
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
+  - type: JSONSchema
+    url: json-schema/tableau-workbook-schema.json
+  - type: JSONLD
+    url: json-ld/tableau-context.jsonld
+  - type: Authentication
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_auth.htm
+  - type: Versioning
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm
+  - type: ChangeLog
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_whats_new.htm
+  - type: GettingStarted
+    url: >-
+      https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_get_started_tutorial_part_1.htm
+  - type: APIReference
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref.htm
+  - type: CodeExamples
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_samples.htm
+  - type: SDKs
+    url: https://tableau.github.io/server-client-python/
+  - type: GitHubRepository
+    url: https://github.com/tableau/rest-api-samples
+- aid: tableau:tableau-sites-api
+  name: Tableau Sites API
+  description: >-
+    Manage sites on Tableau Server. A site is a collection of users, groups, projects, workbooks, data
+    sources, and other resources.
+  humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
+  baseURL: https://[server]/api/[api-version]
+  tags:
+  - Sites
+  properties:
+  - type: OpenAPI
+    url: openapi/tableau-sites-api-openapi.yml
+  - type: Documentation
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
+  - type: JSONSchema
+    url: json-schema/tableau-workbook-schema.json
+  - type: JSONLD
+    url: json-ld/tableau-context.jsonld
+  - type: Authentication
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_auth.htm
+  - type: Versioning
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm
+  - type: ChangeLog
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_whats_new.htm
+  - type: GettingStarted
+    url: >-
+      https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_get_started_tutorial_part_1.htm
+  - type: APIReference
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref.htm
+  - type: CodeExamples
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_samples.htm
+  - type: SDKs
+    url: https://tableau.github.io/server-client-python/
+  - type: GitHubRepository
+    url: https://github.com/tableau/rest-api-samples
+- aid: tableau:tableau-subscriptions-api
+  name: Tableau Subscriptions API
+  description: >-
+    Create, update, delete, and query subscriptions. Subscriptions deliver snapshots of views to users
+    on a schedule.
+  humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
+  baseURL: https://[server]/api/[api-version]
+  tags:
+  - Subscriptions
+  properties:
+  - type: OpenAPI
+    url: openapi/tableau-subscriptions-api-openapi.yml
+  - type: Documentation
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
+  - type: JSONSchema
+    url: json-schema/tableau-workbook-schema.json
+  - type: JSONLD
+    url: json-ld/tableau-context.jsonld
+  - type: Authentication
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_auth.htm
+  - type: Versioning
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm
+  - type: ChangeLog
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_whats_new.htm
+  - type: GettingStarted
+    url: >-
+      https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_get_started_tutorial_part_1.htm
+  - type: APIReference
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref.htm
+  - type: CodeExamples
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_samples.htm
+  - type: SDKs
+    url: https://tableau.github.io/server-client-python/
+  - type: GitHubRepository
+    url: https://github.com/tableau/rest-api-samples
+- aid: tableau:tableau-users-api
+  name: Tableau Users API
+  description: >-
+    Add, update, remove, and query users on a site. Users are individuals who can sign in to Tableau Server
+    or Tableau Cloud.
+  humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
+  baseURL: https://[server]/api/[api-version]
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/tableau-users-api-openapi.yml
+  - type: Documentation
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
+  - type: JSONSchema
+    url: json-schema/tableau-workbook-schema.json
+  - type: JSONLD
+    url: json-ld/tableau-context.jsonld
+  - type: Authentication
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_auth.htm
+  - type: Versioning
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm
+  - type: ChangeLog
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_whats_new.htm
+  - type: GettingStarted
+    url: >-
+      https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_get_started_tutorial_part_1.htm
+  - type: APIReference
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref.htm
+  - type: CodeExamples
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_samples.htm
+  - type: SDKs
+    url: https://tableau.github.io/server-client-python/
+  - type: GitHubRepository
+    url: https://github.com/tableau/rest-api-samples
+- aid: tableau:tableau-views-api
+  name: Tableau Views API
+  description: >-
+    Query views and download view images or data. Views are the individual sheets, dashboards, or stories
+    within a workbook.
+  humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
+  baseURL: https://[server]/api/[api-version]
+  tags:
+  - Views
+  properties:
+  - type: OpenAPI
+    url: openapi/tableau-views-api-openapi.yml
+  - type: Documentation
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
+  - type: JSONSchema
+    url: json-schema/tableau-workbook-schema.json
+  - type: JSONLD
+    url: json-ld/tableau-context.jsonld
+  - type: Authentication
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_auth.htm
+  - type: Versioning
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm
+  - type: ChangeLog
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_whats_new.htm
+  - type: GettingStarted
+    url: >-
+      https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_get_started_tutorial_part_1.htm
+  - type: APIReference
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref.htm
+  - type: CodeExamples
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_samples.htm
+  - type: SDKs
+    url: https://tableau.github.io/server-client-python/
+  - type: GitHubRepository
+    url: https://github.com/tableau/rest-api-samples
+- aid: tableau:tableau-workbooks-api
+  name: Tableau Workbooks API
+  description: >-
+    Publish, query, update, delete, and download workbooks. Workbooks contain one or more views (sheets,
+    dashboards, or stories) and can connect to one or more data sources.
+  humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
+  baseURL: https://[server]/api/[api-version]
+  tags:
+  - Workbooks
+  properties:
+  - type: OpenAPI
+    url: openapi/tableau-workbooks-api-openapi.yml
+  - type: Documentation
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
+  - type: JSONSchema
+    url: json-schema/tableau-workbook-schema.json
+  - type: JSONLD
+    url: json-ld/tableau-context.jsonld
+  - type: Authentication
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_auth.htm
+  - type: Versioning
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_concepts_versions.htm
+  - type: ChangeLog
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_whats_new.htm
+  - type: GettingStarted
+    url: >-
+      https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_get_started_tutorial_part_1.htm
+  - type: APIReference
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref.htm
+  - type: CodeExamples
+    url: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_samples.htm
+  - type: SDKs
+    url: https://tableau.github.io/server-client-python/
+  - type: GitHubRepository
+    url: https://github.com/tableau/rest-api-samples
 maintainers:
 - name: Tableau
   email: developers@tableau.com
@@ -332,6 +769,8 @@ maintainers:
   email: kin@apievangelist.com
   url: https://apievangelist.com
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/tableau/overview
 - type: AgenticAccess
   url: agentic-access/tableau-agentic-access.yml
 - type: DomainSecurity
