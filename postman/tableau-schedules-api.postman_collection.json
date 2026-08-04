@@ -1,0 +1,154 @@
+{
+  "info": {
+    "_postman_id": "c71cc7e6-02cc-4128-b73f-f230e885f50f",
+    "name": "Tableau REST Authentication Schedules API",
+    "description": "The Tableau REST API allows you to manage and change Tableau Server and Tableau Cloud resources programmatically using HTTP. You can use the REST API to manage sites, projects, workbooks, views, data sources, users, groups, permissions, schedules, subscriptions, and more.\n\nContact Support:\n Name: Tableau Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:07:59.000Z",
+    "updatedAt": "2026-07-28T03:07:59.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c71cc7e6-02cc-4128-b73f-f230e885f50f"
+  },
+  "item": [
+    {
+      "name": "schedules",
+      "item": [
+        {
+          "name": "Tableau Query Schedules",
+          "id": "232f5cfc-3c6e-4a28-9786-cef08edee576",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/schedules?pageSize=100&pageNumber=1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "schedules"
+              ],
+              "query": [
+                {
+                  "description": "The number of items to return in one response. The minimum is 1 and the maximum is 1000.",
+                  "key": "pageSize",
+                  "value": "100"
+                },
+                {
+                  "description": "The page number of the set of items to return. The default is 1.",
+                  "key": "pageNumber",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "Returns a list of extract refresh and subscription schedules. This method is available on Tableau Server only."
+          },
+          "response": [
+            {
+              "id": "e7a5b45f-b9a3-4e4a-a9b9-97f7eaf5ba07",
+              "name": "A paginated list of schedules.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Tableau-Auth",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/schedules?pageSize=100&pageNumber=1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "schedules"
+                  ],
+                  "query": [
+                    {
+                      "description": "The number of items to return in one response. The minimum is 1 and the maximum is 1000.",
+                      "key": "pageSize",
+                      "value": "100"
+                    },
+                    {
+                      "description": "The page number of the set of items to return. The default is 1.",
+                      "key": "pageNumber",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"pagination\": {\n    \"pageNumber\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"totalAvailable\": \"<integer>\"\n  },\n  \"schedules\": {\n    \"schedule\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"state\": \"Suspended\",\n        \"priority\": \"<integer>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\",\n        \"type\": \"Flow\",\n        \"frequency\": \"Monthly\",\n        \"nextRunAt\": \"<dateTime>\",\n        \"endScheduleAt\": \"<dateTime>\",\n        \"frequencyDetails\": {\n          \"start\": \"<string>\",\n          \"end\": \"<string>\",\n          \"intervals\": {\n            \"interval\": [\n              {\n                \"hours\": \"<string>\",\n                \"minutes\": \"<string>\",\n                \"weekDay\": \"<string>\",\n                \"monthDay\": \"<string>\"\n              },\n              {\n                \"hours\": \"<string>\",\n                \"minutes\": \"<string>\",\n                \"weekDay\": \"<string>\",\n                \"monthDay\": \"<string>\"\n              }\n            ]\n          }\n        }\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"state\": \"Suspended\",\n        \"priority\": \"<integer>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\",\n        \"type\": \"Subscription\",\n        \"frequency\": \"Monthly\",\n        \"nextRunAt\": \"<dateTime>\",\n        \"endScheduleAt\": \"<dateTime>\",\n        \"frequencyDetails\": {\n          \"start\": \"<string>\",\n          \"end\": \"<string>\",\n          \"intervals\": {\n            \"interval\": [\n              {\n                \"hours\": \"<string>\",\n                \"minutes\": \"<string>\",\n                \"weekDay\": \"<string>\",\n                \"monthDay\": \"<string>\"\n              },\n              {\n                \"hours\": \"<string>\",\n                \"minutes\": \"<string>\",\n                \"weekDay\": \"<string>\",\n                \"monthDay\": \"<string>\"\n              }\n            ]\n          }\n        }\n      }\n    ]\n  }\n}",
+              "createdAt": "2026-07-28T03:07:59.000Z",
+              "updatedAt": "2026-07-28T03:07:59.000Z",
+              "uid": "35240-e7a5b45f-b9a3-4e4a-a9b9-97f7eaf5ba07"
+            }
+          ],
+          "createdAt": "2026-07-28T03:07:59.000Z",
+          "updatedAt": "2026-07-28T03:07:59.000Z",
+          "uid": "35240-232f5cfc-3c6e-4a28-9786-cef08edee576"
+        }
+      ],
+      "id": "f9646804-f0c3-43c8-95ca-c4252757cfc5",
+      "createdAt": "2026-07-28T03:07:59.000Z",
+      "updatedAt": "2026-07-28T03:07:59.000Z",
+      "uid": "35240-f9646804-f0c3-43c8-95ca-c4252757cfc5"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Tableau-Auth",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "server",
+      "value": "10ax.online.tableau.com"
+    },
+    {
+      "key": "api-version",
+      "value": "3.24"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{server}}/api/{{api-version}}"
+    }
+  ]
+}

@@ -1,0 +1,2493 @@
+{
+  "info": {
+    "_postman_id": "b336d3fe-e571-475c-9da0-cdf7a77eaed4",
+    "name": "Tableau REST Authentication Data Sources API",
+    "description": "The Tableau REST API allows you to manage and change Tableau Server and Tableau Cloud resources programmatically using HTTP. You can use the REST API to manage sites, projects, workbooks, views, data sources, users, groups, permissions, schedules, subscriptions, and more.\n\nContact Support:\n Name: Tableau Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:07:42.000Z",
+    "updatedAt": "2026-07-28T03:07:42.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b336d3fe-e571-475c-9da0-cdf7a77eaed4"
+  },
+  "item": [
+    {
+      "name": "sites",
+      "item": [
+        {
+          "name": "{site-id}",
+          "item": [
+            {
+              "name": "datasources",
+              "item": [
+                {
+                  "name": "{datasource-id}",
+                  "item": [
+                    {
+                      "name": "content",
+                      "item": [
+                        {
+                          "name": "Tableau Download Data Source",
+                          "id": "1b063224-e192-4568-ab17-eb3b77ee9945",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/octet-stream"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sites/:site-id/datasources/:datasource-id/content?includeExtract=true",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sites",
+                                ":site-id",
+                                "datasources",
+                                ":datasource-id",
+                                "content"
+                              ],
+                              "query": [
+                                {
+                                  "description": "If true and the data source contains an extract, the download includes the extract.",
+                                  "key": "includeExtract",
+                                  "value": "true"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "3effb22a-1f04-4b9c-8ca7-fb0673c5cf3c",
+                                  "key": "site-id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                                },
+                                {
+                                  "id": "25532736-279e-4955-b6d4-a7c13d12dab0",
+                                  "key": "datasource-id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the data source."
+                                }
+                              ]
+                            },
+                            "description": "Downloads the specified data source in .tdsx format."
+                          },
+                          "response": [
+                            {
+                              "id": "421a1802-5047-487f-ba7c-09843de9914b",
+                              "name": "The data source file.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/octet-stream"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Tableau-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/sites/:site-id/datasources/:datasource-id/content?includeExtract=true",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sites",
+                                    ":site-id",
+                                    "datasources",
+                                    ":datasource-id",
+                                    "content"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "If true and the data source contains an extract, the download includes the extract.",
+                                      "key": "includeExtract",
+                                      "value": "true"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "site-id"
+                                    },
+                                    {
+                                      "key": "datasource-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/octet-stream"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "<binary>",
+                              "createdAt": "2026-07-28T03:07:42.000Z",
+                              "updatedAt": "2026-07-28T03:07:42.000Z",
+                              "uid": "35240-421a1802-5047-487f-ba7c-09843de9914b"
+                            },
+                            {
+                              "id": "97d1dda1-9484-4963-ab2b-84d860d40e2c",
+                              "name": "The authentication credentials were missing or invalid.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Tableau-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/sites/:site-id/datasources/:datasource-id/content?includeExtract=true",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sites",
+                                    ":site-id",
+                                    "datasources",
+                                    ":datasource-id",
+                                    "content"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "If true and the data source contains an extract, the download includes the extract.",
+                                      "key": "includeExtract",
+                                      "value": "true"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "site-id"
+                                    },
+                                    {
+                                      "key": "datasource-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T03:07:42.000Z",
+                              "updatedAt": "2026-07-28T03:07:42.000Z",
+                              "uid": "35240-97d1dda1-9484-4963-ab2b-84d860d40e2c"
+                            },
+                            {
+                              "id": "1acbef15-6f08-40c7-8da4-e65ce3d9e96e",
+                              "name": "The caller does not have permission to perform the requested action.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Tableau-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/sites/:site-id/datasources/:datasource-id/content?includeExtract=true",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sites",
+                                    ":site-id",
+                                    "datasources",
+                                    ":datasource-id",
+                                    "content"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "If true and the data source contains an extract, the download includes the extract.",
+                                      "key": "includeExtract",
+                                      "value": "true"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "site-id"
+                                    },
+                                    {
+                                      "key": "datasource-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T03:07:42.000Z",
+                              "updatedAt": "2026-07-28T03:07:42.000Z",
+                              "uid": "35240-1acbef15-6f08-40c7-8da4-e65ce3d9e96e"
+                            },
+                            {
+                              "id": "ea746c0a-b3fb-43df-8f7e-b77e9b1ad4eb",
+                              "name": "The specified resource was not found.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Tableau-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/sites/:site-id/datasources/:datasource-id/content?includeExtract=true",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sites",
+                                    ":site-id",
+                                    "datasources",
+                                    ":datasource-id",
+                                    "content"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "If true and the data source contains an extract, the download includes the extract.",
+                                      "key": "includeExtract",
+                                      "value": "true"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "site-id"
+                                    },
+                                    {
+                                      "key": "datasource-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T03:07:42.000Z",
+                              "updatedAt": "2026-07-28T03:07:42.000Z",
+                              "uid": "35240-ea746c0a-b3fb-43df-8f7e-b77e9b1ad4eb"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:07:42.000Z",
+                          "updatedAt": "2026-07-28T03:07:42.000Z",
+                          "uid": "35240-1b063224-e192-4568-ab17-eb3b77ee9945"
+                        }
+                      ],
+                      "id": "4723d765-2822-4e6c-9a3a-f92e51bc27ad",
+                      "createdAt": "2026-07-28T03:07:42.000Z",
+                      "updatedAt": "2026-07-28T03:07:42.000Z",
+                      "uid": "35240-4723d765-2822-4e6c-9a3a-f92e51bc27ad"
+                    },
+                    {
+                      "name": "connections",
+                      "item": [
+                        {
+                          "name": "Tableau Query Data Source Connections",
+                          "id": "e8dbb061-dd1b-409c-9846-6a78ba103579",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sites/:site-id/datasources/:datasource-id/connections",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sites",
+                                ":site-id",
+                                "datasources",
+                                ":datasource-id",
+                                "connections"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "0e54f1d4-8c27-4cda-81e2-2d1b274d7df2",
+                                  "key": "site-id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                                },
+                                {
+                                  "id": "219111ab-7a45-4de8-a167-61442a4eae95",
+                                  "key": "datasource-id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the data source."
+                                }
+                              ]
+                            },
+                            "description": "Returns a list of data connections for the specified data source."
+                          },
+                          "response": [
+                            {
+                              "id": "bf7f8b67-bdc7-4eae-8466-35a0b955a522",
+                              "name": "A list of data connections for the data source.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Tableau-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/sites/:site-id/datasources/:datasource-id/connections",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sites",
+                                    ":site-id",
+                                    "datasources",
+                                    ":datasource-id",
+                                    "connections"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "site-id"
+                                    },
+                                    {
+                                      "key": "datasource-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"connections\": {\n    \"connection\": [\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"serverAddress\": \"<string>\",\n        \"serverPort\": \"<string>\",\n        \"userName\": \"<string>\",\n        \"datasource\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        }\n      },\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"serverAddress\": \"<string>\",\n        \"serverPort\": \"<string>\",\n        \"userName\": \"<string>\",\n        \"datasource\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        }\n      }\n    ]\n  }\n}",
+                              "createdAt": "2026-07-28T03:07:42.000Z",
+                              "updatedAt": "2026-07-28T03:07:42.000Z",
+                              "uid": "35240-bf7f8b67-bdc7-4eae-8466-35a0b955a522"
+                            },
+                            {
+                              "id": "b0df8d14-6ad7-4e2b-94c6-e55a88c0f481",
+                              "name": "The authentication credentials were missing or invalid.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Tableau-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/sites/:site-id/datasources/:datasource-id/connections",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sites",
+                                    ":site-id",
+                                    "datasources",
+                                    ":datasource-id",
+                                    "connections"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "site-id"
+                                    },
+                                    {
+                                      "key": "datasource-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T03:07:42.000Z",
+                              "updatedAt": "2026-07-28T03:07:42.000Z",
+                              "uid": "35240-b0df8d14-6ad7-4e2b-94c6-e55a88c0f481"
+                            },
+                            {
+                              "id": "6b8899ae-04d5-4c6f-b877-a2946382b469",
+                              "name": "The caller does not have permission to perform the requested action.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Tableau-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/sites/:site-id/datasources/:datasource-id/connections",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sites",
+                                    ":site-id",
+                                    "datasources",
+                                    ":datasource-id",
+                                    "connections"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "site-id"
+                                    },
+                                    {
+                                      "key": "datasource-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T03:07:42.000Z",
+                              "updatedAt": "2026-07-28T03:07:42.000Z",
+                              "uid": "35240-6b8899ae-04d5-4c6f-b877-a2946382b469"
+                            },
+                            {
+                              "id": "4fef21a1-be9c-4e32-b615-adf7e2e3b035",
+                              "name": "The specified resource was not found.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Tableau-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/sites/:site-id/datasources/:datasource-id/connections",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sites",
+                                    ":site-id",
+                                    "datasources",
+                                    ":datasource-id",
+                                    "connections"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "site-id"
+                                    },
+                                    {
+                                      "key": "datasource-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T03:07:42.000Z",
+                              "updatedAt": "2026-07-28T03:07:42.000Z",
+                              "uid": "35240-4fef21a1-be9c-4e32-b615-adf7e2e3b035"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:07:42.000Z",
+                          "updatedAt": "2026-07-28T03:07:42.000Z",
+                          "uid": "35240-e8dbb061-dd1b-409c-9846-6a78ba103579"
+                        }
+                      ],
+                      "id": "7430d7a9-8da3-4afd-b844-1f7d583ada9c",
+                      "createdAt": "2026-07-28T03:07:42.000Z",
+                      "updatedAt": "2026-07-28T03:07:42.000Z",
+                      "uid": "35240-7430d7a9-8da3-4afd-b844-1f7d583ada9c"
+                    },
+                    {
+                      "name": "revisions",
+                      "item": [
+                        {
+                          "name": "Tableau Get Data Source Revisions",
+                          "id": "faef5352-f97f-4d81-b854-3b6525c37377",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sites/:site-id/datasources/:datasource-id/revisions?pageSize=100&pageNumber=1",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sites",
+                                ":site-id",
+                                "datasources",
+                                ":datasource-id",
+                                "revisions"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The number of items to return in one response. The minimum is 1 and the maximum is 1000.",
+                                  "key": "pageSize",
+                                  "value": "100"
+                                },
+                                {
+                                  "description": "The page number of the set of items to return. The default is 1.",
+                                  "key": "pageNumber",
+                                  "value": "1"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "dbad0428-3ff8-4414-9f58-fa35b0836b1b",
+                                  "key": "site-id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                                },
+                                {
+                                  "id": "1e11b2e9-4281-471d-ae83-69385511402c",
+                                  "key": "datasource-id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the data source."
+                                }
+                              ]
+                            },
+                            "description": "Returns a list of revision information for each revision of the specified data source."
+                          },
+                          "response": [
+                            {
+                              "id": "71e2712f-b22b-42be-bd2b-1b994dd4578e",
+                              "name": "A list of data source revisions.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Tableau-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/sites/:site-id/datasources/:datasource-id/revisions?pageSize=100&pageNumber=1",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sites",
+                                    ":site-id",
+                                    "datasources",
+                                    ":datasource-id",
+                                    "revisions"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The number of items to return in one response. The minimum is 1 and the maximum is 1000.",
+                                      "key": "pageSize",
+                                      "value": "100"
+                                    },
+                                    {
+                                      "description": "The page number of the set of items to return. The default is 1.",
+                                      "key": "pageNumber",
+                                      "value": "1"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "site-id"
+                                    },
+                                    {
+                                      "key": "datasource-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"pagination\": {\n    \"pageNumber\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"totalAvailable\": \"<integer>\"\n  },\n  \"revisions\": {\n    \"revision\": [\n      {\n        \"revisionNumber\": \"<integer>\",\n        \"publishedAt\": \"<dateTime>\",\n        \"deleted\": \"<boolean>\",\n        \"current\": \"<boolean>\",\n        \"sizeInBytes\": \"<integer>\",\n        \"publisher\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        }\n      },\n      {\n        \"revisionNumber\": \"<integer>\",\n        \"publishedAt\": \"<dateTime>\",\n        \"deleted\": \"<boolean>\",\n        \"current\": \"<boolean>\",\n        \"sizeInBytes\": \"<integer>\",\n        \"publisher\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        }\n      }\n    ]\n  }\n}",
+                              "createdAt": "2026-07-28T03:07:42.000Z",
+                              "updatedAt": "2026-07-28T03:07:42.000Z",
+                              "uid": "35240-71e2712f-b22b-42be-bd2b-1b994dd4578e"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:07:42.000Z",
+                          "updatedAt": "2026-07-28T03:07:42.000Z",
+                          "uid": "35240-faef5352-f97f-4d81-b854-3b6525c37377"
+                        }
+                      ],
+                      "id": "93ed2e45-1431-4b3c-b4a6-e3b566be78c8",
+                      "createdAt": "2026-07-28T03:07:42.000Z",
+                      "updatedAt": "2026-07-28T03:07:42.000Z",
+                      "uid": "35240-93ed2e45-1431-4b3c-b4a6-e3b566be78c8"
+                    },
+                    {
+                      "name": "tags",
+                      "item": [
+                        {
+                          "name": "Tableau Query Data Source Tags",
+                          "id": "bf9b9b5e-144e-4145-8d5c-7b6e76d54ca4",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sites/:site-id/datasources/:datasource-id/tags",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sites",
+                                ":site-id",
+                                "datasources",
+                                ":datasource-id",
+                                "tags"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "08f30ea2-9977-4568-a2a5-c374ca856d03",
+                                  "key": "site-id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                                },
+                                {
+                                  "id": "5f7ab2e0-9dd3-4a70-807c-b834e1573ac7",
+                                  "key": "datasource-id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the data source."
+                                }
+                              ]
+                            },
+                            "description": "Returns a list of tags associated with the specified data source."
+                          },
+                          "response": [
+                            {
+                              "id": "2d9fb85a-c58b-447c-a518-24697294ead5",
+                              "name": "A list of tags on the data source.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Tableau-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/sites/:site-id/datasources/:datasource-id/tags",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sites",
+                                    ":site-id",
+                                    "datasources",
+                                    ":datasource-id",
+                                    "tags"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "site-id"
+                                    },
+                                    {
+                                      "key": "datasource-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"tags\": {\n    \"tag\": [\n      {\n        \"label\": \"<string>\"\n      },\n      {\n        \"label\": \"<string>\"\n      }\n    ]\n  }\n}",
+                              "createdAt": "2026-07-28T03:07:42.000Z",
+                              "updatedAt": "2026-07-28T03:07:42.000Z",
+                              "uid": "35240-2d9fb85a-c58b-447c-a518-24697294ead5"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:07:42.000Z",
+                          "updatedAt": "2026-07-28T03:07:42.000Z",
+                          "uid": "35240-bf9b9b5e-144e-4145-8d5c-7b6e76d54ca4"
+                        },
+                        {
+                          "name": "Tableau Add Tags to Data Source",
+                          "id": "e12d6713-5a55-44f0-a5be-77d032022de0",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"tags\": {\n    \"tag\": [\n      {\n        \"label\": \"<string>\"\n      },\n      {\n        \"label\": \"<string>\"\n      }\n    ]\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/sites/:site-id/datasources/:datasource-id/tags",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sites",
+                                ":site-id",
+                                "datasources",
+                                ":datasource-id",
+                                "tags"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "5dddae69-8802-4b66-ada3-1278d34ba2d5",
+                                  "key": "site-id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                                },
+                                {
+                                  "id": "33ff598b-3e22-46f2-8520-706818d14d91",
+                                  "key": "datasource-id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the data source."
+                                }
+                              ]
+                            },
+                            "description": "Adds one or more tags to the specified data source."
+                          },
+                          "response": [
+                            {
+                              "id": "37e3be3c-fd22-483b-bff3-04afc5806124",
+                              "name": "Tags were added successfully.",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Tableau-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"tags\": {\n    \"tag\": [\n      {\n        \"label\": \"<string>\"\n      },\n      {\n        \"label\": \"<string>\"\n      }\n    ]\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/sites/:site-id/datasources/:datasource-id/tags",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sites",
+                                    ":site-id",
+                                    "datasources",
+                                    ":datasource-id",
+                                    "tags"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "site-id"
+                                    },
+                                    {
+                                      "key": "datasource-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"tags\": {\n    \"tag\": [\n      {\n        \"label\": \"<string>\"\n      },\n      {\n        \"label\": \"<string>\"\n      }\n    ]\n  }\n}",
+                              "createdAt": "2026-07-28T03:07:42.000Z",
+                              "updatedAt": "2026-07-28T03:07:42.000Z",
+                              "uid": "35240-37e3be3c-fd22-483b-bff3-04afc5806124"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:07:42.000Z",
+                          "updatedAt": "2026-07-28T03:07:42.000Z",
+                          "uid": "35240-e12d6713-5a55-44f0-a5be-77d032022de0"
+                        }
+                      ],
+                      "id": "5ee9d6cd-14f6-4b88-b430-efdfc523a093",
+                      "createdAt": "2026-07-28T03:07:42.000Z",
+                      "updatedAt": "2026-07-28T03:07:42.000Z",
+                      "uid": "35240-5ee9d6cd-14f6-4b88-b430-efdfc523a093"
+                    },
+                    {
+                      "name": "permissions",
+                      "item": [
+                        {
+                          "name": "Tableau Query Data Source Permissions",
+                          "id": "db9eba40-525e-4f0a-8a29-20c94b9f61d0",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sites/:site-id/datasources/:datasource-id/permissions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sites",
+                                ":site-id",
+                                "datasources",
+                                ":datasource-id",
+                                "permissions"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "77681dd8-4d89-4333-a52e-7e4e8dbb7b0c",
+                                  "key": "site-id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                                },
+                                {
+                                  "id": "6c2ab8fb-5d5f-4b99-89ca-7805cf56d58e",
+                                  "key": "datasource-id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the data source."
+                                }
+                              ]
+                            },
+                            "description": "Returns a list of permissions for the specified data source."
+                          },
+                          "response": [
+                            {
+                              "id": "2a572b25-6309-414f-9d7d-c6674c79290d",
+                              "name": "A list of permissions on the data source.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Tableau-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/sites/:site-id/datasources/:datasource-id/permissions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sites",
+                                    ":site-id",
+                                    "datasources",
+                                    ":datasource-id",
+                                    "permissions"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "site-id"
+                                    },
+                                    {
+                                      "key": "datasource-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"permissions\": {\n    \"granteeCapabilities\": [\n      {\n        \"user\": {\n          \"id\": \"<string>\"\n        },\n        \"group\": {\n          \"id\": \"<string>\"\n        },\n        \"capabilities\": {\n          \"capability\": [\n            {\n              \"name\": \"<string>\",\n              \"mode\": \"Allow\"\n            },\n            {\n              \"name\": \"<string>\",\n              \"mode\": \"Allow\"\n            }\n          ]\n        }\n      },\n      {\n        \"user\": {\n          \"id\": \"<string>\"\n        },\n        \"group\": {\n          \"id\": \"<string>\"\n        },\n        \"capabilities\": {\n          \"capability\": [\n            {\n              \"name\": \"<string>\",\n              \"mode\": \"Allow\"\n            },\n            {\n              \"name\": \"<string>\",\n              \"mode\": \"Allow\"\n            }\n          ]\n        }\n      }\n    ]\n  },\n  \"parent\": {\n    \"project\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T03:07:42.000Z",
+                              "updatedAt": "2026-07-28T03:07:42.000Z",
+                              "uid": "35240-2a572b25-6309-414f-9d7d-c6674c79290d"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:07:42.000Z",
+                          "updatedAt": "2026-07-28T03:07:42.000Z",
+                          "uid": "35240-db9eba40-525e-4f0a-8a29-20c94b9f61d0"
+                        },
+                        {
+                          "name": "Tableau Add Data Source Permissions",
+                          "id": "048846d7-866f-48c8-8c99-b668b5055b22",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"permissions\": {\n    \"granteeCapabilities\": [\n      {\n        \"user\": {\n          \"id\": \"<string>\"\n        },\n        \"group\": {\n          \"id\": \"<string>\"\n        },\n        \"capabilities\": {\n          \"capability\": [\n            {\n              \"name\": \"<string>\",\n              \"mode\": \"Deny\"\n            },\n            {\n              \"name\": \"<string>\",\n              \"mode\": \"Deny\"\n            }\n          ]\n        }\n      },\n      {\n        \"user\": {\n          \"id\": \"<string>\"\n        },\n        \"group\": {\n          \"id\": \"<string>\"\n        },\n        \"capabilities\": {\n          \"capability\": [\n            {\n              \"name\": \"<string>\",\n              \"mode\": \"Allow\"\n            },\n            {\n              \"name\": \"<string>\",\n              \"mode\": \"Allow\"\n            }\n          ]\n        }\n      }\n    ]\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/sites/:site-id/datasources/:datasource-id/permissions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sites",
+                                ":site-id",
+                                "datasources",
+                                ":datasource-id",
+                                "permissions"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "b6316113-e3bf-41a1-8fff-28f617557560",
+                                  "key": "site-id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                                },
+                                {
+                                  "id": "b90cfce1-7a45-47d1-bcfe-85d8abcbd66e",
+                                  "key": "datasource-id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the data source."
+                                }
+                              ]
+                            },
+                            "description": "Adds permissions to the specified data source for a user or group."
+                          },
+                          "response": [
+                            {
+                              "id": "6074f001-6af5-43b7-9f41-865e173e2db7",
+                              "name": "Permissions were added successfully.",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Tableau-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"permissions\": {\n    \"granteeCapabilities\": [\n      {\n        \"user\": {\n          \"id\": \"<string>\"\n        },\n        \"group\": {\n          \"id\": \"<string>\"\n        },\n        \"capabilities\": {\n          \"capability\": [\n            {\n              \"name\": \"<string>\",\n              \"mode\": \"Deny\"\n            },\n            {\n              \"name\": \"<string>\",\n              \"mode\": \"Deny\"\n            }\n          ]\n        }\n      },\n      {\n        \"user\": {\n          \"id\": \"<string>\"\n        },\n        \"group\": {\n          \"id\": \"<string>\"\n        },\n        \"capabilities\": {\n          \"capability\": [\n            {\n              \"name\": \"<string>\",\n              \"mode\": \"Allow\"\n            },\n            {\n              \"name\": \"<string>\",\n              \"mode\": \"Allow\"\n            }\n          ]\n        }\n      }\n    ]\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/sites/:site-id/datasources/:datasource-id/permissions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sites",
+                                    ":site-id",
+                                    "datasources",
+                                    ":datasource-id",
+                                    "permissions"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "site-id"
+                                    },
+                                    {
+                                      "key": "datasource-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"permissions\": {\n    \"granteeCapabilities\": [\n      {\n        \"user\": {\n          \"id\": \"<string>\"\n        },\n        \"group\": {\n          \"id\": \"<string>\"\n        },\n        \"capabilities\": {\n          \"capability\": [\n            {\n              \"name\": \"<string>\",\n              \"mode\": \"Allow\"\n            },\n            {\n              \"name\": \"<string>\",\n              \"mode\": \"Allow\"\n            }\n          ]\n        }\n      },\n      {\n        \"user\": {\n          \"id\": \"<string>\"\n        },\n        \"group\": {\n          \"id\": \"<string>\"\n        },\n        \"capabilities\": {\n          \"capability\": [\n            {\n              \"name\": \"<string>\",\n              \"mode\": \"Allow\"\n            },\n            {\n              \"name\": \"<string>\",\n              \"mode\": \"Allow\"\n            }\n          ]\n        }\n      }\n    ]\n  },\n  \"parent\": {\n    \"project\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T03:07:42.000Z",
+                              "updatedAt": "2026-07-28T03:07:42.000Z",
+                              "uid": "35240-6074f001-6af5-43b7-9f41-865e173e2db7"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:07:42.000Z",
+                          "updatedAt": "2026-07-28T03:07:42.000Z",
+                          "uid": "35240-048846d7-866f-48c8-8c99-b668b5055b22"
+                        }
+                      ],
+                      "id": "40cf9a44-15ee-45eb-b149-6fecb1b998d8",
+                      "createdAt": "2026-07-28T03:07:42.000Z",
+                      "updatedAt": "2026-07-28T03:07:42.000Z",
+                      "uid": "35240-40cf9a44-15ee-45eb-b149-6fecb1b998d8"
+                    },
+                    {
+                      "name": "Tableau Query Data Source",
+                      "id": "2ca815b7-e8d4-472d-8b5e-d48d19882129",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sites/:site-id/datasources/:datasource-id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sites",
+                            ":site-id",
+                            "datasources",
+                            ":datasource-id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "7f64b1b8-7827-4420-b558-32fdf4630997",
+                              "key": "site-id",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                            },
+                            {
+                              "id": "39e59ba2-f94f-498f-bc83-87a42c88324d",
+                              "key": "datasource-id",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the data source."
+                            }
+                          ]
+                        },
+                        "description": "Returns information about the specified data source."
+                      },
+                      "response": [
+                        {
+                          "id": "0ef3663b-9a8c-4f24-94ee-9965afd685a9",
+                          "name": "Data source details.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Tableau-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sites/:site-id/datasources/:datasource-id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sites",
+                                ":site-id",
+                                "datasources",
+                                ":datasource-id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "site-id"
+                                },
+                                {
+                                  "key": "datasource-id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"datasource\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"contentUrl\": \"<string>\",\n    \"type\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"isCertified\": \"<boolean>\",\n    \"certificationNote\": \"<string>\",\n    \"useRemoteQueryAgent\": \"<boolean>\",\n    \"hasExtracts\": \"<boolean>\",\n    \"encryptExtracts\": \"<string>\",\n    \"project\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"owner\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"tags\": {\n      \"tag\": [\n        {\n          \"label\": \"<string>\"\n        },\n        {\n          \"label\": \"<string>\"\n        }\n      ]\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T03:07:42.000Z",
+                          "updatedAt": "2026-07-28T03:07:42.000Z",
+                          "uid": "35240-0ef3663b-9a8c-4f24-94ee-9965afd685a9"
+                        },
+                        {
+                          "id": "720714c0-1062-4e49-b061-d69af09f2d75",
+                          "name": "The authentication credentials were missing or invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Tableau-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sites/:site-id/datasources/:datasource-id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sites",
+                                ":site-id",
+                                "datasources",
+                                ":datasource-id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "site-id"
+                                },
+                                {
+                                  "key": "datasource-id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T03:07:42.000Z",
+                          "updatedAt": "2026-07-28T03:07:42.000Z",
+                          "uid": "35240-720714c0-1062-4e49-b061-d69af09f2d75"
+                        },
+                        {
+                          "id": "75e1226d-63b6-4f24-a1a7-483fc94b4d46",
+                          "name": "The caller does not have permission to perform the requested action.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Tableau-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sites/:site-id/datasources/:datasource-id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sites",
+                                ":site-id",
+                                "datasources",
+                                ":datasource-id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "site-id"
+                                },
+                                {
+                                  "key": "datasource-id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T03:07:42.000Z",
+                          "updatedAt": "2026-07-28T03:07:42.000Z",
+                          "uid": "35240-75e1226d-63b6-4f24-a1a7-483fc94b4d46"
+                        },
+                        {
+                          "id": "7556c959-d926-447e-b0fe-711f92b4eee3",
+                          "name": "The specified resource was not found.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Tableau-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sites/:site-id/datasources/:datasource-id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sites",
+                                ":site-id",
+                                "datasources",
+                                ":datasource-id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "site-id"
+                                },
+                                {
+                                  "key": "datasource-id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T03:07:42.000Z",
+                          "updatedAt": "2026-07-28T03:07:42.000Z",
+                          "uid": "35240-7556c959-d926-447e-b0fe-711f92b4eee3"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:07:42.000Z",
+                      "updatedAt": "2026-07-28T03:07:42.000Z",
+                      "uid": "35240-2ca815b7-e8d4-472d-8b5e-d48d19882129"
+                    },
+                    {
+                      "name": "Tableau Update Data Source",
+                      "id": "264f6065-55f1-429b-b695-60d2e707b618",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"datasource\": {\n    \"name\": \"<string>\",\n    \"project\": {\n      \"id\": \"<string>\"\n    },\n    \"owner\": {\n      \"id\": \"<string>\"\n    },\n    \"isCertified\": \"<boolean>\",\n    \"certificationNote\": \"<string>\",\n    \"encryptExtracts\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/sites/:site-id/datasources/:datasource-id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sites",
+                            ":site-id",
+                            "datasources",
+                            ":datasource-id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "546fdbbc-f323-4eba-b353-ea426c81763f",
+                              "key": "site-id",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                            },
+                            {
+                              "id": "8ec1895b-b3ab-4544-a32e-1da79b7a5184",
+                              "key": "datasource-id",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the data source."
+                            }
+                          ]
+                        },
+                        "description": "Updates the owner, project, or certification status of the specified data source."
+                      },
+                      "response": [
+                        {
+                          "id": "2b1e9f6c-e53a-4f07-aa19-b5de3d4d0517",
+                          "name": "Data source was updated successfully.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Tableau-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"datasource\": {\n    \"name\": \"<string>\",\n    \"project\": {\n      \"id\": \"<string>\"\n    },\n    \"owner\": {\n      \"id\": \"<string>\"\n    },\n    \"isCertified\": \"<boolean>\",\n    \"certificationNote\": \"<string>\",\n    \"encryptExtracts\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/sites/:site-id/datasources/:datasource-id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sites",
+                                ":site-id",
+                                "datasources",
+                                ":datasource-id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "site-id"
+                                },
+                                {
+                                  "key": "datasource-id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"datasource\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"contentUrl\": \"<string>\",\n    \"type\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"isCertified\": \"<boolean>\",\n    \"certificationNote\": \"<string>\",\n    \"useRemoteQueryAgent\": \"<boolean>\",\n    \"hasExtracts\": \"<boolean>\",\n    \"encryptExtracts\": \"<string>\",\n    \"project\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"owner\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"tags\": {\n      \"tag\": [\n        {\n          \"label\": \"<string>\"\n        },\n        {\n          \"label\": \"<string>\"\n        }\n      ]\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T03:07:42.000Z",
+                          "updatedAt": "2026-07-28T03:07:42.000Z",
+                          "uid": "35240-2b1e9f6c-e53a-4f07-aa19-b5de3d4d0517"
+                        },
+                        {
+                          "id": "d80ea248-5fd8-4ae4-8c2f-77347c65c0fb",
+                          "name": "The request was malformed or contained invalid parameters.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Tableau-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"datasource\": {\n    \"name\": \"<string>\",\n    \"project\": {\n      \"id\": \"<string>\"\n    },\n    \"owner\": {\n      \"id\": \"<string>\"\n    },\n    \"isCertified\": \"<boolean>\",\n    \"certificationNote\": \"<string>\",\n    \"encryptExtracts\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/sites/:site-id/datasources/:datasource-id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sites",
+                                ":site-id",
+                                "datasources",
+                                ":datasource-id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "site-id"
+                                },
+                                {
+                                  "key": "datasource-id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T03:07:42.000Z",
+                          "updatedAt": "2026-07-28T03:07:42.000Z",
+                          "uid": "35240-d80ea248-5fd8-4ae4-8c2f-77347c65c0fb"
+                        },
+                        {
+                          "id": "87a66355-8c76-469f-8680-30e642c4ed69",
+                          "name": "The authentication credentials were missing or invalid.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Tableau-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"datasource\": {\n    \"name\": \"<string>\",\n    \"project\": {\n      \"id\": \"<string>\"\n    },\n    \"owner\": {\n      \"id\": \"<string>\"\n    },\n    \"isCertified\": \"<boolean>\",\n    \"certificationNote\": \"<string>\",\n    \"encryptExtracts\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/sites/:site-id/datasources/:datasource-id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sites",
+                                ":site-id",
+                                "datasources",
+                                ":datasource-id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "site-id"
+                                },
+                                {
+                                  "key": "datasource-id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T03:07:42.000Z",
+                          "updatedAt": "2026-07-28T03:07:42.000Z",
+                          "uid": "35240-87a66355-8c76-469f-8680-30e642c4ed69"
+                        },
+                        {
+                          "id": "a6750071-a963-48de-96a5-99dfe45fc10e",
+                          "name": "The caller does not have permission to perform the requested action.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Tableau-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"datasource\": {\n    \"name\": \"<string>\",\n    \"project\": {\n      \"id\": \"<string>\"\n    },\n    \"owner\": {\n      \"id\": \"<string>\"\n    },\n    \"isCertified\": \"<boolean>\",\n    \"certificationNote\": \"<string>\",\n    \"encryptExtracts\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/sites/:site-id/datasources/:datasource-id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sites",
+                                ":site-id",
+                                "datasources",
+                                ":datasource-id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "site-id"
+                                },
+                                {
+                                  "key": "datasource-id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T03:07:42.000Z",
+                          "updatedAt": "2026-07-28T03:07:42.000Z",
+                          "uid": "35240-a6750071-a963-48de-96a5-99dfe45fc10e"
+                        },
+                        {
+                          "id": "db65eaea-3356-450a-aa6e-b8ee4d66c901",
+                          "name": "The specified resource was not found.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Tableau-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"datasource\": {\n    \"name\": \"<string>\",\n    \"project\": {\n      \"id\": \"<string>\"\n    },\n    \"owner\": {\n      \"id\": \"<string>\"\n    },\n    \"isCertified\": \"<boolean>\",\n    \"certificationNote\": \"<string>\",\n    \"encryptExtracts\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/sites/:site-id/datasources/:datasource-id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sites",
+                                ":site-id",
+                                "datasources",
+                                ":datasource-id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "site-id"
+                                },
+                                {
+                                  "key": "datasource-id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T03:07:42.000Z",
+                          "updatedAt": "2026-07-28T03:07:42.000Z",
+                          "uid": "35240-db65eaea-3356-450a-aa6e-b8ee4d66c901"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:07:42.000Z",
+                      "updatedAt": "2026-07-28T03:07:42.000Z",
+                      "uid": "35240-264f6065-55f1-429b-b695-60d2e707b618"
+                    },
+                    {
+                      "name": "Tableau Delete Data Source",
+                      "id": "463084bf-4130-4323-b65f-db9cd3317a8f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sites/:site-id/datasources/:datasource-id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sites",
+                            ":site-id",
+                            "datasources",
+                            ":datasource-id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "156c7037-5570-4eea-bb49-762b9b7e34bc",
+                              "key": "site-id",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                            },
+                            {
+                              "id": "69cc19b5-b50a-4551-920d-b1abc309e260",
+                              "key": "datasource-id",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the data source."
+                            }
+                          ]
+                        },
+                        "description": "Deletes the specified data source from a site."
+                      },
+                      "response": [
+                        {
+                          "id": "e0077b64-0632-4394-9506-48af7e4847cd",
+                          "name": "Data source was deleted successfully.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Tableau-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sites/:site-id/datasources/:datasource-id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sites",
+                                ":site-id",
+                                "datasources",
+                                ":datasource-id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "site-id"
+                                },
+                                {
+                                  "key": "datasource-id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:07:42.000Z",
+                          "updatedAt": "2026-07-28T03:07:42.000Z",
+                          "uid": "35240-e0077b64-0632-4394-9506-48af7e4847cd"
+                        },
+                        {
+                          "id": "ae9d2aa7-e97e-48f7-a120-8956dfb5feaf",
+                          "name": "The authentication credentials were missing or invalid.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Tableau-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sites/:site-id/datasources/:datasource-id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sites",
+                                ":site-id",
+                                "datasources",
+                                ":datasource-id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "site-id"
+                                },
+                                {
+                                  "key": "datasource-id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T03:07:42.000Z",
+                          "updatedAt": "2026-07-28T03:07:42.000Z",
+                          "uid": "35240-ae9d2aa7-e97e-48f7-a120-8956dfb5feaf"
+                        },
+                        {
+                          "id": "c35dd883-e638-4e39-8124-01cf99f05d86",
+                          "name": "The caller does not have permission to perform the requested action.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Tableau-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sites/:site-id/datasources/:datasource-id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sites",
+                                ":site-id",
+                                "datasources",
+                                ":datasource-id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "site-id"
+                                },
+                                {
+                                  "key": "datasource-id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T03:07:42.000Z",
+                          "updatedAt": "2026-07-28T03:07:42.000Z",
+                          "uid": "35240-c35dd883-e638-4e39-8124-01cf99f05d86"
+                        },
+                        {
+                          "id": "c2142a94-dd3d-424a-80fc-61e4b3a52340",
+                          "name": "The specified resource was not found.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Tableau-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sites/:site-id/datasources/:datasource-id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sites",
+                                ":site-id",
+                                "datasources",
+                                ":datasource-id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "site-id"
+                                },
+                                {
+                                  "key": "datasource-id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T03:07:42.000Z",
+                          "updatedAt": "2026-07-28T03:07:42.000Z",
+                          "uid": "35240-c2142a94-dd3d-424a-80fc-61e4b3a52340"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:07:42.000Z",
+                      "updatedAt": "2026-07-28T03:07:42.000Z",
+                      "uid": "35240-463084bf-4130-4323-b65f-db9cd3317a8f"
+                    }
+                  ],
+                  "id": "c8e778f9-7704-4c2b-a0d5-4ae9c17e2985",
+                  "createdAt": "2026-07-28T03:07:42.000Z",
+                  "updatedAt": "2026-07-28T03:07:42.000Z",
+                  "uid": "35240-c8e778f9-7704-4c2b-a0d5-4ae9c17e2985"
+                },
+                {
+                  "name": "Tableau Query Data Sources",
+                  "id": "229eb13c-188b-49e1-9c1b-91ffa0be87a5",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sites/:site-id/datasources?pageSize=100&pageNumber=1&filter=<string>&sort=<string>&fields=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sites",
+                        ":site-id",
+                        "datasources"
+                      ],
+                      "query": [
+                        {
+                          "description": "The number of items to return in one response. The minimum is 1 and the maximum is 1000.",
+                          "key": "pageSize",
+                          "value": "100"
+                        },
+                        {
+                          "description": "The page number of the set of items to return. The default is 1.",
+                          "key": "pageNumber",
+                          "value": "1"
+                        },
+                        {
+                          "description": "An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in.",
+                          "key": "filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "An expression that lets you specify the order in which items are returned. Use the format sort=field:direction where direction is asc or desc.",
+                          "key": "sort",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "An expression that lets you specify which fields are included in the response. Use the format fields=field1,field2. Use _default_ to return the default set of fields, or _all_ to return all fields.",
+                          "key": "fields",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "dd06a2b4-5fce-4705-a856-e9b45a0eb082",
+                          "key": "site-id",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                        }
+                      ]
+                    },
+                    "description": "Returns a list of published data sources on the specified site, with optional pagination, filtering, and sorting."
+                  },
+                  "response": [
+                    {
+                      "id": "302b7222-937f-42ab-a67c-0c349c621e2f",
+                      "name": "A paginated list of data sources.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Tableau-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sites/:site-id/datasources?pageSize=100&pageNumber=1&filter=<string>&sort=<string>&fields=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sites",
+                            ":site-id",
+                            "datasources"
+                          ],
+                          "query": [
+                            {
+                              "description": "The number of items to return in one response. The minimum is 1 and the maximum is 1000.",
+                              "key": "pageSize",
+                              "value": "100"
+                            },
+                            {
+                              "description": "The page number of the set of items to return. The default is 1.",
+                              "key": "pageNumber",
+                              "value": "1"
+                            },
+                            {
+                              "description": "An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in.",
+                              "key": "filter",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "An expression that lets you specify the order in which items are returned. Use the format sort=field:direction where direction is asc or desc.",
+                              "key": "sort",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "An expression that lets you specify which fields are included in the response. Use the format fields=field1,field2. Use _default_ to return the default set of fields, or _all_ to return all fields.",
+                              "key": "fields",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "site-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"pagination\": {\n    \"pageNumber\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"totalAvailable\": \"<integer>\"\n  },\n  \"datasources\": {\n    \"datasource\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"contentUrl\": \"<string>\",\n        \"type\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\",\n        \"isCertified\": \"<boolean>\",\n        \"certificationNote\": \"<string>\",\n        \"useRemoteQueryAgent\": \"<boolean>\",\n        \"hasExtracts\": \"<boolean>\",\n        \"encryptExtracts\": \"<string>\",\n        \"project\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"owner\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"tags\": {\n          \"tag\": [\n            {\n              \"label\": \"<string>\"\n            },\n            {\n              \"label\": \"<string>\"\n            }\n          ]\n        }\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"contentUrl\": \"<string>\",\n        \"type\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\",\n        \"isCertified\": \"<boolean>\",\n        \"certificationNote\": \"<string>\",\n        \"useRemoteQueryAgent\": \"<boolean>\",\n        \"hasExtracts\": \"<boolean>\",\n        \"encryptExtracts\": \"<string>\",\n        \"project\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"owner\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"tags\": {\n          \"tag\": [\n            {\n              \"label\": \"<string>\"\n            },\n            {\n              \"label\": \"<string>\"\n            }\n          ]\n        }\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-07-28T03:07:42.000Z",
+                      "updatedAt": "2026-07-28T03:07:42.000Z",
+                      "uid": "35240-302b7222-937f-42ab-a67c-0c349c621e2f"
+                    },
+                    {
+                      "id": "f6b7f3b1-c1d7-42ce-ac26-8bc3eec7c533",
+                      "name": "The authentication credentials were missing or invalid.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Tableau-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sites/:site-id/datasources?pageSize=100&pageNumber=1&filter=<string>&sort=<string>&fields=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sites",
+                            ":site-id",
+                            "datasources"
+                          ],
+                          "query": [
+                            {
+                              "description": "The number of items to return in one response. The minimum is 1 and the maximum is 1000.",
+                              "key": "pageSize",
+                              "value": "100"
+                            },
+                            {
+                              "description": "The page number of the set of items to return. The default is 1.",
+                              "key": "pageNumber",
+                              "value": "1"
+                            },
+                            {
+                              "description": "An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in.",
+                              "key": "filter",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "An expression that lets you specify the order in which items are returned. Use the format sort=field:direction where direction is asc or desc.",
+                              "key": "sort",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "An expression that lets you specify which fields are included in the response. Use the format fields=field1,field2. Use _default_ to return the default set of fields, or _all_ to return all fields.",
+                              "key": "fields",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "site-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:07:42.000Z",
+                      "updatedAt": "2026-07-28T03:07:42.000Z",
+                      "uid": "35240-f6b7f3b1-c1d7-42ce-ac26-8bc3eec7c533"
+                    },
+                    {
+                      "id": "212258e1-42b5-4760-a3b7-c0360d5edc4a",
+                      "name": "The caller does not have permission to perform the requested action.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Tableau-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sites/:site-id/datasources?pageSize=100&pageNumber=1&filter=<string>&sort=<string>&fields=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sites",
+                            ":site-id",
+                            "datasources"
+                          ],
+                          "query": [
+                            {
+                              "description": "The number of items to return in one response. The minimum is 1 and the maximum is 1000.",
+                              "key": "pageSize",
+                              "value": "100"
+                            },
+                            {
+                              "description": "The page number of the set of items to return. The default is 1.",
+                              "key": "pageNumber",
+                              "value": "1"
+                            },
+                            {
+                              "description": "An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in.",
+                              "key": "filter",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "An expression that lets you specify the order in which items are returned. Use the format sort=field:direction where direction is asc or desc.",
+                              "key": "sort",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "An expression that lets you specify which fields are included in the response. Use the format fields=field1,field2. Use _default_ to return the default set of fields, or _all_ to return all fields.",
+                              "key": "fields",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "site-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:07:42.000Z",
+                      "updatedAt": "2026-07-28T03:07:42.000Z",
+                      "uid": "35240-212258e1-42b5-4760-a3b7-c0360d5edc4a"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:07:42.000Z",
+                  "updatedAt": "2026-07-28T03:07:42.000Z",
+                  "uid": "35240-229eb13c-188b-49e1-9c1b-91ffa0be87a5"
+                }
+              ],
+              "id": "a716ed00-ea7e-44d4-9b4c-15f9d274ba23",
+              "createdAt": "2026-07-28T03:07:42.000Z",
+              "updatedAt": "2026-07-28T03:07:42.000Z",
+              "uid": "35240-a716ed00-ea7e-44d4-9b4c-15f9d274ba23"
+            }
+          ],
+          "id": "141c66cf-881c-4cd3-9c78-2e2494ade500",
+          "createdAt": "2026-07-28T03:07:42.000Z",
+          "updatedAt": "2026-07-28T03:07:42.000Z",
+          "uid": "35240-141c66cf-881c-4cd3-9c78-2e2494ade500"
+        }
+      ],
+      "id": "9b0bd467-02a4-4dce-a3d0-4df680d7318b",
+      "createdAt": "2026-07-28T03:07:42.000Z",
+      "updatedAt": "2026-07-28T03:07:42.000Z",
+      "uid": "35240-9b0bd467-02a4-4dce-a3d0-4df680d7318b"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Tableau-Auth",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "server",
+      "value": "10ax.online.tableau.com"
+    },
+    {
+      "key": "api-version",
+      "value": "3.24"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{server}}/api/{{api-version}}"
+    }
+  ]
+}

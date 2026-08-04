@@ -1,0 +1,38 @@
+{
+  "provider": "tableau",
+  "sources": [
+    "tableau-authentication-api-openapi.yml",
+    "tableau-data-sources-api-openapi.yml",
+    "tableau-favorites-api-openapi.yml",
+    "tableau-groups-api-openapi.yml",
+    "tableau-jobs-api-openapi.yml",
+    "tableau-permissions-api-openapi.yml",
+    "tableau-projects-api-openapi.yml",
+    "tableau-schedules-api-openapi.yml",
+    "tableau-sites-api-openapi.yml",
+    "tableau-subscriptions-api-openapi.yml",
+    "tableau-users-api-openapi.yml",
+    "tableau-views-api-openapi.yml",
+    "tableau-workbooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "tableau-authentication-api-openapi.yml",
+    "tableau-data-sources-api-openapi.yml",
+    "tableau-favorites-api-openapi.yml",
+    "tableau-groups-api-openapi.yml",
+    "tableau-jobs-api-openapi.yml",
+    "tableau-permissions-api-openapi.yml",
+    "tableau-projects-api-openapi.yml",
+    "tableau-schedules-api-openapi.yml",
+    "tableau-sites-api-openapi.yml",
+    "tableau-subscriptions-api-openapi.yml",
+    "tableau-users-api-openapi.yml",
+    "tableau-views-api-openapi.yml",
+    "tableau-workbooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

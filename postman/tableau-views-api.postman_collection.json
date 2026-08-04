@@ -1,0 +1,2346 @@
+{
+  "info": {
+    "_postman_id": "80d65760-5a5e-4712-885c-e3c941b45fb1",
+    "name": "Tableau REST Authentication Views API",
+    "description": "The Tableau REST API allows you to manage and change Tableau Server and Tableau Cloud resources programmatically using HTTP. You can use the REST API to manage sites, projects, workbooks, views, data sources, users, groups, permissions, schedules, subscriptions, and more.\n\nContact Support:\n Name: Tableau Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:08:09.000Z",
+    "updatedAt": "2026-07-28T03:08:10.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-80d65760-5a5e-4712-885c-e3c941b45fb1"
+  },
+  "item": [
+    {
+      "name": "sites",
+      "item": [
+        {
+          "name": "{site-id}",
+          "item": [
+            {
+              "name": "workbooks",
+              "item": [
+                {
+                  "name": "{workbook-id}",
+                  "item": [
+                    {
+                      "name": "views",
+                      "item": [
+                        {
+                          "name": "Tableau Query Views for Workbook",
+                          "id": "2852ed0c-64a5-4c7b-986d-617ecc51b2bf",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sites/:site-id/workbooks/:workbook-id/views?includeUsageStatistics=false",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sites",
+                                ":site-id",
+                                "workbooks",
+                                ":workbook-id",
+                                "views"
+                              ],
+                              "query": [
+                                {
+                                  "description": "If true, returns usage statistics for each view.",
+                                  "key": "includeUsageStatistics",
+                                  "value": "false"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "ca07283d-83cf-471f-b615-f322f47b90e2",
+                                  "key": "site-id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                                },
+                                {
+                                  "id": "8e8ca46e-beb2-4cc2-a1e7-4434161ac1f1",
+                                  "key": "workbook-id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the workbook."
+                                }
+                              ]
+                            },
+                            "description": "Returns all the views for the specified workbook, optionally including usage statistics."
+                          },
+                          "response": [
+                            {
+                              "id": "cfc8d3f9-0986-4386-b115-eee84380084b",
+                              "name": "A list of views for the workbook.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Tableau-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/sites/:site-id/workbooks/:workbook-id/views?includeUsageStatistics=false",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sites",
+                                    ":site-id",
+                                    "workbooks",
+                                    ":workbook-id",
+                                    "views"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "If true, returns usage statistics for each view.",
+                                      "key": "includeUsageStatistics",
+                                      "value": "false"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "site-id"
+                                    },
+                                    {
+                                      "key": "workbook-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"pagination\": {\n    \"pageNumber\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"totalAvailable\": \"<integer>\"\n  },\n  \"views\": {\n    \"view\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"contentUrl\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\",\n        \"viewUrlName\": \"<string>\",\n        \"sheetType\": \"dashboard\",\n        \"project\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"owner\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"workbook\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"tags\": {\n          \"tag\": [\n            {\n              \"label\": \"<string>\"\n            },\n            {\n              \"label\": \"<string>\"\n            }\n          ]\n        },\n        \"usage\": {\n          \"totalViewCount\": \"<integer>\"\n        }\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"contentUrl\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\",\n        \"viewUrlName\": \"<string>\",\n        \"sheetType\": \"dashboard\",\n        \"project\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"owner\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"workbook\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"tags\": {\n          \"tag\": [\n            {\n              \"label\": \"<string>\"\n            },\n            {\n              \"label\": \"<string>\"\n            }\n          ]\n        },\n        \"usage\": {\n          \"totalViewCount\": \"<integer>\"\n        }\n      }\n    ]\n  }\n}",
+                              "createdAt": "2026-07-28T03:08:10.000Z",
+                              "updatedAt": "2026-07-28T03:08:10.000Z",
+                              "uid": "35240-cfc8d3f9-0986-4386-b115-eee84380084b"
+                            },
+                            {
+                              "id": "703f4345-f381-4bdf-8765-d7ae1f405aa6",
+                              "name": "The authentication credentials were missing or invalid.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Tableau-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/sites/:site-id/workbooks/:workbook-id/views?includeUsageStatistics=false",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sites",
+                                    ":site-id",
+                                    "workbooks",
+                                    ":workbook-id",
+                                    "views"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "If true, returns usage statistics for each view.",
+                                      "key": "includeUsageStatistics",
+                                      "value": "false"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "site-id"
+                                    },
+                                    {
+                                      "key": "workbook-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T03:08:10.000Z",
+                              "updatedAt": "2026-07-28T03:08:10.000Z",
+                              "uid": "35240-703f4345-f381-4bdf-8765-d7ae1f405aa6"
+                            },
+                            {
+                              "id": "104e24b7-40ea-4be3-ae6f-83618cddf654",
+                              "name": "The caller does not have permission to perform the requested action.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Tableau-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/sites/:site-id/workbooks/:workbook-id/views?includeUsageStatistics=false",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sites",
+                                    ":site-id",
+                                    "workbooks",
+                                    ":workbook-id",
+                                    "views"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "If true, returns usage statistics for each view.",
+                                      "key": "includeUsageStatistics",
+                                      "value": "false"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "site-id"
+                                    },
+                                    {
+                                      "key": "workbook-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T03:08:10.000Z",
+                              "updatedAt": "2026-07-28T03:08:10.000Z",
+                              "uid": "35240-104e24b7-40ea-4be3-ae6f-83618cddf654"
+                            },
+                            {
+                              "id": "e8bcf4ae-f19b-4441-9857-e5f2265f238d",
+                              "name": "The specified resource was not found.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Tableau-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/sites/:site-id/workbooks/:workbook-id/views?includeUsageStatistics=false",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sites",
+                                    ":site-id",
+                                    "workbooks",
+                                    ":workbook-id",
+                                    "views"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "If true, returns usage statistics for each view.",
+                                      "key": "includeUsageStatistics",
+                                      "value": "false"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "site-id"
+                                    },
+                                    {
+                                      "key": "workbook-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T03:08:10.000Z",
+                              "updatedAt": "2026-07-28T03:08:10.000Z",
+                              "uid": "35240-e8bcf4ae-f19b-4441-9857-e5f2265f238d"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:08:10.000Z",
+                          "updatedAt": "2026-07-28T03:08:10.000Z",
+                          "uid": "35240-2852ed0c-64a5-4c7b-986d-617ecc51b2bf"
+                        }
+                      ],
+                      "id": "14c0c841-1d85-4366-8c32-8c3fcf721ca3",
+                      "createdAt": "2026-07-28T03:08:10.000Z",
+                      "updatedAt": "2026-07-28T03:08:10.000Z",
+                      "uid": "35240-14c0c841-1d85-4366-8c32-8c3fcf721ca3"
+                    }
+                  ],
+                  "id": "1bc1d925-df0a-45a0-8b69-1bb370c8b22f",
+                  "createdAt": "2026-07-28T03:08:10.000Z",
+                  "updatedAt": "2026-07-28T03:08:10.000Z",
+                  "uid": "35240-1bc1d925-df0a-45a0-8b69-1bb370c8b22f"
+                }
+              ],
+              "id": "b9d4f697-8b44-4bd6-a384-b6592efc513d",
+              "createdAt": "2026-07-28T03:08:10.000Z",
+              "updatedAt": "2026-07-28T03:08:10.000Z",
+              "uid": "35240-b9d4f697-8b44-4bd6-a384-b6592efc513d"
+            },
+            {
+              "name": "views",
+              "item": [
+                {
+                  "name": "{view-id}",
+                  "item": [
+                    {
+                      "name": "image",
+                      "item": [
+                        {
+                          "name": "Tableau Query View Image",
+                          "id": "0de78011-9766-4585-9861-dc2ea65122df",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "image/png"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sites/:site-id/views/:view-id/image?resolution=standard&maxAge=<integer>&vf_<filter_name>=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sites",
+                                ":site-id",
+                                "views",
+                                ":view-id",
+                                "image"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The resolution of the image (standard or high).",
+                                  "key": "resolution",
+                                  "value": "standard"
+                                },
+                                {
+                                  "description": "The maximum number of minutes a view image can be cached before being refreshed.",
+                                  "key": "maxAge",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Apply a filter to the view. Replace <filter_name> with the name of the filter field.",
+                                  "key": "vf_<filter_name>",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "47b57f7b-f0eb-458c-9fe7-ea578deceeda",
+                                  "key": "site-id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                                },
+                                {
+                                  "id": "b05555e1-dad7-48ce-b9b5-0238077e669a",
+                                  "key": "view-id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the view."
+                                }
+                              ]
+                            },
+                            "description": "Returns an image of the specified view rendered as a PNG file. You can specify the resolution of the image."
+                          },
+                          "response": [
+                            {
+                              "id": "c0e68b8c-9a60-4468-a1f0-ad9b460244ad",
+                              "name": "A PNG image of the view.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "image/png"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Tableau-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/sites/:site-id/views/:view-id/image?resolution=standard&maxAge=<integer>&vf_<filter_name>=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sites",
+                                    ":site-id",
+                                    "views",
+                                    ":view-id",
+                                    "image"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The resolution of the image (standard or high).",
+                                      "key": "resolution",
+                                      "value": "standard"
+                                    },
+                                    {
+                                      "description": "The maximum number of minutes a view image can be cached before being refreshed.",
+                                      "key": "maxAge",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Apply a filter to the view. Replace <filter_name> with the name of the filter field.",
+                                      "key": "vf_<filter_name>",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "site-id"
+                                    },
+                                    {
+                                      "key": "view-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "image/png"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "<binary>",
+                              "createdAt": "2026-07-28T03:08:10.000Z",
+                              "updatedAt": "2026-07-28T03:08:10.000Z",
+                              "uid": "35240-c0e68b8c-9a60-4468-a1f0-ad9b460244ad"
+                            },
+                            {
+                              "id": "41cf81a1-153c-4018-8a5d-9036b278bc65",
+                              "name": "The authentication credentials were missing or invalid.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Tableau-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/sites/:site-id/views/:view-id/image?resolution=standard&maxAge=<integer>&vf_<filter_name>=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sites",
+                                    ":site-id",
+                                    "views",
+                                    ":view-id",
+                                    "image"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The resolution of the image (standard or high).",
+                                      "key": "resolution",
+                                      "value": "standard"
+                                    },
+                                    {
+                                      "description": "The maximum number of minutes a view image can be cached before being refreshed.",
+                                      "key": "maxAge",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Apply a filter to the view. Replace <filter_name> with the name of the filter field.",
+                                      "key": "vf_<filter_name>",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "site-id"
+                                    },
+                                    {
+                                      "key": "view-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T03:08:10.000Z",
+                              "updatedAt": "2026-07-28T03:08:10.000Z",
+                              "uid": "35240-41cf81a1-153c-4018-8a5d-9036b278bc65"
+                            },
+                            {
+                              "id": "58770814-de02-4784-9a88-1037c43cbb02",
+                              "name": "The caller does not have permission to perform the requested action.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Tableau-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/sites/:site-id/views/:view-id/image?resolution=standard&maxAge=<integer>&vf_<filter_name>=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sites",
+                                    ":site-id",
+                                    "views",
+                                    ":view-id",
+                                    "image"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The resolution of the image (standard or high).",
+                                      "key": "resolution",
+                                      "value": "standard"
+                                    },
+                                    {
+                                      "description": "The maximum number of minutes a view image can be cached before being refreshed.",
+                                      "key": "maxAge",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Apply a filter to the view. Replace <filter_name> with the name of the filter field.",
+                                      "key": "vf_<filter_name>",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "site-id"
+                                    },
+                                    {
+                                      "key": "view-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T03:08:10.000Z",
+                              "updatedAt": "2026-07-28T03:08:10.000Z",
+                              "uid": "35240-58770814-de02-4784-9a88-1037c43cbb02"
+                            },
+                            {
+                              "id": "33a0d72a-294d-49b6-a473-b964ec7fe6c5",
+                              "name": "The specified resource was not found.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Tableau-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/sites/:site-id/views/:view-id/image?resolution=standard&maxAge=<integer>&vf_<filter_name>=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sites",
+                                    ":site-id",
+                                    "views",
+                                    ":view-id",
+                                    "image"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The resolution of the image (standard or high).",
+                                      "key": "resolution",
+                                      "value": "standard"
+                                    },
+                                    {
+                                      "description": "The maximum number of minutes a view image can be cached before being refreshed.",
+                                      "key": "maxAge",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Apply a filter to the view. Replace <filter_name> with the name of the filter field.",
+                                      "key": "vf_<filter_name>",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "site-id"
+                                    },
+                                    {
+                                      "key": "view-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T03:08:10.000Z",
+                              "updatedAt": "2026-07-28T03:08:10.000Z",
+                              "uid": "35240-33a0d72a-294d-49b6-a473-b964ec7fe6c5"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:08:10.000Z",
+                          "updatedAt": "2026-07-28T03:08:10.000Z",
+                          "uid": "35240-0de78011-9766-4585-9861-dc2ea65122df"
+                        }
+                      ],
+                      "id": "64543be0-c4c3-4945-bd07-990de5e2ad2c",
+                      "createdAt": "2026-07-28T03:08:10.000Z",
+                      "updatedAt": "2026-07-28T03:08:10.000Z",
+                      "uid": "35240-64543be0-c4c3-4945-bd07-990de5e2ad2c"
+                    },
+                    {
+                      "name": "data",
+                      "item": [
+                        {
+                          "name": "Tableau Query View Data",
+                          "id": "ebd20113-e131-47e3-94fe-1dd17bd60e6d",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "text/csv"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sites/:site-id/views/:view-id/data?maxAge=<integer>&vf_<filter_name>=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sites",
+                                ":site-id",
+                                "views",
+                                ":view-id",
+                                "data"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The maximum number of minutes a view can be cached before being refreshed.",
+                                  "key": "maxAge",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Apply a filter to the view. Replace <filter_name> with the name of the filter field.",
+                                  "key": "vf_<filter_name>",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "e3d1ba77-8d1a-497e-ae21-0b413f577198",
+                                  "key": "site-id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                                },
+                                {
+                                  "id": "88c640ed-5e92-46b2-8c37-b35b4deb233d",
+                                  "key": "view-id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the view."
+                                }
+                              ]
+                            },
+                            "description": "Returns the data used in a view as a comma-separated values (CSV) file."
+                          },
+                          "response": [
+                            {
+                              "id": "f651c14e-ee9e-49ef-a6b3-e17c982c49b2",
+                              "name": "CSV data for the view.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "text/csv"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Tableau-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/sites/:site-id/views/:view-id/data?maxAge=<integer>&vf_<filter_name>=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sites",
+                                    ":site-id",
+                                    "views",
+                                    ":view-id",
+                                    "data"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The maximum number of minutes a view can be cached before being refreshed.",
+                                      "key": "maxAge",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Apply a filter to the view. Replace <filter_name> with the name of the filter field.",
+                                      "key": "vf_<filter_name>",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "site-id"
+                                    },
+                                    {
+                                      "key": "view-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "text/csv"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "<string>",
+                              "createdAt": "2026-07-28T03:08:10.000Z",
+                              "updatedAt": "2026-07-28T03:08:10.000Z",
+                              "uid": "35240-f651c14e-ee9e-49ef-a6b3-e17c982c49b2"
+                            },
+                            {
+                              "id": "f3ae4394-4f09-448b-9b4d-2a04ef4791a4",
+                              "name": "The authentication credentials were missing or invalid.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Tableau-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/sites/:site-id/views/:view-id/data?maxAge=<integer>&vf_<filter_name>=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sites",
+                                    ":site-id",
+                                    "views",
+                                    ":view-id",
+                                    "data"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The maximum number of minutes a view can be cached before being refreshed.",
+                                      "key": "maxAge",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Apply a filter to the view. Replace <filter_name> with the name of the filter field.",
+                                      "key": "vf_<filter_name>",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "site-id"
+                                    },
+                                    {
+                                      "key": "view-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T03:08:10.000Z",
+                              "updatedAt": "2026-07-28T03:08:10.000Z",
+                              "uid": "35240-f3ae4394-4f09-448b-9b4d-2a04ef4791a4"
+                            },
+                            {
+                              "id": "a6e0faaf-2fbd-46ab-a864-cd7a8f77da14",
+                              "name": "The caller does not have permission to perform the requested action.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Tableau-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/sites/:site-id/views/:view-id/data?maxAge=<integer>&vf_<filter_name>=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sites",
+                                    ":site-id",
+                                    "views",
+                                    ":view-id",
+                                    "data"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The maximum number of minutes a view can be cached before being refreshed.",
+                                      "key": "maxAge",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Apply a filter to the view. Replace <filter_name> with the name of the filter field.",
+                                      "key": "vf_<filter_name>",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "site-id"
+                                    },
+                                    {
+                                      "key": "view-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T03:08:10.000Z",
+                              "updatedAt": "2026-07-28T03:08:10.000Z",
+                              "uid": "35240-a6e0faaf-2fbd-46ab-a864-cd7a8f77da14"
+                            },
+                            {
+                              "id": "f33cf5a9-a763-4365-9bd7-52057501a48d",
+                              "name": "The specified resource was not found.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Tableau-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/sites/:site-id/views/:view-id/data?maxAge=<integer>&vf_<filter_name>=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sites",
+                                    ":site-id",
+                                    "views",
+                                    ":view-id",
+                                    "data"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The maximum number of minutes a view can be cached before being refreshed.",
+                                      "key": "maxAge",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "Apply a filter to the view. Replace <filter_name> with the name of the filter field.",
+                                      "key": "vf_<filter_name>",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "site-id"
+                                    },
+                                    {
+                                      "key": "view-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T03:08:10.000Z",
+                              "updatedAt": "2026-07-28T03:08:10.000Z",
+                              "uid": "35240-f33cf5a9-a763-4365-9bd7-52057501a48d"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:08:10.000Z",
+                          "updatedAt": "2026-07-28T03:08:10.000Z",
+                          "uid": "35240-ebd20113-e131-47e3-94fe-1dd17bd60e6d"
+                        }
+                      ],
+                      "id": "4e3b6493-a459-44c5-b95a-8c3d5641ff43",
+                      "createdAt": "2026-07-28T03:08:10.000Z",
+                      "updatedAt": "2026-07-28T03:08:10.000Z",
+                      "uid": "35240-4e3b6493-a459-44c5-b95a-8c3d5641ff43"
+                    },
+                    {
+                      "name": "pdf",
+                      "item": [
+                        {
+                          "name": "Tableau Query View Pdf",
+                          "id": "a08d3528-9d5c-4fbb-ba92-ced39d2b5314",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/pdf"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sites/:site-id/views/:view-id/pdf?type=Letter&orientation=portrait",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sites",
+                                ":site-id",
+                                "views",
+                                ":view-id",
+                                "pdf"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The paper size for the PDF.",
+                                  "key": "type",
+                                  "value": "Letter"
+                                },
+                                {
+                                  "description": "The orientation of the PDF.",
+                                  "key": "orientation",
+                                  "value": "portrait"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "06d0f8f2-0a57-4af0-804a-9e0838670143",
+                                  "key": "site-id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                                },
+                                {
+                                  "id": "38133db0-8176-4d39-8424-753ff5c57f82",
+                                  "key": "view-id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the view."
+                                }
+                              ]
+                            },
+                            "description": "Returns a PDF rendering of the specified view."
+                          },
+                          "response": [
+                            {
+                              "id": "dd00bfa4-9b6a-47b5-96d4-4eba587e017f",
+                              "name": "A PDF rendering of the view.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/pdf"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Tableau-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/sites/:site-id/views/:view-id/pdf?type=Letter&orientation=portrait",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sites",
+                                    ":site-id",
+                                    "views",
+                                    ":view-id",
+                                    "pdf"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The paper size for the PDF.",
+                                      "key": "type",
+                                      "value": "Letter"
+                                    },
+                                    {
+                                      "description": "The orientation of the PDF.",
+                                      "key": "orientation",
+                                      "value": "portrait"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "site-id"
+                                    },
+                                    {
+                                      "key": "view-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/pdf"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "<binary>",
+                              "createdAt": "2026-07-28T03:08:10.000Z",
+                              "updatedAt": "2026-07-28T03:08:10.000Z",
+                              "uid": "35240-dd00bfa4-9b6a-47b5-96d4-4eba587e017f"
+                            },
+                            {
+                              "id": "efd99493-a39e-4c76-b263-1ff66f27be35",
+                              "name": "The authentication credentials were missing or invalid.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Tableau-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/sites/:site-id/views/:view-id/pdf?type=Letter&orientation=portrait",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sites",
+                                    ":site-id",
+                                    "views",
+                                    ":view-id",
+                                    "pdf"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The paper size for the PDF.",
+                                      "key": "type",
+                                      "value": "Letter"
+                                    },
+                                    {
+                                      "description": "The orientation of the PDF.",
+                                      "key": "orientation",
+                                      "value": "portrait"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "site-id"
+                                    },
+                                    {
+                                      "key": "view-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T03:08:10.000Z",
+                              "updatedAt": "2026-07-28T03:08:10.000Z",
+                              "uid": "35240-efd99493-a39e-4c76-b263-1ff66f27be35"
+                            },
+                            {
+                              "id": "5bbd0675-8c11-4e8d-929d-9394585ca423",
+                              "name": "The caller does not have permission to perform the requested action.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Tableau-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/sites/:site-id/views/:view-id/pdf?type=Letter&orientation=portrait",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sites",
+                                    ":site-id",
+                                    "views",
+                                    ":view-id",
+                                    "pdf"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The paper size for the PDF.",
+                                      "key": "type",
+                                      "value": "Letter"
+                                    },
+                                    {
+                                      "description": "The orientation of the PDF.",
+                                      "key": "orientation",
+                                      "value": "portrait"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "site-id"
+                                    },
+                                    {
+                                      "key": "view-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T03:08:10.000Z",
+                              "updatedAt": "2026-07-28T03:08:10.000Z",
+                              "uid": "35240-5bbd0675-8c11-4e8d-929d-9394585ca423"
+                            },
+                            {
+                              "id": "d2e39019-11fd-42b4-8b30-6e58bdbc3a44",
+                              "name": "The specified resource was not found.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Tableau-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/sites/:site-id/views/:view-id/pdf?type=Letter&orientation=portrait",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sites",
+                                    ":site-id",
+                                    "views",
+                                    ":view-id",
+                                    "pdf"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The paper size for the PDF.",
+                                      "key": "type",
+                                      "value": "Letter"
+                                    },
+                                    {
+                                      "description": "The orientation of the PDF.",
+                                      "key": "orientation",
+                                      "value": "portrait"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "site-id"
+                                    },
+                                    {
+                                      "key": "view-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T03:08:10.000Z",
+                              "updatedAt": "2026-07-28T03:08:10.000Z",
+                              "uid": "35240-d2e39019-11fd-42b4-8b30-6e58bdbc3a44"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:08:10.000Z",
+                          "updatedAt": "2026-07-28T03:08:10.000Z",
+                          "uid": "35240-a08d3528-9d5c-4fbb-ba92-ced39d2b5314"
+                        }
+                      ],
+                      "id": "3eb1944a-7e37-43d3-873f-9c792dd1b5ac",
+                      "createdAt": "2026-07-28T03:08:10.000Z",
+                      "updatedAt": "2026-07-28T03:08:10.000Z",
+                      "uid": "35240-3eb1944a-7e37-43d3-873f-9c792dd1b5ac"
+                    },
+                    {
+                      "name": "previewImage",
+                      "item": [
+                        {
+                          "name": "Tableau Query View Preview Image",
+                          "id": "89630661-6e9d-40d8-a88e-2a6aeaa393c1",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "image/png"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sites/:site-id/views/:view-id/previewImage",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sites",
+                                ":site-id",
+                                "views",
+                                ":view-id",
+                                "previewImage"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "16c2ad99-225d-45c3-9f42-b36a96b61814",
+                                  "key": "site-id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                                },
+                                {
+                                  "id": "4d25cc2c-fd61-4a0a-ae9a-bc57d149020c",
+                                  "key": "view-id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the view."
+                                }
+                              ]
+                            },
+                            "description": "Returns the thumbnail image for the specified view as a PNG file."
+                          },
+                          "response": [
+                            {
+                              "id": "5a4504f6-e3af-4ffa-9176-f106719916c8",
+                              "name": "A PNG preview image of the view.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "image/png"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Tableau-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/sites/:site-id/views/:view-id/previewImage",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sites",
+                                    ":site-id",
+                                    "views",
+                                    ":view-id",
+                                    "previewImage"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "site-id"
+                                    },
+                                    {
+                                      "key": "view-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "image/png"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "<binary>",
+                              "createdAt": "2026-07-28T03:08:10.000Z",
+                              "updatedAt": "2026-07-28T03:08:10.000Z",
+                              "uid": "35240-5a4504f6-e3af-4ffa-9176-f106719916c8"
+                            },
+                            {
+                              "id": "9a551ecf-49ad-43dd-93bb-f17d9addff49",
+                              "name": "The authentication credentials were missing or invalid.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Tableau-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/sites/:site-id/views/:view-id/previewImage",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sites",
+                                    ":site-id",
+                                    "views",
+                                    ":view-id",
+                                    "previewImage"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "site-id"
+                                    },
+                                    {
+                                      "key": "view-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T03:08:10.000Z",
+                              "updatedAt": "2026-07-28T03:08:10.000Z",
+                              "uid": "35240-9a551ecf-49ad-43dd-93bb-f17d9addff49"
+                            },
+                            {
+                              "id": "adfae35a-e04f-4877-945b-f2f509c29488",
+                              "name": "The specified resource was not found.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Tableau-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/sites/:site-id/views/:view-id/previewImage",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sites",
+                                    ":site-id",
+                                    "views",
+                                    ":view-id",
+                                    "previewImage"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "site-id"
+                                    },
+                                    {
+                                      "key": "view-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T03:08:10.000Z",
+                              "updatedAt": "2026-07-28T03:08:10.000Z",
+                              "uid": "35240-adfae35a-e04f-4877-945b-f2f509c29488"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:08:10.000Z",
+                          "updatedAt": "2026-07-28T03:08:10.000Z",
+                          "uid": "35240-89630661-6e9d-40d8-a88e-2a6aeaa393c1"
+                        }
+                      ],
+                      "id": "ba7d9045-1aaa-4db3-b1d0-5173c41d2e86",
+                      "createdAt": "2026-07-28T03:08:10.000Z",
+                      "updatedAt": "2026-07-28T03:08:10.000Z",
+                      "uid": "35240-ba7d9045-1aaa-4db3-b1d0-5173c41d2e86"
+                    },
+                    {
+                      "name": "recommendations",
+                      "item": [
+                        {
+                          "name": "Tableau Get Recommendations for Views",
+                          "id": "6c85819f-218c-4c71-969f-78d4f19e5cd6",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sites/:site-id/views/:view-id/recommendations",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sites",
+                                ":site-id",
+                                "views",
+                                ":view-id",
+                                "recommendations"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "f5f702f7-8646-43ce-8f61-03e5636089ca",
+                                  "key": "site-id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                                },
+                                {
+                                  "id": "0fde0f39-89aa-48fe-b563-6e1220b396cd",
+                                  "key": "view-id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the view."
+                                }
+                              ]
+                            },
+                            "description": "Returns a list of views that are recommended for a user, based on their viewing history."
+                          },
+                          "response": [
+                            {
+                              "id": "543c2dc9-3b39-4dba-a690-5454296acc04",
+                              "name": "A list of recommended views.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Tableau-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/sites/:site-id/views/:view-id/recommendations",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sites",
+                                    ":site-id",
+                                    "views",
+                                    ":view-id",
+                                    "recommendations"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "site-id"
+                                    },
+                                    {
+                                      "key": "view-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"pagination\": {\n    \"pageNumber\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"totalAvailable\": \"<integer>\"\n  },\n  \"views\": {\n    \"view\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"contentUrl\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\",\n        \"viewUrlName\": \"<string>\",\n        \"sheetType\": \"dashboard\",\n        \"project\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"owner\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"workbook\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"tags\": {\n          \"tag\": [\n            {\n              \"label\": \"<string>\"\n            },\n            {\n              \"label\": \"<string>\"\n            }\n          ]\n        },\n        \"usage\": {\n          \"totalViewCount\": \"<integer>\"\n        }\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"contentUrl\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\",\n        \"viewUrlName\": \"<string>\",\n        \"sheetType\": \"dashboard\",\n        \"project\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"owner\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"workbook\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"tags\": {\n          \"tag\": [\n            {\n              \"label\": \"<string>\"\n            },\n            {\n              \"label\": \"<string>\"\n            }\n          ]\n        },\n        \"usage\": {\n          \"totalViewCount\": \"<integer>\"\n        }\n      }\n    ]\n  }\n}",
+                              "createdAt": "2026-07-28T03:08:10.000Z",
+                              "updatedAt": "2026-07-28T03:08:10.000Z",
+                              "uid": "35240-543c2dc9-3b39-4dba-a690-5454296acc04"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:08:10.000Z",
+                          "updatedAt": "2026-07-28T03:08:10.000Z",
+                          "uid": "35240-6c85819f-218c-4c71-969f-78d4f19e5cd6"
+                        }
+                      ],
+                      "id": "9ee75055-285c-4ba3-8d12-53a6b0b8ed8e",
+                      "createdAt": "2026-07-28T03:08:10.000Z",
+                      "updatedAt": "2026-07-28T03:08:10.000Z",
+                      "uid": "35240-9ee75055-285c-4ba3-8d12-53a6b0b8ed8e"
+                    },
+                    {
+                      "name": "Tableau Query View by Id",
+                      "id": "ea3ea90c-0be3-4dd8-8d30-e484ebca4651",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sites/:site-id/views/:view-id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sites",
+                            ":site-id",
+                            "views",
+                            ":view-id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "93ab584a-4774-42b9-ac0b-5b0be4270d45",
+                              "key": "site-id",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                            },
+                            {
+                              "id": "577b7b70-6ba3-41c1-b1f9-dd5da6ed13a8",
+                              "key": "view-id",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the view."
+                            }
+                          ]
+                        },
+                        "description": "Returns details about the specified view, including the view name, owner, project, and usage statistics."
+                      },
+                      "response": [
+                        {
+                          "id": "e475d33c-c40b-4384-aab2-247ee791f58c",
+                          "name": "View details.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Tableau-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sites/:site-id/views/:view-id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sites",
+                                ":site-id",
+                                "views",
+                                ":view-id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "site-id"
+                                },
+                                {
+                                  "key": "view-id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"view\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"contentUrl\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\",\n    \"viewUrlName\": \"<string>\",\n    \"sheetType\": \"dashboard\",\n    \"project\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"owner\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"workbook\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"tags\": {\n      \"tag\": [\n        {\n          \"label\": \"<string>\"\n        },\n        {\n          \"label\": \"<string>\"\n        }\n      ]\n    },\n    \"usage\": {\n      \"totalViewCount\": \"<integer>\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T03:08:10.000Z",
+                          "updatedAt": "2026-07-28T03:08:10.000Z",
+                          "uid": "35240-e475d33c-c40b-4384-aab2-247ee791f58c"
+                        },
+                        {
+                          "id": "baf6e449-9e3e-4c87-bc41-86ed81aabec3",
+                          "name": "The authentication credentials were missing or invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Tableau-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sites/:site-id/views/:view-id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sites",
+                                ":site-id",
+                                "views",
+                                ":view-id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "site-id"
+                                },
+                                {
+                                  "key": "view-id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T03:08:10.000Z",
+                          "updatedAt": "2026-07-28T03:08:10.000Z",
+                          "uid": "35240-baf6e449-9e3e-4c87-bc41-86ed81aabec3"
+                        },
+                        {
+                          "id": "cc49457d-796c-4ad9-9317-509f68f84a84",
+                          "name": "The caller does not have permission to perform the requested action.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Tableau-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sites/:site-id/views/:view-id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sites",
+                                ":site-id",
+                                "views",
+                                ":view-id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "site-id"
+                                },
+                                {
+                                  "key": "view-id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T03:08:10.000Z",
+                          "updatedAt": "2026-07-28T03:08:10.000Z",
+                          "uid": "35240-cc49457d-796c-4ad9-9317-509f68f84a84"
+                        },
+                        {
+                          "id": "d9ac083a-05d3-4dcb-a892-19235353d498",
+                          "name": "The specified resource was not found.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Tableau-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sites/:site-id/views/:view-id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sites",
+                                ":site-id",
+                                "views",
+                                ":view-id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "site-id"
+                                },
+                                {
+                                  "key": "view-id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T03:08:10.000Z",
+                          "updatedAt": "2026-07-28T03:08:10.000Z",
+                          "uid": "35240-d9ac083a-05d3-4dcb-a892-19235353d498"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:08:10.000Z",
+                      "updatedAt": "2026-07-28T03:08:10.000Z",
+                      "uid": "35240-ea3ea90c-0be3-4dd8-8d30-e484ebca4651"
+                    }
+                  ],
+                  "id": "e756565d-c3a6-4090-bc64-997091df0061",
+                  "createdAt": "2026-07-28T03:08:10.000Z",
+                  "updatedAt": "2026-07-28T03:08:10.000Z",
+                  "uid": "35240-e756565d-c3a6-4090-bc64-997091df0061"
+                },
+                {
+                  "name": "Tableau Query Views for Site",
+                  "id": "40821ad4-ad7e-4364-afa1-4ecf18fdbf2c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sites/:site-id/views?pageSize=100&pageNumber=1&filter=<string>&sort=<string>&fields=<string>&includeUsageStatistics=false",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sites",
+                        ":site-id",
+                        "views"
+                      ],
+                      "query": [
+                        {
+                          "description": "The number of items to return in one response. The minimum is 1 and the maximum is 1000.",
+                          "key": "pageSize",
+                          "value": "100"
+                        },
+                        {
+                          "description": "The page number of the set of items to return. The default is 1.",
+                          "key": "pageNumber",
+                          "value": "1"
+                        },
+                        {
+                          "description": "An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in.",
+                          "key": "filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "An expression that lets you specify the order in which items are returned. Use the format sort=field:direction where direction is asc or desc.",
+                          "key": "sort",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "An expression that lets you specify which fields are included in the response. Use the format fields=field1,field2. Use _default_ to return the default set of fields, or _all_ to return all fields.",
+                          "key": "fields",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "If true, returns usage statistics for each view.",
+                          "key": "includeUsageStatistics",
+                          "value": "false"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "04e38bdf-d97d-4dd6-b47e-8af20e9ceeba",
+                          "key": "site-id",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                        }
+                      ]
+                    },
+                    "description": "Returns all the views for the specified site, optionally including usage statistics."
+                  },
+                  "response": [
+                    {
+                      "id": "f4275b65-8b3f-4dec-96ae-481c58eec650",
+                      "name": "A paginated list of views.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Tableau-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sites/:site-id/views?pageSize=100&pageNumber=1&filter=<string>&sort=<string>&fields=<string>&includeUsageStatistics=false",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sites",
+                            ":site-id",
+                            "views"
+                          ],
+                          "query": [
+                            {
+                              "description": "The number of items to return in one response. The minimum is 1 and the maximum is 1000.",
+                              "key": "pageSize",
+                              "value": "100"
+                            },
+                            {
+                              "description": "The page number of the set of items to return. The default is 1.",
+                              "key": "pageNumber",
+                              "value": "1"
+                            },
+                            {
+                              "description": "An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in.",
+                              "key": "filter",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "An expression that lets you specify the order in which items are returned. Use the format sort=field:direction where direction is asc or desc.",
+                              "key": "sort",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "An expression that lets you specify which fields are included in the response. Use the format fields=field1,field2. Use _default_ to return the default set of fields, or _all_ to return all fields.",
+                              "key": "fields",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "If true, returns usage statistics for each view.",
+                              "key": "includeUsageStatistics",
+                              "value": "false"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "site-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"pagination\": {\n    \"pageNumber\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"totalAvailable\": \"<integer>\"\n  },\n  \"views\": {\n    \"view\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"contentUrl\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\",\n        \"viewUrlName\": \"<string>\",\n        \"sheetType\": \"dashboard\",\n        \"project\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"owner\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"workbook\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"tags\": {\n          \"tag\": [\n            {\n              \"label\": \"<string>\"\n            },\n            {\n              \"label\": \"<string>\"\n            }\n          ]\n        },\n        \"usage\": {\n          \"totalViewCount\": \"<integer>\"\n        }\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"contentUrl\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\",\n        \"viewUrlName\": \"<string>\",\n        \"sheetType\": \"dashboard\",\n        \"project\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"owner\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"workbook\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"tags\": {\n          \"tag\": [\n            {\n              \"label\": \"<string>\"\n            },\n            {\n              \"label\": \"<string>\"\n            }\n          ]\n        },\n        \"usage\": {\n          \"totalViewCount\": \"<integer>\"\n        }\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-07-28T03:08:10.000Z",
+                      "updatedAt": "2026-07-28T03:08:10.000Z",
+                      "uid": "35240-f4275b65-8b3f-4dec-96ae-481c58eec650"
+                    },
+                    {
+                      "id": "3106c729-1eb3-48fc-a733-a66f4a94ffa3",
+                      "name": "The authentication credentials were missing or invalid.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Tableau-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sites/:site-id/views?pageSize=100&pageNumber=1&filter=<string>&sort=<string>&fields=<string>&includeUsageStatistics=false",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sites",
+                            ":site-id",
+                            "views"
+                          ],
+                          "query": [
+                            {
+                              "description": "The number of items to return in one response. The minimum is 1 and the maximum is 1000.",
+                              "key": "pageSize",
+                              "value": "100"
+                            },
+                            {
+                              "description": "The page number of the set of items to return. The default is 1.",
+                              "key": "pageNumber",
+                              "value": "1"
+                            },
+                            {
+                              "description": "An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in.",
+                              "key": "filter",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "An expression that lets you specify the order in which items are returned. Use the format sort=field:direction where direction is asc or desc.",
+                              "key": "sort",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "An expression that lets you specify which fields are included in the response. Use the format fields=field1,field2. Use _default_ to return the default set of fields, or _all_ to return all fields.",
+                              "key": "fields",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "If true, returns usage statistics for each view.",
+                              "key": "includeUsageStatistics",
+                              "value": "false"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "site-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:08:10.000Z",
+                      "updatedAt": "2026-07-28T03:08:10.000Z",
+                      "uid": "35240-3106c729-1eb3-48fc-a733-a66f4a94ffa3"
+                    },
+                    {
+                      "id": "3d998893-1a70-4d1d-be67-36ebcf794332",
+                      "name": "The caller does not have permission to perform the requested action.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Tableau-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sites/:site-id/views?pageSize=100&pageNumber=1&filter=<string>&sort=<string>&fields=<string>&includeUsageStatistics=false",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sites",
+                            ":site-id",
+                            "views"
+                          ],
+                          "query": [
+                            {
+                              "description": "The number of items to return in one response. The minimum is 1 and the maximum is 1000.",
+                              "key": "pageSize",
+                              "value": "100"
+                            },
+                            {
+                              "description": "The page number of the set of items to return. The default is 1.",
+                              "key": "pageNumber",
+                              "value": "1"
+                            },
+                            {
+                              "description": "An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in.",
+                              "key": "filter",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "An expression that lets you specify the order in which items are returned. Use the format sort=field:direction where direction is asc or desc.",
+                              "key": "sort",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "An expression that lets you specify which fields are included in the response. Use the format fields=field1,field2. Use _default_ to return the default set of fields, or _all_ to return all fields.",
+                              "key": "fields",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "If true, returns usage statistics for each view.",
+                              "key": "includeUsageStatistics",
+                              "value": "false"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "site-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:08:10.000Z",
+                      "updatedAt": "2026-07-28T03:08:10.000Z",
+                      "uid": "35240-3d998893-1a70-4d1d-be67-36ebcf794332"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:08:10.000Z",
+                  "updatedAt": "2026-07-28T03:08:10.000Z",
+                  "uid": "35240-40821ad4-ad7e-4364-afa1-4ecf18fdbf2c"
+                }
+              ],
+              "id": "e02fe0f8-90cc-463f-85a4-3ee68072e531",
+              "createdAt": "2026-07-28T03:08:10.000Z",
+              "updatedAt": "2026-07-28T03:08:10.000Z",
+              "uid": "35240-e02fe0f8-90cc-463f-85a4-3ee68072e531"
+            }
+          ],
+          "id": "38648708-87e4-47e1-b1f3-bcb24aa242fa",
+          "createdAt": "2026-07-28T03:08:10.000Z",
+          "updatedAt": "2026-07-28T03:08:10.000Z",
+          "uid": "35240-38648708-87e4-47e1-b1f3-bcb24aa242fa"
+        }
+      ],
+      "id": "00984dbc-91fb-43a5-8e4e-326324a58ae3",
+      "createdAt": "2026-07-28T03:08:10.000Z",
+      "updatedAt": "2026-07-28T03:08:10.000Z",
+      "uid": "35240-00984dbc-91fb-43a5-8e4e-326324a58ae3"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Tableau-Auth",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "server",
+      "value": "10ax.online.tableau.com"
+    },
+    {
+      "key": "api-version",
+      "value": "3.24"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{server}}/api/{{api-version}}"
+    }
+  ]
+}

@@ -1,0 +1,1299 @@
+{
+  "info": {
+    "_postman_id": "da72da4c-ee01-4175-998f-afd0d1178f81",
+    "name": "Tableau REST Authentication Users API",
+    "description": "The Tableau REST API allows you to manage and change Tableau Server and Tableau Cloud resources programmatically using HTTP. You can use the REST API to manage sites, projects, workbooks, views, data sources, users, groups, permissions, schedules, subscriptions, and more.\n\nContact Support:\n Name: Tableau Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:08:07.000Z",
+    "updatedAt": "2026-07-28T03:08:07.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-da72da4c-ee01-4175-998f-afd0d1178f81"
+  },
+  "item": [
+    {
+      "name": "sites",
+      "item": [
+        {
+          "name": "{site-id}",
+          "item": [
+            {
+              "name": "users",
+              "item": [
+                {
+                  "name": "{user-id}",
+                  "item": [
+                    {
+                      "name": "workbooks",
+                      "item": [
+                        {
+                          "name": "Tableau Query Workbooks for User",
+                          "id": "c844bb27-f3b9-484f-b39c-ec52face6cae",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sites/:site-id/users/:user-id/workbooks?pageSize=100&pageNumber=1",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sites",
+                                ":site-id",
+                                "users",
+                                ":user-id",
+                                "workbooks"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The number of items to return in one response. The minimum is 1 and the maximum is 1000.",
+                                  "key": "pageSize",
+                                  "value": "100"
+                                },
+                                {
+                                  "description": "The page number of the set of items to return. The default is 1.",
+                                  "key": "pageNumber",
+                                  "value": "1"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "f4891a67-6093-4ef3-96da-aa4c8434dbd9",
+                                  "key": "site-id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                                },
+                                {
+                                  "id": "e2121b1d-8825-4659-a93d-571d897e9917",
+                                  "key": "user-id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the user."
+                                }
+                              ]
+                            },
+                            "description": "Returns the workbooks that the specified user owns or has Read (view) permissions for."
+                          },
+                          "response": [
+                            {
+                              "id": "01d9027e-9713-4fda-a26c-d1a5f1672e64",
+                              "name": "A paginated list of workbooks for the user.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Tableau-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/sites/:site-id/users/:user-id/workbooks?pageSize=100&pageNumber=1",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sites",
+                                    ":site-id",
+                                    "users",
+                                    ":user-id",
+                                    "workbooks"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The number of items to return in one response. The minimum is 1 and the maximum is 1000.",
+                                      "key": "pageSize",
+                                      "value": "100"
+                                    },
+                                    {
+                                      "description": "The page number of the set of items to return. The default is 1.",
+                                      "key": "pageNumber",
+                                      "value": "1"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "site-id"
+                                    },
+                                    {
+                                      "key": "user-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"pagination\": {\n    \"pageNumber\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"totalAvailable\": \"<integer>\"\n  },\n  \"workbooks\": {\n    \"workbook\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"contentUrl\": \"<string>\",\n        \"webpageUrl\": \"<uri>\",\n        \"showTabs\": \"<boolean>\",\n        \"size\": \"<integer>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\",\n        \"encryptExtracts\": \"<string>\",\n        \"defaultViewId\": \"<string>\",\n        \"project\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"owner\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"tags\": {\n          \"tag\": [\n            {\n              \"label\": \"<string>\"\n            },\n            {\n              \"label\": \"<string>\"\n            }\n          ]\n        },\n        \"views\": {\n          \"view\": [\n            {\n              \"id\": \"<string>\",\n              \"name\": \"<string>\",\n              \"contentUrl\": \"<string>\",\n              \"createdAt\": \"<dateTime>\",\n              \"updatedAt\": \"<dateTime>\",\n              \"viewUrlName\": \"<string>\",\n              \"sheetType\": \"dashboard\",\n              \"project\": {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\"\n              },\n              \"owner\": {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\"\n              },\n              \"workbook\": {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\"\n              },\n              \"tags\": {\n                \"tag\": [\n                  {\n                    \"label\": \"<string>\"\n                  },\n                  {\n                    \"label\": \"<string>\"\n                  }\n                ]\n              },\n              \"usage\": {\n                \"totalViewCount\": \"<integer>\"\n              }\n            },\n            {\n              \"id\": \"<string>\",\n              \"name\": \"<string>\",\n              \"contentUrl\": \"<string>\",\n              \"createdAt\": \"<dateTime>\",\n              \"updatedAt\": \"<dateTime>\",\n              \"viewUrlName\": \"<string>\",\n              \"sheetType\": \"story\",\n              \"project\": {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\"\n              },\n              \"owner\": {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\"\n              },\n              \"workbook\": {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\"\n              },\n              \"tags\": {\n                \"tag\": [\n                  {\n                    \"label\": \"<string>\"\n                  },\n                  {\n                    \"label\": \"<string>\"\n                  }\n                ]\n              },\n              \"usage\": {\n                \"totalViewCount\": \"<integer>\"\n              }\n            }\n          ]\n        },\n        \"usage\": {\n          \"totalViewCount\": \"<integer>\"\n        }\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"contentUrl\": \"<string>\",\n        \"webpageUrl\": \"<uri>\",\n        \"showTabs\": \"<boolean>\",\n        \"size\": \"<integer>\",\n        \"createdAt\": \"<dateTime>\",\n        \"updatedAt\": \"<dateTime>\",\n        \"encryptExtracts\": \"<string>\",\n        \"defaultViewId\": \"<string>\",\n        \"project\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"owner\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"tags\": {\n          \"tag\": [\n            {\n              \"label\": \"<string>\"\n            },\n            {\n              \"label\": \"<string>\"\n            }\n          ]\n        },\n        \"views\": {\n          \"view\": [\n            {\n              \"id\": \"<string>\",\n              \"name\": \"<string>\",\n              \"contentUrl\": \"<string>\",\n              \"createdAt\": \"<dateTime>\",\n              \"updatedAt\": \"<dateTime>\",\n              \"viewUrlName\": \"<string>\",\n              \"sheetType\": \"story\",\n              \"project\": {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\"\n              },\n              \"owner\": {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\"\n              },\n              \"workbook\": {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\"\n              },\n              \"tags\": {\n                \"tag\": [\n                  {\n                    \"label\": \"<string>\"\n                  },\n                  {\n                    \"label\": \"<string>\"\n                  }\n                ]\n              },\n              \"usage\": {\n                \"totalViewCount\": \"<integer>\"\n              }\n            },\n            {\n              \"id\": \"<string>\",\n              \"name\": \"<string>\",\n              \"contentUrl\": \"<string>\",\n              \"createdAt\": \"<dateTime>\",\n              \"updatedAt\": \"<dateTime>\",\n              \"viewUrlName\": \"<string>\",\n              \"sheetType\": \"dashboard\",\n              \"project\": {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\"\n              },\n              \"owner\": {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\"\n              },\n              \"workbook\": {\n                \"id\": \"<string>\",\n                \"name\": \"<string>\"\n              },\n              \"tags\": {\n                \"tag\": [\n                  {\n                    \"label\": \"<string>\"\n                  },\n                  {\n                    \"label\": \"<string>\"\n                  }\n                ]\n              },\n              \"usage\": {\n                \"totalViewCount\": \"<integer>\"\n              }\n            }\n          ]\n        },\n        \"usage\": {\n          \"totalViewCount\": \"<integer>\"\n        }\n      }\n    ]\n  }\n}",
+                              "createdAt": "2026-07-28T03:08:07.000Z",
+                              "updatedAt": "2026-07-28T03:08:07.000Z",
+                              "uid": "35240-01d9027e-9713-4fda-a26c-d1a5f1672e64"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:08:07.000Z",
+                          "updatedAt": "2026-07-28T03:08:07.000Z",
+                          "uid": "35240-c844bb27-f3b9-484f-b39c-ec52face6cae"
+                        }
+                      ],
+                      "id": "bfaa5f77-2a15-46f3-87aa-564fe553f6fe",
+                      "createdAt": "2026-07-28T03:08:07.000Z",
+                      "updatedAt": "2026-07-28T03:08:07.000Z",
+                      "uid": "35240-bfaa5f77-2a15-46f3-87aa-564fe553f6fe"
+                    },
+                    {
+                      "name": "Tableau Query User on Site",
+                      "id": "77445539-9e60-45f0-a331-082690c4c552",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sites/:site-id/users/:user-id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sites",
+                            ":site-id",
+                            "users",
+                            ":user-id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "c96064cb-6c2a-4b4f-8eb6-35f68a76cfc3",
+                              "key": "site-id",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                            },
+                            {
+                              "id": "84cb50df-d60c-40bf-99c6-20aa0bc8bc77",
+                              "key": "user-id",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the user."
+                            }
+                          ]
+                        },
+                        "description": "Returns information about the specified user on the site."
+                      },
+                      "response": [
+                        {
+                          "id": "c24e1639-6f56-4713-b0a8-9d398041f357",
+                          "name": "User details.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Tableau-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sites/:site-id/users/:user-id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sites",
+                                ":site-id",
+                                "users",
+                                ":user-id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "site-id"
+                                },
+                                {
+                                  "key": "user-id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"user\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"fullName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"siteRole\": \"ExplorerCanPublish\",\n    \"authSetting\": \"<string>\",\n    \"lastLogin\": \"<dateTime>\",\n    \"externalAuthUserId\": \"<string>\",\n    \"locale\": \"<string>\",\n    \"language\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T03:08:07.000Z",
+                          "updatedAt": "2026-07-28T03:08:07.000Z",
+                          "uid": "35240-c24e1639-6f56-4713-b0a8-9d398041f357"
+                        },
+                        {
+                          "id": "b5052e55-7486-4805-af67-53ddfd0e2d0d",
+                          "name": "The specified resource was not found.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Tableau-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sites/:site-id/users/:user-id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sites",
+                                ":site-id",
+                                "users",
+                                ":user-id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "site-id"
+                                },
+                                {
+                                  "key": "user-id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T03:08:07.000Z",
+                          "updatedAt": "2026-07-28T03:08:07.000Z",
+                          "uid": "35240-b5052e55-7486-4805-af67-53ddfd0e2d0d"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:08:07.000Z",
+                      "updatedAt": "2026-07-28T03:08:07.000Z",
+                      "uid": "35240-77445539-9e60-45f0-a331-082690c4c552"
+                    },
+                    {
+                      "name": "Tableau Update User",
+                      "id": "f34f4c27-c1a9-4076-8160-316aca541c61",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"user\": {\n    \"fullName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"siteRole\": \"Creator\",\n    \"authSetting\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/sites/:site-id/users/:user-id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sites",
+                            ":site-id",
+                            "users",
+                            ":user-id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "9217d494-823d-4f4d-9ac7-a7d5545a2a18",
+                              "key": "site-id",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                            },
+                            {
+                              "id": "2df7d96c-53bc-431c-b70d-1d3fd1db87ec",
+                              "key": "user-id",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the user."
+                            }
+                          ]
+                        },
+                        "description": "Modifies information about the specified user."
+                      },
+                      "response": [
+                        {
+                          "id": "b47975a9-4f7a-4daa-a2e6-50cf6ed48974",
+                          "name": "User was updated successfully.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Tableau-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"user\": {\n    \"fullName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"siteRole\": \"Creator\",\n    \"authSetting\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/sites/:site-id/users/:user-id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sites",
+                                ":site-id",
+                                "users",
+                                ":user-id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "site-id"
+                                },
+                                {
+                                  "key": "user-id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"user\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"fullName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"siteRole\": \"ExplorerCanPublish\",\n    \"authSetting\": \"<string>\",\n    \"lastLogin\": \"<dateTime>\",\n    \"externalAuthUserId\": \"<string>\",\n    \"locale\": \"<string>\",\n    \"language\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T03:08:07.000Z",
+                          "updatedAt": "2026-07-28T03:08:07.000Z",
+                          "uid": "35240-b47975a9-4f7a-4daa-a2e6-50cf6ed48974"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:08:07.000Z",
+                      "updatedAt": "2026-07-28T03:08:07.000Z",
+                      "uid": "35240-f34f4c27-c1a9-4076-8160-316aca541c61"
+                    },
+                    {
+                      "name": "Tableau Remove User From Site",
+                      "id": "fbeb8387-b0d4-49af-abc7-6661671b1f03",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/sites/:site-id/users/:user-id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sites",
+                            ":site-id",
+                            "users",
+                            ":user-id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "42ce8f79-0498-476f-b95a-cc1a3a412706",
+                              "key": "site-id",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                            },
+                            {
+                              "id": "4deed664-aa8a-4a4c-a479-f859f426d0dd",
+                              "key": "user-id",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the user."
+                            }
+                          ]
+                        },
+                        "description": "Removes the specified user from the site."
+                      },
+                      "response": [
+                        {
+                          "id": "e5cc6282-2c2a-4083-87bf-cf58423372d7",
+                          "name": "User was removed successfully.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-Tableau-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sites/:site-id/users/:user-id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sites",
+                                ":site-id",
+                                "users",
+                                ":user-id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "site-id"
+                                },
+                                {
+                                  "key": "user-id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:08:07.000Z",
+                          "updatedAt": "2026-07-28T03:08:07.000Z",
+                          "uid": "35240-e5cc6282-2c2a-4083-87bf-cf58423372d7"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:08:07.000Z",
+                      "updatedAt": "2026-07-28T03:08:07.000Z",
+                      "uid": "35240-fbeb8387-b0d4-49af-abc7-6661671b1f03"
+                    }
+                  ],
+                  "id": "8ef79f9d-e5e1-4d23-a39a-fdee4e2c40e2",
+                  "createdAt": "2026-07-28T03:08:07.000Z",
+                  "updatedAt": "2026-07-28T03:08:07.000Z",
+                  "uid": "35240-8ef79f9d-e5e1-4d23-a39a-fdee4e2c40e2"
+                },
+                {
+                  "name": "Tableau Get Users on Site",
+                  "id": "7ec5c7ec-4a2c-4545-81fc-6bfdb93ad130",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sites/:site-id/users?pageSize=100&pageNumber=1&filter=<string>&sort=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sites",
+                        ":site-id",
+                        "users"
+                      ],
+                      "query": [
+                        {
+                          "description": "The number of items to return in one response. The minimum is 1 and the maximum is 1000.",
+                          "key": "pageSize",
+                          "value": "100"
+                        },
+                        {
+                          "description": "The page number of the set of items to return. The default is 1.",
+                          "key": "pageNumber",
+                          "value": "1"
+                        },
+                        {
+                          "description": "An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in.",
+                          "key": "filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "An expression that lets you specify the order in which items are returned. Use the format sort=field:direction where direction is asc or desc.",
+                          "key": "sort",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "120d8b46-bcec-4e48-bbaa-c555100387b9",
+                          "key": "site-id",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                        }
+                      ]
+                    },
+                    "description": "Returns the users associated with the specified site."
+                  },
+                  "response": [
+                    {
+                      "id": "6151a846-e7a3-4da2-8331-d8ed23bd244d",
+                      "name": "A paginated list of users.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Tableau-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sites/:site-id/users?pageSize=100&pageNumber=1&filter=<string>&sort=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sites",
+                            ":site-id",
+                            "users"
+                          ],
+                          "query": [
+                            {
+                              "description": "The number of items to return in one response. The minimum is 1 and the maximum is 1000.",
+                              "key": "pageSize",
+                              "value": "100"
+                            },
+                            {
+                              "description": "The page number of the set of items to return. The default is 1.",
+                              "key": "pageNumber",
+                              "value": "1"
+                            },
+                            {
+                              "description": "An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in.",
+                              "key": "filter",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "An expression that lets you specify the order in which items are returned. Use the format sort=field:direction where direction is asc or desc.",
+                              "key": "sort",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "site-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"pagination\": {\n    \"pageNumber\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"totalAvailable\": \"<integer>\"\n  },\n  \"users\": {\n    \"user\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"fullName\": \"<string>\",\n        \"email\": \"<email>\",\n        \"siteRole\": \"SiteAdministratorExplorer\",\n        \"authSetting\": \"<string>\",\n        \"lastLogin\": \"<dateTime>\",\n        \"externalAuthUserId\": \"<string>\",\n        \"locale\": \"<string>\",\n        \"language\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"fullName\": \"<string>\",\n        \"email\": \"<email>\",\n        \"siteRole\": \"ExplorerCanPublish\",\n        \"authSetting\": \"<string>\",\n        \"lastLogin\": \"<dateTime>\",\n        \"externalAuthUserId\": \"<string>\",\n        \"locale\": \"<string>\",\n        \"language\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-07-28T03:08:07.000Z",
+                      "updatedAt": "2026-07-28T03:08:07.000Z",
+                      "uid": "35240-6151a846-e7a3-4da2-8331-d8ed23bd244d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:08:07.000Z",
+                  "updatedAt": "2026-07-28T03:08:07.000Z",
+                  "uid": "35240-7ec5c7ec-4a2c-4545-81fc-6bfdb93ad130"
+                },
+                {
+                  "name": "Tableau Add User to Site",
+                  "id": "ca1b1a35-a339-47b2-a5f6-0f45c70e505b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"user\": {\n    \"name\": \"<string>\",\n    \"siteRole\": \"Viewer\",\n    \"authSetting\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sites/:site-id/users",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sites",
+                        ":site-id",
+                        "users"
+                      ],
+                      "variable": [
+                        {
+                          "id": "8ec3b260-3ae4-42f1-934a-9bbd0fd3fdc2",
+                          "key": "site-id",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                        }
+                      ]
+                    },
+                    "description": "Adds a user to the specified site. The user must already exist on the server or in the identity store."
+                  },
+                  "response": [
+                    {
+                      "id": "a49af293-1dcc-487c-8b61-f607d09a6215",
+                      "name": "User was added successfully.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Tableau-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"user\": {\n    \"name\": \"<string>\",\n    \"siteRole\": \"Viewer\",\n    \"authSetting\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/sites/:site-id/users",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sites",
+                            ":site-id",
+                            "users"
+                          ],
+                          "variable": [
+                            {
+                              "key": "site-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"user\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"fullName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"siteRole\": \"ExplorerCanPublish\",\n    \"authSetting\": \"<string>\",\n    \"lastLogin\": \"<dateTime>\",\n    \"externalAuthUserId\": \"<string>\",\n    \"locale\": \"<string>\",\n    \"language\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:08:07.000Z",
+                      "updatedAt": "2026-07-28T03:08:07.000Z",
+                      "uid": "35240-a49af293-1dcc-487c-8b61-f607d09a6215"
+                    },
+                    {
+                      "id": "7fd2a885-0df4-4bf6-9abd-2d894066b500",
+                      "name": "A resource with the same name or identifier already exists.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Tableau-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"user\": {\n    \"name\": \"<string>\",\n    \"siteRole\": \"Viewer\",\n    \"authSetting\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/sites/:site-id/users",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sites",
+                            ":site-id",
+                            "users"
+                          ],
+                          "variable": [
+                            {
+                              "key": "site-id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Conflict",
+                      "code": 409,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"summary\": \"<string>\",\n    \"detail\": \"<string>\",\n    \"code\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:08:07.000Z",
+                      "updatedAt": "2026-07-28T03:08:07.000Z",
+                      "uid": "35240-7fd2a885-0df4-4bf6-9abd-2d894066b500"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:08:07.000Z",
+                  "updatedAt": "2026-07-28T03:08:07.000Z",
+                  "uid": "35240-ca1b1a35-a339-47b2-a5f6-0f45c70e505b"
+                }
+              ],
+              "id": "bf3de292-bbac-4571-b40e-a00fd3ecc4e7",
+              "createdAt": "2026-07-28T03:08:07.000Z",
+              "updatedAt": "2026-07-28T03:08:07.000Z",
+              "uid": "35240-bf3de292-bbac-4571-b40e-a00fd3ecc4e7"
+            },
+            {
+              "name": "groups",
+              "item": [
+                {
+                  "name": "{group-id}",
+                  "item": [
+                    {
+                      "name": "users",
+                      "item": [
+                        {
+                          "name": "{user-id}",
+                          "item": [
+                            {
+                              "name": "Tableau Remove User From Group",
+                              "id": "77970aea-cb6b-4af3-87a5-da84313e84d6",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "DELETE",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/sites/:site-id/groups/:group-id/users/:user-id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sites",
+                                    ":site-id",
+                                    "groups",
+                                    ":group-id",
+                                    "users",
+                                    ":user-id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "30a56c36-0b72-4a0d-b70b-5c22a984870d",
+                                      "key": "site-id",
+                                      "value": "<string>",
+                                      "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                                    },
+                                    {
+                                      "id": "3f1304e5-913f-4f0e-8303-9147726c41b5",
+                                      "key": "group-id",
+                                      "value": "<string>",
+                                      "description": "(Required) The ID of the group."
+                                    },
+                                    {
+                                      "id": "9bb8b0da-f1de-4fd1-84a2-f52e881c57b9",
+                                      "key": "user-id",
+                                      "value": "<string>",
+                                      "description": "(Required) The ID of the user."
+                                    }
+                                  ]
+                                },
+                                "description": "Removes the specified user from the specified group."
+                              },
+                              "response": [
+                                {
+                                  "id": "955da09a-0bfe-410f-b7f8-fb9193a84b20",
+                                  "name": "User was removed from the group successfully.",
+                                  "originalRequest": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "X-Tableau-Auth",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/sites/:site-id/groups/:group-id/users/:user-id",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "sites",
+                                        ":site-id",
+                                        "groups",
+                                        ":group-id",
+                                        "users",
+                                        ":user-id"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "site-id"
+                                        },
+                                        {
+                                          "key": "group-id"
+                                        },
+                                        {
+                                          "key": "user-id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "No Content",
+                                  "code": 204,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T03:08:07.000Z",
+                                  "updatedAt": "2026-07-28T03:08:07.000Z",
+                                  "uid": "35240-955da09a-0bfe-410f-b7f8-fb9193a84b20"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T03:08:07.000Z",
+                              "updatedAt": "2026-07-28T03:08:07.000Z",
+                              "uid": "35240-77970aea-cb6b-4af3-87a5-da84313e84d6"
+                            }
+                          ],
+                          "id": "e2135033-ced1-4411-9ab8-cfe6b65baa6f",
+                          "createdAt": "2026-07-28T03:08:07.000Z",
+                          "updatedAt": "2026-07-28T03:08:07.000Z",
+                          "uid": "35240-e2135033-ced1-4411-9ab8-cfe6b65baa6f"
+                        },
+                        {
+                          "name": "Tableau Get Group Members",
+                          "id": "421e9ce8-760a-4507-ac22-9edf497e5cfb",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/sites/:site-id/groups/:group-id/users?pageSize=100&pageNumber=1",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sites",
+                                ":site-id",
+                                "groups",
+                                ":group-id",
+                                "users"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The number of items to return in one response. The minimum is 1 and the maximum is 1000.",
+                                  "key": "pageSize",
+                                  "value": "100"
+                                },
+                                {
+                                  "description": "The page number of the set of items to return. The default is 1.",
+                                  "key": "pageNumber",
+                                  "value": "1"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "0b12cd2a-4bc5-48cc-afbf-c6a902e0c384",
+                                  "key": "site-id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                                },
+                                {
+                                  "id": "a554382a-58b8-4081-a89f-6289ab7486e8",
+                                  "key": "group-id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the group."
+                                }
+                              ]
+                            },
+                            "description": "Returns a list of users who are members of the specified group."
+                          },
+                          "response": [
+                            {
+                              "id": "e702b06c-53dd-439d-9c43-abda1df01fd0",
+                              "name": "A list of users in the group.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Tableau-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/sites/:site-id/groups/:group-id/users?pageSize=100&pageNumber=1",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sites",
+                                    ":site-id",
+                                    "groups",
+                                    ":group-id",
+                                    "users"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "The number of items to return in one response. The minimum is 1 and the maximum is 1000.",
+                                      "key": "pageSize",
+                                      "value": "100"
+                                    },
+                                    {
+                                      "description": "The page number of the set of items to return. The default is 1.",
+                                      "key": "pageNumber",
+                                      "value": "1"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "site-id"
+                                    },
+                                    {
+                                      "key": "group-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"pagination\": {\n    \"pageNumber\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"totalAvailable\": \"<integer>\"\n  },\n  \"users\": {\n    \"user\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"fullName\": \"<string>\",\n        \"email\": \"<email>\",\n        \"siteRole\": \"SiteAdministratorExplorer\",\n        \"authSetting\": \"<string>\",\n        \"lastLogin\": \"<dateTime>\",\n        \"externalAuthUserId\": \"<string>\",\n        \"locale\": \"<string>\",\n        \"language\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"fullName\": \"<string>\",\n        \"email\": \"<email>\",\n        \"siteRole\": \"ExplorerCanPublish\",\n        \"authSetting\": \"<string>\",\n        \"lastLogin\": \"<dateTime>\",\n        \"externalAuthUserId\": \"<string>\",\n        \"locale\": \"<string>\",\n        \"language\": \"<string>\"\n      }\n    ]\n  }\n}",
+                              "createdAt": "2026-07-28T03:08:07.000Z",
+                              "updatedAt": "2026-07-28T03:08:07.000Z",
+                              "uid": "35240-e702b06c-53dd-439d-9c43-abda1df01fd0"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:08:07.000Z",
+                          "updatedAt": "2026-07-28T03:08:07.000Z",
+                          "uid": "35240-421e9ce8-760a-4507-ac22-9edf497e5cfb"
+                        },
+                        {
+                          "name": "Tableau Add User to Group",
+                          "id": "53e399b0-c566-4a61-a936-032f9a1975be",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"user\": {\n    \"id\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/sites/:site-id/groups/:group-id/users",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "sites",
+                                ":site-id",
+                                "groups",
+                                ":group-id",
+                                "users"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "c564cd17-bf3a-43ac-a9fd-a81d1cf0eae0",
+                                  "key": "site-id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                                },
+                                {
+                                  "id": "ef159486-cf43-4757-95d9-2f9941a5b827",
+                                  "key": "group-id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the group."
+                                }
+                              ]
+                            },
+                            "description": "Adds a user to the specified group."
+                          },
+                          "response": [
+                            {
+                              "id": "e029f3a2-d31a-4ba6-adc7-0c248a157340",
+                              "name": "User was added to the group successfully.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-Tableau-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"user\": {\n    \"id\": \"<string>\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/sites/:site-id/groups/:group-id/users",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "sites",
+                                    ":site-id",
+                                    "groups",
+                                    ":group-id",
+                                    "users"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "site-id"
+                                    },
+                                    {
+                                      "key": "group-id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"user\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"fullName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"siteRole\": \"ExplorerCanPublish\",\n    \"authSetting\": \"<string>\",\n    \"lastLogin\": \"<dateTime>\",\n    \"externalAuthUserId\": \"<string>\",\n    \"locale\": \"<string>\",\n    \"language\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T03:08:07.000Z",
+                              "updatedAt": "2026-07-28T03:08:07.000Z",
+                              "uid": "35240-e029f3a2-d31a-4ba6-adc7-0c248a157340"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:08:07.000Z",
+                          "updatedAt": "2026-07-28T03:08:07.000Z",
+                          "uid": "35240-53e399b0-c566-4a61-a936-032f9a1975be"
+                        }
+                      ],
+                      "id": "b9210380-5ed0-4cbe-b50f-bd652c3d3ab5",
+                      "createdAt": "2026-07-28T03:08:07.000Z",
+                      "updatedAt": "2026-07-28T03:08:07.000Z",
+                      "uid": "35240-b9210380-5ed0-4cbe-b50f-bd652c3d3ab5"
+                    }
+                  ],
+                  "id": "b6c84807-dac3-4ae0-8bfd-15c3dafa4b7d",
+                  "createdAt": "2026-07-28T03:08:07.000Z",
+                  "updatedAt": "2026-07-28T03:08:07.000Z",
+                  "uid": "35240-b6c84807-dac3-4ae0-8bfd-15c3dafa4b7d"
+                }
+              ],
+              "id": "fd2ca384-f87c-4882-96a3-a01ecc9b1994",
+              "createdAt": "2026-07-28T03:08:07.000Z",
+              "updatedAt": "2026-07-28T03:08:07.000Z",
+              "uid": "35240-fd2ca384-f87c-4882-96a3-a01ecc9b1994"
+            }
+          ],
+          "id": "462041d6-3623-4b67-a721-3f833831bcb5",
+          "createdAt": "2026-07-28T03:08:07.000Z",
+          "updatedAt": "2026-07-28T03:08:07.000Z",
+          "uid": "35240-462041d6-3623-4b67-a721-3f833831bcb5"
+        }
+      ],
+      "id": "0548e929-4211-43d5-995c-314dce423a59",
+      "createdAt": "2026-07-28T03:08:07.000Z",
+      "updatedAt": "2026-07-28T03:08:07.000Z",
+      "uid": "35240-0548e929-4211-43d5-995c-314dce423a59"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Tableau-Auth",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "server",
+      "value": "10ax.online.tableau.com"
+    },
+    {
+      "key": "api-version",
+      "value": "3.24"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{server}}/api/{{api-version}}"
+    }
+  ]
+}
