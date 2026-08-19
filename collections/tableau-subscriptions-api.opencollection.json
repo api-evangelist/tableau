@@ -1,0 +1,159 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tableau REST Authentication Subscriptions API",
+    "version": "3.24.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Tableau-Auth",
+      "value": "{{X-Tableau-Auth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Subscriptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tableau Query Subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/subscriptions",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to return in one response. The minimum is 1 and the maximum is 1000."
+              },
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query",
+                "description": "The page number of the set of items to return. The default is 1."
+              }
+            ]
+          },
+          "docs": "Returns a list of all subscriptions on the site."
+        },
+        {
+          "info": {
+            "name": "Tableau Create Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/subscriptions",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new subscription to a view or workbook for the specified user on the specified schedule."
+        },
+        {
+          "info": {
+            "name": "Tableau Query Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/subscriptions/:subscription-id",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "subscription-id",
+                "value": "500123",
+                "type": "path",
+                "description": "The ID of the subscription."
+              }
+            ]
+          },
+          "docs": "Returns information about the specified subscription."
+        },
+        {
+          "info": {
+            "name": "Tableau Update Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/subscriptions/:subscription-id",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "subscription-id",
+                "value": "500123",
+                "type": "path",
+                "description": "The ID of the subscription to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modifies an existing subscription, changing the subject, schedule, or whether the full workbook or just a single view is sent."
+        },
+        {
+          "info": {
+            "name": "Tableau Delete Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/subscriptions/:subscription-id",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "subscription-id",
+                "value": "500123",
+                "type": "path",
+                "description": "The ID of the subscription to delete."
+              }
+            ]
+          },
+          "docs": "Deletes the specified subscription from the site."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

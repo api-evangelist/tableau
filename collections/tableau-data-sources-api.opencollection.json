@@ -1,0 +1,355 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tableau REST Authentication Data Sources API",
+    "version": "3.24.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Tableau-Auth",
+      "value": "{{X-Tableau-Auth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data Sources",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tableau Query Data Sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/datasources",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to return in one response. The minimum is 1 and the maximum is 1000."
+              },
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query",
+                "description": "The page number of the set of items to return. The default is 1."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "An expression that lets you specify the order in which items are returned. Use the format sort=field:direction where direction is asc or desc."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "An expression that lets you specify which fields are included in the response. Use the format fields=field1,field2. Use _default_ to return the default set of fields, or _all_ to return all fields."
+              }
+            ]
+          },
+          "docs": "Returns a list of published data sources on the specified site, with optional pagination, filtering, and sorting."
+        },
+        {
+          "info": {
+            "name": "Tableau Query Data Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/datasources/:datasource-id",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "datasource-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the data source."
+              }
+            ]
+          },
+          "docs": "Returns information about the specified data source."
+        },
+        {
+          "info": {
+            "name": "Tableau Update Data Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/datasources/:datasource-id",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "datasource-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the data source."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the owner, project, or certification status of the specified data source."
+        },
+        {
+          "info": {
+            "name": "Tableau Delete Data Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/datasources/:datasource-id",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "datasource-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the data source."
+              }
+            ]
+          },
+          "docs": "Deletes the specified data source from a site."
+        },
+        {
+          "info": {
+            "name": "Tableau Download Data Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/datasources/:datasource-id/content",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "datasource-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the data source."
+              },
+              {
+                "name": "includeExtract",
+                "value": "true",
+                "type": "query",
+                "description": "If true and the data source contains an extract, the download includes the extract."
+              }
+            ]
+          },
+          "docs": "Downloads the specified data source in .tdsx format."
+        },
+        {
+          "info": {
+            "name": "Tableau Query Data Source Connections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/datasources/:datasource-id/connections",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "datasource-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the data source."
+              }
+            ]
+          },
+          "docs": "Returns a list of data connections for the specified data source."
+        },
+        {
+          "info": {
+            "name": "Tableau Get Data Source Revisions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/datasources/:datasource-id/revisions",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "datasource-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the data source."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to return in one response. The minimum is 1 and the maximum is 1000."
+              },
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query",
+                "description": "The page number of the set of items to return. The default is 1."
+              }
+            ]
+          },
+          "docs": "Returns a list of revision information for each revision of the specified data source."
+        },
+        {
+          "info": {
+            "name": "Tableau Query Data Source Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/datasources/:datasource-id/tags",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "datasource-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the data source."
+              }
+            ]
+          },
+          "docs": "Returns a list of tags associated with the specified data source."
+        },
+        {
+          "info": {
+            "name": "Tableau Add Tags to Data Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/datasources/:datasource-id/tags",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "datasource-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the data source."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds one or more tags to the specified data source."
+        },
+        {
+          "info": {
+            "name": "Tableau Query Data Source Permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/datasources/:datasource-id/permissions",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "datasource-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the data source."
+              }
+            ]
+          },
+          "docs": "Returns a list of permissions for the specified data source."
+        },
+        {
+          "info": {
+            "name": "Tableau Add Data Source Permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/datasources/:datasource-id/permissions",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "datasource-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the data source."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds permissions to the specified data source for a user or group."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

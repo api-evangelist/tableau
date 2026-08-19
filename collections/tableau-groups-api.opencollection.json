@@ -1,0 +1,243 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tableau REST Authentication Groups API",
+    "version": "3.24.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Tableau-Auth",
+      "value": "{{X-Tableau-Auth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tableau Query Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/groups",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to return in one response. The minimum is 1 and the maximum is 1000."
+              },
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query",
+                "description": "The page number of the set of items to return. The default is 1."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "An expression that lets you specify the order in which items are returned. Use the format sort=field:direction where direction is asc or desc."
+              }
+            ]
+          },
+          "docs": "Returns a list of groups on the specified site."
+        },
+        {
+          "info": {
+            "name": "Tableau Create Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/groups",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a group on the specified site."
+        },
+        {
+          "info": {
+            "name": "Tableau Update Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/groups/:group-id",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "group-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the group."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the name or Active Directory configuration of the specified group."
+        },
+        {
+          "info": {
+            "name": "Tableau Delete Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/groups/:group-id",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "group-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the group."
+              }
+            ]
+          },
+          "docs": "Deletes the specified group from the site."
+        },
+        {
+          "info": {
+            "name": "Tableau Get Group Members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/groups/:group-id/users",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "group-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the group."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to return in one response. The minimum is 1 and the maximum is 1000."
+              },
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query",
+                "description": "The page number of the set of items to return. The default is 1."
+              }
+            ]
+          },
+          "docs": "Returns a list of users who are members of the specified group."
+        },
+        {
+          "info": {
+            "name": "Tableau Add User to Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/groups/:group-id/users",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "group-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the group."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a user to the specified group."
+        },
+        {
+          "info": {
+            "name": "Tableau Remove User From Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/groups/:group-id/users/:user-id",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "group-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the group."
+              },
+              {
+                "name": "user-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the user."
+              }
+            ]
+          },
+          "docs": "Removes the specified user from the specified group."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

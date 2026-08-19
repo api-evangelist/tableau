@@ -1,0 +1,2860 @@
+{
+  "item": [
+    {
+      "id": "24a7d9a6-64be-4338-9a61-27c9bffabac5",
+      "name": "Views",
+      "description": {
+        "content": "Query views and download view images or data. Views are the individual sheets, dashboards, or stories within a workbook.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d132bf22-522f-44f2-af3e-d03bd7d75a45",
+          "name": "Tableau Query Views for Workbook",
+          "request": {
+            "name": "Tableau Query Views for Workbook",
+            "description": {
+              "content": "Returns all the views for the specified workbook, optionally including usage statistics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sites",
+                ":site-id",
+                "workbooks",
+                ":workbook-id",
+                "views"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeUsageStatistics",
+                  "value": "false",
+                  "description": "If true, returns usage statistics for each view."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "site-id",
+                  "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workbook-id",
+                  "description": "(Required) The ID of the workbook."
+                },
+                {
+                  "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                },
+                {
+                  "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                  "type": "any",
+                  "value": "{{api-version}}",
+                  "key": "api-version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2eb9ab7f-3fce-472a-993d-de020607ed9f",
+              "name": "A list of views for the workbook.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site-id",
+                    "workbooks",
+                    ":workbook-id",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeUsageStatistics",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "site-id",
+                      "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workbook-id",
+                      "description": "(Required) The ID of the workbook."
+                    },
+                    {
+                      "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                      "type": "any",
+                      "value": "{{api-version}}",
+                      "key": "api-version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tableau-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pagination\": {\n    \"pageNumber\": 10,\n    \"pageSize\": 10,\n    \"totalAvailable\": 10\n  },\n  \"views\": {\n    \"view\": [\n      {}\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1923bbd6-e10c-4b80-8204-9430971ee0c1",
+              "name": "The authentication credentials were missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site-id",
+                    "workbooks",
+                    ":workbook-id",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeUsageStatistics",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "site-id",
+                      "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workbook-id",
+                      "description": "(Required) The ID of the workbook."
+                    },
+                    {
+                      "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                      "type": "any",
+                      "value": "{{api-version}}",
+                      "key": "api-version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tableau-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"summary\": \"string\",\n    \"detail\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "13f748d7-29e6-44e2-9eba-d288be7f4380",
+              "name": "The caller does not have permission to perform the requested action.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site-id",
+                    "workbooks",
+                    ":workbook-id",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeUsageStatistics",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "site-id",
+                      "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workbook-id",
+                      "description": "(Required) The ID of the workbook."
+                    },
+                    {
+                      "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                      "type": "any",
+                      "value": "{{api-version}}",
+                      "key": "api-version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tableau-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"summary\": \"string\",\n    \"detail\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f06284f3-ee63-444f-b447-90df97f1d3ec",
+              "name": "The specified resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site-id",
+                    "workbooks",
+                    ":workbook-id",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeUsageStatistics",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "site-id",
+                      "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workbook-id",
+                      "description": "(Required) The ID of the workbook."
+                    },
+                    {
+                      "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                      "type": "any",
+                      "value": "{{api-version}}",
+                      "key": "api-version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tableau-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"summary\": \"string\",\n    \"detail\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8e569ee5-d210-4ad9-b85b-dcf1bed42184",
+          "name": "Tableau Query Views for Site",
+          "request": {
+            "name": "Tableau Query Views for Site",
+            "description": {
+              "content": "Returns all the views for the specified site, optionally including usage statistics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sites",
+                ":site-id",
+                "views"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "100",
+                  "description": "The number of items to return in one response. The minimum is 1 and the maximum is 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageNumber",
+                  "value": "1",
+                  "description": "The page number of the set of items to return. The default is 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "An expression that lets you specify the order in which items are returned. Use the format sort=field:direction where direction is asc or desc."
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "An expression that lets you specify which fields are included in the response. Use the format fields=field1,field2. Use _default_ to return the default set of fields, or _all_ to return all fields."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeUsageStatistics",
+                  "value": "false",
+                  "description": "If true, returns usage statistics for each view."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "site-id",
+                  "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                },
+                {
+                  "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                },
+                {
+                  "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                  "type": "any",
+                  "value": "{{api-version}}",
+                  "key": "api-version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ab2a2e5b-4a70-4dd8-9edb-9092192948f4",
+              "name": "A paginated list of views.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site-id",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "100"
+                    },
+                    {
+                      "key": "pageNumber",
+                      "value": "1"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeUsageStatistics",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "site-id",
+                      "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                    },
+                    {
+                      "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                      "type": "any",
+                      "value": "{{api-version}}",
+                      "key": "api-version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tableau-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pagination\": {\n    \"pageNumber\": 10,\n    \"pageSize\": 10,\n    \"totalAvailable\": 10\n  },\n  \"views\": {\n    \"view\": [\n      {}\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5734d1b2-5e94-4033-9a9a-803f7fe06f48",
+              "name": "The authentication credentials were missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site-id",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "100"
+                    },
+                    {
+                      "key": "pageNumber",
+                      "value": "1"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeUsageStatistics",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "site-id",
+                      "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                    },
+                    {
+                      "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                      "type": "any",
+                      "value": "{{api-version}}",
+                      "key": "api-version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tableau-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"summary\": \"string\",\n    \"detail\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e465b9d2-02aa-481c-abb2-073f4bd5664b",
+              "name": "The caller does not have permission to perform the requested action.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site-id",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "100"
+                    },
+                    {
+                      "key": "pageNumber",
+                      "value": "1"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeUsageStatistics",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "site-id",
+                      "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                    },
+                    {
+                      "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                      "type": "any",
+                      "value": "{{api-version}}",
+                      "key": "api-version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tableau-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"summary\": \"string\",\n    \"detail\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "55facd7c-0bca-4fa5-bd8d-99640899f7eb",
+          "name": "Tableau Query View by Id",
+          "request": {
+            "name": "Tableau Query View by Id",
+            "description": {
+              "content": "Returns details about the specified view, including the view name, owner, project, and usage statistics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sites",
+                ":site-id",
+                "views",
+                ":view-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "site-id",
+                  "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "view-id",
+                  "description": "(Required) The ID of the view."
+                },
+                {
+                  "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                },
+                {
+                  "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                  "type": "any",
+                  "value": "{{api-version}}",
+                  "key": "api-version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "77afbd30-aa07-4ec2-8843-7844020f4882",
+              "name": "View details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site-id",
+                    "views",
+                    ":view-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "site-id",
+                      "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "view-id",
+                      "description": "(Required) The ID of the view."
+                    },
+                    {
+                      "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                      "type": "any",
+                      "value": "{{api-version}}",
+                      "key": "api-version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tableau-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"view\": {\n    \"id\": \"abc123\",\n    \"name\": \"Example Title\",\n    \"contentUrl\": \"https://www.example.com\",\n    \"createdAt\": \"2026-01-15T10:30:00Z\",\n    \"updatedAt\": \"2026-01-15T10:30:00Z\",\n    \"viewUrlName\": \"https://www.example.com\",\n    \"sheetType\": \"worksheet\",\n    \"project\": {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\"\n    },\n    \"owner\": {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\"\n    },\n    \"workbook\": {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\"\n    },\n    \"tags\": {\n      \"tag\": {}\n    },\n    \"usage\": {\n      \"totalViewCount\": 10\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "08e9b18b-b10e-454c-be19-7740877e9cf6",
+              "name": "The authentication credentials were missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site-id",
+                    "views",
+                    ":view-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "site-id",
+                      "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "view-id",
+                      "description": "(Required) The ID of the view."
+                    },
+                    {
+                      "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                      "type": "any",
+                      "value": "{{api-version}}",
+                      "key": "api-version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tableau-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"summary\": \"string\",\n    \"detail\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "61cf318a-c2e5-488a-8781-1bb4641c9563",
+              "name": "The caller does not have permission to perform the requested action.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site-id",
+                    "views",
+                    ":view-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "site-id",
+                      "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "view-id",
+                      "description": "(Required) The ID of the view."
+                    },
+                    {
+                      "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                      "type": "any",
+                      "value": "{{api-version}}",
+                      "key": "api-version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tableau-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"summary\": \"string\",\n    \"detail\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "13d14a5d-d82c-4997-beae-e86e78d98458",
+              "name": "The specified resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site-id",
+                    "views",
+                    ":view-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "site-id",
+                      "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "view-id",
+                      "description": "(Required) The ID of the view."
+                    },
+                    {
+                      "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                      "type": "any",
+                      "value": "{{api-version}}",
+                      "key": "api-version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tableau-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"summary\": \"string\",\n    \"detail\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c2b06325-c1e8-4308-b673-fbba14e2422d",
+          "name": "Tableau Query View Image",
+          "request": {
+            "name": "Tableau Query View Image",
+            "description": {
+              "content": "Returns an image of the specified view rendered as a PNG file. You can specify the resolution of the image.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sites",
+                ":site-id",
+                "views",
+                ":view-id",
+                "image"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "resolution",
+                  "value": "standard",
+                  "description": "The resolution of the image (standard or high)."
+                },
+                {
+                  "disabled": false,
+                  "key": "maxAge",
+                  "value": "<integer>",
+                  "description": "The maximum number of minutes a view image can be cached before being refreshed."
+                },
+                {
+                  "disabled": false,
+                  "key": "vf_<filter_name>",
+                  "value": "<string>",
+                  "description": "Apply a filter to the view. Replace <filter_name> with the name of the filter field."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "site-id",
+                  "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "view-id",
+                  "description": "(Required) The ID of the view."
+                },
+                {
+                  "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                },
+                {
+                  "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                  "type": "any",
+                  "value": "{{api-version}}",
+                  "key": "api-version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "image/png"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3a742391-d8c4-4df2-a098-1fe9e6d65d1d",
+              "name": "A PNG image of the view.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site-id",
+                    "views",
+                    ":view-id",
+                    "image"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resolution",
+                      "value": "standard"
+                    },
+                    {
+                      "key": "maxAge",
+                      "value": "10"
+                    },
+                    {
+                      "key": "vf_<filter_name>",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "site-id",
+                      "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "view-id",
+                      "description": "(Required) The ID of the view."
+                    },
+                    {
+                      "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                      "type": "any",
+                      "value": "{{api-version}}",
+                      "key": "api-version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tableau-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "image/png"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "image/png"
+                }
+              ],
+              "body": "example_value",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0d763967-448f-42a5-959e-416e99c2bc36",
+              "name": "The authentication credentials were missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site-id",
+                    "views",
+                    ":view-id",
+                    "image"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resolution",
+                      "value": "standard"
+                    },
+                    {
+                      "key": "maxAge",
+                      "value": "10"
+                    },
+                    {
+                      "key": "vf_<filter_name>",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "site-id",
+                      "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "view-id",
+                      "description": "(Required) The ID of the view."
+                    },
+                    {
+                      "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                      "type": "any",
+                      "value": "{{api-version}}",
+                      "key": "api-version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tableau-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"summary\": \"string\",\n    \"detail\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07f504c0-1a35-4b1b-9f9b-52d8246afc77",
+              "name": "The caller does not have permission to perform the requested action.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site-id",
+                    "views",
+                    ":view-id",
+                    "image"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resolution",
+                      "value": "standard"
+                    },
+                    {
+                      "key": "maxAge",
+                      "value": "10"
+                    },
+                    {
+                      "key": "vf_<filter_name>",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "site-id",
+                      "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "view-id",
+                      "description": "(Required) The ID of the view."
+                    },
+                    {
+                      "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                      "type": "any",
+                      "value": "{{api-version}}",
+                      "key": "api-version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tableau-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"summary\": \"string\",\n    \"detail\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7b1f4a60-dc88-4531-ae2d-0a510fa41e48",
+              "name": "The specified resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site-id",
+                    "views",
+                    ":view-id",
+                    "image"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resolution",
+                      "value": "standard"
+                    },
+                    {
+                      "key": "maxAge",
+                      "value": "10"
+                    },
+                    {
+                      "key": "vf_<filter_name>",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "site-id",
+                      "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "view-id",
+                      "description": "(Required) The ID of the view."
+                    },
+                    {
+                      "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                      "type": "any",
+                      "value": "{{api-version}}",
+                      "key": "api-version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tableau-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"summary\": \"string\",\n    \"detail\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fb58b902-e807-4a85-9740-9b093ab36eee",
+          "name": "Tableau Query View Data",
+          "request": {
+            "name": "Tableau Query View Data",
+            "description": {
+              "content": "Returns the data used in a view as a comma-separated values (CSV) file.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sites",
+                ":site-id",
+                "views",
+                ":view-id",
+                "data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "maxAge",
+                  "value": "<integer>",
+                  "description": "The maximum number of minutes a view can be cached before being refreshed."
+                },
+                {
+                  "disabled": false,
+                  "key": "vf_<filter_name>",
+                  "value": "<string>",
+                  "description": "Apply a filter to the view. Replace <filter_name> with the name of the filter field."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "site-id",
+                  "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "view-id",
+                  "description": "(Required) The ID of the view."
+                },
+                {
+                  "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                },
+                {
+                  "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                  "type": "any",
+                  "value": "{{api-version}}",
+                  "key": "api-version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/csv"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e30cdbd5-48cb-4800-80c7-bdc8a73732ef",
+              "name": "CSV data for the view.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site-id",
+                    "views",
+                    ":view-id",
+                    "data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxAge",
+                      "value": "10"
+                    },
+                    {
+                      "key": "vf_<filter_name>",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "site-id",
+                      "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "view-id",
+                      "description": "(Required) The ID of the view."
+                    },
+                    {
+                      "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                      "type": "any",
+                      "value": "{{api-version}}",
+                      "key": "api-version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tableau-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/csv"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/csv"
+                }
+              ],
+              "body": "example_value",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c367dee8-934b-470d-a62a-7a2786155888",
+              "name": "The authentication credentials were missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site-id",
+                    "views",
+                    ":view-id",
+                    "data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxAge",
+                      "value": "10"
+                    },
+                    {
+                      "key": "vf_<filter_name>",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "site-id",
+                      "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "view-id",
+                      "description": "(Required) The ID of the view."
+                    },
+                    {
+                      "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                      "type": "any",
+                      "value": "{{api-version}}",
+                      "key": "api-version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tableau-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"summary\": \"string\",\n    \"detail\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c90890d1-bdb1-41a4-8d4b-badc6f44efc7",
+              "name": "The caller does not have permission to perform the requested action.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site-id",
+                    "views",
+                    ":view-id",
+                    "data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxAge",
+                      "value": "10"
+                    },
+                    {
+                      "key": "vf_<filter_name>",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "site-id",
+                      "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "view-id",
+                      "description": "(Required) The ID of the view."
+                    },
+                    {
+                      "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                      "type": "any",
+                      "value": "{{api-version}}",
+                      "key": "api-version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tableau-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"summary\": \"string\",\n    \"detail\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2bd8aa5f-1caa-4d47-bd06-7d8646f025d1",
+              "name": "The specified resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site-id",
+                    "views",
+                    ":view-id",
+                    "data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxAge",
+                      "value": "10"
+                    },
+                    {
+                      "key": "vf_<filter_name>",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "site-id",
+                      "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "view-id",
+                      "description": "(Required) The ID of the view."
+                    },
+                    {
+                      "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                      "type": "any",
+                      "value": "{{api-version}}",
+                      "key": "api-version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tableau-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"summary\": \"string\",\n    \"detail\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "32b90b2a-b7d2-4e65-8437-b0ebf3e8e1de",
+          "name": "Tableau Query View Pdf",
+          "request": {
+            "name": "Tableau Query View Pdf",
+            "description": {
+              "content": "Returns a PDF rendering of the specified view.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sites",
+                ":site-id",
+                "views",
+                ":view-id",
+                "pdf"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "Letter",
+                  "description": "The paper size for the PDF."
+                },
+                {
+                  "disabled": false,
+                  "key": "orientation",
+                  "value": "portrait",
+                  "description": "The orientation of the PDF."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "site-id",
+                  "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "view-id",
+                  "description": "(Required) The ID of the view."
+                },
+                {
+                  "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                },
+                {
+                  "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                  "type": "any",
+                  "value": "{{api-version}}",
+                  "key": "api-version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/pdf"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2267c2f0-6b17-4349-82af-ca5119dd13a2",
+              "name": "A PDF rendering of the view.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site-id",
+                    "views",
+                    ":view-id",
+                    "pdf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "A3"
+                    },
+                    {
+                      "key": "orientation",
+                      "value": "portrait"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "site-id",
+                      "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "view-id",
+                      "description": "(Required) The ID of the view."
+                    },
+                    {
+                      "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                      "type": "any",
+                      "value": "{{api-version}}",
+                      "key": "api-version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tableau-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/pdf"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/pdf"
+                }
+              ],
+              "body": "example_value",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8b30051e-9182-40ee-bd94-e7d6785bd0eb",
+              "name": "The authentication credentials were missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site-id",
+                    "views",
+                    ":view-id",
+                    "pdf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "A3"
+                    },
+                    {
+                      "key": "orientation",
+                      "value": "portrait"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "site-id",
+                      "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "view-id",
+                      "description": "(Required) The ID of the view."
+                    },
+                    {
+                      "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                      "type": "any",
+                      "value": "{{api-version}}",
+                      "key": "api-version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tableau-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"summary\": \"string\",\n    \"detail\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38c4c356-9d04-4f0d-9696-068244a5b05c",
+              "name": "The caller does not have permission to perform the requested action.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site-id",
+                    "views",
+                    ":view-id",
+                    "pdf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "A3"
+                    },
+                    {
+                      "key": "orientation",
+                      "value": "portrait"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "site-id",
+                      "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "view-id",
+                      "description": "(Required) The ID of the view."
+                    },
+                    {
+                      "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                      "type": "any",
+                      "value": "{{api-version}}",
+                      "key": "api-version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tableau-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"summary\": \"string\",\n    \"detail\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "56575702-72e6-4f3e-84c5-1e01d6baad83",
+              "name": "The specified resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site-id",
+                    "views",
+                    ":view-id",
+                    "pdf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "A3"
+                    },
+                    {
+                      "key": "orientation",
+                      "value": "portrait"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "site-id",
+                      "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "view-id",
+                      "description": "(Required) The ID of the view."
+                    },
+                    {
+                      "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                      "type": "any",
+                      "value": "{{api-version}}",
+                      "key": "api-version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tableau-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"summary\": \"string\",\n    \"detail\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e291553f-b45c-4297-a1c4-025bdf7950dd",
+          "name": "Tableau Query View Preview Image",
+          "request": {
+            "name": "Tableau Query View Preview Image",
+            "description": {
+              "content": "Returns the thumbnail image for the specified view as a PNG file.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sites",
+                ":site-id",
+                "views",
+                ":view-id",
+                "previewImage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "site-id",
+                  "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "view-id",
+                  "description": "(Required) The ID of the view."
+                },
+                {
+                  "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                },
+                {
+                  "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                  "type": "any",
+                  "value": "{{api-version}}",
+                  "key": "api-version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "image/png"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "27af0fa7-c005-45ed-9146-559eb24e937b",
+              "name": "A PNG preview image of the view.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site-id",
+                    "views",
+                    ":view-id",
+                    "previewImage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "site-id",
+                      "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "view-id",
+                      "description": "(Required) The ID of the view."
+                    },
+                    {
+                      "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                      "type": "any",
+                      "value": "{{api-version}}",
+                      "key": "api-version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tableau-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "image/png"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "image/png"
+                }
+              ],
+              "body": "example_value",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "009730b7-1fab-4cf2-98ef-ff2df3d455ea",
+              "name": "The authentication credentials were missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site-id",
+                    "views",
+                    ":view-id",
+                    "previewImage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "site-id",
+                      "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "view-id",
+                      "description": "(Required) The ID of the view."
+                    },
+                    {
+                      "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                      "type": "any",
+                      "value": "{{api-version}}",
+                      "key": "api-version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tableau-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"summary\": \"string\",\n    \"detail\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ba8ff98c-a574-4f6c-a6da-14fe053cbaf0",
+              "name": "The specified resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site-id",
+                    "views",
+                    ":view-id",
+                    "previewImage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "site-id",
+                      "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "view-id",
+                      "description": "(Required) The ID of the view."
+                    },
+                    {
+                      "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                      "type": "any",
+                      "value": "{{api-version}}",
+                      "key": "api-version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tableau-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"summary\": \"string\",\n    \"detail\": \"string\",\n    \"code\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7ffd7d2e-a088-4906-85b5-7c829c768b5f",
+          "name": "Tableau Get Recommendations for Views",
+          "request": {
+            "name": "Tableau Get Recommendations for Views",
+            "description": {
+              "content": "Returns a list of views that are recommended for a user, based on their viewing history.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sites",
+                ":site-id",
+                "views",
+                ":view-id",
+                "recommendations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "site-id",
+                  "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "view-id",
+                  "description": "(Required) The ID of the view."
+                },
+                {
+                  "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                },
+                {
+                  "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                  "type": "any",
+                  "value": "{{api-version}}",
+                  "key": "api-version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c2223a1e-c774-45f9-9d0b-5e0276756f6c",
+              "name": "A list of recommended views.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site-id",
+                    "views",
+                    ":view-id",
+                    "recommendations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "site-id",
+                      "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "view-id",
+                      "description": "(Required) The ID of the view."
+                    },
+                    {
+                      "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                      "type": "any",
+                      "value": "{{api-version}}",
+                      "key": "api-version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tableau-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pagination\": {\n    \"pageNumber\": 10,\n    \"pageSize\": 10,\n    \"totalAvailable\": 10\n  },\n  \"views\": {\n    \"view\": [\n      {}\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "10ax.online.tableau.com",
+      "key": "server"
+    },
+    {
+      "description": {
+        "content": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "3.24",
+      "key": "api-version"
+    },
+    {
+      "type": "string",
+      "value": "https://{{server}}/api/{{api-version}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Tableau-Auth"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c11e57fc-418f-4c60-86fa-c8cbf3482a48",
+    "name": "Tableau REST Authentication Views API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Tableau REST API allows you to manage and change Tableau Server and Tableau Cloud resources programmatically using HTTP. You can use the REST API to manage sites, projects, workbooks, views, data sources, users, groups, permissions, schedules, subscriptions, and more.\n\nContact Support:\n Name: Tableau Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

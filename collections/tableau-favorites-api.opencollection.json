@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tableau REST Authentication Favorites API",
+    "version": "3.24.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Tableau-Auth",
+      "value": "{{X-Tableau-Auth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Favorites",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tableau Get Favorites for User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/favorites/:user-id",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "user-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the user."
+              }
+            ]
+          },
+          "docs": "Returns a list of favorite items for the specified user."
+        },
+        {
+          "info": {
+            "name": "Tableau Add Favorites",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/favorites/:user-id",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "user-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the user."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds the specified content to a user's favorites. You can add workbooks, views, data sources, projects, and flows."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

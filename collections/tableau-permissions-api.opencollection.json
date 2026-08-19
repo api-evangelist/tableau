@@ -1,0 +1,159 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tableau REST Authentication Permissions API",
+    "version": "3.24.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Tableau-Auth",
+      "value": "{{X-Tableau-Auth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Permissions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tableau Query Workbook Permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/workbooks/:workbook-id/permissions",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "workbook-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the workbook."
+              }
+            ]
+          },
+          "docs": "Returns a list of permissions for the specified workbook."
+        },
+        {
+          "info": {
+            "name": "Tableau Add Workbook Permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/workbooks/:workbook-id/permissions",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "workbook-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the workbook."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds permissions to the specified workbook for a user or group."
+        },
+        {
+          "info": {
+            "name": "Tableau Query Data Source Permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/datasources/:datasource-id/permissions",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "datasource-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the data source."
+              }
+            ]
+          },
+          "docs": "Returns a list of permissions for the specified data source."
+        },
+        {
+          "info": {
+            "name": "Tableau Add Data Source Permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/datasources/:datasource-id/permissions",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "datasource-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the data source."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds permissions to the specified data source for a user or group."
+        },
+        {
+          "info": {
+            "name": "Tableau Query Default Permissions for Workbooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/projects/:project-id/default-permissions/workbooks",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "project-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the project."
+              }
+            ]
+          },
+          "docs": "Returns the default permissions for workbooks in the specified project."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

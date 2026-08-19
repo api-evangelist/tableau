@@ -1,0 +1,113 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tableau REST Authentication Jobs API",
+    "version": "3.24.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Tableau-Auth",
+      "value": "{{X-Tableau-Auth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tableau Query Jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/jobs",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to return in one response. The minimum is 1 and the maximum is 1000."
+              },
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query",
+                "description": "The page number of the set of items to return. The default is 1."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in."
+              }
+            ]
+          },
+          "docs": "Returns a list of active jobs on the specified site."
+        },
+        {
+          "info": {
+            "name": "Tableau Query Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/jobs/:job-id",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "job-id",
+                "value": "500123",
+                "type": "path",
+                "description": "The ID of the job."
+              }
+            ]
+          },
+          "docs": "Returns status information about the specified job."
+        },
+        {
+          "info": {
+            "name": "Tableau Cancel Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/jobs/:job-id",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "job-id",
+                "value": "500123",
+                "type": "path",
+                "description": "The ID of the job to cancel."
+              }
+            ]
+          },
+          "docs": "Cancels the specified background job on a site."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

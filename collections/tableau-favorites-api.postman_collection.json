@@ -1,0 +1,364 @@
+{
+  "item": [
+    {
+      "id": "e034447b-cb5e-4e60-8c6d-7e1b47fe3813",
+      "name": "Favorites",
+      "description": {
+        "content": "Add and remove content items from a user's list of favorites, including workbooks, views, data sources, projects, and flows.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "68ab5f0b-48a9-43a0-80ae-fc07c8b1e6c0",
+          "name": "Tableau Get Favorites for User",
+          "request": {
+            "name": "Tableau Get Favorites for User",
+            "description": {
+              "content": "Returns a list of favorite items for the specified user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sites",
+                ":site-id",
+                "favorites",
+                ":user-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "site-id",
+                  "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "user-id",
+                  "description": "(Required) The ID of the user."
+                },
+                {
+                  "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                },
+                {
+                  "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                  "type": "any",
+                  "value": "{{api-version}}",
+                  "key": "api-version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "efa4ac69-518f-46e3-8468-5fbbd7cb3421",
+              "name": "A list of the user's favorite items.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site-id",
+                    "favorites",
+                    ":user-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "site-id",
+                      "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user-id",
+                      "description": "(Required) The ID of the user."
+                    },
+                    {
+                      "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                      "type": "any",
+                      "value": "{{api-version}}",
+                      "key": "api-version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tableau-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"favorites\": {\n    \"favorite\": [\n      {\n        \"label\": \"Example Title\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6195cefe-ed17-4a0f-8f25-dbe70f150bfe",
+          "name": "Tableau Add Favorites",
+          "request": {
+            "name": "Tableau Add Favorites",
+            "description": {
+              "content": "Adds the specified content to a user's favorites. You can add workbooks, views, data sources, projects, and flows.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sites",
+                ":site-id",
+                "favorites",
+                ":user-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "site-id",
+                  "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "user-id",
+                  "description": "(Required) The ID of the user."
+                },
+                {
+                  "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                },
+                {
+                  "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                  "type": "any",
+                  "value": "{{api-version}}",
+                  "key": "api-version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"favorite\": {\n    \"label\": \"<string>\",\n    \"workbook\": {\n      \"id\": \"<string>\"\n    },\n    \"view\": {\n      \"id\": \"<string>\"\n    },\n    \"datasource\": {\n      \"id\": \"<string>\"\n    },\n    \"project\": {\n      \"id\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9ab6a1e4-fee5-4829-991c-82ebe7b6fc87",
+              "name": "Favorite was added successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sites",
+                    ":site-id",
+                    "favorites",
+                    ":user-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "site-id",
+                      "description": "(Required) The ID of the site. You can get the site ID from the response to the Sign In method."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user-id",
+                      "description": "(Required) The ID of the user."
+                    },
+                    {
+                      "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                      "type": "any",
+                      "value": "{{api-version}}",
+                      "key": "api-version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tableau-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"favorite\": {\n    \"label\": \"Example Title\",\n    \"workbook\": {\n      \"id\": \"abc123\"\n    },\n    \"view\": {\n      \"id\": \"abc123\"\n    },\n    \"datasource\": {\n      \"id\": \"abc123\"\n    },\n    \"project\": {\n      \"id\": \"abc123\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"favorites\": {\n    \"favorite\": [\n      {\n        \"label\": \"Example Title\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "10ax.online.tableau.com",
+      "key": "server"
+    },
+    {
+      "description": {
+        "content": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "3.24",
+      "key": "api-version"
+    },
+    {
+      "type": "string",
+      "value": "https://{{server}}/api/{{api-version}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Tableau-Auth"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "722341a4-328d-4bf9-b81b-47de0831ab94",
+    "name": "Tableau REST Authentication Favorites API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Tableau REST API allows you to manage and change Tableau Server and Tableau Cloud resources programmatically using HTTP. You can use the REST API to manage sites, projects, workbooks, views, data sources, users, groups, permissions, schedules, subscriptions, and more.\n\nContact Support:\n Name: Tableau Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,193 @@
+{
+  "item": [
+    {
+      "id": "de0da5c8-edc3-4fdd-bfe6-6942b4318f50",
+      "name": "Schedules",
+      "description": {
+        "content": "Create, update, delete, and query schedules for extract refreshes and subscriptions on Tableau Server.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6df682e0-d298-4a3e-b4f4-5f8a34fd103c",
+          "name": "Tableau Query Schedules",
+          "request": {
+            "name": "Tableau Query Schedules",
+            "description": {
+              "content": "Returns a list of extract refresh and subscription schedules. This method is available on Tableau Server only.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "schedules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "100",
+                  "description": "The number of items to return in one response. The minimum is 1 and the maximum is 1000."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageNumber",
+                  "value": "1",
+                  "description": "The page number of the set of items to return. The default is 1."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                },
+                {
+                  "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                  "type": "any",
+                  "value": "{{api-version}}",
+                  "key": "api-version"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7b7d00ab-9403-4c34-ac93-31c618cb7cb8",
+              "name": "A paginated list of schedules.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "schedules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "100"
+                    },
+                    {
+                      "key": "pageNumber",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    },
+                    {
+                      "description": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+                      "type": "any",
+                      "value": "{{api-version}}",
+                      "key": "api-version"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tableau-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pagination\": {\n    \"pageNumber\": 10,\n    \"pageSize\": 10,\n    \"totalAvailable\": 10\n  },\n  \"schedules\": {\n    \"schedule\": [\n      {}\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The hostname of your Tableau Server or Tableau Cloud site. For Tableau Cloud, use the pod URL (e.g., 10ax.online.tableau.com). For Tableau Server, use your server hostname.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "10ax.online.tableau.com",
+      "key": "server"
+    },
+    {
+      "description": {
+        "content": "The version of the REST API to use. The API version corresponds to the version of Tableau Server or Tableau Cloud. (This can only be one of 3.24,3.23,3.22,3.21,3.20,3.19)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "3.24",
+      "key": "api-version"
+    },
+    {
+      "type": "string",
+      "value": "https://{{server}}/api/{{api-version}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Tableau-Auth"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "05d065e3-0a7d-4639-a08c-a506b96a2dce",
+    "name": "Tableau REST Authentication Schedules API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Tableau REST API allows you to manage and change Tableau Server and Tableau Cloud resources programmatically using HTTP. You can use the REST API to manage sites, projects, workbooks, views, data sources, users, groups, permissions, schedules, subscriptions, and more.\n\nContact Support:\n Name: Tableau Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,510 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tableau REST Authentication Workbooks API",
+    "version": "3.24.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Tableau-Auth",
+      "value": "{{X-Tableau-Auth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workbooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tableau Query Workbooks for Site",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/workbooks",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to return in one response. The minimum is 1 and the maximum is 1000."
+              },
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query",
+                "description": "The page number of the set of items to return. The default is 1."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "An expression that lets you specify the order in which items are returned. Use the format sort=field:direction where direction is asc or desc."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "An expression that lets you specify which fields are included in the response. Use the format fields=field1,field2. Use _default_ to return the default set of fields, or _all_ to return all fields."
+              }
+            ]
+          },
+          "docs": "Returns the workbooks on a site. If the user is not an administrator, the method returns just the workbooks that the user has permissions to view."
+        },
+        {
+          "info": {
+            "name": "Tableau Query Workbook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/workbooks/:workbook-id",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "workbook-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the workbook."
+              }
+            ]
+          },
+          "docs": "Returns information about the specified workbook, including information about views and tags."
+        },
+        {
+          "info": {
+            "name": "Tableau Update Workbook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/workbooks/:workbook-id",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "workbook-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the workbook."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modifies an existing workbook, allowing you to change the owner, project, or other properties."
+        },
+        {
+          "info": {
+            "name": "Tableau Delete Workbook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/workbooks/:workbook-id",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "workbook-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the workbook."
+              }
+            ]
+          },
+          "docs": "Deletes a workbook. When a workbook is deleted, all of its assets are also deleted, including associated views."
+        },
+        {
+          "info": {
+            "name": "Tableau Query Workbook Connections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/workbooks/:workbook-id/connections",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "workbook-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the workbook."
+              }
+            ]
+          },
+          "docs": "Returns a list of data connections for the specified workbook."
+        },
+        {
+          "info": {
+            "name": "Tableau Download Workbook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/workbooks/:workbook-id/content",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "workbook-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the workbook."
+              },
+              {
+                "name": "extractValue",
+                "value": "true",
+                "type": "query",
+                "description": "If true, and the workbook contains extracts, the download includes the extracts."
+              }
+            ]
+          },
+          "docs": "Downloads a workbook in .twb or .twbx format. If the workbook contains extracts, the download is in .twbx format."
+        },
+        {
+          "info": {
+            "name": "Tableau Query Workbook Preview Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/workbooks/:workbook-id/previewImage",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "workbook-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the workbook."
+              }
+            ]
+          },
+          "docs": "Returns the thumbnail image for the specified workbook as a PNG file."
+        },
+        {
+          "info": {
+            "name": "Tableau Query Views for Workbook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/workbooks/:workbook-id/views",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "workbook-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the workbook."
+              },
+              {
+                "name": "includeUsageStatistics",
+                "value": "true",
+                "type": "query",
+                "description": "If true, returns usage statistics for each view."
+              }
+            ]
+          },
+          "docs": "Returns all the views for the specified workbook, optionally including usage statistics."
+        },
+        {
+          "info": {
+            "name": "Tableau Publish Workbook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/workbooks/:workbook-id/publish",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "overwrite",
+                "value": "true",
+                "type": "query",
+                "description": "If true, overwrites an existing workbook with the same name in the same project."
+              },
+              {
+                "name": "skipConnectionCheck",
+                "value": "true",
+                "type": "query",
+                "description": "If true, skips the connection check during publish."
+              }
+            ]
+          },
+          "docs": "Publishes a workbook on the specified site. To make changes to an existing workbook, call Update Workbook or Publish Workbook with overwrite set to true."
+        },
+        {
+          "info": {
+            "name": "Tableau Query Workbook Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/workbooks/:workbook-id/tags",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "workbook-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the workbook."
+              }
+            ]
+          },
+          "docs": "Returns a list of tags that have been added to the specified workbook."
+        },
+        {
+          "info": {
+            "name": "Tableau Add Tags to Workbook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/workbooks/:workbook-id/tags",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "workbook-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the workbook."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds one or more tags to the specified workbook."
+        },
+        {
+          "info": {
+            "name": "Tableau Delete Tag From Workbook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/workbooks/:workbook-id/tags/:tag-name",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "workbook-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the workbook."
+              },
+              {
+                "name": "tag-name",
+                "value": "example_value",
+                "type": "path",
+                "description": "The name of the tag to delete."
+              }
+            ]
+          },
+          "docs": "Deletes a tag from the specified workbook."
+        },
+        {
+          "info": {
+            "name": "Tableau Get Workbook Revisions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/workbooks/:workbook-id/revisions",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "workbook-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the workbook."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to return in one response. The minimum is 1 and the maximum is 1000."
+              },
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query",
+                "description": "The page number of the set of items to return. The default is 1."
+              }
+            ]
+          },
+          "docs": "Returns a list of revision information (revision number, published date, and other metadata) for each revision of the specified workbook."
+        },
+        {
+          "info": {
+            "name": "Tableau Query Workbooks for User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/users/:user-id/workbooks",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "user-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the user."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to return in one response. The minimum is 1 and the maximum is 1000."
+              },
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query",
+                "description": "The page number of the set of items to return. The default is 1."
+              }
+            ]
+          },
+          "docs": "Returns the workbooks that the specified user owns or has Read (view) permissions for."
+        },
+        {
+          "info": {
+            "name": "Tableau Query Workbook Permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/workbooks/:workbook-id/permissions",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "workbook-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the workbook."
+              }
+            ]
+          },
+          "docs": "Returns a list of permissions for the specified workbook."
+        },
+        {
+          "info": {
+            "name": "Tableau Add Workbook Permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/workbooks/:workbook-id/permissions",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "workbook-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the workbook."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds permissions to the specified workbook for a user or group."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

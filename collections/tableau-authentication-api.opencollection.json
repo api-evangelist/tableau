@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tableau REST Authentication API",
+    "version": "3.24.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Tableau-Auth",
+      "value": "{{X-Tableau-Auth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tableau Sign in",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}/api/{api-version}/auth/signin",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Signs you in as a user on the specified site on Tableau Server or Tableau Cloud. This call returns an authentication token that you use in subsequent calls to the server. Typically, a credentials token is valid for 240 minutes."
+        },
+        {
+          "info": {
+            "name": "Tableau Sign Out",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}/api/{api-version}/auth/signout"
+          },
+          "docs": "Signs you out of the current session. This invalidates the authentication token."
+        },
+        {
+          "info": {
+            "name": "Tableau Switch Site",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}/api/{api-version}/auth/switchSite",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Switches you to the specified site without having to provide a user name and password again. The new site must be on the same server."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

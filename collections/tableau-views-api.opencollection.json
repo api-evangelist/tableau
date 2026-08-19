@@ -1,0 +1,304 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tableau REST Authentication Views API",
+    "version": "3.24.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Tableau-Auth",
+      "value": "{{X-Tableau-Auth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Views",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tableau Query Views for Workbook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/workbooks/:workbook-id/views",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "workbook-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the workbook."
+              },
+              {
+                "name": "includeUsageStatistics",
+                "value": "true",
+                "type": "query",
+                "description": "If true, returns usage statistics for each view."
+              }
+            ]
+          },
+          "docs": "Returns all the views for the specified workbook, optionally including usage statistics."
+        },
+        {
+          "info": {
+            "name": "Tableau Query Views for Site",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/views",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to return in one response. The minimum is 1 and the maximum is 1000."
+              },
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query",
+                "description": "The page number of the set of items to return. The default is 1."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "An expression that lets you specify the order in which items are returned. Use the format sort=field:direction where direction is asc or desc."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "An expression that lets you specify which fields are included in the response. Use the format fields=field1,field2. Use _default_ to return the default set of fields, or _all_ to return all fields."
+              },
+              {
+                "name": "includeUsageStatistics",
+                "value": "true",
+                "type": "query",
+                "description": "If true, returns usage statistics for each view."
+              }
+            ]
+          },
+          "docs": "Returns all the views for the specified site, optionally including usage statistics."
+        },
+        {
+          "info": {
+            "name": "Tableau Query View by Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/views/:view-id",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "view-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the view."
+              }
+            ]
+          },
+          "docs": "Returns details about the specified view, including the view name, owner, project, and usage statistics."
+        },
+        {
+          "info": {
+            "name": "Tableau Query View Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/views/:view-id/image",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "view-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the view."
+              },
+              {
+                "name": "resolution",
+                "value": "standard",
+                "type": "query",
+                "description": "The resolution of the image (standard or high)."
+              },
+              {
+                "name": "maxAge",
+                "value": "10",
+                "type": "query",
+                "description": "The maximum number of minutes a view image can be cached before being refreshed."
+              },
+              {
+                "name": "vf_<filter_name>",
+                "value": "example_value",
+                "type": "query",
+                "description": "Apply a filter to the view. Replace <filter_name> with the name of the filter field."
+              }
+            ]
+          },
+          "docs": "Returns an image of the specified view rendered as a PNG file. You can specify the resolution of the image."
+        },
+        {
+          "info": {
+            "name": "Tableau Query View Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/views/:view-id/data",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "view-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the view."
+              },
+              {
+                "name": "maxAge",
+                "value": "10",
+                "type": "query",
+                "description": "The maximum number of minutes a view can be cached before being refreshed."
+              },
+              {
+                "name": "vf_<filter_name>",
+                "value": "example_value",
+                "type": "query",
+                "description": "Apply a filter to the view. Replace <filter_name> with the name of the filter field."
+              }
+            ]
+          },
+          "docs": "Returns the data used in a view as a comma-separated values (CSV) file."
+        },
+        {
+          "info": {
+            "name": "Tableau Query View Pdf",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/views/:view-id/pdf",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "view-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the view."
+              },
+              {
+                "name": "type",
+                "value": "A3",
+                "type": "query",
+                "description": "The paper size for the PDF."
+              },
+              {
+                "name": "orientation",
+                "value": "portrait",
+                "type": "query",
+                "description": "The orientation of the PDF."
+              }
+            ]
+          },
+          "docs": "Returns a PDF rendering of the specified view."
+        },
+        {
+          "info": {
+            "name": "Tableau Query View Preview Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/views/:view-id/previewImage",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "view-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the view."
+              }
+            ]
+          },
+          "docs": "Returns the thumbnail image for the specified view as a PNG file."
+        },
+        {
+          "info": {
+            "name": "Tableau Get Recommendations for Views",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}/api/{api-version}/sites/:site-id/views/:view-id/recommendations",
+            "params": [
+              {
+                "name": "site-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the site. You can get the site ID from the response to the Sign In method."
+              },
+              {
+                "name": "view-id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the view."
+              }
+            ]
+          },
+          "docs": "Returns a list of views that are recommended for a user, based on their viewing history."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
