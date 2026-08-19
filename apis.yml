@@ -24,7 +24,7 @@ tags:
 created: '2024'
 modified: '2026-05-19'
 url: https://www.tableau.com
-specificationVersion: '0.18'
+specificationVersion: '0.23'
 apis:
 - name: Tableau Metadata API
   description: >-
