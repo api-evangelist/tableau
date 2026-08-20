@@ -229,6 +229,12 @@ apis:
   tags:
   - Analytics
   - Data Science
+  - Machine-Learning
+  - Python
+  - R
+  tags_raw:
+  - Analytics
+  - Data Science
   - Machine Learning
   - Python
   - R
@@ -251,6 +257,11 @@ apis:
   humanURL: https://help.tableau.com/current/developer/webhooks/en-us/
   baseURL: https://[server]/api/[api-version]
   tags:
+  - Automation
+  - Event
+  - Notification
+  - Webhook
+  tags_raw:
   - Automation
   - Events
   - Notifications
@@ -421,6 +432,8 @@ apis:
   humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
   baseURL: https://[server]/api/[api-version]
   tags:
+  - Group
+  tags_raw:
   - Groups
   properties:
   - type: OpenAPI
@@ -455,6 +468,8 @@ apis:
   humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
   baseURL: https://[server]/api/[api-version]
   tags:
+  - Job
+  tags_raw:
   - Jobs
   properties:
   - type: OpenAPI
@@ -525,6 +540,8 @@ apis:
   humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
   baseURL: https://[server]/api/[api-version]
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
@@ -629,6 +646,8 @@ apis:
   humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
   baseURL: https://[server]/api/[api-version]
   tags:
+  - Subscription
+  tags_raw:
   - Subscriptions
   properties:
   - type: OpenAPI
@@ -664,6 +683,8 @@ apis:
   humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
   baseURL: https://[server]/api/[api-version]
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
