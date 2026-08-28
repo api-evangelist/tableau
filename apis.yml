@@ -2,6 +2,19 @@ name: Tableau
 description: >-
   Tableau is a visual analytics platform transforming the way we use data to solve problems—empowering people and
   organizations to make the most of their data.
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: true
+  callable_host: false
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  - pricing
+  - repository-unlicensed
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: self-serve
@@ -790,6 +803,15 @@ maintainers:
   email: kin@apievangelist.com
   url: https://apievangelist.com
 common:
+- type: CapabilityMap
+  url: capabilities/tableau-capability-edges.yml
+  name: Tableau Business Capability Map
+- type: IssueTracker
+  url: https://github.com/tableau/document-api-python/issues
+- type: Releases
+  url: https://github.com/tableau/document-api-python/releases
+- type: ContributionGuide
+  url: https://github.com/tableau/document-api-python/blob/master/contributing.md
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/tableau/overview
 - type: AgenticAccess

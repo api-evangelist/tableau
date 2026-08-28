@@ -1,0 +1,66 @@
+slug: tableau
+provider: Tableau
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Banking & Capital Markets
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 5
+edges:
+- tag: Views
+  spec_file: tableau-views-api-openapi.yml
+  capability_id: BC-610.50
+  capability_id_l1: BC-610
+  capability_name: Analytics & BI Management
+  confidence: 0.8
+  evidence: GET /sites/{site-id}/views/{view-id}/data queryViewData; GET .../pdf Tableau Query View Pdf;
+    'Tableau Get Recommendations for Views'
+  reason: The operations retrieve BI visualisation content (views, their data, images, PDFs) from a Tableau
+    site — delivery of reporting/business intelligence artefacts, which is Analytics & BI Management.
+    No industry-specific reading fits; this is a visual analytics platform.
+- tag: Workbooks
+  spec_file: tableau-workbooks-api-openapi.yml
+  capability_id: BC-610.50
+  capability_id_l1: BC-610
+  capability_name: Analytics & BI Management
+  confidence: 0.8
+  evidence: POST /sites/{site-id}/workbooks/{workbook-id}/publish publishWorkbook 'Tableau Publish Workbook';
+    schemas Workbook, Connection, View
+  reason: Publishing, downloading, updating and tagging analytic workbooks and their data connections
+    is BI content lifecycle/delivery — Analytics & BI Management.
+- tag: Permissions
+  spec_file: tableau-permissions-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: PUT /sites/{site-id}/workbooks/{workbook-id}/permissions  addWorkbookPermissions
+  reason: Querying and granting permissions on content objects is access control administration, mapping
+    to Identity & Access Management.
+- tag: Data Sources
+  spec_file: tableau-data-sources-api-openapi.yml
+  capability_id: BC-610.50
+  capability_id_l1: BC-610
+  capability_name: Analytics & BI Management
+  confidence: 0.7
+  evidence: GET /sites/{site-id}/datasources/{datasource-id}/connections  queryDataSourceConnections
+  reason: Manages published data source artefacts and their connections within a BI platform, supporting
+    analytics/BI content delivery; sub-capability choice is somewhat ambiguous between BI delivery and
+    data architecture.
+- tag: Users
+  spec_file: tableau-users-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST /sites/{site-id}/users  addUserToSite  Tableau Add User to Site; DELETE .../users/{user-id}
+    removeUserFromSite
+  reason: Provisioning and deprovisioning of platform user accounts and group membership is identity and
+    access administration, not HR employee records.
