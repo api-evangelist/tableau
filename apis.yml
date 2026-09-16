@@ -35,12 +35,13 @@ tags:
 - Dashboards
 - Data Visualization
 created: '2024'
-modified: '2026-08-30'
+modified: '2026-09-16'
 url: https://www.tableau.com
 specificationVersion: '0.23'
 apis:
 - name: Tableau Metadata API
-  description: GraphQL-based API for querying metadata about Tableau content, data sources, and lineage information.
+  description: GraphQL-based API for querying metadata about Tableau content, data sources, and lineage
+    information.
   image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
   humanURL: https://help.tableau.com/current/api/metadata_api/en-us/index.html
   baseURL: https://[server]/api/metadata/graphql
@@ -67,8 +68,8 @@ apis:
   - url: graphql/tableau-graphql.md
     type: GraphQL
 - name: Tableau Hyper API
-  description: API for creating, reading, and updating Hyper files, which are the data files that power Tableau
-    extracts.
+  description: API for creating, reading, and updating Hyper files, which are the data files that power
+    Tableau extracts.
   image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
   humanURL: https://help.tableau.com/current/api/hyper_api/en-us/index.html
   baseURL: https://github.com/tableau/hyper-api-samples
@@ -153,9 +154,9 @@ apis:
   - type: ChangeLog
     url: https://github.com/tableau/server-client-python/blob/master/CHANGELOG.md
 - name: Tableau Extensions API
-  description: The Tableau Extensions API allows developers to create dashboard extensions and viz extensions that
-    users can interact with directly in Tableau, enabling integration with other applications and custom visualization
-    types.
+  description: The Tableau Extensions API allows developers to create dashboard extensions and viz extensions
+    that users can interact with directly in Tableau, enabling integration with other applications and
+    custom visualization types.
   image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
   humanURL: https://tableau.github.io/extensions-api/docs/
   baseURL: https://[server]
@@ -179,8 +180,8 @@ apis:
   - type: CodeExamples
     url: https://tableau.github.io/extensions-api/docs/dashext/trex_examples/
 - name: Tableau Web Data Connector
-  description: The Tableau Web Data Connector (WDC) provides an SDK for building connectors to any data accessible
-    over HTTP, allowing users to bring external data into Tableau for analysis and visualization.
+  description: The Tableau Web Data Connector (WDC) provides an SDK for building connectors to any data
+    accessible over HTTP, allowing users to bring external data into Tableau for analysis and visualization.
   image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
   humanURL: https://help.tableau.com/current/api/webdataconnector/en-us/index.html
   baseURL: https://[server]
@@ -226,8 +227,8 @@ apis:
   - type: GettingStarted
     url: https://tableau.github.io/connector-plugin-sdk/docs/
 - name: Tableau Analytics Extensions API
-  description: The Analytics Extensions API allows integration of external analytics engines such as Python, R,
-    MATLAB, and data science platforms with Tableau calculations for advanced analytics.
+  description: The Analytics Extensions API allows integration of external analytics engines such as Python,
+    R, MATLAB, and data science platforms with Tableau calculations for advanced analytics.
   image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
   humanURL: https://tableau.github.io/analytics-extensions-api/docs/ae_intro.html
   baseURL: https://[server]
@@ -255,8 +256,8 @@ apis:
   - type: GitHubRepository
     url: https://github.com/tableau/TabPy
 - name: Tableau Webhooks
-  description: Tableau Webhooks enable event-driven automation by sending HTTP POST notifications to specified URLs
-    when events occur on Tableau Server or Tableau Cloud.
+  description: Tableau Webhooks enable event-driven automation by sending HTTP POST notifications to specified
+    URLs when events occur on Tableau Server or Tableau Cloud.
   image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
   humanURL: https://help.tableau.com/current/developer/webhooks/en-us/
   baseURL: https://[server]/api/[api-version]
@@ -280,8 +281,8 @@ apis:
   - type: APIReference
     url: https://help.tableau.com/current/developer/webhooks/en-us/docs/webhooks-events-payload.html
 - name: Tableau VizQL Data Service
-  description: The VizQL Data Service provides a programmatic HTTP interface to query published data sources outside
-    of Tableau visualizations, enabling headless data access from any application.
+  description: The VizQL Data Service provides a programmatic HTTP interface to query published data sources
+    outside of Tableau visualizations, enabling headless data access from any application.
   image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
   humanURL: https://help.tableau.com/current/api/vizql-data-service/en-us/index.html
   baseURL: https://[server]/api/v1
@@ -302,8 +303,8 @@ apis:
   - type: GettingStarted
     url: https://help.tableau.com/current/api/vizql-data-service/en-us/docs/vds_create_queries.html
 - name: Tableau Pulse API
-  description: The Tableau Pulse API enables programmatic creation, management, and querying of Tableau Pulse metrics
-    and subscriptions, as well as embedding Pulse insights into web applications.
+  description: The Tableau Pulse API enables programmatic creation, management, and querying of Tableau
+    Pulse metrics and subscriptions, as well as embedding Pulse insights into web applications.
   image: https://www.tableau.com/sites/default/files/tableau_logo_800.png
   humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_pulse.htm
   baseURL: https://[server]/api/[api-version]
@@ -321,8 +322,8 @@ apis:
     url: https://github.com/tableau/pulse-api-utilities
 - aid: tableau:tableau-authentication-api
   name: Tableau Authentication API
-  description: Sign in and sign out of Tableau Server or Tableau Cloud. You must sign in to obtain an authentication
-    token before calling other methods.
+  description: Sign in and sign out of Tableau Server or Tableau Cloud. You must sign in to obtain an
+    authentication token before calling other methods.
   humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
   baseURL: https://[server]/api/[api-version]
   tags:
@@ -354,8 +355,8 @@ apis:
     url: https://github.com/tableau/rest-api-samples
 - aid: tableau:tableau-data-sources-api
   name: Tableau Data Sources API
-  description: Publish, query, update, delete, and download data sources. Data sources define the connection to
-    data and can be shared across multiple workbooks.
+  description: Publish, query, update, delete, and download data sources. Data sources define the connection
+    to data and can be shared across multiple workbooks.
   humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
   baseURL: https://[server]/api/[api-version]
   tags:
@@ -387,8 +388,8 @@ apis:
     url: https://github.com/tableau/rest-api-samples
 - aid: tableau:tableau-favorites-api
   name: Tableau Favorites API
-  description: Add and remove content items from a user's list of favorites, including workbooks, views, data sources,
-    projects, and flows.
+  description: Add and remove content items from a user's list of favorites, including workbooks, views,
+    data sources, projects, and flows.
   humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
   baseURL: https://[server]/api/[api-version]
   tags:
@@ -420,8 +421,8 @@ apis:
     url: https://github.com/tableau/rest-api-samples
 - aid: tableau:tableau-groups-api
   name: Tableau Groups API
-  description: Create, update, delete, and query groups. Groups are collections of users that simplify permission
-    management.
+  description: Create, update, delete, and query groups. Groups are collections of users that simplify
+    permission management.
   humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
   baseURL: https://[server]/api/[api-version]
   tags:
@@ -455,8 +456,8 @@ apis:
     url: https://github.com/tableau/rest-api-samples
 - aid: tableau:tableau-jobs-api
   name: Tableau Jobs API
-  description: Query and cancel background jobs on a site, including extract refreshes, subscriptions, and flow
-    runs.
+  description: Query and cancel background jobs on a site, including extract refreshes, subscriptions,
+    and flow runs.
   humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
   baseURL: https://[server]/api/[api-version]
   tags:
@@ -490,8 +491,8 @@ apis:
     url: https://github.com/tableau/rest-api-samples
 - aid: tableau:tableau-permissions-api
   name: Tableau Permissions API
-  description: Query and set permissions on content items including workbooks, data sources, projects, views, and
-    flows.
+  description: Query and set permissions on content items including workbooks, data sources, projects,
+    views, and flows.
   humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
   baseURL: https://[server]/api/[api-version]
   tags:
@@ -523,8 +524,8 @@ apis:
     url: https://github.com/tableau/rest-api-samples
 - aid: tableau:tableau-projects-api
   name: Tableau Projects API
-  description: Create, update, delete, and query projects. Projects are containers for organizing workbooks, data
-    sources, and other content on a site.
+  description: Create, update, delete, and query projects. Projects are containers for organizing workbooks,
+    data sources, and other content on a site.
   humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
   baseURL: https://[server]/api/[api-version]
   tags:
@@ -558,7 +559,8 @@ apis:
     url: https://github.com/tableau/rest-api-samples
 - aid: tableau:tableau-schedules-api
   name: Tableau Schedules API
-  description: Create, update, delete, and query schedules for extract refreshes and subscriptions on Tableau Server.
+  description: Create, update, delete, and query schedules for extract refreshes and subscriptions on
+    Tableau Server.
   humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
   baseURL: https://[server]/api/[api-version]
   tags:
@@ -590,8 +592,8 @@ apis:
     url: https://github.com/tableau/rest-api-samples
 - aid: tableau:tableau-sites-api
   name: Tableau Sites API
-  description: Manage sites on Tableau Server. A site is a collection of users, groups, projects, workbooks, data
-    sources, and other resources.
+  description: Manage sites on Tableau Server. A site is a collection of users, groups, projects, workbooks,
+    data sources, and other resources.
   humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
   baseURL: https://[server]/api/[api-version]
   tags:
@@ -623,8 +625,8 @@ apis:
     url: https://github.com/tableau/rest-api-samples
 - aid: tableau:tableau-subscriptions-api
   name: Tableau Subscriptions API
-  description: Create, update, delete, and query subscriptions. Subscriptions deliver snapshots of views to users
-    on a schedule.
+  description: Create, update, delete, and query subscriptions. Subscriptions deliver snapshots of views
+    to users on a schedule.
   humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
   baseURL: https://[server]/api/[api-version]
   tags:
@@ -658,8 +660,8 @@ apis:
     url: https://github.com/tableau/rest-api-samples
 - aid: tableau:tableau-users-api
   name: Tableau Users API
-  description: Add, update, remove, and query users on a site. Users are individuals who can sign in to Tableau
-    Server or Tableau Cloud.
+  description: Add, update, remove, and query users on a site. Users are individuals who can sign in to
+    Tableau Server or Tableau Cloud.
   humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
   baseURL: https://[server]/api/[api-version]
   tags:
@@ -693,8 +695,8 @@ apis:
     url: https://github.com/tableau/rest-api-samples
 - aid: tableau:tableau-views-api
   name: Tableau Views API
-  description: Query views and download view images or data. Views are the individual sheets, dashboards, or stories
-    within a workbook.
+  description: Query views and download view images or data. Views are the individual sheets, dashboards,
+    or stories within a workbook.
   humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
   baseURL: https://[server]/api/[api-version]
   tags:
@@ -726,8 +728,8 @@ apis:
     url: https://github.com/tableau/rest-api-samples
 - aid: tableau:tableau-workbooks-api
   name: Tableau Workbooks API
-  description: Publish, query, update, delete, and download workbooks. Workbooks contain one or more views (sheets,
-    dashboards, or stories) and can connect to one or more data sources.
+  description: Publish, query, update, delete, and download workbooks. Workbooks contain one or more views
+    (sheets, dashboards, or stories) and can connect to one or more data sources.
   humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
   baseURL: https://[server]/api/[api-version]
   tags:
@@ -765,6 +767,8 @@ maintainers:
   email: kin@apievangelist.com
   url: https://apievangelist.com
 common:
+- type: Website
+  url: https://tableau.com
 - type: ParentCompany
   url: https://apis.io/providers/salesforce/
   name: Salesforce
@@ -823,10 +827,11 @@ common:
 - type: Features
   data:
   - name: Data Source Management
-    description: Publish, query, update, delete, and download data sources that define connections to data shared
-      across workbooks.
+    description: Publish, query, update, delete, and download data sources that define connections to
+      data shared across workbooks.
   - name: Workbook Management
-    description: Publish, query, update, delete, and download workbooks containing views, dashboards, and stories.
+    description: Publish, query, update, delete, and download workbooks containing views, dashboards,
+      and stories.
   - name: Site Administration
     description: Create, configure, and manage Tableau Server and Cloud sites with full lifecycle control.
   - name: User and Group Management
@@ -834,16 +839,19 @@ common:
   - name: Permission Management
     description: Query and set granular permissions on workbooks, data sources, projects, views, and flows.
   - name: Schedule and Subscription Management
-    description: Create and manage schedules for extract refreshes and subscriptions for automated content delivery.
+    description: Create and manage schedules for extract refreshes and subscriptions for automated content
+      delivery.
   - name: Embedded Analytics
-    description: Embed Tableau visualizations in web applications with interactive filtering and full API control.
+    description: Embed Tableau visualizations in web applications with interactive filtering and full
+      API control.
   - name: Metadata and Lineage
-    description: Query metadata about content, data sources, and data lineage using the GraphQL-based Metadata API.
+    description: Query metadata about content, data sources, and data lineage using the GraphQL-based
+      Metadata API.
   - name: Custom Connectors
     description: Build custom connectors using ODBC or JDBC drivers to bring any data source into Tableau.
   - name: Webhooks
-    description: Enable event-driven automation with HTTP POST notifications when events occur on Tableau Server
-      or Cloud.
+    description: Enable event-driven automation with HTTP POST notifications when events occur on Tableau
+      Server or Cloud.
 - type: UseCases
   data:
   - name: Enterprise Reporting
@@ -851,20 +859,23 @@ common:
   - name: Embedded Analytics
     description: Embed interactive visualizations and analytics directly into customer-facing applications.
   - name: Data Governance
-    description: Track data lineage, manage permissions, and enforce data policies across the analytics platform.
+    description: Track data lineage, manage permissions, and enforce data policies across the analytics
+      platform.
   - name: Self-Service Analytics
     description: Enable business users to explore data and create visualizations without IT involvement.
   - name: Content Migration
-    description: Programmatically migrate workbooks, data sources, and configurations between Tableau environments.
+    description: Programmatically migrate workbooks, data sources, and configurations between Tableau
+      environments.
 - type: Integrations
   data:
   - name: Salesforce
-    description: Native integration with Salesforce CRM for unified analytics across sales, service, and marketing
-      data.
+    description: Native integration with Salesforce CRM for unified analytics across sales, service, and
+      marketing data.
   - name: Slack
     description: Share Tableau visualizations and receive metric alerts directly in Slack channels.
   - name: Python and R
-    description: Extend Tableau calculations with Python and R scripts through the Analytics Extensions API.
+    description: Extend Tableau calculations with Python and R scripts through the Analytics Extensions
+      API.
   - name: Snowflake
     description: Optimized connector for Snowflake data warehouse with live query and extract support.
   - name: Google BigQuery
