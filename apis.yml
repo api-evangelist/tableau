@@ -95,6 +95,11 @@ apis:
   humanURL: https://help.tableau.com/current/api/embedding_api/en-us/index.html
   baseURL: https://[server]
   tags:
+  - Embeddings
+  - JavaScript
+  - Visualization
+  - Web Components
+  tags_raw:
   - Embedding
   - JavaScript
   - Visualization
@@ -565,6 +570,8 @@ apis:
   humanURL: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm
   baseURL: https://[server]/api/[api-version]
   tags:
+  - Schedule
+  tags_raw:
   - Schedules
   properties:
   - type: OpenAPI
