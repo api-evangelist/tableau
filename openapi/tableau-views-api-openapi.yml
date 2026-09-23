@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   version: 3.24.0
-  title: Tableau REST Authentication Views API
+  title: Tableau REST Views API
   description: The Tableau REST API allows you to manage and change Tableau Server and Tableau Cloud resources programmatically using HTTP. You can use the REST API to manage sites, projects, workbooks, views, data sources, users, groups, permissions, schedules, subscriptions, and more.
   license:
     name: Proprietary
@@ -403,104 +403,23 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    PageSize:
-      name: pageSize
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-        default: 100
-      description: The number of items to return in one response. The minimum is 1 and the maximum is 1000.
-    Fields:
-      name: fields
-      in: query
-      schema:
-        type: string
-      description: An expression that lets you specify which fields are included in the response. Use the format fields=field1,field2. Use _default_ to return the default set of fields, or _all_ to return all fields.
-    Filter:
-      name: filter
-      in: query
-      schema:
-        type: string
-      description: An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in.
-    PageNumber:
-      name: pageNumber
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-      description: The page number of the set of items to return. The default is 1.
-    ViewId:
-      name: view-id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the view.
-    WorkbookId:
-      name: workbook-id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the workbook.
-    Sort:
-      name: sort
-      in: query
-      schema:
-        type: string
-      description: An expression that lets you specify the order in which items are returned. Use the format sort=field:direction where direction is asc or desc.
-    SiteId:
-      name: site-id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the site. You can get the site ID from the response to the Sign In method.
   schemas:
-    ViewListResponse:
+    ErrorResponse:
       type: object
       properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        views:
+        error:
           type: object
           properties:
-            view:
-              type: array
-              items:
-                $ref: '#/components/schemas/View'
+            summary:
+              type: string
+              description: A short summary of the error.
+            detail:
+              type: string
+              description: A detailed description of the error.
+            code:
+              type: string
+              description: A numeric error code.
           example: example_value
-    ViewResponse:
-      type: object
-      properties:
-        view:
-          $ref: '#/components/schemas/View'
-    Tag:
-      type: object
-      properties:
-        label:
-          type: string
-          description: The text of the tag.
-          example: Example Title
-    Pagination:
-      type: object
-      properties:
-        pageNumber:
-          type: integer
-          description: The current page number.
-          example: 10
-        pageSize:
-          type: integer
-          description: The number of items per page.
-          example: 10
-        totalAvailable:
-          type: integer
-          description: The total number of items available.
-          example: 10
     View:
       type: object
       properties:
@@ -583,22 +502,103 @@ components:
               type: integer
               description: The total number of times the view has been accessed.
           example: example_value
-    ErrorResponse:
+    Tag:
       type: object
       properties:
-        error:
+        label:
+          type: string
+          description: The text of the tag.
+          example: Example Title
+    Pagination:
+      type: object
+      properties:
+        pageNumber:
+          type: integer
+          description: The current page number.
+          example: 10
+        pageSize:
+          type: integer
+          description: The number of items per page.
+          example: 10
+        totalAvailable:
+          type: integer
+          description: The total number of items available.
+          example: 10
+    ViewResponse:
+      type: object
+      properties:
+        view:
+          $ref: '#/components/schemas/View'
+    ViewListResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        views:
           type: object
           properties:
-            summary:
-              type: string
-              description: A short summary of the error.
-            detail:
-              type: string
-              description: A detailed description of the error.
-            code:
-              type: string
-              description: A numeric error code.
+            view:
+              type: array
+              items:
+                $ref: '#/components/schemas/View'
           example: example_value
+  parameters:
+    ViewId:
+      name: view-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the view.
+    SiteId:
+      name: site-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the site. You can get the site ID from the response to the Sign In method.
+    PageNumber:
+      name: pageNumber
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+      description: The page number of the set of items to return. The default is 1.
+    Sort:
+      name: sort
+      in: query
+      schema:
+        type: string
+      description: An expression that lets you specify the order in which items are returned. Use the format sort=field:direction where direction is asc or desc.
+    Fields:
+      name: fields
+      in: query
+      schema:
+        type: string
+      description: An expression that lets you specify which fields are included in the response. Use the format fields=field1,field2. Use _default_ to return the default set of fields, or _all_ to return all fields.
+    PageSize:
+      name: pageSize
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 100
+      description: The number of items to return in one response. The minimum is 1 and the maximum is 1000.
+    Filter:
+      name: filter
+      in: query
+      schema:
+        type: string
+      description: An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in.
+    WorkbookId:
+      name: workbook-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the workbook.
   responses:
     Forbidden:
       description: The caller does not have permission to perform the requested action.
@@ -606,14 +606,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The specified resource was not found.
+    Unauthorized:
+      description: The authentication credentials were missing or invalid.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: The authentication credentials were missing or invalid.
+    NotFound:
+      description: The specified resource was not found.
       content:
         application/json:
           schema:

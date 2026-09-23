@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   version: 3.24.0
-  title: Tableau REST Authentication Data Sources API
+  title: Tableau REST Data Sources API
   description: The Tableau REST API allows you to manage and change Tableau Server and Tableau Cloud resources programmatically using HTTP. You can use the REST API to manage sites, projects, workbooks, views, data sources, users, groups, permissions, schedules, subscriptions, and more.
   license:
     name: Proprietary
@@ -487,27 +487,6 @@ components:
               items:
                 $ref: '#/components/schemas/DataSource'
           example: example_value
-    AddPermissionsRequest:
-      type: object
-      properties:
-        permissions:
-          $ref: '#/components/schemas/Permission'
-    PermissionListResponse:
-      type: object
-      properties:
-        permissions:
-          $ref: '#/components/schemas/Permission'
-        parent:
-          type: object
-          properties:
-            project:
-              type: object
-              properties:
-                id:
-                  type: string
-                name:
-                  type: string
-          example: example_value
     ErrorResponse:
       type: object
       properties:
@@ -524,13 +503,6 @@ components:
               type: string
               description: A numeric error code.
           example: example_value
-    Tag:
-      type: object
-      properties:
-        label:
-          type: string
-          description: The text of the tag.
-          example: Example Title
     Pagination:
       type: object
       properties:
@@ -546,30 +518,6 @@ components:
           type: integer
           description: The total number of items available.
           example: 10
-    ConnectionListResponse:
-      type: object
-      properties:
-        connections:
-          type: object
-          properties:
-            connection:
-              type: array
-              items:
-                $ref: '#/components/schemas/Connection'
-          example: example_value
-    RevisionListResponse:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        revisions:
-          type: object
-          properties:
-            revision:
-              type: array
-              items:
-                $ref: '#/components/schemas/Revision'
-          example: example_value
     Revision:
       type: object
       properties:
@@ -604,42 +552,11 @@ components:
               type: string
               description: The name of the user who published this revision.
           example: example_value
-    Permission:
+    DataSourceResponse:
       type: object
       properties:
-        granteeCapabilities:
-          type: array
-          items:
-            type: object
-            properties:
-              user:
-                type: object
-                properties:
-                  id:
-                    type: string
-              group:
-                type: object
-                properties:
-                  id:
-                    type: string
-              capabilities:
-                type: object
-                properties:
-                  capability:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        name:
-                          type: string
-                          description: The name of the capability (e.g., Read, Write, ChangePermissions, Delete, Filter, ViewComments, AddComment, ExportData, ExportImage, ShareView, ViewUnderlyingData, WebAuthoring, RunExplainData).
-                        mode:
-                          type: string
-                          enum:
-                          - Allow
-                          - Deny
-                          description: Whether the capability is allowed or denied.
-          example: []
+        datasource:
+          $ref: '#/components/schemas/DataSource'
     DataSource:
       type: object
       properties:
@@ -721,58 +638,42 @@ components:
               items:
                 $ref: '#/components/schemas/Tag'
           example: example_value
-    TagListResponse:
+    Permission:
       type: object
       properties:
-        tags:
-          type: object
-          properties:
-            tag:
-              type: array
-              items:
-                $ref: '#/components/schemas/Tag'
-          example: example_value
-    TagListRequest:
-      type: object
-      properties:
-        tags:
-          type: object
-          properties:
-            tag:
-              type: array
-              items:
-                $ref: '#/components/schemas/Tag'
-          example: example_value
-    UpdateDataSourceRequest:
-      type: object
-      properties:
-        datasource:
-          type: object
-          properties:
-            name:
-              type: string
-            project:
-              type: object
-              properties:
-                id:
-                  type: string
-            owner:
-              type: object
-              properties:
-                id:
-                  type: string
-            isCertified:
-              type: boolean
-            certificationNote:
-              type: string
-            encryptExtracts:
-              type: string
-          example: example_value
-    DataSourceResponse:
-      type: object
-      properties:
-        datasource:
-          $ref: '#/components/schemas/DataSource'
+        granteeCapabilities:
+          type: array
+          items:
+            type: object
+            properties:
+              user:
+                type: object
+                properties:
+                  id:
+                    type: string
+              group:
+                type: object
+                properties:
+                  id:
+                    type: string
+              capabilities:
+                type: object
+                properties:
+                  capability:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          description: The name of the capability (e.g., Read, Write, ChangePermissions, Delete, Filter, ViewComments, AddComment, ExportData, ExportImage, ShareView, ViewUnderlyingData, WebAuthoring, RunExplainData).
+                        mode:
+                          type: string
+                          enum:
+                          - Allow
+                          - Deny
+                          description: Whether the capability is allowed or denied.
+          example: []
     Connection:
       type: object
       properties:
@@ -806,63 +707,106 @@ components:
               type: string
               description: The name of the associated data source.
           example: example_value
-  parameters:
-    PageSize:
-      name: pageSize
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-        default: 100
-      description: The number of items to return in one response. The minimum is 1 and the maximum is 1000.
-    Filter:
-      name: filter
-      in: query
-      schema:
-        type: string
-      description: An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in.
-    Fields:
-      name: fields
-      in: query
-      schema:
-        type: string
-      description: An expression that lets you specify which fields are included in the response. Use the format fields=field1,field2. Use _default_ to return the default set of fields, or _all_ to return all fields.
-    PageNumber:
-      name: pageNumber
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-      description: The page number of the set of items to return. The default is 1.
-    DataSourceId:
-      name: datasource-id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the data source.
-    Sort:
-      name: sort
-      in: query
-      schema:
-        type: string
-      description: An expression that lets you specify the order in which items are returned. Use the format sort=field:direction where direction is asc or desc.
-    SiteId:
-      name: site-id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the site. You can get the site ID from the response to the Sign In method.
+    PermissionListResponse:
+      type: object
+      properties:
+        permissions:
+          $ref: '#/components/schemas/Permission'
+        parent:
+          type: object
+          properties:
+            project:
+              type: object
+              properties:
+                id:
+                  type: string
+                name:
+                  type: string
+          example: example_value
+    TagListResponse:
+      type: object
+      properties:
+        tags:
+          type: object
+          properties:
+            tag:
+              type: array
+              items:
+                $ref: '#/components/schemas/Tag'
+          example: example_value
+    RevisionListResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        revisions:
+          type: object
+          properties:
+            revision:
+              type: array
+              items:
+                $ref: '#/components/schemas/Revision'
+          example: example_value
+    TagListRequest:
+      type: object
+      properties:
+        tags:
+          type: object
+          properties:
+            tag:
+              type: array
+              items:
+                $ref: '#/components/schemas/Tag'
+          example: example_value
+    AddPermissionsRequest:
+      type: object
+      properties:
+        permissions:
+          $ref: '#/components/schemas/Permission'
+    ConnectionListResponse:
+      type: object
+      properties:
+        connections:
+          type: object
+          properties:
+            connection:
+              type: array
+              items:
+                $ref: '#/components/schemas/Connection'
+          example: example_value
+    Tag:
+      type: object
+      properties:
+        label:
+          type: string
+          description: The text of the tag.
+          example: Example Title
+    UpdateDataSourceRequest:
+      type: object
+      properties:
+        datasource:
+          type: object
+          properties:
+            name:
+              type: string
+            project:
+              type: object
+              properties:
+                id:
+                  type: string
+            owner:
+              type: object
+              properties:
+                id:
+                  type: string
+            isCertified:
+              type: boolean
+            certificationNote:
+              type: string
+            encryptExtracts:
+              type: string
+          example: example_value
   responses:
-    NotFound:
-      description: The specified resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     Forbidden:
       description: The caller does not have permission to perform the requested action.
       content:
@@ -875,12 +819,68 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The specified resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
     BadRequest:
       description: The request was malformed or contained invalid parameters.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    Fields:
+      name: fields
+      in: query
+      schema:
+        type: string
+      description: An expression that lets you specify which fields are included in the response. Use the format fields=field1,field2. Use _default_ to return the default set of fields, or _all_ to return all fields.
+    Sort:
+      name: sort
+      in: query
+      schema:
+        type: string
+      description: An expression that lets you specify the order in which items are returned. Use the format sort=field:direction where direction is asc or desc.
+    Filter:
+      name: filter
+      in: query
+      schema:
+        type: string
+      description: An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in.
+    SiteId:
+      name: site-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the site. You can get the site ID from the response to the Sign In method.
+    DataSourceId:
+      name: datasource-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the data source.
+    PageNumber:
+      name: pageNumber
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+      description: The page number of the set of items to return. The default is 1.
+    PageSize:
+      name: pageSize
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 100
+      description: The number of items to return in one response. The minimum is 1 and the maximum is 1000.
   securitySchemes:
     TableauAuth:
       type: apiKey

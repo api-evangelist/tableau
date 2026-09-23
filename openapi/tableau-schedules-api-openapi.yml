@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   version: 3.24.0
-  title: Tableau REST Authentication Schedules API
+  title: Tableau REST Schedules API
   description: The Tableau REST API allows you to manage and change Tableau Server and Tableau Cloud resources programmatically using HTTP. You can use the REST API to manage sites, projects, workbooks, views, data sources, users, groups, permissions, schedules, subscriptions, and more.
   license:
     name: Proprietary
@@ -66,24 +66,6 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    PageSize:
-      name: pageSize
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-        default: 100
-      description: The number of items to return in one response. The minimum is 1 and the maximum is 1000.
-    PageNumber:
-      name: pageNumber
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-      description: The page number of the set of items to return. The default is 1.
   schemas:
     Schedule:
       type: object
@@ -172,6 +154,19 @@ components:
                       monthDay:
                         type: string
           example: example_value
+    ScheduleListResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        schedules:
+          type: object
+          properties:
+            schedule:
+              type: array
+              items:
+                $ref: '#/components/schemas/Schedule'
+          example: example_value
     Pagination:
       type: object
       properties:
@@ -187,19 +182,24 @@ components:
           type: integer
           description: The total number of items available.
           example: 10
-    ScheduleListResponse:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        schedules:
-          type: object
-          properties:
-            schedule:
-              type: array
-              items:
-                $ref: '#/components/schemas/Schedule'
-          example: example_value
+  parameters:
+    PageNumber:
+      name: pageNumber
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+      description: The page number of the set of items to return. The default is 1.
+    PageSize:
+      name: pageSize
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 100
+      description: The number of items to return in one response. The minimum is 1 and the maximum is 1000.
   securitySchemes:
     TableauAuth:
       type: apiKey

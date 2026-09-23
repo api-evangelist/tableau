@@ -1,19 +1,7 @@
 {
   "provider": "tableau",
   "sources": [
-    "tableau-authentication-api-openapi.yml",
-    "tableau-data-sources-api-openapi.yml",
-    "tableau-favorites-api-openapi.yml",
-    "tableau-groups-api-openapi.yml",
-    "tableau-jobs-api-openapi.yml",
-    "tableau-permissions-api-openapi.yml",
-    "tableau-projects-api-openapi.yml",
-    "tableau-schedules-api-openapi.yml",
-    "tableau-sites-api-openapi.yml",
-    "tableau-subscriptions-api-openapi.yml",
-    "tableau-users-api-openapi.yml",
-    "tableau-views-api-openapi.yml",
-    "tableau-workbooks-api-openapi.yml"
+    "_original/tableau-rest-api-openapi.yml"
   ],
   "outputs": [
     "tableau-authentication-api-openapi.yml",
@@ -33,6 +21,24 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "tableau-rest-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "tableau-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tableau-data-sources-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tableau-favorites-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tableau-groups-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tableau-jobs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tableau-permissions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tableau-projects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tableau-schedules-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tableau-sites-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tableau-subscriptions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tableau-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tableau-views-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tableau-workbooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
