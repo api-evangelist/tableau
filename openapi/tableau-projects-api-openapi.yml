@@ -245,50 +245,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            summary:
-              type: string
-              description: A short summary of the error.
-            detail:
-              type: string
-              description: A detailed description of the error.
-            code:
-              type: string
-              description: A numeric error code.
-          example: example_value
-    Pagination:
-      type: object
-      properties:
-        pageNumber:
-          type: integer
-          description: The current page number.
-          example: 10
-        pageSize:
-          type: integer
-          description: The number of items per page.
-          example: 10
-        totalAvailable:
-          type: integer
-          description: The total number of items available.
-          example: 10
-    ProjectListResponse:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        projects:
-          type: object
-          properties:
-            project:
-              type: array
-              items:
-                $ref: '#/components/schemas/Project'
-          example: example_value
     Permission:
       type: object
       properties:
@@ -325,30 +281,6 @@ components:
                           - Deny
                           description: Whether the capability is allowed or denied.
           example: []
-    CreateProjectRequest:
-      type: object
-      properties:
-        project:
-          type: object
-          required:
-          - name
-          properties:
-            name:
-              type: string
-              description: The name for the project.
-            description:
-              type: string
-              description: A description for the project.
-            parentProjectId:
-              type: string
-              description: The ID of the parent project. Omit for a top-level project.
-            contentPermissions:
-              type: string
-              enum:
-              - LockedToProject
-              - ManagedByOwner
-              - LockedToProjectWithoutNested
-          example: example_value
     Project:
       type: object
       properties:
@@ -399,6 +331,66 @@ components:
           type: boolean
           description: Whether this is a top-level project.
           example: true
+    CreateProjectRequest:
+      type: object
+      properties:
+        project:
+          type: object
+          required:
+          - name
+          properties:
+            name:
+              type: string
+              description: The name for the project.
+            description:
+              type: string
+              description: A description for the project.
+            parentProjectId:
+              type: string
+              description: The ID of the parent project. Omit for a top-level project.
+            contentPermissions:
+              type: string
+              enum:
+              - LockedToProject
+              - ManagedByOwner
+              - LockedToProjectWithoutNested
+          example: example_value
+    ProjectResponse:
+      type: object
+      properties:
+        project:
+          $ref: '#/components/schemas/Project'
+    Pagination:
+      type: object
+      properties:
+        pageNumber:
+          type: integer
+          description: The current page number.
+          example: 10
+        pageSize:
+          type: integer
+          description: The number of items per page.
+          example: 10
+        totalAvailable:
+          type: integer
+          description: The total number of items available.
+          example: 10
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            summary:
+              type: string
+              description: A short summary of the error.
+            detail:
+              type: string
+              description: A detailed description of the error.
+            code:
+              type: string
+              description: A numeric error code.
+          example: example_value
     PermissionListResponse:
       type: object
       properties:
@@ -414,6 +406,19 @@ components:
                   type: string
                 name:
                   type: string
+          example: example_value
+    ProjectListResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        projects:
+          type: object
+          properties:
+            project:
+              type: array
+              items:
+                $ref: '#/components/schemas/Project'
           example: example_value
     UpdateProjectRequest:
       type: object
@@ -434,24 +439,7 @@ components:
               - ManagedByOwner
               - LockedToProjectWithoutNested
           example: example_value
-    ProjectResponse:
-      type: object
-      properties:
-        project:
-          $ref: '#/components/schemas/Project'
   responses:
-    Forbidden:
-      description: The caller does not have permission to perform the requested action.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Conflict:
-      description: A resource with the same name or identifier already exists.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: The authentication credentials were missing or invalid.
       content:
@@ -470,7 +458,25 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    Conflict:
+      description: A resource with the same name or identifier already exists.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: The caller does not have permission to perform the requested action.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
+    Sort:
+      name: sort
+      in: query
+      schema:
+        type: string
+      description: An expression that lets you specify the order in which items are returned. Use the format sort=field:direction where direction is asc or desc.
     ProjectId:
       name: project-id
       in: path
@@ -478,25 +484,6 @@ components:
       schema:
         type: string
       description: The ID of the project.
-    Sort:
-      name: sort
-      in: query
-      schema:
-        type: string
-      description: An expression that lets you specify the order in which items are returned. Use the format sort=field:direction where direction is asc or desc.
-    Filter:
-      name: filter
-      in: query
-      schema:
-        type: string
-      description: An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in.
-    SiteId:
-      name: site-id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the site. You can get the site ID from the response to the Sign In method.
     PageNumber:
       name: pageNumber
       in: query
@@ -514,6 +501,19 @@ components:
         maximum: 1000
         default: 100
       description: The number of items to return in one response. The minimum is 1 and the maximum is 1000.
+    SiteId:
+      name: site-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the site. You can get the site ID from the response to the Sign In method.
+    Filter:
+      name: filter
+      in: query
+      schema:
+        type: string
+      description: An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in.
   securitySchemes:
     TableauAuth:
       type: apiKey

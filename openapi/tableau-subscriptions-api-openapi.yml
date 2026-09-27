@@ -266,87 +266,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    SubscriptionResponse:
-      type: object
-      properties:
-        subscription:
-          $ref: '#/components/schemas/Subscription'
-    SubscriptionListResponse:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        subscriptions:
-          type: object
-          properties:
-            subscription:
-              type: array
-              items:
-                $ref: '#/components/schemas/Subscription'
-          example: example_value
-    UpdateSubscriptionRequest:
-      type: object
-      properties:
-        subscription:
-          type: object
-          properties:
-            subject:
-              type: string
-            schedule:
-              type: object
-              properties:
-                id:
-                  type: string
-            suspended:
-              type: boolean
-          example: example_value
-    CreateSubscriptionRequest:
-      type: object
-      properties:
-        subscription:
-          type: object
-          required:
-          - subject
-          - content
-          - schedule
-          - user
-          properties:
-            subject:
-              type: string
-            content:
-              type: object
-              required:
-              - id
-              - type
-              properties:
-                id:
-                  type: string
-                type:
-                  type: string
-                  enum:
-                  - Workbook
-                  - View
-            schedule:
-              type: object
-              required:
-              - id
-              properties:
-                id:
-                  type: string
-            user:
-              type: object
-              required:
-              - id
-              properties:
-                id:
-                  type: string
-            attachImage:
-              type: boolean
-            attachPdf:
-              type: boolean
-            message:
-              type: string
-          example: example_value
     Pagination:
       type: object
       properties:
@@ -446,22 +365,88 @@ components:
               type: string
               description: The name of the subscriber.
           example: example_value
+    SubscriptionResponse:
+      type: object
+      properties:
+        subscription:
+          $ref: '#/components/schemas/Subscription'
+    CreateSubscriptionRequest:
+      type: object
+      properties:
+        subscription:
+          type: object
+          required:
+          - subject
+          - content
+          - schedule
+          - user
+          properties:
+            subject:
+              type: string
+            content:
+              type: object
+              required:
+              - id
+              - type
+              properties:
+                id:
+                  type: string
+                type:
+                  type: string
+                  enum:
+                  - Workbook
+                  - View
+            schedule:
+              type: object
+              required:
+              - id
+              properties:
+                id:
+                  type: string
+            user:
+              type: object
+              required:
+              - id
+              properties:
+                id:
+                  type: string
+            attachImage:
+              type: boolean
+            attachPdf:
+              type: boolean
+            message:
+              type: string
+          example: example_value
+    UpdateSubscriptionRequest:
+      type: object
+      properties:
+        subscription:
+          type: object
+          properties:
+            subject:
+              type: string
+            schedule:
+              type: object
+              properties:
+                id:
+                  type: string
+            suspended:
+              type: boolean
+          example: example_value
+    SubscriptionListResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        subscriptions:
+          type: object
+          properties:
+            subscription:
+              type: array
+              items:
+                $ref: '#/components/schemas/Subscription'
+          example: example_value
   parameters:
-    SiteId:
-      name: site-id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the site. You can get the site ID from the response to the Sign In method.
-    PageNumber:
-      name: pageNumber
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-      description: The page number of the set of items to return. The default is 1.
     PageSize:
       name: pageSize
       in: query
@@ -471,6 +456,21 @@ components:
         maximum: 1000
         default: 100
       description: The number of items to return in one response. The minimum is 1 and the maximum is 1000.
+    PageNumber:
+      name: pageNumber
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+      description: The page number of the set of items to return. The default is 1.
+    SiteId:
+      name: site-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the site. You can get the site ID from the response to the Sign In method.
   securitySchemes:
     TableauAuth:
       type: apiKey

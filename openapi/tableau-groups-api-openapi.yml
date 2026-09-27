@@ -287,47 +287,98 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Group:
+    UserResponse:
       type: object
       properties:
-        id:
-          type: string
-          description: The unique identifier for the group.
-          example: abc123
-        name:
-          type: string
-          description: The name of the group.
-          example: Example Title
-        domainName:
-          type: string
-          description: The domain name for Active Directory groups. For local groups, this is "local".
-          example: example_value
-        minimumSiteRole:
-          type: string
-          enum:
-          - Creator
-          - Explorer
-          - ExplorerCanPublish
-          - SiteAdministratorCreator
-          - SiteAdministratorExplorer
-          - Unlicensed
-          - Viewer
-          description: The minimum site role for members of the group when they are imported from Active Directory.
-          example: Creator
-        userCount:
+        user:
+          $ref: '#/components/schemas/User'
+    Pagination:
+      type: object
+      properties:
+        pageNumber:
           type: integer
-          description: The number of users in the group.
+          description: The current page number.
           example: 10
-        import:
+        pageSize:
+          type: integer
+          description: The number of items per page.
+          example: 10
+        totalAvailable:
+          type: integer
+          description: The total number of items available.
+          example: 10
+    GroupListResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        groups:
           type: object
           properties:
-            domainName:
-              type: string
-            siteRole:
-              type: string
-            grantLicenseMode:
-              type: string
+            group:
+              type: array
+              items:
+                $ref: '#/components/schemas/Group'
           example: example_value
+    CreateGroupRequest:
+      type: object
+      properties:
+        group:
+          type: object
+          required:
+          - name
+          properties:
+            name:
+              type: string
+              description: The name of the group.
+            minimumSiteRole:
+              type: string
+              enum:
+              - Creator
+              - Explorer
+              - ExplorerCanPublish
+              - SiteAdministratorCreator
+              - SiteAdministratorExplorer
+              - Unlicensed
+              - Viewer
+          example: example_value
+    UserListResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        users:
+          type: object
+          properties:
+            user:
+              type: array
+              items:
+                $ref: '#/components/schemas/User'
+          example: example_value
+    UpdateGroupRequest:
+      type: object
+      properties:
+        group:
+          type: object
+          properties:
+            name:
+              type: string
+            minimumSiteRole:
+              type: string
+              enum:
+              - Creator
+              - Explorer
+              - ExplorerCanPublish
+              - SiteAdministratorCreator
+              - SiteAdministratorExplorer
+              - Unlicensed
+              - Viewer
+          example: example_value
+    GroupResponse:
+      type: object
+      properties:
+        group:
+          $ref: '#/components/schemas/Group'
     User:
       type: object
       properties:
@@ -381,106 +432,48 @@ components:
           type: string
           description: The user's language setting.
           example: example_value
-    UserResponse:
+    Group:
       type: object
       properties:
-        user:
-          $ref: '#/components/schemas/User'
-    CreateGroupRequest:
-      type: object
-      properties:
-        group:
-          type: object
-          required:
-          - name
-          properties:
-            name:
-              type: string
-              description: The name of the group.
-            minimumSiteRole:
-              type: string
-              enum:
-              - Creator
-              - Explorer
-              - ExplorerCanPublish
-              - SiteAdministratorCreator
-              - SiteAdministratorExplorer
-              - Unlicensed
-              - Viewer
+        id:
+          type: string
+          description: The unique identifier for the group.
+          example: abc123
+        name:
+          type: string
+          description: The name of the group.
+          example: Example Title
+        domainName:
+          type: string
+          description: The domain name for Active Directory groups. For local groups, this is "local".
           example: example_value
-    GroupListResponse:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        groups:
-          type: object
-          properties:
-            group:
-              type: array
-              items:
-                $ref: '#/components/schemas/Group'
-          example: example_value
-    UpdateGroupRequest:
-      type: object
-      properties:
-        group:
-          type: object
-          properties:
-            name:
-              type: string
-            minimumSiteRole:
-              type: string
-              enum:
-              - Creator
-              - Explorer
-              - ExplorerCanPublish
-              - SiteAdministratorCreator
-              - SiteAdministratorExplorer
-              - Unlicensed
-              - Viewer
-          example: example_value
-    Pagination:
-      type: object
-      properties:
-        pageNumber:
+        minimumSiteRole:
+          type: string
+          enum:
+          - Creator
+          - Explorer
+          - ExplorerCanPublish
+          - SiteAdministratorCreator
+          - SiteAdministratorExplorer
+          - Unlicensed
+          - Viewer
+          description: The minimum site role for members of the group when they are imported from Active Directory.
+          example: Creator
+        userCount:
           type: integer
-          description: The current page number.
+          description: The number of users in the group.
           example: 10
-        pageSize:
-          type: integer
-          description: The number of items per page.
-          example: 10
-        totalAvailable:
-          type: integer
-          description: The total number of items available.
-          example: 10
-    UserListResponse:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        users:
+        import:
           type: object
           properties:
-            user:
-              type: array
-              items:
-                $ref: '#/components/schemas/User'
+            domainName:
+              type: string
+            siteRole:
+              type: string
+            grantLicenseMode:
+              type: string
           example: example_value
-    GroupResponse:
-      type: object
-      properties:
-        group:
-          $ref: '#/components/schemas/Group'
   parameters:
-    SiteId:
-      name: site-id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the site. You can get the site ID from the response to the Sign In method.
     GroupId:
       name: group-id
       in: path
@@ -488,26 +481,26 @@ components:
       schema:
         type: string
       description: The ID of the group.
-    PageNumber:
-      name: pageNumber
-      in: query
+    UserId:
+      name: user-id
+      in: path
+      required: true
       schema:
-        type: integer
-        minimum: 1
-        default: 1
-      description: The page number of the set of items to return. The default is 1.
+        type: string
+      description: The ID of the user.
     Sort:
       name: sort
       in: query
       schema:
         type: string
       description: An expression that lets you specify the order in which items are returned. Use the format sort=field:direction where direction is asc or desc.
-    Filter:
-      name: filter
-      in: query
+    SiteId:
+      name: site-id
+      in: path
+      required: true
       schema:
         type: string
-      description: An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in.
+      description: The ID of the site. You can get the site ID from the response to the Sign In method.
     PageSize:
       name: pageSize
       in: query
@@ -517,13 +510,20 @@ components:
         maximum: 1000
         default: 100
       description: The number of items to return in one response. The minimum is 1 and the maximum is 1000.
-    UserId:
-      name: user-id
-      in: path
-      required: true
+    Filter:
+      name: filter
+      in: query
       schema:
         type: string
-      description: The ID of the user.
+      description: An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in.
+    PageNumber:
+      name: pageNumber
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+      description: The page number of the set of items to return. The default is 1.
   securitySchemes:
     TableauAuth:
       type: apiKey

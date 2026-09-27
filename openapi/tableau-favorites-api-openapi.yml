@@ -111,111 +111,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    AddFavoriteRequest:
-      type: object
-      properties:
-        favorite:
-          type: object
-          required:
-          - label
-          properties:
-            label:
-              type: string
-              description: The label for the favorite.
-            workbook:
-              type: object
-              properties:
-                id:
-                  type: string
-            view:
-              type: object
-              properties:
-                id:
-                  type: string
-            datasource:
-              type: object
-              properties:
-                id:
-                  type: string
-            project:
-              type: object
-              properties:
-                id:
-                  type: string
-          example: example_value
-    FavoritesResponse:
-      type: object
-      properties:
-        favorites:
-          type: object
-          properties:
-            favorite:
-              type: array
-              items:
-                type: object
-                properties:
-                  label:
-                    type: string
-                    description: The label for the favorite.
-                  workbook:
-                    $ref: '#/components/schemas/Workbook'
-                  view:
-                    $ref: '#/components/schemas/View'
-                  datasource:
-                    $ref: '#/components/schemas/DataSource'
-                  project:
-                    $ref: '#/components/schemas/Project'
-          example: example_value
-    Project:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier for the project.
-          example: abc123
-        name:
-          type: string
-          description: The name of the project.
-          example: Example Title
-        description:
-          type: string
-          description: A description of the project.
-          example: A sample description.
-        parentProjectId:
-          type:
-          - string
-          - 'null'
-          description: The ID of the parent project. If null, this is a top-level project.
-          example: '500123'
-        contentPermissions:
-          type: string
-          enum:
-          - LockedToProject
-          - ManagedByOwner
-          - LockedToProjectWithoutNested
-          description: The permissions model for the project.
-          example: LockedToProject
-        createdAt:
-          type: string
-          format: date-time
-          description: The date and time the project was created.
-          example: '2026-01-15T10:30:00Z'
-        updatedAt:
-          type: string
-          format: date-time
-          description: The date and time the project was last updated.
-          example: '2026-01-15T10:30:00Z'
-        owner:
-          type: object
-          properties:
-            id:
-              type: string
-              description: The ID of the project owner.
-          example: example_value
-        topLevelProject:
-          type: boolean
-          description: Whether this is a top-level project.
-          example: true
     View:
       type: object
       properties:
@@ -298,6 +193,88 @@ components:
               type: integer
               description: The total number of times the view has been accessed.
           example: example_value
+    Project:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the project.
+          example: abc123
+        name:
+          type: string
+          description: The name of the project.
+          example: Example Title
+        description:
+          type: string
+          description: A description of the project.
+          example: A sample description.
+        parentProjectId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the parent project. If null, this is a top-level project.
+          example: '500123'
+        contentPermissions:
+          type: string
+          enum:
+          - LockedToProject
+          - ManagedByOwner
+          - LockedToProjectWithoutNested
+          description: The permissions model for the project.
+          example: LockedToProject
+        createdAt:
+          type: string
+          format: date-time
+          description: The date and time the project was created.
+          example: '2026-01-15T10:30:00Z'
+        updatedAt:
+          type: string
+          format: date-time
+          description: The date and time the project was last updated.
+          example: '2026-01-15T10:30:00Z'
+        owner:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The ID of the project owner.
+          example: example_value
+        topLevelProject:
+          type: boolean
+          description: Whether this is a top-level project.
+          example: true
+    AddFavoriteRequest:
+      type: object
+      properties:
+        favorite:
+          type: object
+          required:
+          - label
+          properties:
+            label:
+              type: string
+              description: The label for the favorite.
+            workbook:
+              type: object
+              properties:
+                id:
+                  type: string
+            view:
+              type: object
+              properties:
+                id:
+                  type: string
+            datasource:
+              type: object
+              properties:
+                id:
+                  type: string
+            project:
+              type: object
+              properties:
+                id:
+                  type: string
+          example: example_value
     Tag:
       type: object
       properties:
@@ -305,6 +282,87 @@ components:
           type: string
           description: The text of the tag.
           example: Example Title
+    DataSource:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the data source.
+          example: abc123
+        name:
+          type: string
+          description: The name of the data source.
+          example: Example Title
+        description:
+          type: string
+          description: A description of the data source.
+          example: A sample description.
+        contentUrl:
+          type: string
+          description: The URL name of the data source.
+          example: https://www.example.com
+        type:
+          type: string
+          description: The type of data source (e.g., sqlserver, postgres, excel, hyper, etc.).
+          example: example_value
+        createdAt:
+          type: string
+          format: date-time
+          description: The date and time the data source was created.
+          example: '2026-01-15T10:30:00Z'
+        updatedAt:
+          type: string
+          format: date-time
+          description: The date and time the data source was last updated.
+          example: '2026-01-15T10:30:00Z'
+        isCertified:
+          type: boolean
+          description: Whether the data source is certified.
+          example: true
+        certificationNote:
+          type: string
+          description: The certification note for the data source.
+          example: example_value
+        useRemoteQueryAgent:
+          type: boolean
+          description: Whether the data source uses a remote query agent.
+          example: true
+        hasExtracts:
+          type: boolean
+          description: Whether the data source has extracts.
+          example: true
+        encryptExtracts:
+          type: string
+          description: Whether the data source extracts are encrypted.
+          example: example_value
+        project:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The ID of the containing project.
+            name:
+              type: string
+              description: The name of the containing project.
+          example: example_value
+        owner:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The ID of the data source owner.
+            name:
+              type: string
+              description: The name of the data source owner.
+          example: example_value
+        tags:
+          type: object
+          properties:
+            tag:
+              type: array
+              items:
+                $ref: '#/components/schemas/Tag'
+          example: example_value
     Workbook:
       type: object
       properties:
@@ -398,95 +456,30 @@ components:
               type: integer
               description: The total number of times the workbook has been viewed.
           example: example_value
-    DataSource:
+    FavoritesResponse:
       type: object
       properties:
-        id:
-          type: string
-          description: The unique identifier for the data source.
-          example: abc123
-        name:
-          type: string
-          description: The name of the data source.
-          example: Example Title
-        description:
-          type: string
-          description: A description of the data source.
-          example: A sample description.
-        contentUrl:
-          type: string
-          description: The URL name of the data source.
-          example: https://www.example.com
-        type:
-          type: string
-          description: The type of data source (e.g., sqlserver, postgres, excel, hyper, etc.).
-          example: example_value
-        createdAt:
-          type: string
-          format: date-time
-          description: The date and time the data source was created.
-          example: '2026-01-15T10:30:00Z'
-        updatedAt:
-          type: string
-          format: date-time
-          description: The date and time the data source was last updated.
-          example: '2026-01-15T10:30:00Z'
-        isCertified:
-          type: boolean
-          description: Whether the data source is certified.
-          example: true
-        certificationNote:
-          type: string
-          description: The certification note for the data source.
-          example: example_value
-        useRemoteQueryAgent:
-          type: boolean
-          description: Whether the data source uses a remote query agent.
-          example: true
-        hasExtracts:
-          type: boolean
-          description: Whether the data source has extracts.
-          example: true
-        encryptExtracts:
-          type: string
-          description: Whether the data source extracts are encrypted.
-          example: example_value
-        project:
+        favorites:
           type: object
           properties:
-            id:
-              type: string
-              description: The ID of the containing project.
-            name:
-              type: string
-              description: The name of the containing project.
-          example: example_value
-        owner:
-          type: object
-          properties:
-            id:
-              type: string
-              description: The ID of the data source owner.
-            name:
-              type: string
-              description: The name of the data source owner.
-          example: example_value
-        tags:
-          type: object
-          properties:
-            tag:
+            favorite:
               type: array
               items:
-                $ref: '#/components/schemas/Tag'
+                type: object
+                properties:
+                  label:
+                    type: string
+                    description: The label for the favorite.
+                  workbook:
+                    $ref: '#/components/schemas/Workbook'
+                  view:
+                    $ref: '#/components/schemas/View'
+                  datasource:
+                    $ref: '#/components/schemas/DataSource'
+                  project:
+                    $ref: '#/components/schemas/Project'
           example: example_value
   parameters:
-    SiteId:
-      name: site-id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the site. You can get the site ID from the response to the Sign In method.
     UserId:
       name: user-id
       in: path
@@ -494,6 +487,13 @@ components:
       schema:
         type: string
       description: The ID of the user.
+    SiteId:
+      name: site-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the site. You can get the site ID from the response to the Sign In method.
   securitySchemes:
     TableauAuth:
       type: apiKey

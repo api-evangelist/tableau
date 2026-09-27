@@ -2,17 +2,24 @@ name: Tableau
 description: Tableau is a visual analytics platform transforming the way we use data to solve problems—empowering
   people and organizations to make the most of their data.
 deliveryModel:
-  model: unknown
+  model: saas
+  license_evidence:
+    not_product:
+    - tableau/connector-plugin-sdk
+    - tableau/document-api-python
+    - tableau/embedding-api-v3-samples
+    - tableau/extensions-api
+    - tableau/hyper-api-samples
   open_source: unknown
   commercial: true
   callable_host: false
-  label: Delivery model not determined — needs a product licence on record
+  label: Hosted service · you call their endpoint
   confidence: low
   source:
   - openapi
   - pricing
-  - repository-unlicensed
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: enterprise
@@ -241,7 +248,7 @@ apis:
   tags:
   - Analytics
   - Data Science
-  - Machine-Learning
+  - Machine Learning
   - Python
   - R
   tags_raw:
@@ -250,6 +257,7 @@ apis:
   - Machine Learning
   - Python
   - R
+  - Machine-Learning
   properties:
   - type: Documentation
     url: https://tableau.github.io/analytics-extensions-api/docs/ae_intro.html

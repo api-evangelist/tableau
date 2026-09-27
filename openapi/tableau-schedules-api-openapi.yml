@@ -67,6 +67,34 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    Pagination:
+      type: object
+      properties:
+        pageNumber:
+          type: integer
+          description: The current page number.
+          example: 10
+        pageSize:
+          type: integer
+          description: The number of items per page.
+          example: 10
+        totalAvailable:
+          type: integer
+          description: The total number of items available.
+          example: 10
+    ScheduleListResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        schedules:
+          type: object
+          properties:
+            schedule:
+              type: array
+              items:
+                $ref: '#/components/schemas/Schedule'
+          example: example_value
     Schedule:
       type: object
       properties:
@@ -154,43 +182,7 @@ components:
                       monthDay:
                         type: string
           example: example_value
-    ScheduleListResponse:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        schedules:
-          type: object
-          properties:
-            schedule:
-              type: array
-              items:
-                $ref: '#/components/schemas/Schedule'
-          example: example_value
-    Pagination:
-      type: object
-      properties:
-        pageNumber:
-          type: integer
-          description: The current page number.
-          example: 10
-        pageSize:
-          type: integer
-          description: The number of items per page.
-          example: 10
-        totalAvailable:
-          type: integer
-          description: The total number of items available.
-          example: 10
   parameters:
-    PageNumber:
-      name: pageNumber
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-      description: The page number of the set of items to return. The default is 1.
     PageSize:
       name: pageSize
       in: query
@@ -200,6 +192,14 @@ components:
         maximum: 1000
         default: 100
       description: The number of items to return in one response. The minimum is 1 and the maximum is 1000.
+    PageNumber:
+      name: pageNumber
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+      description: The page number of the set of items to return. The default is 1.
   securitySchemes:
     TableauAuth:
       type: apiKey
