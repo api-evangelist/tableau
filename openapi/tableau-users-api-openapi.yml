@@ -365,19 +365,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    WorkbookListResponse:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        workbooks:
-          type: object
-          properties:
-            workbook:
-              type: array
-              items:
-                $ref: '#/components/schemas/Workbook'
-          example: example_value
     View:
       type: object
       properties:
@@ -513,29 +500,18 @@ components:
           type: string
           description: The user's language setting.
           example: example_value
-    UpdateUserRequest:
+    WorkbookListResponse:
       type: object
       properties:
-        user:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        workbooks:
           type: object
           properties:
-            fullName:
-              type: string
-            email:
-              type: string
-              format: email
-            siteRole:
-              type: string
-              enum:
-              - Creator
-              - Explorer
-              - ExplorerCanPublish
-              - SiteAdministratorCreator
-              - SiteAdministratorExplorer
-              - Unlicensed
-              - Viewer
-            authSetting:
-              type: string
+            workbook:
+              type: array
+              items:
+                $ref: '#/components/schemas/Workbook'
           example: example_value
     Pagination:
       type: object
@@ -552,22 +528,50 @@ components:
           type: integer
           description: The total number of items available.
           example: 10
-    ErrorResponse:
+    AddUserRequest:
       type: object
       properties:
-        error:
+        user:
+          type: object
+          required:
+          - name
+          - siteRole
+          properties:
+            name:
+              type: string
+              description: The name of the user to add.
+            siteRole:
+              type: string
+              enum:
+              - Creator
+              - Explorer
+              - ExplorerCanPublish
+              - SiteAdministratorCreator
+              - SiteAdministratorExplorer
+              - Unlicensed
+              - Viewer
+            authSetting:
+              type: string
+              description: The authentication type for the user.
+          example: example_value
+    UserListResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        users:
           type: object
           properties:
-            summary:
-              type: string
-              description: A short summary of the error.
-            detail:
-              type: string
-              description: A detailed description of the error.
-            code:
-              type: string
-              description: A numeric error code.
+            user:
+              type: array
+              items:
+                $ref: '#/components/schemas/User'
           example: example_value
+    UserResponse:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
     Workbook:
       type: object
       properties:
@@ -661,18 +665,24 @@ components:
               type: integer
               description: The total number of times the workbook has been viewed.
           example: example_value
-    AddUserRequest:
+    Tag:
+      type: object
+      properties:
+        label:
+          type: string
+          description: The text of the tag.
+          example: Example Title
+    UpdateUserRequest:
       type: object
       properties:
         user:
           type: object
-          required:
-          - name
-          - siteRole
           properties:
-            name:
+            fullName:
               type: string
-              description: The name of the user to add.
+            email:
+              type: string
+              format: email
             siteRole:
               type: string
               enum:
@@ -685,46 +695,23 @@ components:
               - Viewer
             authSetting:
               type: string
-              description: The authentication type for the user.
           example: example_value
-    UserResponse:
+    ErrorResponse:
       type: object
       properties:
-        user:
-          $ref: '#/components/schemas/User'
-    UserListResponse:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        users:
+        error:
           type: object
           properties:
-            user:
-              type: array
-              items:
-                $ref: '#/components/schemas/User'
+            summary:
+              type: string
+              description: A short summary of the error.
+            detail:
+              type: string
+              description: A detailed description of the error.
+            code:
+              type: string
+              description: A numeric error code.
           example: example_value
-    Tag:
-      type: object
-      properties:
-        label:
-          type: string
-          description: The text of the tag.
-          example: Example Title
-  responses:
-    NotFound:
-      description: The specified resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Conflict:
-      description: A resource with the same name or identifier already exists.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   parameters:
     Sort:
       name: sort
@@ -732,6 +719,13 @@ components:
       schema:
         type: string
       description: An expression that lets you specify the order in which items are returned. Use the format sort=field:direction where direction is asc or desc.
+    UserId:
+      name: user-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the user.
     PageSize:
       name: pageSize
       in: query
@@ -741,26 +735,12 @@ components:
         maximum: 1000
         default: 100
       description: The number of items to return in one response. The minimum is 1 and the maximum is 1000.
-    UserId:
-      name: user-id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the user.
     Filter:
       name: filter
       in: query
       schema:
         type: string
       description: An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in.
-    GroupId:
-      name: group-id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the group.
     PageNumber:
       name: pageNumber
       in: query
@@ -776,6 +756,26 @@ components:
       schema:
         type: string
       description: The ID of the site. You can get the site ID from the response to the Sign In method.
+    GroupId:
+      name: group-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the group.
+  responses:
+    Conflict:
+      description: A resource with the same name or identifier already exists.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The specified resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     TableauAuth:
       type: apiKey

@@ -174,22 +174,6 @@ components:
                   type: string
                   description: The ID of the authenticated user.
           example: example_value
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            summary:
-              type: string
-              description: A short summary of the error.
-            detail:
-              type: string
-              description: A detailed description of the error.
-            code:
-              type: string
-              description: A numeric error code.
-          example: example_value
     SignInRequest:
       type: object
       properties:
@@ -218,6 +202,22 @@ components:
                 contentUrl:
                   type: string
                   description: The URL namespace of the site. For the default site on Tableau Server, use an empty string. For Tableau Cloud, this is the site name in the URL.
+          example: example_value
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            summary:
+              type: string
+              description: A short summary of the error.
+            detail:
+              type: string
+              description: A detailed description of the error.
+            code:
+              type: string
+              description: A numeric error code.
           example: example_value
   responses:
     Unauthorized:

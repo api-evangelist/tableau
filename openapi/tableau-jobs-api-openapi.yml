@@ -137,27 +137,38 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    Filter:
+      name: filter
+      in: query
+      schema:
+        type: string
+      description: An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in.
+    PageNumber:
+      name: pageNumber
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+      description: The page number of the set of items to return. The default is 1.
+    SiteId:
+      name: site-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the site. You can get the site ID from the response to the Sign In method.
+    PageSize:
+      name: pageSize
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 100
+      description: The number of items to return in one response. The minimum is 1 and the maximum is 1000.
   schemas:
-    Pagination:
-      type: object
-      properties:
-        pageNumber:
-          type: integer
-          description: The current page number.
-          example: 10
-        pageSize:
-          type: integer
-          description: The number of items per page.
-          example: 10
-        totalAvailable:
-          type: integer
-          description: The total number of items available.
-          example: 10
-    JobResponse:
-      type: object
-      properties:
-        job:
-          $ref: '#/components/schemas/Job'
     Job:
       type: object
       properties:
@@ -241,6 +252,26 @@ components:
                 name:
                   type: string
           example: example_value
+    Pagination:
+      type: object
+      properties:
+        pageNumber:
+          type: integer
+          description: The current page number.
+          example: 10
+        pageSize:
+          type: integer
+          description: The number of items per page.
+          example: 10
+        totalAvailable:
+          type: integer
+          description: The total number of items available.
+          example: 10
+    JobResponse:
+      type: object
+      properties:
+        job:
+          $ref: '#/components/schemas/Job'
     JobListResponse:
       type: object
       properties:
@@ -254,37 +285,6 @@ components:
               items:
                 $ref: '#/components/schemas/Job'
           example: example_value
-  parameters:
-    PageSize:
-      name: pageSize
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-        default: 100
-      description: The number of items to return in one response. The minimum is 1 and the maximum is 1000.
-    Filter:
-      name: filter
-      in: query
-      schema:
-        type: string
-      description: An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in.
-    PageNumber:
-      name: pageNumber
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-      description: The page number of the set of items to return. The default is 1.
-    SiteId:
-      name: site-id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the site. You can get the site ID from the response to the Sign In method.
   securitySchemes:
     TableauAuth:
       type: apiKey

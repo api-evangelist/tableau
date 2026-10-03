@@ -266,21 +266,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Pagination:
-      type: object
-      properties:
-        pageNumber:
-          type: integer
-          description: The current page number.
-          example: 10
-        pageSize:
-          type: integer
-          description: The number of items per page.
-          example: 10
-        totalAvailable:
-          type: integer
-          description: The total number of items available.
-          example: 10
     Subscription:
       type: object
       properties:
@@ -370,6 +355,50 @@ components:
       properties:
         subscription:
           $ref: '#/components/schemas/Subscription'
+    Pagination:
+      type: object
+      properties:
+        pageNumber:
+          type: integer
+          description: The current page number.
+          example: 10
+        pageSize:
+          type: integer
+          description: The number of items per page.
+          example: 10
+        totalAvailable:
+          type: integer
+          description: The total number of items available.
+          example: 10
+    UpdateSubscriptionRequest:
+      type: object
+      properties:
+        subscription:
+          type: object
+          properties:
+            subject:
+              type: string
+            schedule:
+              type: object
+              properties:
+                id:
+                  type: string
+            suspended:
+              type: boolean
+          example: example_value
+    SubscriptionListResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        subscriptions:
+          type: object
+          properties:
+            subscription:
+              type: array
+              items:
+                $ref: '#/components/schemas/Subscription'
+          example: example_value
     CreateSubscriptionRequest:
       type: object
       properties:
@@ -417,45 +446,7 @@ components:
             message:
               type: string
           example: example_value
-    UpdateSubscriptionRequest:
-      type: object
-      properties:
-        subscription:
-          type: object
-          properties:
-            subject:
-              type: string
-            schedule:
-              type: object
-              properties:
-                id:
-                  type: string
-            suspended:
-              type: boolean
-          example: example_value
-    SubscriptionListResponse:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        subscriptions:
-          type: object
-          properties:
-            subscription:
-              type: array
-              items:
-                $ref: '#/components/schemas/Subscription'
-          example: example_value
   parameters:
-    PageSize:
-      name: pageSize
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-        default: 100
-      description: The number of items to return in one response. The minimum is 1 and the maximum is 1000.
     PageNumber:
       name: pageNumber
       in: query
@@ -471,6 +462,15 @@ components:
       schema:
         type: string
       description: The ID of the site. You can get the site ID from the response to the Sign In method.
+    PageSize:
+      name: pageSize
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 100
+      description: The number of items to return in one response. The minimum is 1 and the maximum is 1000.
   securitySchemes:
     TableauAuth:
       type: apiKey

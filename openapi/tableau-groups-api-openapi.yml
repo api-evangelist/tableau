@@ -286,99 +286,58 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    Sort:
+      name: sort
+      in: query
+      schema:
+        type: string
+      description: An expression that lets you specify the order in which items are returned. Use the format sort=field:direction where direction is asc or desc.
+    Filter:
+      name: filter
+      in: query
+      schema:
+        type: string
+      description: An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in.
+    UserId:
+      name: user-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the user.
+    GroupId:
+      name: group-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the group.
+    PageNumber:
+      name: pageNumber
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+      description: The page number of the set of items to return. The default is 1.
+    SiteId:
+      name: site-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the site. You can get the site ID from the response to the Sign In method.
+    PageSize:
+      name: pageSize
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 100
+      description: The number of items to return in one response. The minimum is 1 and the maximum is 1000.
   schemas:
-    UserResponse:
-      type: object
-      properties:
-        user:
-          $ref: '#/components/schemas/User'
-    Pagination:
-      type: object
-      properties:
-        pageNumber:
-          type: integer
-          description: The current page number.
-          example: 10
-        pageSize:
-          type: integer
-          description: The number of items per page.
-          example: 10
-        totalAvailable:
-          type: integer
-          description: The total number of items available.
-          example: 10
-    GroupListResponse:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        groups:
-          type: object
-          properties:
-            group:
-              type: array
-              items:
-                $ref: '#/components/schemas/Group'
-          example: example_value
-    CreateGroupRequest:
-      type: object
-      properties:
-        group:
-          type: object
-          required:
-          - name
-          properties:
-            name:
-              type: string
-              description: The name of the group.
-            minimumSiteRole:
-              type: string
-              enum:
-              - Creator
-              - Explorer
-              - ExplorerCanPublish
-              - SiteAdministratorCreator
-              - SiteAdministratorExplorer
-              - Unlicensed
-              - Viewer
-          example: example_value
-    UserListResponse:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        users:
-          type: object
-          properties:
-            user:
-              type: array
-              items:
-                $ref: '#/components/schemas/User'
-          example: example_value
-    UpdateGroupRequest:
-      type: object
-      properties:
-        group:
-          type: object
-          properties:
-            name:
-              type: string
-            minimumSiteRole:
-              type: string
-              enum:
-              - Creator
-              - Explorer
-              - ExplorerCanPublish
-              - SiteAdministratorCreator
-              - SiteAdministratorExplorer
-              - Unlicensed
-              - Viewer
-          example: example_value
-    GroupResponse:
-      type: object
-      properties:
-        group:
-          $ref: '#/components/schemas/Group'
     User:
       type: object
       properties:
@@ -432,6 +391,88 @@ components:
           type: string
           description: The user's language setting.
           example: example_value
+    UpdateGroupRequest:
+      type: object
+      properties:
+        group:
+          type: object
+          properties:
+            name:
+              type: string
+            minimumSiteRole:
+              type: string
+              enum:
+              - Creator
+              - Explorer
+              - ExplorerCanPublish
+              - SiteAdministratorCreator
+              - SiteAdministratorExplorer
+              - Unlicensed
+              - Viewer
+          example: example_value
+    CreateGroupRequest:
+      type: object
+      properties:
+        group:
+          type: object
+          required:
+          - name
+          properties:
+            name:
+              type: string
+              description: The name of the group.
+            minimumSiteRole:
+              type: string
+              enum:
+              - Creator
+              - Explorer
+              - ExplorerCanPublish
+              - SiteAdministratorCreator
+              - SiteAdministratorExplorer
+              - Unlicensed
+              - Viewer
+          example: example_value
+    Pagination:
+      type: object
+      properties:
+        pageNumber:
+          type: integer
+          description: The current page number.
+          example: 10
+        pageSize:
+          type: integer
+          description: The number of items per page.
+          example: 10
+        totalAvailable:
+          type: integer
+          description: The total number of items available.
+          example: 10
+    GroupListResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        groups:
+          type: object
+          properties:
+            group:
+              type: array
+              items:
+                $ref: '#/components/schemas/Group'
+          example: example_value
+    UserListResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        users:
+          type: object
+          properties:
+            user:
+              type: array
+              items:
+                $ref: '#/components/schemas/User'
+          example: example_value
     Group:
       type: object
       properties:
@@ -473,57 +514,16 @@ components:
             grantLicenseMode:
               type: string
           example: example_value
-  parameters:
-    GroupId:
-      name: group-id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the group.
-    UserId:
-      name: user-id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the user.
-    Sort:
-      name: sort
-      in: query
-      schema:
-        type: string
-      description: An expression that lets you specify the order in which items are returned. Use the format sort=field:direction where direction is asc or desc.
-    SiteId:
-      name: site-id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the site. You can get the site ID from the response to the Sign In method.
-    PageSize:
-      name: pageSize
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-        default: 100
-      description: The number of items to return in one response. The minimum is 1 and the maximum is 1000.
-    Filter:
-      name: filter
-      in: query
-      schema:
-        type: string
-      description: An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in.
-    PageNumber:
-      name: pageNumber
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-      description: The page number of the set of items to return. The default is 1.
+    GroupResponse:
+      type: object
+      properties:
+        group:
+          $ref: '#/components/schemas/Group'
+    UserResponse:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
   securitySchemes:
     TableauAuth:
       type: apiKey
