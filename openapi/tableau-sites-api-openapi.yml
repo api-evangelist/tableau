@@ -273,114 +273,68 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    SiteId:
+      name: site-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the site. You can get the site ID from the response to the Sign In method.
+    PageSize:
+      name: pageSize
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 100
+      description: The number of items to return in one response. The minimum is 1 and the maximum is 1000.
+    PageNumber:
+      name: pageNumber
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+      description: The page number of the set of items to return. The default is 1.
+  responses:
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: The caller does not have permission to perform the requested action.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: The authentication credentials were missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Conflict:
+      description: A resource with the same name or identifier already exists.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The specified resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    UpdateSiteRequest:
-      type: object
-      properties:
-        site:
-          type: object
-          properties:
-            name:
-              type: string
-            contentUrl:
-              type: string
-            adminMode:
-              type: string
-              enum:
-              - ContentAndUsers
-              - ContentOnly
-            state:
-              type: string
-              enum:
-              - Active
-              - Suspended
-            storageQuota:
-              type: integer
-            userQuota:
-              type: integer
-            disableSubscriptions:
-              type: boolean
-            revision:
-              type: string
-          example: example_value
-    SiteListResponse:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        sites:
-          type: object
-          properties:
-            site:
-              type: array
-              items:
-                $ref: '#/components/schemas/Site'
-          example: example_value
     SiteResponse:
       type: object
       properties:
         site:
           $ref: '#/components/schemas/Site'
-    CreateSiteRequest:
-      type: object
-      properties:
-        site:
-          type: object
-          required:
-          - name
-          - contentUrl
-          properties:
-            name:
-              type: string
-              description: The name of the site.
-            contentUrl:
-              type: string
-              description: The URL namespace for the site.
-            adminMode:
-              type: string
-              enum:
-              - ContentAndUsers
-              - ContentOnly
-            userQuota:
-              type: integer
-              description: The maximum number of users for the site.
-            storageQuota:
-              type: integer
-              description: The storage quota in megabytes.
-            disableSubscriptions:
-              type: boolean
-          example: example_value
-    Pagination:
-      type: object
-      properties:
-        pageNumber:
-          type: integer
-          description: The current page number.
-          example: 10
-        pageSize:
-          type: integer
-          description: The number of items per page.
-          example: 10
-        totalAvailable:
-          type: integer
-          description: The total number of items available.
-          example: 10
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            summary:
-              type: string
-              description: A short summary of the error.
-            detail:
-              type: string
-              description: A detailed description of the error.
-            code:
-              type: string
-              description: A numeric error code.
-          example: example_value
     Site:
       type: object
       properties:
@@ -448,62 +402,108 @@ components:
               type: integer
               description: The storage used in megabytes.
           example: example_value
-  responses:
-    Conflict:
-      description: A resource with the same name or identifier already exists.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: The request was malformed or contained invalid parameters.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The specified resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: The authentication credentials were missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: The caller does not have permission to perform the requested action.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    PageNumber:
-      name: pageNumber
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-      description: The page number of the set of items to return. The default is 1.
-    SiteId:
-      name: site-id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the site. You can get the site ID from the response to the Sign In method.
-    PageSize:
-      name: pageSize
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-        default: 100
-      description: The number of items to return in one response. The minimum is 1 and the maximum is 1000.
+    SiteListResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        sites:
+          type: object
+          properties:
+            site:
+              type: array
+              items:
+                $ref: '#/components/schemas/Site'
+          example: example_value
+    CreateSiteRequest:
+      type: object
+      properties:
+        site:
+          type: object
+          required:
+          - name
+          - contentUrl
+          properties:
+            name:
+              type: string
+              description: The name of the site.
+            contentUrl:
+              type: string
+              description: The URL namespace for the site.
+            adminMode:
+              type: string
+              enum:
+              - ContentAndUsers
+              - ContentOnly
+            userQuota:
+              type: integer
+              description: The maximum number of users for the site.
+            storageQuota:
+              type: integer
+              description: The storage quota in megabytes.
+            disableSubscriptions:
+              type: boolean
+          example: example_value
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            summary:
+              type: string
+              description: A short summary of the error.
+            detail:
+              type: string
+              description: A detailed description of the error.
+            code:
+              type: string
+              description: A numeric error code.
+          example: example_value
+    UpdateSiteRequest:
+      type: object
+      properties:
+        site:
+          type: object
+          properties:
+            name:
+              type: string
+            contentUrl:
+              type: string
+            adminMode:
+              type: string
+              enum:
+              - ContentAndUsers
+              - ContentOnly
+            state:
+              type: string
+              enum:
+              - Active
+              - Suspended
+            storageQuota:
+              type: integer
+            userQuota:
+              type: integer
+            disableSubscriptions:
+              type: boolean
+            revision:
+              type: string
+          example: example_value
+    Pagination:
+      type: object
+      properties:
+        pageNumber:
+          type: integer
+          description: The current page number.
+          example: 10
+        pageSize:
+          type: integer
+          description: The number of items per page.
+          example: 10
+        totalAvailable:
+          type: integer
+          description: The total number of items available.
+          example: 10
   securitySchemes:
     TableauAuth:
       type: apiKey

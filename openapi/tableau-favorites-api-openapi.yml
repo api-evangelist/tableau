@@ -110,88 +110,60 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    SiteId:
+      name: site-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the site. You can get the site ID from the response to the Sign In method.
+    UserId:
+      name: user-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the user.
   schemas:
-    View:
+    Tag:
       type: object
       properties:
-        id:
+        label:
           type: string
-          description: The unique identifier for the view.
-          example: abc123
-        name:
-          type: string
-          description: The name of the view.
+          description: The text of the tag.
           example: Example Title
-        contentUrl:
-          type: string
-          description: The URL name of the view.
-          example: https://www.example.com
-        createdAt:
-          type: string
-          format: date-time
-          description: The date and time the view was created.
-          example: '2026-01-15T10:30:00Z'
-        updatedAt:
-          type: string
-          format: date-time
-          description: The date and time the view was last updated.
-          example: '2026-01-15T10:30:00Z'
-        viewUrlName:
-          type: string
-          description: The URL-friendly name of the view used in the content URL.
-          example: https://www.example.com
-        sheetType:
-          type: string
-          enum:
-          - worksheet
-          - dashboard
-          - story
-          description: The type of sheet (worksheet, dashboard, or story).
-          example: worksheet
-        project:
+    AddFavoriteRequest:
+      type: object
+      properties:
+        favorite:
           type: object
+          required:
+          - label
           properties:
-            id:
+            label:
               type: string
-              description: The ID of the containing project.
-            name:
-              type: string
-              description: The name of the containing project.
-          example: example_value
-        owner:
-          type: object
-          properties:
-            id:
-              type: string
-              description: The ID of the view owner.
-            name:
-              type: string
-              description: The name of the view owner.
-          example: example_value
-        workbook:
-          type: object
-          properties:
-            id:
-              type: string
-              description: The ID of the containing workbook.
-            name:
-              type: string
-              description: The name of the containing workbook.
-          example: example_value
-        tags:
-          type: object
-          properties:
-            tag:
-              type: array
-              items:
-                $ref: '#/components/schemas/Tag'
-          example: example_value
-        usage:
-          type: object
-          properties:
-            totalViewCount:
-              type: integer
-              description: The total number of times the view has been accessed.
+              description: The label for the favorite.
+            workbook:
+              type: object
+              properties:
+                id:
+                  type: string
+            view:
+              type: object
+              properties:
+                id:
+                  type: string
+            datasource:
+              type: object
+              properties:
+                id:
+                  type: string
+            project:
+              type: object
+              properties:
+                id:
+                  type: string
           example: example_value
     Workbook:
       type: object
@@ -286,6 +258,111 @@ components:
               type: integer
               description: The total number of times the workbook has been viewed.
           example: example_value
+    View:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the view.
+          example: abc123
+        name:
+          type: string
+          description: The name of the view.
+          example: Example Title
+        contentUrl:
+          type: string
+          description: The URL name of the view.
+          example: https://www.example.com
+        createdAt:
+          type: string
+          format: date-time
+          description: The date and time the view was created.
+          example: '2026-01-15T10:30:00Z'
+        updatedAt:
+          type: string
+          format: date-time
+          description: The date and time the view was last updated.
+          example: '2026-01-15T10:30:00Z'
+        viewUrlName:
+          type: string
+          description: The URL-friendly name of the view used in the content URL.
+          example: https://www.example.com
+        sheetType:
+          type: string
+          enum:
+          - worksheet
+          - dashboard
+          - story
+          description: The type of sheet (worksheet, dashboard, or story).
+          example: worksheet
+        project:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The ID of the containing project.
+            name:
+              type: string
+              description: The name of the containing project.
+          example: example_value
+        owner:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The ID of the view owner.
+            name:
+              type: string
+              description: The name of the view owner.
+          example: example_value
+        workbook:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The ID of the containing workbook.
+            name:
+              type: string
+              description: The name of the containing workbook.
+          example: example_value
+        tags:
+          type: object
+          properties:
+            tag:
+              type: array
+              items:
+                $ref: '#/components/schemas/Tag'
+          example: example_value
+        usage:
+          type: object
+          properties:
+            totalViewCount:
+              type: integer
+              description: The total number of times the view has been accessed.
+          example: example_value
+    FavoritesResponse:
+      type: object
+      properties:
+        favorites:
+          type: object
+          properties:
+            favorite:
+              type: array
+              items:
+                type: object
+                properties:
+                  label:
+                    type: string
+                    description: The label for the favorite.
+                  workbook:
+                    $ref: '#/components/schemas/Workbook'
+                  view:
+                    $ref: '#/components/schemas/View'
+                  datasource:
+                    $ref: '#/components/schemas/DataSource'
+                  project:
+                    $ref: '#/components/schemas/Project'
+          example: example_value
     Project:
       type: object
       properties:
@@ -336,13 +413,6 @@ components:
           type: boolean
           description: Whether this is a top-level project.
           example: true
-    Tag:
-      type: object
-      properties:
-        label:
-          type: string
-          description: The text of the tag.
-          example: Example Title
     DataSource:
       type: object
       properties:
@@ -424,76 +494,6 @@ components:
               items:
                 $ref: '#/components/schemas/Tag'
           example: example_value
-    AddFavoriteRequest:
-      type: object
-      properties:
-        favorite:
-          type: object
-          required:
-          - label
-          properties:
-            label:
-              type: string
-              description: The label for the favorite.
-            workbook:
-              type: object
-              properties:
-                id:
-                  type: string
-            view:
-              type: object
-              properties:
-                id:
-                  type: string
-            datasource:
-              type: object
-              properties:
-                id:
-                  type: string
-            project:
-              type: object
-              properties:
-                id:
-                  type: string
-          example: example_value
-    FavoritesResponse:
-      type: object
-      properties:
-        favorites:
-          type: object
-          properties:
-            favorite:
-              type: array
-              items:
-                type: object
-                properties:
-                  label:
-                    type: string
-                    description: The label for the favorite.
-                  workbook:
-                    $ref: '#/components/schemas/Workbook'
-                  view:
-                    $ref: '#/components/schemas/View'
-                  datasource:
-                    $ref: '#/components/schemas/DataSource'
-                  project:
-                    $ref: '#/components/schemas/Project'
-          example: example_value
-  parameters:
-    UserId:
-      name: user-id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the user.
-    SiteId:
-      name: site-id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the site. You can get the site ID from the response to the Sign In method.
   securitySchemes:
     TableauAuth:
       type: apiKey

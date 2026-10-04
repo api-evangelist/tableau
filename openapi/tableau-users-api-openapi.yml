@@ -364,88 +364,114 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    SiteId:
+      name: site-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the site. You can get the site ID from the response to the Sign In method.
+    PageNumber:
+      name: pageNumber
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+      description: The page number of the set of items to return. The default is 1.
+    Filter:
+      name: filter
+      in: query
+      schema:
+        type: string
+      description: An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in.
+    GroupId:
+      name: group-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the group.
+    PageSize:
+      name: pageSize
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 100
+      description: The number of items to return in one response. The minimum is 1 and the maximum is 1000.
+    UserId:
+      name: user-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the user.
+    Sort:
+      name: sort
+      in: query
+      schema:
+        type: string
+      description: An expression that lets you specify the order in which items are returned. Use the format sort=field:direction where direction is asc or desc.
   schemas:
-    View:
+    UserListResponse:
       type: object
       properties:
-        id:
-          type: string
-          description: The unique identifier for the view.
-          example: abc123
-        name:
-          type: string
-          description: The name of the view.
-          example: Example Title
-        contentUrl:
-          type: string
-          description: The URL name of the view.
-          example: https://www.example.com
-        createdAt:
-          type: string
-          format: date-time
-          description: The date and time the view was created.
-          example: '2026-01-15T10:30:00Z'
-        updatedAt:
-          type: string
-          format: date-time
-          description: The date and time the view was last updated.
-          example: '2026-01-15T10:30:00Z'
-        viewUrlName:
-          type: string
-          description: The URL-friendly name of the view used in the content URL.
-          example: https://www.example.com
-        sheetType:
-          type: string
-          enum:
-          - worksheet
-          - dashboard
-          - story
-          description: The type of sheet (worksheet, dashboard, or story).
-          example: worksheet
-        project:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        users:
           type: object
           properties:
-            id:
-              type: string
-              description: The ID of the containing project.
-            name:
-              type: string
-              description: The name of the containing project.
-          example: example_value
-        owner:
-          type: object
-          properties:
-            id:
-              type: string
-              description: The ID of the view owner.
-            name:
-              type: string
-              description: The name of the view owner.
-          example: example_value
-        workbook:
-          type: object
-          properties:
-            id:
-              type: string
-              description: The ID of the containing workbook.
-            name:
-              type: string
-              description: The name of the containing workbook.
-          example: example_value
-        tags:
-          type: object
-          properties:
-            tag:
+            user:
               type: array
               items:
-                $ref: '#/components/schemas/Tag'
+                $ref: '#/components/schemas/User'
           example: example_value
-        usage:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
           type: object
           properties:
-            totalViewCount:
-              type: integer
-              description: The total number of times the view has been accessed.
+            summary:
+              type: string
+              description: A short summary of the error.
+            detail:
+              type: string
+              description: A detailed description of the error.
+            code:
+              type: string
+              description: A numeric error code.
+          example: example_value
+    Pagination:
+      type: object
+      properties:
+        pageNumber:
+          type: integer
+          description: The current page number.
+          example: 10
+        pageSize:
+          type: integer
+          description: The number of items per page.
+          example: 10
+        totalAvailable:
+          type: integer
+          description: The total number of items available.
+          example: 10
+    WorkbookListResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        workbooks:
+          type: object
+          properties:
+            workbook:
+              type: array
+              items:
+                $ref: '#/components/schemas/Workbook'
           example: example_value
     User:
       type: object
@@ -500,78 +526,6 @@ components:
           type: string
           description: The user's language setting.
           example: example_value
-    WorkbookListResponse:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        workbooks:
-          type: object
-          properties:
-            workbook:
-              type: array
-              items:
-                $ref: '#/components/schemas/Workbook'
-          example: example_value
-    Pagination:
-      type: object
-      properties:
-        pageNumber:
-          type: integer
-          description: The current page number.
-          example: 10
-        pageSize:
-          type: integer
-          description: The number of items per page.
-          example: 10
-        totalAvailable:
-          type: integer
-          description: The total number of items available.
-          example: 10
-    AddUserRequest:
-      type: object
-      properties:
-        user:
-          type: object
-          required:
-          - name
-          - siteRole
-          properties:
-            name:
-              type: string
-              description: The name of the user to add.
-            siteRole:
-              type: string
-              enum:
-              - Creator
-              - Explorer
-              - ExplorerCanPublish
-              - SiteAdministratorCreator
-              - SiteAdministratorExplorer
-              - Unlicensed
-              - Viewer
-            authSetting:
-              type: string
-              description: The authentication type for the user.
-          example: example_value
-    UserListResponse:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        users:
-          type: object
-          properties:
-            user:
-              type: array
-              items:
-                $ref: '#/components/schemas/User'
-          example: example_value
-    UserResponse:
-      type: object
-      properties:
-        user:
-          $ref: '#/components/schemas/User'
     Workbook:
       type: object
       properties:
@@ -672,6 +626,114 @@ components:
           type: string
           description: The text of the tag.
           example: Example Title
+    View:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the view.
+          example: abc123
+        name:
+          type: string
+          description: The name of the view.
+          example: Example Title
+        contentUrl:
+          type: string
+          description: The URL name of the view.
+          example: https://www.example.com
+        createdAt:
+          type: string
+          format: date-time
+          description: The date and time the view was created.
+          example: '2026-01-15T10:30:00Z'
+        updatedAt:
+          type: string
+          format: date-time
+          description: The date and time the view was last updated.
+          example: '2026-01-15T10:30:00Z'
+        viewUrlName:
+          type: string
+          description: The URL-friendly name of the view used in the content URL.
+          example: https://www.example.com
+        sheetType:
+          type: string
+          enum:
+          - worksheet
+          - dashboard
+          - story
+          description: The type of sheet (worksheet, dashboard, or story).
+          example: worksheet
+        project:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The ID of the containing project.
+            name:
+              type: string
+              description: The name of the containing project.
+          example: example_value
+        owner:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The ID of the view owner.
+            name:
+              type: string
+              description: The name of the view owner.
+          example: example_value
+        workbook:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The ID of the containing workbook.
+            name:
+              type: string
+              description: The name of the containing workbook.
+          example: example_value
+        tags:
+          type: object
+          properties:
+            tag:
+              type: array
+              items:
+                $ref: '#/components/schemas/Tag'
+          example: example_value
+        usage:
+          type: object
+          properties:
+            totalViewCount:
+              type: integer
+              description: The total number of times the view has been accessed.
+          example: example_value
+    AddUserRequest:
+      type: object
+      properties:
+        user:
+          type: object
+          required:
+          - name
+          - siteRole
+          properties:
+            name:
+              type: string
+              description: The name of the user to add.
+            siteRole:
+              type: string
+              enum:
+              - Creator
+              - Explorer
+              - ExplorerCanPublish
+              - SiteAdministratorCreator
+              - SiteAdministratorExplorer
+              - Unlicensed
+              - Viewer
+            authSetting:
+              type: string
+              description: The authentication type for the user.
+          example: example_value
     UpdateUserRequest:
       type: object
       properties:
@@ -696,73 +758,11 @@ components:
             authSetting:
               type: string
           example: example_value
-    ErrorResponse:
+    UserResponse:
       type: object
       properties:
-        error:
-          type: object
-          properties:
-            summary:
-              type: string
-              description: A short summary of the error.
-            detail:
-              type: string
-              description: A detailed description of the error.
-            code:
-              type: string
-              description: A numeric error code.
-          example: example_value
-  parameters:
-    Sort:
-      name: sort
-      in: query
-      schema:
-        type: string
-      description: An expression that lets you specify the order in which items are returned. Use the format sort=field:direction where direction is asc or desc.
-    UserId:
-      name: user-id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the user.
-    PageSize:
-      name: pageSize
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-        default: 100
-      description: The number of items to return in one response. The minimum is 1 and the maximum is 1000.
-    Filter:
-      name: filter
-      in: query
-      schema:
-        type: string
-      description: An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in.
-    PageNumber:
-      name: pageNumber
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-      description: The page number of the set of items to return. The default is 1.
-    SiteId:
-      name: site-id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the site. You can get the site ID from the response to the Sign In method.
-    GroupId:
-      name: group-id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the group.
+        user:
+          $ref: '#/components/schemas/User'
   responses:
     Conflict:
       description: A resource with the same name or identifier already exists.

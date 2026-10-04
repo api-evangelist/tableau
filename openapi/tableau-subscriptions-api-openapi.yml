@@ -265,7 +265,37 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    SiteId:
+      name: site-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the site. You can get the site ID from the response to the Sign In method.
+    PageSize:
+      name: pageSize
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 100
+      description: The number of items to return in one response. The minimum is 1 and the maximum is 1000.
+    PageNumber:
+      name: pageNumber
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+      description: The page number of the set of items to return. The default is 1.
   schemas:
+    SubscriptionResponse:
+      type: object
+      properties:
+        subscription:
+          $ref: '#/components/schemas/Subscription'
     Subscription:
       type: object
       properties:
@@ -350,26 +380,6 @@ components:
               type: string
               description: The name of the subscriber.
           example: example_value
-    SubscriptionResponse:
-      type: object
-      properties:
-        subscription:
-          $ref: '#/components/schemas/Subscription'
-    Pagination:
-      type: object
-      properties:
-        pageNumber:
-          type: integer
-          description: The current page number.
-          example: 10
-        pageSize:
-          type: integer
-          description: The number of items per page.
-          example: 10
-        totalAvailable:
-          type: integer
-          description: The total number of items available.
-          example: 10
     UpdateSubscriptionRequest:
       type: object
       properties:
@@ -385,19 +395,6 @@ components:
                   type: string
             suspended:
               type: boolean
-          example: example_value
-    SubscriptionListResponse:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        subscriptions:
-          type: object
-          properties:
-            subscription:
-              type: array
-              items:
-                $ref: '#/components/schemas/Subscription'
           example: example_value
     CreateSubscriptionRequest:
       type: object
@@ -446,31 +443,34 @@ components:
             message:
               type: string
           example: example_value
-  parameters:
-    PageNumber:
-      name: pageNumber
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-      description: The page number of the set of items to return. The default is 1.
-    SiteId:
-      name: site-id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the site. You can get the site ID from the response to the Sign In method.
-    PageSize:
-      name: pageSize
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-        default: 100
-      description: The number of items to return in one response. The minimum is 1 and the maximum is 1000.
+    SubscriptionListResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        subscriptions:
+          type: object
+          properties:
+            subscription:
+              type: array
+              items:
+                $ref: '#/components/schemas/Subscription'
+          example: example_value
+    Pagination:
+      type: object
+      properties:
+        pageNumber:
+          type: integer
+          description: The current page number.
+          example: 10
+        pageSize:
+          type: integer
+          description: The number of items per page.
+          example: 10
+        totalAvailable:
+          type: integer
+          description: The total number of items available.
+          example: 10
   securitySchemes:
     TableauAuth:
       type: apiKey

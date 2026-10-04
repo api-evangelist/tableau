@@ -138,20 +138,6 @@ paths:
         dispatcher: FALLBACK
 components:
   parameters:
-    Filter:
-      name: filter
-      in: query
-      schema:
-        type: string
-      description: An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in.
-    PageNumber:
-      name: pageNumber
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-      description: The page number of the set of items to return. The default is 1.
     SiteId:
       name: site-id
       in: path
@@ -159,6 +145,12 @@ components:
       schema:
         type: string
       description: The ID of the site. You can get the site ID from the response to the Sign In method.
+    Filter:
+      name: filter
+      in: query
+      schema:
+        type: string
+      description: An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in.
     PageSize:
       name: pageSize
       in: query
@@ -168,7 +160,33 @@ components:
         maximum: 1000
         default: 100
       description: The number of items to return in one response. The minimum is 1 and the maximum is 1000.
+    PageNumber:
+      name: pageNumber
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+      description: The page number of the set of items to return. The default is 1.
   schemas:
+    JobResponse:
+      type: object
+      properties:
+        job:
+          $ref: '#/components/schemas/Job'
+    JobListResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        backgroundJobs:
+          type: object
+          properties:
+            backgroundJob:
+              type: array
+              items:
+                $ref: '#/components/schemas/Job'
+          example: example_value
     Job:
       type: object
       properties:
@@ -267,24 +285,6 @@ components:
           type: integer
           description: The total number of items available.
           example: 10
-    JobResponse:
-      type: object
-      properties:
-        job:
-          $ref: '#/components/schemas/Job'
-    JobListResponse:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        backgroundJobs:
-          type: object
-          properties:
-            backgroundJob:
-              type: array
-              items:
-                $ref: '#/components/schemas/Job'
-          example: example_value
   securitySchemes:
     TableauAuth:
       type: apiKey

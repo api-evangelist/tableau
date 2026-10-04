@@ -708,74 +708,72 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    SiteId:
+      name: site-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the site. You can get the site ID from the response to the Sign In method.
+    PageNumber:
+      name: pageNumber
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+      description: The page number of the set of items to return. The default is 1.
+    Filter:
+      name: filter
+      in: query
+      schema:
+        type: string
+      description: An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in.
+    WorkbookId:
+      name: workbook-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the workbook.
+    Fields:
+      name: fields
+      in: query
+      schema:
+        type: string
+      description: An expression that lets you specify which fields are included in the response. Use the format fields=field1,field2. Use _default_ to return the default set of fields, or _all_ to return all fields.
+    PageSize:
+      name: pageSize
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 100
+      description: The number of items to return in one response. The minimum is 1 and the maximum is 1000.
+    UserId:
+      name: user-id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The ID of the user.
+    Sort:
+      name: sort
+      in: query
+      schema:
+        type: string
+      description: An expression that lets you specify the order in which items are returned. Use the format sort=field:direction where direction is asc or desc.
   schemas:
-    View:
+    AddPermissionsRequest:
       type: object
       properties:
-        id:
-          type: string
-          description: The unique identifier for the view.
-          example: abc123
-        name:
-          type: string
-          description: The name of the view.
-          example: Example Title
-        contentUrl:
-          type: string
-          description: The URL name of the view.
-          example: https://www.example.com
-        createdAt:
-          type: string
-          format: date-time
-          description: The date and time the view was created.
-          example: '2026-01-15T10:30:00Z'
-        updatedAt:
-          type: string
-          format: date-time
-          description: The date and time the view was last updated.
-          example: '2026-01-15T10:30:00Z'
-        viewUrlName:
-          type: string
-          description: The URL-friendly name of the view used in the content URL.
-          example: https://www.example.com
-        sheetType:
-          type: string
-          enum:
-          - worksheet
-          - dashboard
-          - story
-          description: The type of sheet (worksheet, dashboard, or story).
-          example: worksheet
-        project:
-          type: object
-          properties:
-            id:
-              type: string
-              description: The ID of the containing project.
-            name:
-              type: string
-              description: The name of the containing project.
-          example: example_value
-        owner:
-          type: object
-          properties:
-            id:
-              type: string
-              description: The ID of the view owner.
-            name:
-              type: string
-              description: The name of the view owner.
-          example: example_value
-        workbook:
-          type: object
-          properties:
-            id:
-              type: string
-              description: The ID of the containing workbook.
-            name:
-              type: string
-              description: The name of the containing workbook.
-          example: example_value
+        permissions:
+          $ref: '#/components/schemas/Permission'
+    TagListResponse:
+      type: object
+      properties:
         tags:
           type: object
           properties:
@@ -784,100 +782,16 @@ components:
               items:
                 $ref: '#/components/schemas/Tag'
           example: example_value
-        usage:
-          type: object
-          properties:
-            totalViewCount:
-              type: integer
-              description: The total number of times the view has been accessed.
-          example: example_value
-    Revision:
+    ConnectionListResponse:
       type: object
       properties:
-        revisionNumber:
-          type: integer
-          description: The revision number.
-          example: 10
-        publishedAt:
-          type: string
-          format: date-time
-          description: The date and time the revision was published.
-          example: '2026-01-15T10:30:00Z'
-        deleted:
-          type: boolean
-          description: Whether this revision has been deleted.
-          example: true
-        current:
-          type: boolean
-          description: Whether this is the current revision.
-          example: true
-        sizeInBytes:
-          type: integer
-          description: The size of the revision in bytes.
-          example: 10
-        publisher:
+        connections:
           type: object
           properties:
-            id:
-              type: string
-              description: The ID of the user who published this revision.
-            name:
-              type: string
-              description: The name of the user who published this revision.
-          example: example_value
-    RevisionListResponse:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        revisions:
-          type: object
-          properties:
-            revision:
+            connection:
               type: array
               items:
-                $ref: '#/components/schemas/Revision'
-          example: example_value
-    WorkbookListResponse:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        workbooks:
-          type: object
-          properties:
-            workbook:
-              type: array
-              items:
-                $ref: '#/components/schemas/Workbook'
-          example: example_value
-    Pagination:
-      type: object
-      properties:
-        pageNumber:
-          type: integer
-          description: The current page number.
-          example: 10
-        pageSize:
-          type: integer
-          description: The number of items per page.
-          example: 10
-        totalAvailable:
-          type: integer
-          description: The total number of items available.
-          example: 10
-    ViewListResponse:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        views:
-          type: object
-          properties:
-            view:
-              type: array
-              items:
-                $ref: '#/components/schemas/View'
+                $ref: '#/components/schemas/Connection'
           example: example_value
     PublishWorkbookRequest:
       type: object
@@ -928,6 +842,11 @@ components:
                           embed:
                             type: boolean
           example: example_value
+    WorkbookResponse:
+      type: object
+      properties:
+        workbook:
+          $ref: '#/components/schemas/Workbook'
     Connection:
       type: object
       properties:
@@ -961,22 +880,50 @@ components:
               type: string
               description: The name of the associated data source.
           example: example_value
-    WorkbookResponse:
+    ErrorResponse:
       type: object
       properties:
-        workbook:
-          $ref: '#/components/schemas/Workbook'
-    TagListResponse:
-      type: object
-      properties:
-        tags:
+        error:
           type: object
           properties:
-            tag:
+            summary:
+              type: string
+              description: A short summary of the error.
+            detail:
+              type: string
+              description: A detailed description of the error.
+            code:
+              type: string
+              description: A numeric error code.
+          example: example_value
+    RevisionListResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        revisions:
+          type: object
+          properties:
+            revision:
               type: array
               items:
-                $ref: '#/components/schemas/Tag'
+                $ref: '#/components/schemas/Revision'
           example: example_value
+    Pagination:
+      type: object
+      properties:
+        pageNumber:
+          type: integer
+          description: The current page number.
+          example: 10
+        pageSize:
+          type: integer
+          description: The number of items per page.
+          example: 10
+        totalAvailable:
+          type: integer
+          description: The total number of items available.
+          example: 10
     UpdateWorkbookRequest:
       type: object
       properties:
@@ -999,6 +946,19 @@ components:
                   type: string
             encryptExtracts:
               type: string
+          example: example_value
+    WorkbookListResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        workbooks:
+          type: object
+          properties:
+            workbook:
+              type: array
+              items:
+                $ref: '#/components/schemas/Workbook'
           example: example_value
     PermissionListResponse:
       type: object
@@ -1109,34 +1069,6 @@ components:
               type: integer
               description: The total number of times the workbook has been viewed.
           example: example_value
-    Tag:
-      type: object
-      properties:
-        label:
-          type: string
-          description: The text of the tag.
-          example: Example Title
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            summary:
-              type: string
-              description: A short summary of the error.
-            detail:
-              type: string
-              description: A detailed description of the error.
-            code:
-              type: string
-              description: A numeric error code.
-          example: example_value
-    AddPermissionsRequest:
-      type: object
-      properties:
-        permissions:
-          $ref: '#/components/schemas/Permission'
     TagListRequest:
       type: object
       properties:
@@ -1148,16 +1080,39 @@ components:
               items:
                 $ref: '#/components/schemas/Tag'
           example: example_value
-    ConnectionListResponse:
+    Revision:
       type: object
       properties:
-        connections:
+        revisionNumber:
+          type: integer
+          description: The revision number.
+          example: 10
+        publishedAt:
+          type: string
+          format: date-time
+          description: The date and time the revision was published.
+          example: '2026-01-15T10:30:00Z'
+        deleted:
+          type: boolean
+          description: Whether this revision has been deleted.
+          example: true
+        current:
+          type: boolean
+          description: Whether this is the current revision.
+          example: true
+        sizeInBytes:
+          type: integer
+          description: The size of the revision in bytes.
+          example: 10
+        publisher:
           type: object
           properties:
-            connection:
-              type: array
-              items:
-                $ref: '#/components/schemas/Connection'
+            id:
+              type: string
+              description: The ID of the user who published this revision.
+            name:
+              type: string
+              description: The name of the user who published this revision.
           example: example_value
     Permission:
       type: object
@@ -1195,9 +1150,111 @@ components:
                           - Deny
                           description: Whether the capability is allowed or denied.
           example: []
+    Tag:
+      type: object
+      properties:
+        label:
+          type: string
+          description: The text of the tag.
+          example: Example Title
+    ViewListResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        views:
+          type: object
+          properties:
+            view:
+              type: array
+              items:
+                $ref: '#/components/schemas/View'
+          example: example_value
+    View:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the view.
+          example: abc123
+        name:
+          type: string
+          description: The name of the view.
+          example: Example Title
+        contentUrl:
+          type: string
+          description: The URL name of the view.
+          example: https://www.example.com
+        createdAt:
+          type: string
+          format: date-time
+          description: The date and time the view was created.
+          example: '2026-01-15T10:30:00Z'
+        updatedAt:
+          type: string
+          format: date-time
+          description: The date and time the view was last updated.
+          example: '2026-01-15T10:30:00Z'
+        viewUrlName:
+          type: string
+          description: The URL-friendly name of the view used in the content URL.
+          example: https://www.example.com
+        sheetType:
+          type: string
+          enum:
+          - worksheet
+          - dashboard
+          - story
+          description: The type of sheet (worksheet, dashboard, or story).
+          example: worksheet
+        project:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The ID of the containing project.
+            name:
+              type: string
+              description: The name of the containing project.
+          example: example_value
+        owner:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The ID of the view owner.
+            name:
+              type: string
+              description: The name of the view owner.
+          example: example_value
+        workbook:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The ID of the containing workbook.
+            name:
+              type: string
+              description: The name of the containing workbook.
+          example: example_value
+        tags:
+          type: object
+          properties:
+            tag:
+              type: array
+              items:
+                $ref: '#/components/schemas/Tag'
+          example: example_value
+        usage:
+          type: object
+          properties:
+            totalViewCount:
+              type: integer
+              description: The total number of times the view has been accessed.
+          example: example_value
   responses:
-    BadRequest:
-      description: The request was malformed or contained invalid parameters.
+    Unauthorized:
+      description: The authentication credentials were missing or invalid.
       content:
         application/json:
           schema:
@@ -1208,8 +1265,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: The authentication credentials were missing or invalid.
+    NotFound:
+      description: The specified resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: The request was malformed or contained invalid parameters.
       content:
         application/json:
           schema:
@@ -1220,69 +1283,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The specified resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    Sort:
-      name: sort
-      in: query
-      schema:
-        type: string
-      description: An expression that lets you specify the order in which items are returned. Use the format sort=field:direction where direction is asc or desc.
-    UserId:
-      name: user-id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the user.
-    PageSize:
-      name: pageSize
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-        default: 100
-      description: The number of items to return in one response. The minimum is 1 and the maximum is 1000.
-    Fields:
-      name: fields
-      in: query
-      schema:
-        type: string
-      description: An expression that lets you specify which fields are included in the response. Use the format fields=field1,field2. Use _default_ to return the default set of fields, or _all_ to return all fields.
-    Filter:
-      name: filter
-      in: query
-      schema:
-        type: string
-      description: An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in.
-    PageNumber:
-      name: pageNumber
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-      description: The page number of the set of items to return. The default is 1.
-    SiteId:
-      name: site-id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the site. You can get the site ID from the response to the Sign In method.
-    WorkbookId:
-      name: workbook-id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The ID of the workbook.
   securitySchemes:
     TableauAuth:
       type: apiKey
