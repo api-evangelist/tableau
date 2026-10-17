@@ -165,31 +165,6 @@ components:
               type: string
               description: A numeric error code.
           example: example_value
-    SignInResponse:
-      type: object
-      properties:
-        credentials:
-          type: object
-          properties:
-            token:
-              type: string
-              description: The authentication token to use in subsequent API calls.
-            site:
-              type: object
-              properties:
-                id:
-                  type: string
-                  description: The ID of the site.
-                contentUrl:
-                  type: string
-                  description: The URL namespace of the site.
-            user:
-              type: object
-              properties:
-                id:
-                  type: string
-                  description: The ID of the authenticated user.
-          example: example_value
     SignInRequest:
       type: object
       properties:
@@ -218,6 +193,31 @@ components:
                 contentUrl:
                   type: string
                   description: The URL namespace of the site. For the default site on Tableau Server, use an empty string. For Tableau Cloud, this is the site name in the URL.
+          example: example_value
+    SignInResponse:
+      type: object
+      properties:
+        credentials:
+          type: object
+          properties:
+            token:
+              type: string
+              description: The authentication token to use in subsequent API calls.
+            site:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: The ID of the site.
+                contentUrl:
+                  type: string
+                  description: The URL namespace of the site.
+            user:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: The ID of the authenticated user.
           example: example_value
   responses:
     Unauthorized:

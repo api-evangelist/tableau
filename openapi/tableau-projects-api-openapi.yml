@@ -245,20 +245,18 @@ paths:
         dispatcher: FALLBACK
 components:
   parameters:
-    SiteId:
-      name: site-id
-      in: path
-      required: true
+    Filter:
+      name: filter
+      in: query
       schema:
         type: string
-      description: The ID of the site. You can get the site ID from the response to the Sign In method.
-    ProjectId:
-      name: project-id
-      in: path
-      required: true
+      description: An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in.
+    Sort:
+      name: sort
+      in: query
       schema:
         type: string
-      description: The ID of the project.
+      description: An expression that lets you specify the order in which items are returned. Use the format sort=field:direction where direction is asc or desc.
     PageNumber:
       name: pageNumber
       in: query
@@ -267,12 +265,13 @@ components:
         minimum: 1
         default: 1
       description: The page number of the set of items to return. The default is 1.
-    Filter:
-      name: filter
-      in: query
+    SiteId:
+      name: site-id
+      in: path
+      required: true
       schema:
         type: string
-      description: An expression that lets you specify a subset of items to return. Use the format filter=field:operator:value. Operators include eq, gt, gte, lt, lte, has, and in.
+      description: The ID of the site. You can get the site ID from the response to the Sign In method.
     PageSize:
       name: pageSize
       in: query
@@ -282,47 +281,26 @@ components:
         maximum: 1000
         default: 100
       description: The number of items to return in one response. The minimum is 1 and the maximum is 1000.
-    Sort:
-      name: sort
-      in: query
+    ProjectId:
+      name: project-id
+      in: path
+      required: true
       schema:
         type: string
-      description: An expression that lets you specify the order in which items are returned. Use the format sort=field:direction where direction is asc or desc.
+      description: The ID of the project.
   schemas:
-    UpdateProjectRequest:
+    ProjectListResponse:
       type: object
       properties:
-        project:
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+        projects:
           type: object
           properties:
-            name:
-              type: string
-            description:
-              type: string
-            parentProjectId:
-              type: string
-            contentPermissions:
-              type: string
-              enum:
-              - LockedToProject
-              - ManagedByOwner
-              - LockedToProjectWithoutNested
-          example: example_value
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            summary:
-              type: string
-              description: A short summary of the error.
-            detail:
-              type: string
-              description: A detailed description of the error.
-            code:
-              type: string
-              description: A numeric error code.
+            project:
+              type: array
+              items:
+                $ref: '#/components/schemas/Project'
           example: example_value
     Pagination:
       type: object
@@ -339,21 +317,29 @@ components:
           type: integer
           description: The total number of items available.
           example: 10
-    PermissionListResponse:
+    CreateProjectRequest:
       type: object
       properties:
-        permissions:
-          $ref: '#/components/schemas/Permission'
-        parent:
+        project:
           type: object
+          required:
+          - name
           properties:
-            project:
-              type: object
-              properties:
-                id:
-                  type: string
-                name:
-                  type: string
+            name:
+              type: string
+              description: The name for the project.
+            description:
+              type: string
+              description: A description for the project.
+            parentProjectId:
+              type: string
+              description: The ID of the parent project. Omit for a top-level project.
+            contentPermissions:
+              type: string
+              enum:
+              - LockedToProject
+              - ManagedByOwner
+              - LockedToProjectWithoutNested
           example: example_value
     Permission:
       type: object
@@ -391,28 +377,18 @@ components:
                           - Deny
                           description: Whether the capability is allowed or denied.
           example: []
-    ProjectResponse:
-      type: object
-      properties:
-        project:
-          $ref: '#/components/schemas/Project'
-    CreateProjectRequest:
+    UpdateProjectRequest:
       type: object
       properties:
         project:
           type: object
-          required:
-          - name
           properties:
             name:
               type: string
-              description: The name for the project.
             description:
               type: string
-              description: A description for the project.
             parentProjectId:
               type: string
-              description: The ID of the parent project. Omit for a top-level project.
             contentPermissions:
               type: string
               enum:
@@ -420,18 +396,21 @@ components:
               - ManagedByOwner
               - LockedToProjectWithoutNested
           example: example_value
-    ProjectListResponse:
+    PermissionListResponse:
       type: object
       properties:
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-        projects:
+        permissions:
+          $ref: '#/components/schemas/Permission'
+        parent:
           type: object
           properties:
             project:
-              type: array
-              items:
-                $ref: '#/components/schemas/Project'
+              type: object
+              properties:
+                id:
+                  type: string
+                name:
+                  type: string
           example: example_value
     Project:
       type: object
@@ -483,6 +462,27 @@ components:
           type: boolean
           description: Whether this is a top-level project.
           example: true
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            summary:
+              type: string
+              description: A short summary of the error.
+            detail:
+              type: string
+              description: A detailed description of the error.
+            code:
+              type: string
+              description: A numeric error code.
+          example: example_value
+    ProjectResponse:
+      type: object
+      properties:
+        project:
+          $ref: '#/components/schemas/Project'
   responses:
     Unauthorized:
       description: The authentication credentials were missing or invalid.
@@ -496,8 +496,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The specified resource was not found.
+    Forbidden:
+      description: The caller does not have permission to perform the requested action.
       content:
         application/json:
           schema:
@@ -508,8 +508,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: The caller does not have permission to perform the requested action.
+    NotFound:
+      description: The specified resource was not found.
       content:
         application/json:
           schema:
