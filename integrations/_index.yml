@@ -78,7 +78,7 @@
     - connectors/applications/tableau
     vendor_link: https://www.tableau.com/products/cloud-bi
     builder: Fivetran
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: tableau-meltano
   label: Meltano
@@ -109,7 +109,7 @@
     - gold
     - silver
     builder: 'community (Meltano Hub variant maintainers: gthesheep, tailsdotcom)'
-  status: pending-partner-spec
+  status: not-a-workflow
   arazzo: null
 - slug: tableau-microsoft-teams-own
   label: Microsoft Teams (own)
