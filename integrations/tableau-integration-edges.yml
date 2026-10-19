@@ -144,8 +144,607 @@ edges:
   detected: '2026-10-18'
   detected_by: mirror-platform-listings.py
   category: Slack app
+- partner_name: Agiloft
+  app: Agiloft
+  partner: agiloft
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.tableau.com/products/283
+  category: connector
+  contract_reference:
+    register: Tableau Exchange (exchange.tableau.com server-sitemap + product __NEXT_DATA__)
+    spec_file: null
+    role: tableau-app
+    registered_name: Agiloft
+    matched_domain: agiloft.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Agiloft
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-bi-analytics.py
+    detected: '2026-10-19'
+  detected_by: sweep-bi-analytics.py
+  detected: '2026-10-19'
+- partner_name: Altinity Inc
+  app: Altinity Connector for ClickHouse
+  partner: altinity
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.tableau.com/products/604
+  category: connector
+  contract_reference:
+    register: Tableau Exchange (exchange.tableau.com server-sitemap + product __NEXT_DATA__)
+    spec_file: null
+    role: tableau-app
+    registered_name: Altinity Inc
+    matched_domain: altinity.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Altinity Connector for ClickHouse
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-bi-analytics.py
+    detected: '2026-10-19'
+  detected_by: sweep-bi-analytics.py
+  detected: '2026-10-19'
+- partner_name: Arria NLG
+  app: Intelligent Narratives for BI
+  partner: arria-nlg
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.tableau.com/products/47
+  category: extension
+  contract_reference:
+    register: Tableau Exchange (exchange.tableau.com server-sitemap + product __NEXT_DATA__)
+    spec_file: null
+    role: tableau-app
+    registered_name: Arria NLG
+    matched_domain: arria.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Intelligent Narratives for BI
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-bi-analytics.py
+    detected: '2026-10-19'
+  detected_by: sweep-bi-analytics.py
+  detected: '2026-10-19'
+- partner_name: AtScale
+  app: AtScale
+  partner: atscale
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.tableau.com/products/1100
+  category: connector
+  contract_reference:
+    register: Tableau Exchange (exchange.tableau.com server-sitemap + product __NEXT_DATA__)
+    spec_file: null
+    role: tableau-app
+    registered_name: AtScale
+    matched_domain: atscale.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - AtScale
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-bi-analytics.py
+    detected: '2026-10-19'
+  detected_by: sweep-bi-analytics.py
+  detected: '2026-10-19'
+- partner_name: CData
+  app: CData Virtuality
+  partner: cdata
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.tableau.com/products/1081
+  category: connector
+  contract_reference:
+    register: Tableau Exchange (exchange.tableau.com server-sitemap + product __NEXT_DATA__)
+    spec_file: null
+    role: tableau-app
+    registered_name: CData
+    matched_domain: cdata.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - CData Virtuality
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-bi-analytics.py
+    detected: '2026-10-19'
+  detected_by: sweep-bi-analytics.py
+  detected: '2026-10-19'
+- partner_name: Couchbase Analytics
+  app: Couchbase Analytics
+  partner: couchbase
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.tableau.com/products/627
+  category: connector
+  contract_reference:
+    register: Tableau Exchange (exchange.tableau.com server-sitemap + product __NEXT_DATA__)
+    spec_file: null
+    role: tableau-app
+    registered_name: Couchbase Analytics
+    matched_domain: couchbase.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Couchbase Analytics
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-bi-analytics.py
+    detected: '2026-10-19'
+  detected_by: sweep-bi-analytics.py
+  detected: '2026-10-19'
+- partner_name: Databricks
+  app: Delta Sharing by Databricks - Deprecated
+  partner: databricks
+  partner_match: domain+name-among-holders
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.tableau.com/products/1019
+  category: connector
+  contract_reference:
+    register: Tableau Exchange (exchange.tableau.com server-sitemap + product __NEXT_DATA__)
+    spec_file: null
+    role: tableau-app
+    registered_name: Databricks
+    matched_domain: databricks.com
+    matched_by: domain+name-among-holders
+    listings: 1
+    sample_apps:
+    - Delta Sharing by Databricks - Deprecated
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-bi-analytics.py
+    detected: '2026-10-19'
+  detected_by: sweep-bi-analytics.py
+  detected: '2026-10-19'
+- partner_name: dbt Labs
+  app: dbt Semantic Layer
+  partner: dbt
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.tableau.com/products/1020
+  category: connector
+  contract_reference:
+    register: Tableau Exchange (exchange.tableau.com server-sitemap + product __NEXT_DATA__)
+    spec_file: null
+    role: tableau-app
+    registered_name: dbt Labs
+    matched_domain: getdbt.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - dbt Semantic Layer
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-bi-analytics.py
+    detected: '2026-10-19'
+  detected_by: sweep-bi-analytics.py
+  detected: '2026-10-19'
+- partner_name: Denodo Technologies
+  app: Denodo JDBC
+  partner: denodo
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.tableau.com/products/303
+  category: connector
+  contract_reference:
+    register: Tableau Exchange (exchange.tableau.com server-sitemap + product __NEXT_DATA__)
+    spec_file: null
+    role: tableau-app
+    registered_name: Denodo Technologies
+    matched_domain: denodo.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Denodo JDBC
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-bi-analytics.py
+    detected: '2026-10-19'
+  detected_by: sweep-bi-analytics.py
+  detected: '2026-10-19'
+- partner_name: Dremio
+  app: Dremio
+  partner: dremio
+  partner_match: domain+name-among-holders
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.tableau.com/products/175
+  category: connector
+  contract_reference:
+    register: Tableau Exchange (exchange.tableau.com server-sitemap + product __NEXT_DATA__)
+    spec_file: null
+    role: tableau-app
+    registered_name: Dremio
+    matched_domain: dremio.com
+    matched_by: domain+name-among-holders
+    listings: 1
+    sample_apps:
+    - Dremio
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-bi-analytics.py
+    detected: '2026-10-19'
+  detected_by: sweep-bi-analytics.py
+  detected: '2026-10-19'
+- partner_name: Firebolt Analytics Inc
+  app: Firebolt
+  partner: firebolt
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.tableau.com/products/650
+  category: connector
+  contract_reference:
+    register: Tableau Exchange (exchange.tableau.com server-sitemap + product __NEXT_DATA__)
+    spec_file: null
+    role: tableau-app
+    registered_name: Firebolt Analytics Inc
+    matched_domain: firebolt.io
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Firebolt
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-bi-analytics.py
+    detected: '2026-10-19'
+  detected_by: sweep-bi-analytics.py
+  detected: '2026-10-19'
+- partner_name: Incorta
+  app: Incorta
+  partner: incorta
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.tableau.com/products/267
+  category: connector
+  contract_reference:
+    register: Tableau Exchange (exchange.tableau.com server-sitemap + product __NEXT_DATA__)
+    spec_file: null
+    role: tableau-app
+    registered_name: Incorta
+    matched_domain: incorta.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Incorta
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-bi-analytics.py
+    detected: '2026-10-19'
+  detected_by: sweep-bi-analytics.py
+  detected: '2026-10-19'
+- partner_name: Kinetica
+  app: Kinetica Geospatial Analytics
+  partner: kinetica
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.tableau.com/products/273
+  category: extension
+  contract_reference:
+    register: Tableau Exchange (exchange.tableau.com server-sitemap + product __NEXT_DATA__)
+    spec_file: null
+    role: tableau-app
+    registered_name: Kinetica
+    matched_domain: kinetica.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Kinetica Geospatial Analytics
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-bi-analytics.py
+    detected: '2026-10-19'
+  detected_by: sweep-bi-analytics.py
+  detected: '2026-10-19'
+- partner_name: Mapbox
+  app: Mapbox Geospatial Analytics
+  partner: mapbox
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.tableau.com/products/41
+  category: extension
+  contract_reference:
+    register: Tableau Exchange (exchange.tableau.com server-sitemap + product __NEXT_DATA__)
+    spec_file: null
+    role: tableau-app
+    registered_name: Mapbox
+    matched_domain: mapbox.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Mapbox Geospatial Analytics
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-bi-analytics.py
+    detected: '2026-10-19'
+  detected_by: sweep-bi-analytics.py
+  detected: '2026-10-19'
+- partner_name: MongoDB
+  app: MongoDB SQL Interface
+  partner: mongodb
+  partner_match: domain+name-among-holders
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.tableau.com/products/1080
+  category: connector
+  contract_reference:
+    register: Tableau Exchange (exchange.tableau.com server-sitemap + product __NEXT_DATA__)
+    spec_file: null
+    role: tableau-app
+    registered_name: MongoDB
+    matched_domain: mongodb.com
+    matched_by: domain+name-among-holders
+    listings: 1
+    sample_apps:
+    - MongoDB SQL Interface
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-bi-analytics.py
+    detected: '2026-10-19'
+  detected_by: sweep-bi-analytics.py
+  detected: '2026-10-19'
+- partner_name: MotherDuck
+  app: MotherDuck / DuckDB
+  partner: motherduck
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.tableau.com/products/1021
+  category: connector
+  contract_reference:
+    register: Tableau Exchange (exchange.tableau.com server-sitemap + product __NEXT_DATA__)
+    spec_file: null
+    role: tableau-app
+    registered_name: MotherDuck
+    matched_domain: motherduck.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - MotherDuck / DuckDB
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-bi-analytics.py
+    detected: '2026-10-19'
+  detected_by: sweep-bi-analytics.py
+  detected: '2026-10-19'
+- partner_name: Ocient
+  app: Ocient JDBC
+  partner: ocient
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.tableau.com/products/178
+  category: connector
+  contract_reference:
+    register: Tableau Exchange (exchange.tableau.com server-sitemap + product __NEXT_DATA__)
+    spec_file: null
+    role: tableau-app
+    registered_name: Ocient
+    matched_domain: ocient.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Ocient JDBC
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-bi-analytics.py
+    detected: '2026-10-19'
+  detected_by: sweep-bi-analytics.py
+  detected: '2026-10-19'
+- partner_name: Palantir
+  app: Palantir Foundry
+  partner: palantir
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.tableau.com/products/628
+  category: connector
+  contract_reference:
+    register: Tableau Exchange (exchange.tableau.com server-sitemap + product __NEXT_DATA__)
+    spec_file: null
+    role: tableau-app
+    registered_name: Palantir
+    matched_domain: palantir.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Palantir Foundry
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-bi-analytics.py
+    detected: '2026-10-19'
+  detected_by: sweep-bi-analytics.py
+  detected: '2026-10-19'
+- partner_name: Qubole
+  app: Qubole Hive
+  partner: qubole
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.tableau.com/products/176
+  category: connector
+  contract_reference:
+    register: Tableau Exchange (exchange.tableau.com server-sitemap + product __NEXT_DATA__)
+    spec_file: null
+    role: tableau-app
+    registered_name: Qubole
+    matched_domain: qubole.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Qubole Hive
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-bi-analytics.py
+    detected: '2026-10-19'
+  detected_by: sweep-bi-analytics.py
+  detected: '2026-10-19'
+- partner_name: Singlestore
+  app: SingleStoreDB JDBC
+  partner: singlestore
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.tableau.com/products/866
+  category: connector
+  contract_reference:
+    register: Tableau Exchange (exchange.tableau.com server-sitemap + product __NEXT_DATA__)
+    spec_file: null
+    role: tableau-app
+    registered_name: Singlestore
+    matched_domain: singlestore.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - SingleStoreDB JDBC
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-bi-analytics.py
+    detected: '2026-10-19'
+  detected_by: sweep-bi-analytics.py
+  detected: '2026-10-19'
+- partner_name: Starburst
+  app: Starburst
+  partner: starburst
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.tableau.com/products/274
+  category: connector
+  contract_reference:
+    register: Tableau Exchange (exchange.tableau.com server-sitemap + product __NEXT_DATA__)
+    spec_file: null
+    role: tableau-app
+    registered_name: Starburst
+    matched_domain: starburst.io
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Starburst
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-bi-analytics.py
+    detected: '2026-10-19'
+  detected_by: sweep-bi-analytics.py
+  detected: '2026-10-19'
+- partner_name: StarTree
+  app: StarTree Tableau Connector
+  partner: startree
+  partner_match: domain+name-among-holders
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.tableau.com/products/1033
+  category: connector
+  contract_reference:
+    register: Tableau Exchange (exchange.tableau.com server-sitemap + product __NEXT_DATA__)
+    spec_file: null
+    role: tableau-app
+    registered_name: StarTree
+    matched_domain: startree.ai
+    matched_by: domain+name-among-holders
+    listings: 1
+    sample_apps:
+    - StarTree Tableau Connector
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-bi-analytics.py
+    detected: '2026-10-19'
+  detected_by: sweep-bi-analytics.py
+  detected: '2026-10-19'
+- partner_name: Tamr
+  app: Steward
+  partner: tamr
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://exchange.tableau.com/products/39
+  category: extension
+  contract_reference:
+    register: Tableau Exchange (exchange.tableau.com server-sitemap + product __NEXT_DATA__)
+    spec_file: null
+    role: tableau-app
+    registered_name: Tamr
+    matched_domain: tamr.com
+    matched_by: domain
+    listings: 1
+    sample_apps:
+    - Steward
+    signal_note: one edge per (builder, platform); listings and badges are context, never read
+    detected_by: sweep-bi-analytics.py
+    detected: '2026-10-19'
+  detected_by: sweep-bi-analytics.py
+  detected: '2026-10-19'
 method: searched
 checked:
+- https://exchange.tableau.com/server-sitemap.xml
 - https://fivetran.com/docs-sitemap.xml
 - https://fivetran.com/docs/connectors/partner-built-program
 - https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/
@@ -156,3 +755,11 @@ checked:
 source:
 - https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/
 - https://zapier.com/api/v4/apps/
+marketplace_apps:
+- marketplace: own
+  channel: partner-built
+  app: tableau
+  url: https://exchange.tableau.com/server-sitemap.xml
+  adapter: sweep-bi-analytics.py:tableau
+  listed: 23
+  note: 'Tableau Exchange: only domain-linked third-party builders are written; platform-built skipped'
