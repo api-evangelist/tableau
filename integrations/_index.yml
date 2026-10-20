@@ -765,3 +765,60 @@
     detected: '2026-10-20'
   status: not-a-workflow
   arazzo: null
+- slug: tableau-aws-data-exchange
+  label: AWS Data Exchange
+  partner: amazon-data-exchange
+  partner_name: AWS Data Exchange
+  category: data product listing
+  type: marketplace
+  marketplace: amazon-data-exchange-marketplace
+  channel: distribution
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=0ef849c5-c2fa-4699-9f67-c47555e148a5
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: AWS Data Exchange (AWS Marketplace discovery search, FULFILLMENT_OPTION_TYPE=DATA_EXCHANGE + seller-profile
+      sellerWebsiteUrl)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Tableau
+    matched_domain: tableau.com
+    matched_by: domain+name-among-holders
+    listings: 3
+    sample_listings:
+    - Coronavirus (COVID-19) Data Hub
+    - Tableau Racial Equity Data Hub Starter Data & Workbooks Updates
+    - Tableau Racial Equity Data Hub Starter Data and Workbooks
+    signal_note: 'participation: the provider lists data products on this marketplace; counts are context'
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+  status: not-a-workflow
+  arazzo: null
+- slug: tableau-snowflake-marketplace
+  label: Snowflake Marketplace
+  partner: snowflake
+  partner_name: Snowflake Marketplace
+  category: data product listing
+  type: marketplace
+  marketplace: snowflake-marketplace
+  channel: distribution
+  evidence: https://app.snowflake.com/marketplace/providers/GZSTZICQ8U2
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: Snowflake Marketplace providers (app.snowflake.com/marketplace/providers, rendered; names only, Wikidata
+      P856 identity step)
+    spec_file: null
+    role: data-marketplace-seller
+    registered_name: Tableau Software
+    matched_domain: tableau.com
+    matched_by: domain+name-among-holders
+    listings: 1
+    sample_listings: []
+    signal_note: 'participation: the provider lists data products on this marketplace; counts are context'
+    detected_by: sweep-data-marketplaces.py
+    detected: '2026-10-20'
+    identity_source: wikidata
+    identity_note: wikidata P856 tableau.com for 'Tableau Software' (labelled identity step)
+  status: not-a-workflow
+  arazzo: null
