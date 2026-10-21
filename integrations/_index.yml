@@ -822,3 +822,28 @@
     identity_note: wikidata P856 tableau.com for 'Tableau Software' (labelled identity step)
   status: not-a-workflow
   arazzo: null
+- slug: tableau-globant
+  label: Globant
+  partner_name: Globant
+  category: analytics
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=c4497ae2-56e9-4962-ac70-ed7af9d4ff5d
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: tableau-vivun-inc
+  label: Vivun Inc.
+  partner: vivun
+  partner_name: Vivun Inc.
+  category: analytics
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=2af978be-836e-47a2-bd73-45842a85ce97
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
